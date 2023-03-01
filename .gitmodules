@@ -1,0 +1,3 @@
+[submodule "Assets/GoRogue"]
+	path = Assets/GoRogue
+	url = https://github.com/Chris3606/GoRogue
