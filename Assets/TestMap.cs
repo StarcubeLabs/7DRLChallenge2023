@@ -19,7 +19,7 @@ public class TestMap : MonoBehaviour
 
         tileMap.SetTile(new Vector3Int(0, 0, 0), land);
 
-        IMapCreationStrategy<Map> mapCreationStrategy = new RandomRoomsMapCreationStrategy<Map>(30, 20, 8, 5, 3);
+        IMapCreationStrategy<Map> mapCreationStrategy = new RandomRoomsMapCreationStrategy<Map>(30, 20, Random.Range(3,13), 5, 3);
         somewhatInterestingMap = Map.Create(mapCreationStrategy);
         Debug.Log(somewhatInterestingMap.ToString());
 
