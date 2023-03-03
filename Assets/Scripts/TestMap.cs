@@ -59,6 +59,7 @@ public class TestMap : MonoBehaviour
         Vector3Int enemyGridPosition = getGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
         randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
 
+
         //Path Finder Setup
         pathFinder = new PathFinder(somewhatInterestingMap, 1.0);
     }

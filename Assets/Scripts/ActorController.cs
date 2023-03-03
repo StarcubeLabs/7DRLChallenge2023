@@ -12,6 +12,7 @@ public class ActorController : MonoBehaviour
     TestMap testMap;
     
     GameStateManager gameStateManager;
+    TurnManager turnManager;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,8 @@ public class ActorController : MonoBehaviour
         grid = FindObjectOfType<Grid>();
         testMap = FindObjectOfType<TestMap>();
         gameStateManager = FindObjectOfType<GameStateManager>();
+        turnManager = FindObjectOfType<TurnManager>();
+        turnManager.Register(this);
 
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
@@ -32,10 +35,15 @@ public class ActorController : MonoBehaviour
 
     public void Move(Vector3Int offset)
     {
+        if (!turnManager.CanMove(this))
+        {
+            return;
+        }
         if (testMap.canWalkOnCell(gridPosition + offset))
         {
             gridPosition += offset;
             SnapToPosition(gridPosition);
+            turnManager.KickToBackOfTurnOrder(this);
         }
     }
 
@@ -45,10 +53,15 @@ public class ActorController : MonoBehaviour
     /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void MoveDiagonal(Vector3Int offset)
     {
+        if (!turnManager.CanMove(this))
+        {
+            return;
+        }
         if ( testMap.canWalkOnCell(gridPosition + offset) && testMap.canWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) && testMap.canWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0)))
         {
             gridPosition += offset;
             SnapToPosition(gridPosition);
+            turnManager.KickToBackOfTurnOrder(this);
         }
     }
 
@@ -61,9 +74,14 @@ public class ActorController : MonoBehaviour
     
     public void GoDownStairs()
     {
+        if (!turnManager.CanMove(this))
+        {
+            return;
+        }
         if (this.gridPosition == testMap.getGridPositionFromCell(testMap.somewhatInterestingMap.end))
         {
             gameStateManager.WinGame();
+            turnManager.KickToBackOfTurnOrder(this);
         }
     }
 
@@ -83,11 +101,11 @@ public class ActorController : MonoBehaviour
             ICell nextStep = newPath?.StepForward();//Get the next step in that path.
             Vector3Int stepConv = testMap.getGridPositionFromCell(nextStep);
             Move(new Vector3Int(nextStep.X, nextStep.Y));//Move that direction.
+            turnManager.KickToBackOfTurnOrder(this);
         }
         else
         {
             print("Path is null!");
         }
-
     }
 }

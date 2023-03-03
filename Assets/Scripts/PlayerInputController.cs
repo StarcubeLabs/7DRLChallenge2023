@@ -26,6 +26,10 @@ public class PlayerInputController : MonoBehaviour
 
     void InputCheck()
     {
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            playerActor.Move(new Vector3Int(0, 0));
+        }
         if (Input.GetKeyDown(KeyCode.Keypad6))
         {
             playerActor.Move(new Vector3Int(1, 0));

@@ -7,11 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
+/// Original Code from RogueSharp! All credit to 
 /// The RandomRoomsMapCreationStrategy creates a Map of the specified type by placing rooms randomly and then connecting them with corridors
-/// </summary>
-/// <typeparam name="TMap">The type of IMap that will be created</typeparam>
-/// <typeparam name="TCell">The type of ICell that the Map will use</typeparam>
 public class RandomDungeonRoomsMapCreationStrategy: IMapCreationStrategy<DungeonMap>
 {
     private readonly IRandom _random;
