@@ -60,6 +60,11 @@ public class PlayerInputController : MonoBehaviour
         {
             playerActor.MoveDiagonal(new Vector3Int(1, -1));
         }
+
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            playerActor.GoDownStairs();
+        }
     }
 
     public Vector3Int GetLocation()

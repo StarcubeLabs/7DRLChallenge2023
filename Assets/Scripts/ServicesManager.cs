@@ -27,4 +27,9 @@ public class ServicesManager : MonoBehaviour
     {
         
     }
+
+    public void ResetServices()
+    {
+        camera.transform.SetParent(this.transform);
+    }
 }

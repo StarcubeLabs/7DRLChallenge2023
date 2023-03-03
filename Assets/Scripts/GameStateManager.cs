@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
+    ServicesManager servicesManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        servicesManager = FindObjectOfType<ServicesManager>();
     }
 
     // Update is called once per frame
@@ -24,16 +25,19 @@ public class GameStateManager : MonoBehaviour
 
     public void MainMenu()
     {
+        servicesManager.ResetServices();
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 
     public void GameOver()
     {
+        servicesManager.ResetServices();
         SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
 
     public void WinGame()
     {
+        servicesManager.ResetServices();
         SceneManager.LoadScene("WinScreen", LoadSceneMode.Single);
     }
 

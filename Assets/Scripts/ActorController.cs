@@ -1,4 +1,5 @@
 using RogueSharp;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,15 @@ public class ActorController : MonoBehaviour
     Grid grid;
     public Vector3Int gridPosition;
     TestMap testMap;
-
-    ServicesManager servicesManager;
-
+    
+    GameStateManager gameStateManager;
 
     // Start is called before the first frame update
     void Start()
     {
         grid = FindObjectOfType<Grid>();
         testMap = FindObjectOfType<TestMap>();
-
+        gameStateManager = FindObjectOfType<GameStateManager>();
 
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
@@ -57,6 +57,14 @@ public class ActorController : MonoBehaviour
         grid = FindObjectOfType<Grid>();
         Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
         this.transform.position = new Vector3(worldPosition.x, 0, worldPosition.z);
+    }
+    
+    public void GoDownStairs()
+    {
+        if (this.gridPosition == testMap.getGridPositionFromCell(testMap.somewhatInterestingMap.end))
+        {
+            gameStateManager.WinGame();
+        }
     }
 
     /// <summary>
