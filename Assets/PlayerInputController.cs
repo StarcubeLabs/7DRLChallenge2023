@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerInputController : MonoBehaviour
+{
+    public ActorController playerActor;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerActor = GameObject.FindObjectOfType<ActorController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        InputCheck();
+    }
+
+    void InputCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            playerActor.Move(new Vector3Int(1, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            playerActor.Move(new Vector3Int(-1, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            playerActor.Move(new Vector3Int(0, -1));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            playerActor.Move(new Vector3Int(0, 1));
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            playerActor.MoveDiagonal(new Vector3Int(1, 1));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            playerActor.MoveDiagonal(new Vector3Int(-1, 1));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            playerActor.MoveDiagonal(new Vector3Int(-1, -1));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            playerActor.MoveDiagonal(new Vector3Int(1, -1));
+        }
+    }
+}

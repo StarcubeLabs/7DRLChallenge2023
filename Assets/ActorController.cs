@@ -22,43 +22,10 @@ public class ActorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            Move(new Vector3Int(1, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            Move(new Vector3Int(-1, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            Move(new Vector3Int(0, -1));
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad8))
-        {
-            Move(new Vector3Int(0, 1));
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Keypad9))
-        {
-            MoveDiagonal(new Vector3Int(1, 1));
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad7))
-        {
-            MoveDiagonal(new Vector3Int(-1, 1));
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            MoveDiagonal(new Vector3Int(-1, -1));
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            MoveDiagonal(new Vector3Int(1, -1));
-        }
+        
     }
 
-    void Move(Vector3Int offset)
+    public void Move(Vector3Int offset)
     {
         if (testMap.canWalkOnCell(gridPosition + offset))
         {
@@ -67,7 +34,7 @@ public class ActorController : MonoBehaviour
         }
     }
 
-    void MoveDiagonal(Vector3Int offset)
+    public void MoveDiagonal(Vector3Int offset)
     {
         if ( testMap.canWalkOnCell(gridPosition + offset) && testMap.canWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) && testMap.canWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0)))
         {
