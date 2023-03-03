@@ -5,11 +5,17 @@ using UnityEngine;
 public class PlayerInputController : MonoBehaviour
 {
     public ActorController playerActor;
+    public Transform cameraSlot;
+    ServicesManager servicesManager;
 
     // Start is called before the first frame update
     void Start()
     {
         playerActor = GameObject.FindObjectOfType<ActorController>();
+        servicesManager = FindObjectOfType<ServicesManager>();
+        servicesManager.camera.transform.SetParent(cameraSlot, false);
+        servicesManager.camera.transform.localRotation = Quaternion.identity;
+        servicesManager.camera.transform.localPosition = Vector3.zero;
     }
 
     // Update is called once per frame

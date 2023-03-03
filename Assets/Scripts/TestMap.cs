@@ -13,6 +13,8 @@ public class TestMap : MonoBehaviour
     public Tile land;
     public IMap somewhatInterestingMap;
     public PathFinder pathFinder;
+
+    public EnemyBaseScript[] EnemyChoiceList;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,19 +40,38 @@ public class TestMap : MonoBehaviour
             }
         }
 
+        //Get the player.
         ActorController actorController = FindObjectOfType<ActorController>();
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
         int randomWalkableCellIndex = Random.Range(0, cells.Length);
-
+        //Set the player location.
         Vector3Int gridPosition = getGridPositionFromCell(cells[randomWalkableCellIndex]);
         actorController.SnapToPosition(gridPosition);
 
+        //Make an Enemy
+        EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[0]);
+
+        //Set the enemy location.
+        Vector3Int enemyGridPosition = getGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+        randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
+
+        //Path Finder Setup
         pathFinder = new PathFinder(somewhatInterestingMap, 1.0);
     }
 
     public Vector3Int getGridPositionFromCell(Cell cell)
     {
         return new Vector3Int(cell.X, somewhatInterestingMap.Height - 1 - cell.Y, 0);
+    }
+
+    public Vector3Int getGridPositionFromCell(ICell cell)
+    {
+        return new Vector3Int(cell.X, somewhatInterestingMap.Height - 1 - cell.Y, 0);
+    }
+
+    public Cell getCellFromGridPosition(Vector3Int pos)
+    {
+        return somewhatInterestingMap.GetCell(pos.x, pos.y);
     }
 
     public bool canWalkOnCell(Vector3Int position)

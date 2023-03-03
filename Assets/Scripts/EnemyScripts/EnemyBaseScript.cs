@@ -17,6 +17,8 @@ public class EnemyBaseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyActor.MoveToward(player.GetLocation(), enemyActor.gridPosition);
+        //print("current position: " + enemyActor.gridPosition.ToString());
+        //enemyActor.MoveToward(enemyActor.gridPosition, player.GetLocation());
+        enemyActor.MoveDiagonal(new Vector3Int(Random.Range(-1, 2), Random.Range(-1, 2), 0));
     }
 }

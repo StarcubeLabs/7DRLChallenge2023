@@ -11,17 +11,14 @@ public class ActorController : MonoBehaviour
     TestMap testMap;
 
     ServicesManager servicesManager;
-    public Transform cameraSlot;
+
 
     // Start is called before the first frame update
     void Start()
     {
         grid = FindObjectOfType<Grid>();
         testMap = FindObjectOfType<TestMap>();
-        servicesManager = FindObjectOfType<ServicesManager>();
-        servicesManager.camera.transform.SetParent(cameraSlot, false);
-        servicesManager.camera.transform.localRotation = Quaternion.identity;
-        servicesManager.camera.transform.localPosition = Vector3.zero;
+
 
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
@@ -70,12 +67,18 @@ public class ActorController : MonoBehaviour
     public void MoveToward(Vector3Int currentPosition, Vector3Int targetPosition)
     {
         ICell currentLocation = testMap.somewhatInterestingMap.GetCell(currentPosition.x, currentPosition.y);
+        print("Current GetCell: " + currentLocation);
         ICell targetLocation = testMap.somewhatInterestingMap.GetCell(targetPosition.x, targetPosition.y);
         Path newPath = testMap.pathFinder.TryFindShortestPath(currentLocation, targetLocation); //Determine the path between the two.
         if(newPath != null)
         {
             ICell nextStep = newPath?.StepForward();//Get the next step in that path.
+            Vector3Int stepConv = testMap.getGridPositionFromCell(nextStep);
             Move(new Vector3Int(nextStep.X, nextStep.Y));//Move that direction.
+        }
+        else
+        {
+            print("Path is null!");
         }
 
     }
