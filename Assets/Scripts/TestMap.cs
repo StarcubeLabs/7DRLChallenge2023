@@ -12,6 +12,7 @@ public class TestMap : MonoBehaviour
     public Tile wall;
     public Tile land;
     public IMap somewhatInterestingMap;
+    public PathFinder pathFinder;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,8 @@ public class TestMap : MonoBehaviour
 
         Vector3Int gridPosition = getGridPositionFromCell(cells[randomWalkableCellIndex]);
         actorController.SnapToPosition(gridPosition);
+
+        pathFinder = new PathFinder(somewhatInterestingMap, 1.0);
     }
 
     public Vector3Int getGridPositionFromCell(Cell cell)

@@ -49,4 +49,9 @@ public class ActorController : MonoBehaviour
         Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
         this.transform.position = new Vector3(worldPosition.x, 0, worldPosition.z);
     }
+
+    public void MoveToward(Vector3Int gridPosition)
+    {
+
+    }
 }
