@@ -55,4 +55,9 @@ public class PlayerInputController : MonoBehaviour
             playerActor.MoveDiagonal(new Vector3Int(1, -1));
         }
     }
+
+    public Vector3Int GetLocation()
+    {
+        return playerActor.gridPosition;
+    }
 }

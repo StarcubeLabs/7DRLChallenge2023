@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fcc7ed7a01c8748955223a0d346a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridPosition: {x: 0, y: 0, z: 0}
+  cameraSlot: {fileID: 8038504152753825677}
 --- !u!114 &8038504152482477859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592016225812cf44e86ea3ab2c5e24ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerActor: {fileID: 0}
+  playerActor: {fileID: 8038504152482477858}
 --- !u!1 &8038504152753825676
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using UnityEngine;
 public class ActorController : MonoBehaviour
 {
     Grid grid;
-    Vector3Int gridPosition;
+    public Vector3Int gridPosition;
     TestMap testMap;
 
     ServicesManager servicesManager;
@@ -42,6 +42,10 @@ public class ActorController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves an Actor while checking diagonals to prevent corner cutting of solid or filled in grid squares.
+    /// </summary>
+    /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void MoveDiagonal(Vector3Int offset)
     {
         if ( testMap.canWalkOnCell(gridPosition + offset) && testMap.canWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) && testMap.canWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0)))
@@ -58,8 +62,21 @@ public class ActorController : MonoBehaviour
         this.transform.position = new Vector3(worldPosition.x, 0, worldPosition.z);
     }
 
-    public void MoveToward(Vector3Int gridPosition)
+    /// <summary>
+    /// Takes in two locations, finds a path between them, then moves the Actor 1 step towards that location. Does not diagonal-check corners.
+    /// </summary>
+    /// <param name="currentPosition"></param>
+    /// <param name="targetPosition"></param>
+    public void MoveToward(Vector3Int currentPosition, Vector3Int targetPosition)
     {
+        ICell currentLocation = testMap.somewhatInterestingMap.GetCell(currentPosition.x, currentPosition.y);
+        ICell targetLocation = testMap.somewhatInterestingMap.GetCell(targetPosition.x, targetPosition.y);
+        Path newPath = testMap.pathFinder.TryFindShortestPath(currentLocation, targetLocation); //Determine the path between the two.
+        if(newPath != null)
+        {
+            ICell nextStep = newPath?.StepForward();//Get the next step in that path.
+            Move(new Vector3Int(nextStep.X, nextStep.Y));//Move that direction.
+        }
 
     }
 }
