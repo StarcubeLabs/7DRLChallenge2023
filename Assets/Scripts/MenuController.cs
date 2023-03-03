@@ -11,6 +11,7 @@ public class MenuController: MonoBehaviour
 {
     public Button gameButton;
     public Button mainMenuButton;
+    public Button creditsButton;
     public Button quitButton;
 
     GameStateManager gameStateManager;
@@ -20,6 +21,7 @@ public class MenuController: MonoBehaviour
         gameStateManager = FindObjectOfType<GameStateManager>();
         gameButton.onClick.AddListener(() => gameStateManager.StartGame());
         mainMenuButton.onClick.AddListener(() => gameStateManager.MainMenu());
+        creditsButton.onClick.AddListener(() => gameStateManager.CreditsMenu());
         quitButton.onClick.AddListener(() => gameStateManager.QuitGame());
     }
 }

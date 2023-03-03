@@ -15,7 +15,7 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartGame()
@@ -27,6 +27,12 @@ public class GameStateManager : MonoBehaviour
     {
         servicesManager.ResetServices();
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
+    }
+
+    public void CreditsMenu()
+    {
+        servicesManager.ResetServices();
+        SceneManager.LoadScene("CreditsMenu", LoadSceneMode.Single);
     }
 
     public void GameOver()
