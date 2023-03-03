@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ServicesManager : MonoBehaviour
 {
-    static ServicesManager instance;
+    public static ServicesManager instance;
 
     public Camera camera;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        if (instance != this)
+        if (instance != this && instance != null)
         {
-            GameObject.DontDestroyOnLoad(this);
-            instance = this;
+            DestroyImmediate(this.gameObject);
         }
         else
         {
-            Destroy(this);
+            GameObject.DontDestroyOnLoad(this.gameObject);
+            instance = this;
         }
     }
 
