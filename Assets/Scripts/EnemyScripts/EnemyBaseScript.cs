@@ -36,7 +36,7 @@ public class EnemyBaseScript : MonoBehaviour
         switch (state)
         {
             case AI_STATES.WANDERING:
-                enemyActor.MoveDiagonal(new Vector3Int(Random.Range(-1, 2), Random.Range(-1, 2), 0));
+                enemyActor.Move(new Vector3Int(Random.Range(-1, 2), Random.Range(-1, 2), 0));
                 break;
             case AI_STATES.PURSUING:
                 enemyActor.MoveToward(enemyActor.gridPosition, player.GetLocation());

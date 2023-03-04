@@ -35,7 +35,7 @@ public class TestMap : MonoBehaviour
         SpawnEntities();
 
         //Path Finder Setup
-        pathFinder = new PathFinder(somewhatInterestingMap, 1.0);
+        pathFinder = new PathFinder(somewhatInterestingMap, float.PositiveInfinity - 1);
         fieldOfView = new FieldOfView(somewhatInterestingMap);
     }
 

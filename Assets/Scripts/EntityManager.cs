@@ -41,4 +41,17 @@ public class EntityManager: MonoBehaviour
         }
         return false;
     }
+
+    public ActorController getEntityInPosition(Vector3Int position)
+    {
+        ActorController entity = null;
+        for (int i = 0; i < actors.Count; i++)
+        {
+            if (actors[i].gridPosition == position)
+            {
+                entity = actors[i];
+            }
+        }
+        return entity;
+    }
 }

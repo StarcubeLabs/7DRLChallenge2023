@@ -15,6 +15,9 @@ public class ActorController : MonoBehaviour
     EntityManager entityManager;
     TurnManager turnManager;
 
+    [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
+    public Vector2Int hitPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,38 +43,63 @@ public class ActorController : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Moves an Actor. Also considers diagonals to prevent corner cutting of solid or filled in grid squares.
+    /// </summary>
+    /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void Move(Vector3Int offset)
     {
+        if (offset == Vector3Int.zero)
+        {
+            turnManager.KickToBackOfTurnOrder(this);
+            return;
+        }
         if (!turnManager.CanMove(this))
         {
             return;
         }
-        if (testMap.CanWalkOnCell(gridPosition + offset))
+
+
+        bool isMovingDialogonally = (offset.x * offset.y) != 0;
+
+        if (!isMovingDialogonally || IsLegalDiagonalMove(offset))
         {
-            
+            ActorController entityToAttack = entityManager.getEntityInPosition(gridPosition + offset);
+            if (entityToAttack != null && entityToAttack != this)
+            {
+                entityToAttack.Hurt();
+                turnManager.KickToBackOfTurnOrder(this);
+                return;
+            }
+
+            if (!testMap.CanWalkOnCell(gridPosition + offset))
+            {
+                return;
+            }
             gridPosition += offset;
             SnapToPosition(gridPosition);
             turnManager.KickToBackOfTurnOrder(this);
         }
     }
 
-    /// <summary>
-    /// Moves an Actor while checking diagonals to prevent corner cutting of solid or filled in grid squares.
-    /// </summary>
-    /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
-    public void MoveDiagonal(Vector3Int offset)
+    public bool IsLegalDiagonalMove(Vector3Int offset)
     {
-        if (!turnManager.CanMove(this))
+        return testMap.CanWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) &&
+               testMap.CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0));
+    }
+
+    public void Hurt()
+    {
+        hitPoints.x--;
+        if (hitPoints.x <= 0)
         {
-            return;
+            Kill();
         }
-        if ( testMap.CanWalkOnCell(gridPosition + offset) && testMap.CanWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) && testMap.CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0)))
-        {
-            
-            gridPosition += offset;
-            SnapToPosition(gridPosition);
-        }
-        turnManager.KickToBackOfTurnOrder(this);
+    }
+
+    public void Kill()
+    {
+        Destroy(this.gameObject);
     }
 
     public void SnapToPosition(Vector3Int gridPosition)
@@ -109,11 +137,27 @@ public class ActorController : MonoBehaviour
         ICell currentLocation = testMap.GetCellFromGridPosition(currentPosition);
         ICell targetLocation = testMap.GetCellFromGridPosition(targetPosition);
         Path newPath = testMap.pathFinder.TryFindShortestPath(currentLocation, targetLocation); //Determine the path between the two.
-        if(newPath != null && newPath.Length > 1)
+        if(newPath != null && newPath.Length > 0)
         {
             ICell nextStep = newPath?.StepForward();//Get the next step in that path.
             Vector3Int stepConv = testMap.GetGridPositionFromCell(nextStep);
-            Move(stepConv - currentPosition);//Move that direction.
+            Vector3Int toNextStep = stepConv - currentPosition;
+            
+            if ((toNextStep.x * toNextStep.y) != 0 && !IsLegalDiagonalMove(toNextStep))
+            {
+                if (testMap.CanWalkOnCell(currentPosition + new Vector3Int(toNextStep.x, 0)))
+                {
+                    Move(new Vector3Int(toNextStep.x, 0));
+                }
+                else if(testMap.CanWalkOnCell(currentPosition + new Vector3Int(0, toNextStep.y)))
+                {
+                    Move(new Vector3Int(0, toNextStep.y));
+                }
+            }
+            else
+            {
+                Move(toNextStep);//Move that direction.
+            }
             turnManager.KickToBackOfTurnOrder(this);
         }
     }

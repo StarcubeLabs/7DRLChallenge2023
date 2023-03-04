@@ -50,19 +50,19 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad9))
         {
-            playerActor.MoveDiagonal(new Vector3Int(1, 1));
+            playerActor.Move(new Vector3Int(1, 1));
         }
         if (Input.GetKeyDown(KeyCode.Keypad7))
         {
-            playerActor.MoveDiagonal(new Vector3Int(-1, 1));
+            playerActor.Move(new Vector3Int(-1, 1));
         }
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            playerActor.MoveDiagonal(new Vector3Int(-1, -1));
+            playerActor.Move(new Vector3Int(-1, -1));
         }
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            playerActor.MoveDiagonal(new Vector3Int(1, -1));
+            playerActor.Move(new Vector3Int(1, -1));
         }
 
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
