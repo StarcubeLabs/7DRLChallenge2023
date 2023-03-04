@@ -18,6 +18,8 @@ public class ActorController : MonoBehaviour
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
+    public EventHandler onDie;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +101,10 @@ public class ActorController : MonoBehaviour
 
     public void Kill()
     {
+        if(onDie != null)
+        {
+            onDie(this, EventArgs.Empty);
+        }
         Destroy(this.gameObject);
     }
 

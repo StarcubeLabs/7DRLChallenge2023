@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +8,25 @@ public class PlayerInputController : MonoBehaviour
     public ActorController playerActor;
     public Transform cameraSlot;
     ServicesManager servicesManager;
+    GameStateManager gameStateManager;
 
     // Start is called before the first frame update
     void Start()
     {
         playerActor = GameObject.FindObjectOfType<ActorController>();
+
         servicesManager = FindObjectOfType<ServicesManager>();
         servicesManager.camera.transform.SetParent(cameraSlot, false);
         servicesManager.camera.transform.localRotation = Quaternion.identity;
         servicesManager.camera.transform.localPosition = Vector3.zero;
+        gameStateManager = FindObjectOfType<GameStateManager>();
+
+        playerActor.onDie += OnDie;
+    }
+
+    public void OnDie(object sender, EventArgs eventArgs)
+    {
+        gameStateManager.GameOver();
     }
 
     // Update is called once per frame
