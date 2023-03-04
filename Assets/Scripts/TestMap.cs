@@ -20,6 +20,14 @@ public class TestMap : MonoBehaviour
 
 
     public EnemyBaseScript[] EnemyChoiceList;
+
+    /// <summary>
+    /// This is the range of the amount of enemies to spawn.
+    /// The X-Value is the minimum number of enemies to spawn.
+    /// The Y-Value is the maximum number of enemies to spawn.
+    /// </summary>
+    [Tooltip("The range of enemies to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
+    public Vector2Int EnemySpawnRange;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,16 +63,7 @@ public class TestMap : MonoBehaviour
         Vector3Int gridPosition = getGridPositionFromCell(somewhatInterestingMap.start);
         actorController.SnapToPosition(gridPosition);
 
-        MapEntityList.Add(actorController);
-
-        //Make an Enemy
-        EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[0]);
-
-        //Set the enemy location.
-        Cell enemyCell = cells[Random.Range(0, cells.Length)];
-        Vector3Int enemyGridPosition = getGridPositionFromCell(enemyCell);
-        randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
-        MapEntityList.Add(randomEnemy.enemyActor);
+        EnemiesForMap(cells);
 
 
         //Path Finder Setup
@@ -104,6 +103,31 @@ public class TestMap : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Spawns Enemies for map.
+    ///  How many enemies to spawn is exposed in the Inspector as 'EnemySpawnRange'.
+    /// </summary>
+    /// <param name="cells">The cells available to spawn on.</param>
+    public void SpawnEnemiesForMap(Cell[] cells)
+    {
+        int NumberOfEnemiesToSpawn = Random.Range(EnemySpawnRange.x, EnemySpawnRange.y + 1);
+        if (EnemySpawnRange.y > cells.Length)
+        {
+            NumberOfEnemiesToSpawn = cells.Length / 2;
+            Debug.LogWarning("Number of Enemies to spawn exceeds cell count. Consider lowering the number.");
+        }
+        Debug.Log("Enemies Spawned:" + NumberOfEnemiesToSpawn);
+        
+        for (int numberOfSpawnedEnemies = 0; numberOfSpawnedEnemies < NumberOfEnemiesToSpawn; ++numberOfSpawnedEnemies)
+        {
+            EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[0]);
+
+            //Set the enemy location.
+            Vector3Int enemyGridPosition = getGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+            randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
+        }
+    }
+    
     // Update is called once per frame
     void Update()
     {
