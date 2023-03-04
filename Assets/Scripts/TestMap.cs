@@ -15,10 +15,9 @@ public class TestMap : MonoBehaviour
     public Tile stairUp;
     public DungeonMap somewhatInterestingMap;
     public PathFinder pathFinder;
+    public FieldOfView fieldOfView;
 
-    public List<ActorController> MapEntityList;
-
-
+    public EntityManager entityManager;
     public EnemyBaseScript[] EnemyChoiceList;
 
     /// <summary>
@@ -30,6 +29,17 @@ public class TestMap : MonoBehaviour
     public Vector2Int EnemySpawnRange;
     // Start is called before the first frame update
     void Start()
+    {
+        entityManager = FindObjectOfType<EntityManager>();
+        SetupTileMap();
+        SpawnEntities();
+
+        //Path Finder Setup
+        pathFinder = new PathFinder(somewhatInterestingMap, 1.0);
+        fieldOfView = new FieldOfView(somewhatInterestingMap);
+    }
+
+    public void SetupTileMap()
     {
         tileMap = GetComponent<Tilemap>();
 
@@ -53,54 +63,41 @@ public class TestMap : MonoBehaviour
             }
         }
         
-        tileMap.SetTile(getGridPositionFromCell(somewhatInterestingMap.start), stairDown);
-        tileMap.SetTile(getGridPositionFromCell(somewhatInterestingMap.end), stairUp);
+        tileMap.SetTile(GetGridPositionFromCell(somewhatInterestingMap.start), stairDown);
+        tileMap.SetTile(GetGridPositionFromCell(somewhatInterestingMap.end), stairUp);
+    }
 
+    public void SpawnEntities()
+    {
         ActorController actorController = FindObjectOfType<ActorController>();
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
         int randomWalkableCellIndex = Random.Range(0, cells.Length);
         //Set the player location.
-        Vector3Int gridPosition = getGridPositionFromCell(somewhatInterestingMap.start);
+        Vector3Int gridPosition = GetGridPositionFromCell(somewhatInterestingMap.start);
         actorController.SnapToPosition(gridPosition);
 
-        EnemiesForMap(cells);
-
-
-        //Path Finder Setup
-        pathFinder = new PathFinder(somewhatInterestingMap, 1.0);
+        SpawnEnemiesForMap(cells);
     }
 
-    public Vector3Int getGridPositionFromCell(Cell cell)
+    public Vector3Int GetGridPositionFromCell(Cell cell)
     {
         return new Vector3Int(cell.X, somewhatInterestingMap.Height - 1 - cell.Y, 0);
     }
 
-    public Vector3Int getGridPositionFromCell(ICell cell)
+    public Vector3Int GetGridPositionFromCell(ICell cell)
     {
         return new Vector3Int(cell.X, somewhatInterestingMap.Height - 1 - cell.Y, 0);
     }
 
-    public Cell getCellFromGridPosition(Vector3Int pos)
+    public Cell GetCellFromGridPosition(Vector3Int pos)
     {
-        return somewhatInterestingMap.GetCell(pos.x, pos.y);
+        return somewhatInterestingMap.GetCell(pos.x, somewhatInterestingMap.Height - 1 - pos.y);
     }
 
-    public bool canWalkOnCell(Vector3Int position)
+    public bool CanWalkOnCell(Vector3Int position)
     {
-        print("Can Walk on Cell: "+(somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && doesActorInhabitPosition(position) == false));
-        return somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && doesActorInhabitPosition(position) == false;
-    }
-
-    public bool doesActorInhabitPosition(Vector3Int position)
-    {
-        for(int i = 0; i < MapEntityList.Count; i++)
-        {
-            if (MapEntityList[i].gridPosition == position)
-            {
-                return true;
-            }
-        }
-        return false;
+        print("Can Walk on Cell: "+(somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && !entityManager.isEntityInPosition(position)));
+        return somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && !entityManager.isEntityInPosition(position);
     }
 
     /// <summary>
@@ -123,7 +120,7 @@ public class TestMap : MonoBehaviour
             EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[0]);
 
             //Set the enemy location.
-            Vector3Int enemyGridPosition = getGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+            Vector3Int enemyGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
             randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
         }
     }
@@ -132,5 +129,14 @@ public class TestMap : MonoBehaviour
     void Update()
     {
         //print(canWalkOnCell(MapEntityList[1].gridPosition));
+    }
+
+    public bool CanSeePosition(Vector3Int position, Vector3Int target)
+    {
+        ICell positionCell = GetCellFromGridPosition(position);
+        ICell targetCell = GetCellFromGridPosition(target);
+
+        fieldOfView.ComputeFov(positionCell.X, positionCell.Y, 30, false);
+        return fieldOfView.IsInFov(targetCell.X, targetCell.Y);
     }
 }

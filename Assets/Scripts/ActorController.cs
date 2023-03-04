@@ -12,6 +12,7 @@ public class ActorController : MonoBehaviour
     TestMap testMap;
     
     GameStateManager gameStateManager;
+    EntityManager entityManager;
     TurnManager turnManager;
 
     // Start is called before the first frame update
@@ -21,10 +22,16 @@ public class ActorController : MonoBehaviour
         testMap = FindObjectOfType<TestMap>();
         gameStateManager = FindObjectOfType<GameStateManager>();
         turnManager = FindObjectOfType<TurnManager>();
-        turnManager.Register(this);
+        entityManager = FindObjectOfType<EntityManager>();
+        entityManager.AddActor(this);
 
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
+    }
+
+    private void OnDestroy()
+    {
+        entityManager.RemoveActor(this);
     }
 
     // Update is called once per frame
@@ -39,7 +46,7 @@ public class ActorController : MonoBehaviour
         {
             return;
         }
-        if (testMap.canWalkOnCell(gridPosition + offset))
+        if (testMap.CanWalkOnCell(gridPosition + offset))
         {
             
             gridPosition += offset;
@@ -58,7 +65,7 @@ public class ActorController : MonoBehaviour
         {
             return;
         }
-        if ( testMap.canWalkOnCell(gridPosition + offset) && testMap.canWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) && testMap.canWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0)))
+        if ( testMap.CanWalkOnCell(gridPosition + offset) && testMap.CanWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) && testMap.CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0)))
         {
             
             gridPosition += offset;
@@ -80,7 +87,7 @@ public class ActorController : MonoBehaviour
         {
             return;
         }
-        if (this.gridPosition == testMap.getGridPositionFromCell(testMap.somewhatInterestingMap.end))
+        if (this.gridPosition == testMap.GetGridPositionFromCell(testMap.somewhatInterestingMap.end))
         {
             gameStateManager.WinGame();
             turnManager.KickToBackOfTurnOrder(this);
@@ -94,20 +101,25 @@ public class ActorController : MonoBehaviour
     /// <param name="targetPosition"></param>
     public void MoveToward(Vector3Int currentPosition, Vector3Int targetPosition)
     {
-        ICell currentLocation = testMap.somewhatInterestingMap.GetCell(currentPosition.x, currentPosition.y);
-        print("Current GetCell: " + currentLocation);
-        ICell targetLocation = testMap.somewhatInterestingMap.GetCell(targetPosition.x, targetPosition.y);
+        if (currentPosition == targetPosition)
+        {
+            return;
+        }
+
+        ICell currentLocation = testMap.GetCellFromGridPosition(currentPosition);
+        ICell targetLocation = testMap.GetCellFromGridPosition(targetPosition);
         Path newPath = testMap.pathFinder.TryFindShortestPath(currentLocation, targetLocation); //Determine the path between the two.
-        if(newPath != null)
+        if(newPath != null && newPath.Length > 1)
         {
             ICell nextStep = newPath?.StepForward();//Get the next step in that path.
-            Vector3Int stepConv = testMap.getGridPositionFromCell(nextStep);
-            Move(new Vector3Int(nextStep.X, nextStep.Y));//Move that direction.
+            Vector3Int stepConv = testMap.GetGridPositionFromCell(nextStep);
+            Move(stepConv - currentPosition);//Move that direction.
             turnManager.KickToBackOfTurnOrder(this);
         }
-        else
-        {
-            print("Path is null!");
-        }
+    }
+
+    public bool CanSeePosition(Vector3Int position)
+    {
+        return testMap.CanSeePosition(gridPosition, position);
     }
 }

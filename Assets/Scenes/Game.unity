@@ -357,8 +357,10 @@ MonoBehaviour:
   land: {fileID: 11400000, guid: 680390a89e45a68479ed548c7124f71a, type: 2}
   stairDown: {fileID: 11400000, guid: fbfffaf2629530a4e851bc2f2bdc3e73, type: 2}
   stairUp: {fileID: 11400000, guid: a406ac1df50cf4449955f11b5514fbca, type: 2}
+  entityManager: {fileID: 0}
   EnemyChoiceList:
   - {fileID: 47899768264105375, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+  EnemySpawnRange: {x: 1, y: 1}
 --- !u!1001 &585319356
 PrefabInstance:
   m_ObjectHideFlags: 0

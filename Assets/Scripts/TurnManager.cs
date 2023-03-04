@@ -7,21 +7,34 @@ using UnityEngine;
 
 public class TurnManager: MonoBehaviour
 {
-    List<ActorController> actors = new List<ActorController>();
+    List<ActorController> turnOrder = new List<ActorController>();
+    EntityManager actorManager;
 
-    public void Register(ActorController actorController)
+    public void Awake()
     {
-        actors.Add(actorController);
+        actorManager = FindObjectOfType<EntityManager>();
+        actorManager.onAddActor += OnAddActor;
+        actorManager.onRemoveActor += OnRemoveActor;
+    }
+
+    public void OnAddActor(object sender, ActorController actorController)
+    {
+        KickToBackOfTurnOrder(actorController);
+    }
+
+    public void OnRemoveActor(object sender, ActorController actorController)
+    {
+        turnOrder.Remove(actorController);
     }
 
     public bool CanMove(ActorController actorController)
     {
-        return actors[0] == actorController;
+        return turnOrder[0] == actorController;
     }
 
     public void KickToBackOfTurnOrder(ActorController actorController)
     {
-        actors.Remove(actorController);
-        actors.Insert(actors.Count, actorController);
+        turnOrder.Remove(actorController);
+        turnOrder.Insert(turnOrder.Count, actorController);
     }
 }
