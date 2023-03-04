@@ -41,6 +41,7 @@ public class ActorController : MonoBehaviour
         }
         if (testMap.canWalkOnCell(gridPosition + offset))
         {
+            
             gridPosition += offset;
             SnapToPosition(gridPosition);
             turnManager.KickToBackOfTurnOrder(this);
@@ -59,10 +60,11 @@ public class ActorController : MonoBehaviour
         }
         if ( testMap.canWalkOnCell(gridPosition + offset) && testMap.canWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) && testMap.canWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0)))
         {
+            
             gridPosition += offset;
             SnapToPosition(gridPosition);
-            turnManager.KickToBackOfTurnOrder(this);
         }
+        turnManager.KickToBackOfTurnOrder(this);
     }
 
     public void SnapToPosition(Vector3Int gridPosition)

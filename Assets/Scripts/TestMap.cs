@@ -16,6 +16,9 @@ public class TestMap : MonoBehaviour
     public DungeonMap somewhatInterestingMap;
     public PathFinder pathFinder;
 
+    public List<ActorController> MapEntityList;
+
+
     public EnemyBaseScript[] EnemyChoiceList;
     // Start is called before the first frame update
     void Start()
@@ -52,12 +55,16 @@ public class TestMap : MonoBehaviour
         Vector3Int gridPosition = getGridPositionFromCell(somewhatInterestingMap.start);
         actorController.SnapToPosition(gridPosition);
 
+        MapEntityList.Add(actorController);
+
         //Make an Enemy
         EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[0]);
 
         //Set the enemy location.
-        Vector3Int enemyGridPosition = getGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+        Cell enemyCell = cells[Random.Range(0, cells.Length)];
+        Vector3Int enemyGridPosition = getGridPositionFromCell(enemyCell);
         randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
+        MapEntityList.Add(randomEnemy.enemyActor);
 
 
         //Path Finder Setup
@@ -81,12 +88,25 @@ public class TestMap : MonoBehaviour
 
     public bool canWalkOnCell(Vector3Int position)
     {
-        return somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable;
+        print("Can Walk on Cell: "+(somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && doesActorInhabitPosition(position) == false));
+        return somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && doesActorInhabitPosition(position) == false;
+    }
+
+    public bool doesActorInhabitPosition(Vector3Int position)
+    {
+        for(int i = 0; i < MapEntityList.Count; i++)
+        {
+            if (MapEntityList[i].gridPosition == position)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //print(canWalkOnCell(MapEntityList[1].gridPosition));
     }
 }

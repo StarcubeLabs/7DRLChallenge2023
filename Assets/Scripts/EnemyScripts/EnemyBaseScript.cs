@@ -19,6 +19,7 @@ public class EnemyBaseScript : MonoBehaviour
     {
         //print("current position: " + enemyActor.gridPosition.ToString());
         //enemyActor.MoveToward(enemyActor.gridPosition, player.GetLocation());
-        enemyActor.MoveDiagonal(new Vector3Int(Random.Range(-1, 2), Random.Range(-1, 2), 0));
+       // enemyActor.MoveDiagonal(new Vector3Int(Random.Range(-1, 2), Random.Range(-1, 2), 0));
+        enemyActor.MoveDiagonal(new Vector3Int(1, 0));
     }
 }
