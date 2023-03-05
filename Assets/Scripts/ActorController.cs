@@ -21,6 +21,10 @@ public class ActorController : MonoBehaviour
 
     public EventHandler onDie;
 
+    public enum ActorDirection { up, upRight, right, downRight, down, downLeft, left, upLeft}
+
+    public ActorDirection actorDirection = ActorDirection.down;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +98,47 @@ public class ActorController : MonoBehaviour
             {
                 return;
             }
+
+            //Big 'ol If Chain to determine character facing direction based on movement direction
+            if(offset == Vector3Int.up)
+            {
+                actorDirection = ActorDirection.up;
+            }
+            else if(offset == new Vector3Int(1,1, 0))
+            {
+                actorDirection = ActorDirection.upRight;
+            }
+            else if (offset == Vector3Int.right)
+            {
+                actorDirection = ActorDirection.right;
+            }
+            else if (offset == new Vector3Int(1, -1, 0))
+            {
+                actorDirection = ActorDirection.downRight;
+            }
+            else if (offset == Vector3Int.down)
+            {
+                actorDirection = ActorDirection.down;
+            }
+            else if (offset == new Vector3Int(-1, -1, 0))
+            {
+                actorDirection = ActorDirection.downLeft;
+            }
+            else if (offset == Vector3Int.left)
+            {
+                actorDirection = ActorDirection.left;
+            }
+            else if (offset == new Vector3Int(-1, 1, 0))
+            {
+                actorDirection = ActorDirection.upLeft;
+            }
+            else 
+            {
+                actorDirection = ActorDirection.down;
+            }
+
+
+
             gridPosition += offset;
             SnapToPosition(gridPosition);
             turnManager.KickToBackOfTurnOrder(this);
