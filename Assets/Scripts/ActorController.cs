@@ -9,6 +9,7 @@ public class ActorController : MonoBehaviour
 {
     Grid grid;
     public Vector3Int gridPosition;
+    public Vector3 visualPosition;
     TestMap testMap;
     
     GameStateManager gameStateManager;
@@ -32,6 +33,7 @@ public class ActorController : MonoBehaviour
 
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
+        visualPosition = (Vector3)gridPosition;//Set visual position to grid position.
     }
 
     private void OnDestroy()
@@ -42,7 +44,21 @@ public class ActorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateVisualLocation();
+    }
+
+    void UpdateVisualLocation()
+    {
+        Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
+        if(Vector3.Distance(worldPosition, visualPosition) < .1f)
+        {
+            visualPosition = gridPosition;
+        }
+        else
+        {
+            visualPosition = Vector3.Lerp(visualPosition, new Vector3(worldPosition.x, 0, worldPosition.z), .25f);
+        }
+        this.transform.position = visualPosition;
     }
 
     /// <summary>
@@ -111,6 +127,8 @@ public class ActorController : MonoBehaviour
     public void SnapToPosition(Vector3Int gridPosition)
     {
         grid = FindObjectOfType<Grid>();
+
+        //Disable pure location snap so "faux-animation" lerping can work instead.
         Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
         this.transform.position = new Vector3(worldPosition.x, 0, worldPosition.z);
     }
@@ -172,4 +190,5 @@ public class ActorController : MonoBehaviour
     {
         return testMap.CanSeePosition(gridPosition, position);
     }
+
 }
