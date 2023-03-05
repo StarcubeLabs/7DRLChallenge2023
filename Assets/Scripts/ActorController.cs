@@ -22,6 +22,8 @@ public class ActorController : MonoBehaviour
     EntityManager entityManager;
     TurnManager turnManager;
 
+    public Inventory Inventory;
+    
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
@@ -44,6 +46,8 @@ public class ActorController : MonoBehaviour
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
         visualPosition = (Vector3)gridPosition;//Set visual position to grid position.
+        Inventory = new Inventory();
+        Inventory.InitializeInventory(30);
     }
 
     private void OnDestroy()
@@ -169,6 +173,15 @@ public class ActorController : MonoBehaviour
                testMap.CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0));
     }
 
+    public void HealAmount(int healAmount)
+    {
+        hitPoints.x += healAmount;
+        if (hitPoints.x > hitPoints.y)
+        {
+            hitPoints.x = hitPoints.y;
+        }
+    }
+    
     public void Hurt()
     {
         hitPoints.x--;
@@ -254,4 +267,14 @@ public class ActorController : MonoBehaviour
         return testMap.CanSeePosition(gridPosition, position);
     }
 
+    public void Interact()
+    {
+        Debug.Log(gridPosition);
+        if (entityManager.isInteractableInPosition(gridPosition))
+        {
+            Debug.Log("WE ARE HERE.");
+            entityManager.getInteractableInPosition(gridPosition).Interact(this);
+        }
+    }
+    
 }

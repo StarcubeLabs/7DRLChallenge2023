@@ -20,6 +20,17 @@ public class TestMap : MonoBehaviour
     public EntityManager entityManager;
     public EnemyBaseScript[] EnemyChoiceList;
 
+    
+    /// <summary>
+    /// This is the range of the amount of items to spawn.
+    /// The X-Value is the minimum number of items to spawn.
+    /// The Y-Value is the maximum number of items to spawn.
+    /// </summary>
+    [Tooltip("The range of items to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
+    public Vector2Int ItemSpawnRange;
+    public List<WeightedEntry<Item>> PotentialItemEntries = new List<WeightedEntry<Item>>();
+    private WeightedTable<Item> PotentialItems = new WeightedTable<Item>();
+    
     /// <summary>
     /// This is the range of the amount of enemies to spawn.
     /// The X-Value is the minimum number of enemies to spawn.
@@ -33,7 +44,7 @@ public class TestMap : MonoBehaviour
         entityManager = FindObjectOfType<EntityManager>();
         SetupTileMap();
         SpawnEntities();
-
+        
         //Path Finder Setup
         pathFinder = new PathFinder(somewhatInterestingMap, float.PositiveInfinity - 1);
         fieldOfView = new FieldOfView(somewhatInterestingMap);
@@ -76,7 +87,10 @@ public class TestMap : MonoBehaviour
         Vector3Int gridPosition = GetGridPositionFromCell(somewhatInterestingMap.start);
         actorController.SnapToPosition(gridPosition);
 
-        SpawnEnemiesForMap(cells);
+        PotentialItems.ConstructWeightedTable(PotentialItemEntries);
+        
+        //SpawnEnemiesForMap(cells);
+        SpawnItemsForMap(cells);
     }
 
     public Vector3Int GetGridPositionFromCell(Cell cell)
@@ -100,6 +114,11 @@ public class TestMap : MonoBehaviour
         return somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && !entityManager.isEntityInPosition(position);
     }
 
+    public bool HasInteractable(Vector3Int position)
+    {
+        return entityManager.isInteractableInPosition(position);
+    }
+    
     /// <summary>
     /// Spawns Enemies for map.
     ///  How many enemies to spawn is exposed in the Inspector as 'EnemySpawnRange'.
@@ -122,6 +141,36 @@ public class TestMap : MonoBehaviour
             //Set the enemy location.
             Vector3Int enemyGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
             randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
+        }
+    }
+    
+    /// <summary>
+    /// Spawns Enemies for map.
+    ///  How many enemies to spawn is exposed in the Inspector as 'EnemySpawnRange'.
+    /// </summary>
+    /// <param name="cells">The cells available to spawn on.</param>
+    public void SpawnItemsForMap(Cell[] cells)
+    {
+        int numberOfItemsToSpawn = Random.Range(ItemSpawnRange.x, ItemSpawnRange.y + 1);
+
+        if (ItemSpawnRange.y > cells.Length)
+        {
+            numberOfItemsToSpawn = cells.Length / 2;
+            Debug.LogWarning("Number of Items to spawn exceeds cell count. Consider lowering the number.");
+        }
+        Debug.Log("Items Spawned:" + numberOfItemsToSpawn);
+        
+        for (int numberOfSpawnedItems = 0; numberOfSpawnedItems < numberOfItemsToSpawn; ++numberOfSpawnedItems)
+        {
+            Item randomItem = Instantiate<Item>(PotentialItems.GetRandomEntry());
+            
+            randomItem.transform.Rotate(new Vector3(90,0,0));
+            //Set the enemy location.
+            Vector3Int itemGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+            randomItem.SnapToPosition(itemGridPosition);
+            randomItem.gridPosition = itemGridPosition;
+            randomItem.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            entityManager.interactables.Add(randomItem);
         }
     }
     

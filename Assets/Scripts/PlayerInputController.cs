@@ -10,6 +10,7 @@ public class PlayerInputController : MonoBehaviour
     ServicesManager servicesManager;
     GameStateManager gameStateManager;
 
+    public GameObject InventoryMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +81,25 @@ public class PlayerInputController : MonoBehaviour
         {
             playerActor.GoDownStairs();
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            Debug.Log("TEST");
+            playerActor.Interact();
+        }
+
+        if (Input.GetKeyDown(KeyCode.KeypadDivide))
+        {
+            if (InventoryMenu.activeInHierarchy)
+            {
+                InventoryMenu.SetActive(false);
+            }
+            else
+            {
+                InventoryMenu.SetActive(true);
+            }
+        }
+        
     }
 
     public Vector3Int GetLocation()
