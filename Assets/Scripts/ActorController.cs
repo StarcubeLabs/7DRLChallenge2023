@@ -9,8 +9,14 @@ public class ActorController : MonoBehaviour
 {
     Grid grid;
     public Vector3Int gridPosition;
+    [HideInInspector]
     public Vector3 visualPosition;
+    [HideInInspector]
+    public float visualRotation = 0;
+    public Transform visualTransform;
     TestMap testMap;
+
+
     
     GameStateManager gameStateManager;
     EntityManager entityManager;
@@ -63,6 +69,9 @@ public class ActorController : MonoBehaviour
             visualPosition = Vector3.Lerp(visualPosition, new Vector3(worldPosition.x, 0, worldPosition.z), .25f);
         }
         this.transform.position = visualPosition;
+        //visualTransform.transform.rotation = Quaternion.Euler(visualRotation);
+        visualTransform.transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
+        visualTransform.transform.Rotate(0, 0, visualRotation);
     }
 
     /// <summary>
@@ -103,38 +112,47 @@ public class ActorController : MonoBehaviour
             if(offset == Vector3Int.up)
             {
                 actorDirection = ActorDirection.up;
+                visualRotation = 180;
             }
             else if(offset == new Vector3Int(1,1, 0))
             {
                 actorDirection = ActorDirection.upRight;
+                visualRotation = 135;
             }
             else if (offset == Vector3Int.right)
             {
                 actorDirection = ActorDirection.right;
+                visualRotation = 90;
             }
             else if (offset == new Vector3Int(1, -1, 0))
             {
                 actorDirection = ActorDirection.downRight;
+                visualRotation = 45;
             }
             else if (offset == Vector3Int.down)
             {
                 actorDirection = ActorDirection.down;
+                visualRotation = 0;
             }
             else if (offset == new Vector3Int(-1, -1, 0))
             {
                 actorDirection = ActorDirection.downLeft;
+                visualRotation = 315;
             }
             else if (offset == Vector3Int.left)
             {
                 actorDirection = ActorDirection.left;
+                visualRotation = 270;
             }
             else if (offset == new Vector3Int(-1, 1, 0))
             {
                 actorDirection = ActorDirection.upLeft;
+                visualRotation = 225;
             }
             else 
             {
                 actorDirection = ActorDirection.down;
+                visualRotation = 0;
             }
 
 
