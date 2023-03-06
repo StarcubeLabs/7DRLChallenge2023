@@ -33,6 +33,12 @@ public class ActorController : MonoBehaviour
 
     public ActorDirection actorDirection = ActorDirection.down;
 
+    private void Awake()
+    {
+        Inventory = new Inventory();
+        Inventory.InitializeInventory(30);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +52,6 @@ public class ActorController : MonoBehaviour
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
         visualPosition = (Vector3)gridPosition;//Set visual position to grid position.
-        Inventory = new Inventory();
-        Inventory.InitializeInventory(30);
     }
 
     private void OnDestroy()
