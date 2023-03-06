@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9eb80393aeec5514c88736cfcebf123b, type: 3}
-  m_Name: HealingPotion
+  m_Name: StackTest
   m_EditorClassIdentifier: 
-  ItemName: Health Potion
-  ItemDescription: Health Potion
-  ItemIcon: {fileID: 21300000, guid: 72174fa65282b0e4d9e8daa96cb8aca5, type: 3}
-  ItemValue: 10
+  ItemName: StackableItem
+  ItemDescription: StackableItem
+  ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
+  ItemValue: 0
   IsStackable: 1
-  MaximumStack: 5
+  MaximumStack: 10

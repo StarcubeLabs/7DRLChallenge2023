@@ -9,6 +9,10 @@ public class Inventory
     public EntityManager entityManager;
     public Item[] Items;
     public int NumberOfSlots;
+
+    public Item ItemToDrop;
+    public int NumberOfItemsToDrop;
+    
     public void InitializeInventory(int numberOfSlots)
     {
         NumberOfSlots = numberOfSlots;
@@ -17,17 +21,27 @@ public class Inventory
     
     public bool AddItem(Item itemToAdd)
     {
+        if (itemToAdd.CurrentNumberOfStacks == 0)
+        {
+            itemToAdd.CurrentNumberOfStacks = 1;
+            Debug.LogWarning("Are you sure you want to define your stack as 0.");
+        }
         for (int index = 0; index < Items.Length; ++index)
         {
             if (itemToAdd.CanBeStacked)
             {
-                foreach (var item in Items.Where(item => item.CanBeStacked))
+                foreach (var item in Items.Where(item => item!=null && item.CanBeStacked))
                 {
                     if (item.CurrentNumberOfStacks < item.MaximumNumberOfStacks)
                     {
-                        ++item.CurrentNumberOfStacks;
+                        item.CurrentNumberOfStacks += itemToAdd.CurrentNumberOfStacks;
                         return true;
                     }
+                }
+                if(Items[index]==null)
+                {
+                    Items[index] = itemToAdd;
+                    return true;
                 }
             }
             else
@@ -57,6 +71,10 @@ public class Inventory
     
     public bool DropItem(Item itemToDrop,  Vector3Int positionToDrop, int numberToDrop=0)
     {
+        if (itemToDrop == null)
+        {
+            return false;
+        }
         entityManager = GameObject.FindObjectOfType<EntityManager>();
         if (entityManager.isInteractableInPosition(positionToDrop))
         {
@@ -66,22 +84,36 @@ public class Inventory
         {
             if (itemToDrop.CanBeStacked)
             {
-                itemToDrop.CurrentNumberOfStacks -= numberToDrop;
-                Item itemStack = GameObject.Instantiate(itemToDrop);
-                itemStack.gridPosition = positionToDrop;
-                itemStack.CurrentNumberOfStacks = numberToDrop;
-                itemStack.SnapToPosition(positionToDrop);
-                entityManager.interactables.Add(itemStack);
+                if (numberToDrop > 0)
+                {
+                    var itemIndex = Array.IndexOf(Items, itemToDrop);
+                    itemToDrop.CurrentNumberOfStacks -= numberToDrop;
+                    if (itemToDrop.CurrentNumberOfStacks == 0)
+                    {
+                        Items[itemIndex] = null;
+                    }
+
+                    Item itemStack = GameObject.Instantiate(itemToDrop);
+
+                    itemStack.gridPosition = positionToDrop;
+                    itemStack.CurrentNumberOfStacks = numberToDrop;
+                    itemStack.SnapToPosition(positionToDrop);
+                    itemStack.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                    itemStack.gameObject.SetActive(true);
+                    entityManager.interactables.Add(itemStack);
+                    return true;
+                }
+            }
+            else
+            {
+                var itemIndex = Array.IndexOf(Items, itemToDrop);
+                itemToDrop.gridPosition = positionToDrop;
+                itemToDrop.SnapToPosition(positionToDrop);
+                itemToDrop.gameObject.SetActive(true);
+                Items[itemIndex] = null;
+                entityManager.interactables.Add(itemToDrop);
                 return true;
             }
-
-            int itemIndex = Array.IndexOf(Items, itemToDrop);
-            itemToDrop.gridPosition = positionToDrop;
-            itemToDrop.SnapToPosition(positionToDrop);
-            itemToDrop.gameObject.SetActive(true);
-            Items[itemIndex] = null;
-            entityManager.interactables.Add(itemToDrop);
-            return true;
         }
         return false;
     }

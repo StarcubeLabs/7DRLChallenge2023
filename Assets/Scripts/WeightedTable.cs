@@ -12,7 +12,7 @@ public class WeightedEntry<T> where T : class
     public T Entry;
 }
 
-public class WeightedTable<T> : MonoBehaviour where T : class
+public class WeightedTable<T> where T : class
 {
     private SortedDictionary<KeyValuePair<int, int>, T> weightedTable;
     public int TotalWeight = 0;

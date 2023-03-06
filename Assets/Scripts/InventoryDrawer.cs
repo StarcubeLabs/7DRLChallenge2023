@@ -7,6 +7,7 @@ public class InventoryDrawer : MonoBehaviour
     private EntityManager entityManager;
     public Inventory PlayerInventory;
     public ItemSlot ItemSlotPrefab;
+    public GameObject ItemDropMenu;
     
     void Awake()
     {

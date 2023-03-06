@@ -32,7 +32,10 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
             if (!itemSlot.CanBeStacked)
             {
                 StackCountText.gameObject.SetActive(false);
-
+            }
+            else
+            {
+                StackCountText.text = itemSlot.CurrentNumberOfStacks.ToString("D2");
             }
         }
 
@@ -44,14 +47,23 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
                 ItemPreview.GetComponent<Image>().sprite = itemSlot.ItemIcon;
             }
         }
-
     }
-    
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            itemSlot.OnDrop();
+            if (itemSlot.CanBeStacked)
+            {
+                var dropMenu = GameObject.FindObjectOfType<DropItemMenu>();
+                dropMenu.GetComponent<DropItemMenu>().CurrentItemDisplay.SetItem(itemSlot);
+                dropMenu.GetComponent<DropItemMenu>().CurrentDropItemDisplay.SetItem(itemSlot);
+                dropMenu.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                itemSlot.OnDrop();
+            }
         }
         if (eventData.button == PointerEventData.InputButton.Left)
         {

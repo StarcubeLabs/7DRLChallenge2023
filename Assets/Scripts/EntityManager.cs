@@ -85,4 +85,9 @@ public class EntityManager: MonoBehaviour
         }
         return entity;
     }
+
+    public void OnDrop()
+    {
+        actors[0].Inventory.DropItem(actors[0].Inventory.ItemToDrop, actors[0].gridPosition, actors[0].Inventory.NumberOfItemsToDrop);
+    }
 }
