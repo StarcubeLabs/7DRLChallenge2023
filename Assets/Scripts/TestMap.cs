@@ -32,6 +32,16 @@ public class TestMap : MonoBehaviour
     private WeightedTable<Item> PotentialItems = new WeightedTable<Item>();
     
     /// <summary>
+    /// This is the range of the amount of traps to spawn.
+    /// The X-Value is the minimum number of traps to spawn.
+    /// The Y-Value is the maximum number of traps to spawn.
+    /// </summary>
+    [Tooltip("The range of traps to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
+    public Vector2Int NumberOfTrapsToSpawnRange;
+    public List<WeightedEntry<Trap>> PotentialTrapEntries = new List<WeightedEntry<Trap>>();
+    private WeightedTable<Trap> PotentialTraps = new WeightedTable<Trap>();
+    
+    /// <summary>
     /// This is the range of the amount of enemies to spawn.
     /// The X-Value is the minimum number of enemies to spawn.
     /// The Y-Value is the maximum number of enemies to spawn.
@@ -88,9 +98,11 @@ public class TestMap : MonoBehaviour
         actorController.SnapToPosition(gridPosition);
 
         PotentialItems.ConstructWeightedTable(PotentialItemEntries);
+        PotentialTraps.ConstructWeightedTable(PotentialTrapEntries);
         
         //SpawnEnemiesForMap(cells);
         SpawnItemsForMap(cells);
+        SpawnTrapsForMap(cells);
     }
 
     public Vector3Int GetGridPositionFromCell(Cell cell)
@@ -117,6 +129,11 @@ public class TestMap : MonoBehaviour
     public bool HasInteractable(Vector3Int position)
     {
         return entityManager.isInteractableInPosition(position);
+    }
+    
+    public bool HasTrap(Vector3Int position)
+    {
+        return entityManager.isTrapInPosition(position);
     }
     
     /// <summary>
@@ -171,6 +188,36 @@ public class TestMap : MonoBehaviour
             randomItem.gridPosition = itemGridPosition;
             randomItem.GetComponent<SpriteRenderer>().sortingOrder = 1;
             entityManager.interactables.Add(randomItem);
+        }
+    }
+    
+    /// <summary>
+    /// Spawns Enemies for map.
+    ///  How many enemies to spawn is exposed in the Inspector as 'EnemySpawnRange'.
+    /// </summary>
+    /// <param name="cells">The cells available to spawn on.</param>
+    public void SpawnTrapsForMap(Cell[] cells)
+    {
+        int numberOfTrapsToSpawn = Random.Range(ItemSpawnRange.x, ItemSpawnRange.y + 1);
+
+        if (ItemSpawnRange.y > cells.Length)
+        {
+            numberOfTrapsToSpawn = cells.Length / 2;
+            Debug.LogWarning("Number of Traps to spawn exceeds cell count. Consider lowering the number.");
+        }
+        Debug.Log("Traps Spawned:" + numberOfTrapsToSpawn);
+        
+        for (int numberOfSpawnedTraps = 0; numberOfSpawnedTraps < numberOfTrapsToSpawn; ++numberOfSpawnedTraps)
+        {
+            Trap randomTrap = Instantiate<Trap>(PotentialTraps.GetRandomEntry());
+            
+            randomTrap.transform.Rotate(new Vector3(90,0,0));
+            //Set the enemy location.
+            Vector3Int trapGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+            randomTrap.SnapToPosition(trapGridPosition);
+            randomTrap.gridPosition = trapGridPosition;
+            randomTrap.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            entityManager.AddTrap(randomTrap);
         }
     }
     

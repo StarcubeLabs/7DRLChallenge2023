@@ -17,6 +17,8 @@ public class EntityManager: MonoBehaviour
     /// BUT to not step on toes, just writing this.)
     /// </summary> 
     public List<IInteractable> interactables = new List<IInteractable>();
+
+    public List<Trap> traps = new List<Trap>();
     
     public void AddActor(ActorController actorController)
     {
@@ -60,6 +62,44 @@ public class EntityManager: MonoBehaviour
         return false;
     }
 
+    public void AddTrap(Trap trapToAdd)
+    {
+        traps.Add(trapToAdd);
+    }
+
+    public void RemoveTrap(Trap trapToRemove)
+    {
+        if (traps.Contains(trapToRemove))
+        {
+            traps.Remove(trapToRemove);
+        }
+    }
+    
+    public bool isTrapInPosition(Vector3Int position)
+    {
+        for (int i = 0; i < traps.Count; i++)
+        {
+            if (traps[i].gridPosition == position)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Trap getTrapInPosition(Vector3Int position)
+    {
+        Trap trap = null;
+        for (int i = 0; i < traps.Count; i++)
+        {
+            if (traps[i].gridPosition == position)
+            {
+                trap = traps[i];
+            }
+        }
+        return trap;
+    }
+    
     public ActorController getEntityInPosition(Vector3Int position)
     {
         ActorController entity = null;

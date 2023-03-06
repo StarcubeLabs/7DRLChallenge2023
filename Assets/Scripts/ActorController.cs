@@ -17,12 +17,12 @@ public class ActorController : MonoBehaviour
     public Transform visualTransform;
     TestMap testMap;
 
-        GameStateManager gameStateManager;
+    GameStateManager gameStateManager;
     EntityManager entityManager;
     TurnManager turnManager;
 
     public Inventory Inventory;
-    
+
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
@@ -171,6 +171,14 @@ public class ActorController : MonoBehaviour
 
             gridPosition += offset;
             SnapToPosition(gridPosition);
+
+            if (entityManager.isTrapInPosition(gridPosition))
+            {
+                var trap = entityManager.getTrapInPosition(gridPosition);
+                trap.OnContact(this);
+                trap.gameObject.SetActive(false);
+            }
+            
             turnManager.KickToBackOfTurnOrder(this);
         }
     }
@@ -193,6 +201,15 @@ public class ActorController : MonoBehaviour
     public void Hurt()
     {
         hitPoints.x--;
+        if (hitPoints.x <= 0)
+        {
+            Kill();
+        }
+    }
+
+    public void Hurt(int hurtAmount)
+    {
+        hitPoints.x -= hurtAmount;
         if (hitPoints.x <= 0)
         {
             Kill();
