@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class EntityManager: MonoBehaviour
 {
+    LevelManager levelManager;
     public List<ActorController> actors = new List<ActorController>();
 
     public EventHandler<ActorController> onAddActor;
@@ -20,9 +21,15 @@ public class EntityManager: MonoBehaviour
 
     public List<Trap> traps = new List<Trap>();
     
+    public void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+
     public void AddActor(ActorController actorController)
     {
         actors.Add(actorController);
+        levelManager.GetActiveLevel().AddEntityToLevel(actorController);
         if (onAddActor != null)
         {
             onAddActor(this, actorController);
@@ -32,10 +39,23 @@ public class EntityManager: MonoBehaviour
     public void RemoveActor(ActorController actorController)
     {
         actors.Remove(actorController);
+        levelManager.GetActiveLevel().RemoveEntityFromLevel(actorController);
         if (onRemoveActor != null)
         {
             onRemoveActor(this, actorController);
         }
+    }
+
+    public void AddItem(Item item)
+    {
+        interactables.Add(item);
+        levelManager.GetActiveLevel().AddEntityToLevel(item);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        interactables.Remove(item);
+        levelManager.GetActiveLevel().RemoveEntityFromLevel(item);
     }
 
     public bool isEntityInPosition(Vector3Int position)

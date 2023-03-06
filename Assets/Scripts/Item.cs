@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public abstract class Item : MonoBehaviour, IInteractable
+public abstract class Item : EntityController, IInteractable
 {
     public EntityManager entityManager;
     public Grid grid;
-    public TestMap testMap;
+    public DungeonMap testMap;
     public ItemData ItemData;
 
     public string ItemName => ItemData.ItemName;
@@ -28,12 +28,6 @@ public abstract class Item : MonoBehaviour, IInteractable
     public virtual void Interact(ActorController interactingEntity)
     {
         throw new System.NotImplementedException();
-    }
-
-    public Vector3Int gridPosition 
-    { 
-        get; 
-        set; 
     }
 
     void Start()
