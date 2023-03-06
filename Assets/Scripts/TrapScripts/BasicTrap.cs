@@ -34,7 +34,9 @@ public abstract class BasicTrap : ScriptableObject
 
     public GameObject trapVisual;
 
-    public void ActivateTrap(ActorController actor)
+    public Sprite trapVisual_Temp;
+    
+    public virtual void ActivateTrap(ActorController actor)
     {
         actor.ApplyStatus(trapStatusType, statusTurnCount);
     }
