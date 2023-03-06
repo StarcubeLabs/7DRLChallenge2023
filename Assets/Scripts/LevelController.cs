@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
 
-public class TestMap : MonoBehaviour
+public class LevelController : MonoBehaviour
 {
     public Tilemap tileMap;
     public Tile wall;
@@ -20,7 +20,8 @@ public class TestMap : MonoBehaviour
     public EntityManager entityManager;
     public EnemyBaseScript[] EnemyChoiceList;
 
-    
+    public List<EntityController> entitiesOnLevel = new List<EntityController>();
+
     /// <summary>
     /// This is the range of the amount of items to spawn.
     /// The X-Value is the minimum number of items to spawn.
@@ -49,12 +50,12 @@ public class TestMap : MonoBehaviour
     [Tooltip("The range of enemies to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
     public Vector2Int EnemySpawnRange;
     // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
         entityManager = FindObjectOfType<EntityManager>();
         SetupTileMap();
         SpawnEntities();
-        
+
         //Path Finder Setup
         pathFinder = new PathFinder(somewhatInterestingMap, float.PositiveInfinity - 1);
         fieldOfView = new FieldOfView(somewhatInterestingMap);
@@ -88,21 +89,52 @@ public class TestMap : MonoBehaviour
         tileMap.SetTile(GetGridPositionFromCell(somewhatInterestingMap.end), stairUp);
     }
 
+    public void SetupPlayer()
+    {
+        PlayerInputController playerController = FindObjectOfType<PlayerInputController>();
+        Vector3Int gridPosition = GetGridPositionFromCell(somewhatInterestingMap.start);
+        playerController.playerActor.SnapToPosition(gridPosition);
+    }
+
     public void SpawnEntities()
     {
-        ActorController actorController = FindObjectOfType<ActorController>();
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
-        int randomWalkableCellIndex = Random.Range(0, cells.Length);
-        //Set the player location.
-        Vector3Int gridPosition = GetGridPositionFromCell(somewhatInterestingMap.start);
-        actorController.SnapToPosition(gridPosition);
 
         PotentialItems.ConstructWeightedTable(PotentialItemEntries);
         PotentialTraps.ConstructWeightedTable(PotentialTrapEntries);
         
-        //SpawnEnemiesForMap(cells);
+        SpawnEnemiesForMap(cells);
         SpawnItemsForMap(cells);
         SpawnTrapsForMap(cells);
+    }
+
+    public void AddEntityToLevel(EntityController entityController)
+    {
+        if (!entitiesOnLevel.Contains(entityController))
+        {
+            entitiesOnLevel.Add(entityController);
+        }
+    }
+
+    public void RemoveEntityFromLevel(EntityController entityController)
+    {
+        entitiesOnLevel.Remove(entityController);
+    }
+
+    public void SaveEntities()
+    {
+        foreach(EntityController entity in entitiesOnLevel)
+        {
+            entity.transform.SetParent(this.transform);
+        }
+    }
+
+    public void LoadEntities()
+    {
+        foreach (EntityController entity in entitiesOnLevel)
+        {
+            entity.transform.SetParent(null);
+        }
     }
 
     public Vector3Int GetGridPositionFromCell(Cell cell)
@@ -149,7 +181,7 @@ public class TestMap : MonoBehaviour
             NumberOfEnemiesToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Enemies to spawn exceeds cell count. Consider lowering the number.");
         }
-        Debug.Log("Enemies Spawned:" + NumberOfEnemiesToSpawn);
+        Debug.LogFormat("Enemies Spawned: {0}", NumberOfEnemiesToSpawn);
         
         for (int numberOfSpawnedEnemies = 0; numberOfSpawnedEnemies < NumberOfEnemiesToSpawn; ++numberOfSpawnedEnemies)
         {
@@ -157,7 +189,10 @@ public class TestMap : MonoBehaviour
 
             //Set the enemy location.
             Vector3Int enemyGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+            Debug.LogFormat("Level {0} Spawned at position {1}", this.transform.GetSiblingIndex(), enemyGridPosition.ToString());
             randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
+            randomEnemy.transform.SetParent(this.transform);
+            AddEntityToLevel(randomEnemy.enemyActor);
         }
     }
     
@@ -187,7 +222,8 @@ public class TestMap : MonoBehaviour
             randomItem.SnapToPosition(itemGridPosition);
             randomItem.gridPosition = itemGridPosition;
             randomItem.GetComponent<SpriteRenderer>().sortingOrder = 1;
-            entityManager.interactables.Add(randomItem);
+            randomItem.transform.SetParent(this.transform);
+            AddEntityToLevel(randomItem);
         }
     }
     

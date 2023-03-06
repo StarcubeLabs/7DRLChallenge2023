@@ -6,18 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ActorController : MonoBehaviour
+public class ActorController : EntityController
 {
     Grid grid;
-    public Vector3Int gridPosition;
     [HideInInspector]
     public Vector3 visualPosition;
     [HideInInspector]
     public float visualRotation = 0;
     public Transform visualTransform;
-    TestMap testMap;
 
-    GameStateManager gameStateManager;
+    LevelManager levelManager;
     EntityManager entityManager;
     TurnManager turnManager;
 
@@ -47,8 +45,7 @@ public class ActorController : MonoBehaviour
     void Start()
     {
         grid = FindObjectOfType<Grid>();
-        testMap = FindObjectOfType<TestMap>();
-        gameStateManager = FindObjectOfType<GameStateManager>();
+        levelManager = FindObjectOfType<LevelManager>();
         turnManager = FindObjectOfType<TurnManager>();
         entityManager = FindObjectOfType<EntityManager>();
         entityManager.AddActor(this);
@@ -61,6 +58,14 @@ public class ActorController : MonoBehaviour
     private void OnDestroy()
     {
         entityManager.RemoveActor(this);
+    }
+
+    private void OnDisable()
+    {
+        if(entityManager != null)
+        {
+            entityManager.RemoveActor(this);
+        }
     }
 
     // Update is called once per frame
@@ -115,7 +120,7 @@ public class ActorController : MonoBehaviour
                 return;
             }
 
-            if (!testMap.CanWalkOnCell(gridPosition + offset))
+            if (!levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + offset))
             {
                 return;
             }
@@ -185,8 +190,8 @@ public class ActorController : MonoBehaviour
 
     public bool IsLegalDiagonalMove(Vector3Int offset)
     {
-        return testMap.CanWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) &&
-               testMap.CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0));
+        return levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + new Vector3Int(offset.x, 0, 0)) &&
+               levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0));
     }
 
     public void HealAmount(int healAmount)
@@ -246,9 +251,9 @@ public class ActorController : MonoBehaviour
         {
             return;
         }
-        if (this.gridPosition == testMap.GetGridPositionFromCell(testMap.somewhatInterestingMap.end))
+        if (this.gridPosition == levelManager.GetActiveLevel().GetGridPositionFromCell(levelManager.GetActiveLevel().somewhatInterestingMap.end))
         {
-            gameStateManager.WinGame();
+            levelManager.GoDownFloor();
             turnManager.KickToBackOfTurnOrder(this);
         }
     }
@@ -265,22 +270,22 @@ public class ActorController : MonoBehaviour
             return;
         }
 
-        ICell currentLocation = testMap.GetCellFromGridPosition(currentPosition);
-        ICell targetLocation = testMap.GetCellFromGridPosition(targetPosition);
-        Path newPath = testMap.pathFinder.TryFindShortestPath(currentLocation, targetLocation); //Determine the path between the two.
+        ICell currentLocation = levelManager.GetActiveLevel().GetCellFromGridPosition(currentPosition);
+        ICell targetLocation = levelManager.GetActiveLevel().GetCellFromGridPosition(targetPosition);
+        Path newPath = levelManager.GetActiveLevel().pathFinder.TryFindShortestPath(currentLocation, targetLocation); //Determine the path between the two.
         if(newPath != null && newPath.Length > 0)
         {
             ICell nextStep = newPath?.StepForward();//Get the next step in that path.
-            Vector3Int stepConv = testMap.GetGridPositionFromCell(nextStep);
+            Vector3Int stepConv = levelManager.GetActiveLevel().GetGridPositionFromCell(nextStep);
             Vector3Int toNextStep = stepConv - currentPosition;
             
             if ((toNextStep.x * toNextStep.y) != 0 && !IsLegalDiagonalMove(toNextStep))
             {
-                if (testMap.CanWalkOnCell(currentPosition + new Vector3Int(toNextStep.x, 0)))
+                if (levelManager.GetActiveLevel().CanWalkOnCell(currentPosition + new Vector3Int(toNextStep.x, 0)))
                 {
                     Move(new Vector3Int(toNextStep.x, 0));
                 }
-                else if(testMap.CanWalkOnCell(currentPosition + new Vector3Int(0, toNextStep.y)))
+                else if(levelManager.GetActiveLevel().CanWalkOnCell(currentPosition + new Vector3Int(0, toNextStep.y)))
                 {
                     Move(new Vector3Int(0, toNextStep.y));
                 }
@@ -295,7 +300,7 @@ public class ActorController : MonoBehaviour
 
     public bool CanSeePosition(Vector3Int position)
     {
-        return testMap.CanSeePosition(gridPosition, position);
+        return levelManager.GetActiveLevel().CanSeePosition(gridPosition, position);
     }
 
     public void Interact()
