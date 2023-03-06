@@ -1,3 +1,4 @@
+using RLDataTypes;
 using RogueSharp;
 using System;
 using System.Collections;
@@ -16,9 +17,7 @@ public class ActorController : MonoBehaviour
     public Transform visualTransform;
     TestMap testMap;
 
-
-    
-    GameStateManager gameStateManager;
+        GameStateManager gameStateManager;
     EntityManager entityManager;
     TurnManager turnManager;
 
@@ -26,6 +25,11 @@ public class ActorController : MonoBehaviour
     
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
+
+    [Tooltip("The status that the actor is currently afflicted with.")]
+    public StatusType afflictedStatus = StatusType.None;
+    [Tooltip("How many turns left that the actor is afflicted with the current status.")]
+    public int statusCountdown = 0;
 
     public EventHandler onDie;
 
@@ -198,6 +202,12 @@ public class ActorController : MonoBehaviour
             onDie(this, EventArgs.Empty);
         }
         Destroy(this.gameObject);
+    }
+
+    public void ApplyStatus(StatusType statusType, int turnCount)
+    {
+        afflictedStatus = statusType;
+        statusCountdown = turnCount;
     }
 
     public void SnapToPosition(Vector3Int gridPosition)
