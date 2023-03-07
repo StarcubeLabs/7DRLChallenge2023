@@ -1,5 +1,6 @@
 using RogueSharp;
 using RogueSharp.MapCreation;
+using RogueSharp.Random;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,10 @@ public class LevelController : MonoBehaviour
     public PathFinder pathFinder;
     public FieldOfView fieldOfView;
 
+    public int randomSeed;
+
     public EntityManager entityManager;
+
     public EnemyBaseScript[] EnemyChoiceList;
 
     public List<EntityController> entitiesOnLevel = new List<EntityController>();
@@ -68,7 +72,8 @@ public class LevelController : MonoBehaviour
 
         tileMap.SetTile(new Vector3Int(0, 0, 0), land);
 
-        IMapCreationStrategy<DungeonMap> mapCreationStrategy = new RandomDungeonRoomsMapCreationStrategy(30, 20, Random.Range(3,13), 5, 3);
+        DotNetRandom random = randomSeed == 0 ? Singleton.DefaultRandom : new DotNetRandom(randomSeed);
+        IMapCreationStrategy<DungeonMap> mapCreationStrategy = new RandomDungeonRoomsMapCreationStrategy(30, 20, 13, 5, 3, random);
         somewhatInterestingMap = Map.Create<DungeonMap>(mapCreationStrategy);
         //Debug.Log(somewhatInterestingMap.ToString());
 
