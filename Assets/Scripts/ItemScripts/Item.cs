@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class Item : EntityController, IInteractable
 {
+    [HideInInspector]
     public EntityManager entityManager;
+    [HideInInspector]
     public Grid grid;
     public DungeonMap testMap;
     public ItemData ItemData;
+    public ActorController Owner;
 
     public string ItemName => ItemData.ItemName;
 
@@ -27,7 +31,14 @@ public abstract class Item : EntityController, IInteractable
     
     public virtual void Interact(ActorController interactingEntity)
     {
-        throw new System.NotImplementedException();
+        if (gameObject.activeInHierarchy)
+        {
+            entityManager = GameObject.FindObjectOfType<EntityManager>();
+            interactingEntity.Inventory.AddItem(this);
+            Owner = interactingEntity;
+            gameObject.SetActive(false);
+            entityManager.interactables.Remove(this);
+        }
     }
 
     void Start()

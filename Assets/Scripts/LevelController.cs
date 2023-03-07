@@ -240,7 +240,7 @@ public class LevelController : MonoBehaviour
     /// <param name="cells">The cells available to spawn on.</param>
     public void SpawnTrapsForMap(Cell[] cells)
     {
-        int numberOfTrapsToSpawn = Random.Range(ItemSpawnRange.x, ItemSpawnRange.y + 1);
+        int numberOfTrapsToSpawn = Random.Range(NumberOfTrapsToSpawnRange.x, NumberOfTrapsToSpawnRange.y + 1);
 
         if (ItemSpawnRange.y > cells.Length)
         {
