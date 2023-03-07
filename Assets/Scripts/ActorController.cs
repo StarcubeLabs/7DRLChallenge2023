@@ -154,7 +154,6 @@ public class ActorController : EntityController
                 if (ActorAnimController != null)
                 {
                     ActorAnimController?.SetTrigger("Attack");
-                    print("attack!");
                 }
                 TickStatus();
                 return;
@@ -266,6 +265,7 @@ public class ActorController : EntityController
     public void Hurt(int hurtAmount)
     {
         hitPoints.x -= hurtAmount;
+        print("Hurt! Value: " + hurtAmount);
         if (hitPoints.x <= 0)
         {
             Kill();
@@ -296,7 +296,7 @@ public class ActorController : EntityController
                 case StatusType.Poison:
                     if (internalStatusCountdown == 2)
                     {
-                        Hurt();
+                        this.Hurt(1);
                         internalStatusCountdown = 0;
                     }
 
