@@ -718,7 +718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b778f72d41cc04984fe25845bc572c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrapData: {fileID: 0}
+  TrapData: {fileID: 11400000, guid: 7305ace1f75482341a29e3d143db0425, type: 2}
   gridPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &2120911859
 Transform:
