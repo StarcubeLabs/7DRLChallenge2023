@@ -104,6 +104,11 @@ public class LevelController : MonoBehaviour
 
     public void SpawnEntities()
     {
+        if (randomSeed != 0)
+        {
+            Random.InitState(randomSeed);
+        }
+
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
 
         PotentialItems.ConstructWeightedTable(PotentialItemEntries);
