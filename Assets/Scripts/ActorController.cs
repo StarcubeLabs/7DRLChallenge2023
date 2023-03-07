@@ -309,6 +309,16 @@ public class ActorController : EntityController
                     statusCountdown--;
                     break;
 
+                case StatusType.Sleep:
+                    if(statusCountdown != 0)
+                    {
+                        isStatusImmobilized = true;
+                        statusCountdown--;
+                    }
+
+                    
+                    break;
+
                 default:
 
                     break;
@@ -318,6 +328,7 @@ public class ActorController : EntityController
         if(statusCountdown == 0)
         {
             afflictedStatus = StatusType.None;
+            isStatusImmobilized = false;
         }
     }
 
