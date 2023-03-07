@@ -20,8 +20,8 @@ public class EntityManager: MonoBehaviour
     public List<IInteractable> interactables = new List<IInteractable>();
 
     public List<Trap> traps = new List<Trap>();
-    
-    public void Start()
+
+    private void Awake()
     {
         levelManager = FindObjectOfType<LevelManager>();
     }
