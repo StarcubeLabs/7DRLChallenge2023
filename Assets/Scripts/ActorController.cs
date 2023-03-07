@@ -18,6 +18,7 @@ public class ActorController : EntityController
     LevelManager levelManager;
     EntityManager entityManager;
     TurnManager turnManager;
+    public Animator ActorAnimController;
 
     public Inventory Inventory;
 
