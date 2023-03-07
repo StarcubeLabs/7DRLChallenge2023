@@ -118,6 +118,12 @@ public class ActorController : EntityController
             {
                 entityToAttack.Hurt();
                 turnManager.KickToBackOfTurnOrder(this);
+                FaceDirection(offset);
+                if (ActorAnimController != null)
+                {
+                    ActorAnimController?.SetTrigger("Attack");
+                    print("attack!");
+                }
                 return;
             }
 
@@ -127,56 +133,16 @@ public class ActorController : EntityController
             }
 
             //Big 'ol If Chain to determine character facing direction based on movement direction
-            if(offset == Vector3Int.up)
-            {
-                actorDirection = ActorDirection.up;
-                visualRotation = 180;
-            }
-            else if(offset == new Vector3Int(1,1, 0))
-            {
-                actorDirection = ActorDirection.upRight;
-                visualRotation = 135;
-            }
-            else if (offset == Vector3Int.right)
-            {
-                actorDirection = ActorDirection.right;
-                visualRotation = 90;
-            }
-            else if (offset == new Vector3Int(1, -1, 0))
-            {
-                actorDirection = ActorDirection.downRight;
-                visualRotation = 45;
-            }
-            else if (offset == Vector3Int.down)
-            {
-                actorDirection = ActorDirection.down;
-                visualRotation = 0;
-            }
-            else if (offset == new Vector3Int(-1, -1, 0))
-            {
-                actorDirection = ActorDirection.downLeft;
-                visualRotation = 315;
-            }
-            else if (offset == Vector3Int.left)
-            {
-                actorDirection = ActorDirection.left;
-                visualRotation = 270;
-            }
-            else if (offset == new Vector3Int(-1, 1, 0))
-            {
-                actorDirection = ActorDirection.upLeft;
-                visualRotation = 225;
-            }
-            else 
-            {
-                actorDirection = ActorDirection.down;
-                visualRotation = 0;
-            }
+            FaceDirection(offset);
 
 
 
             gridPosition += offset;
             SnapToPosition(gridPosition);
+            if(ActorAnimController != null)
+            {
+                ActorAnimController?.SetTrigger("Walk");
+            }
 
             if (entityManager.isTrapInPosition(gridPosition))
             {
@@ -186,6 +152,56 @@ public class ActorController : EntityController
             }
             
             turnManager.KickToBackOfTurnOrder(this);
+        }
+    }
+
+    public void FaceDirection(Vector3Int offset)
+    {
+        //Big 'ol If Chain to determine character facing direction based on movement direction
+        if (offset == Vector3Int.up)
+        {
+            actorDirection = ActorDirection.up;
+            visualRotation = 180;
+        }
+        else if (offset == new Vector3Int(1, 1, 0))
+        {
+            actorDirection = ActorDirection.upRight;
+            visualRotation = 135;
+        }
+        else if (offset == Vector3Int.right)
+        {
+            actorDirection = ActorDirection.right;
+            visualRotation = 90;
+        }
+        else if (offset == new Vector3Int(1, -1, 0))
+        {
+            actorDirection = ActorDirection.downRight;
+            visualRotation = 45;
+        }
+        else if (offset == Vector3Int.down)
+        {
+            actorDirection = ActorDirection.down;
+            visualRotation = 0;
+        }
+        else if (offset == new Vector3Int(-1, -1, 0))
+        {
+            actorDirection = ActorDirection.downLeft;
+            visualRotation = 315;
+        }
+        else if (offset == Vector3Int.left)
+        {
+            actorDirection = ActorDirection.left;
+            visualRotation = 270;
+        }
+        else if (offset == new Vector3Int(-1, 1, 0))
+        {
+            actorDirection = ActorDirection.upLeft;
+            visualRotation = 225;
+        }
+        else
+        {
+            actorDirection = ActorDirection.down;
+            visualRotation = 0;
         }
     }
 
