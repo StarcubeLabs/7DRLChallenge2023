@@ -16,39 +16,45 @@ public class LevelManager: MonoBehaviour
 
     private void Awake()
     {
-        Initialize();
+        FindGrid();
     }
 
     public void Start()
     {
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        InitializeLevel();
     }
 
     private void OnActiveSceneChanged(Scene oldScene, Scene newScene)
     {
         grid = null;
-        Initialize();
+        FindGrid();
+        InitializeLevel();
     }
 
-    void Initialize()
+    void FindGrid()
     {
         if (!grid)
         {
             grid = FindObjectOfType<Grid>();
-            if (grid)
+        }
+    }
+
+    void InitializeLevel()
+    {
+        if (grid)
+        {
+            for (int i = 0; i < numMapsToGenerate; i++)
             {
-                for (int i = 0; i < numMapsToGenerate; i++)
+                LevelController level = Instantiate(levelPrefab);
+                level.transform.SetParent(grid.transform, false);
+                level.Initialize();
+                levels.Add(level);
+                level.gameObject.SetActive(false);
+                if (i == 0)
                 {
-                    LevelController level = Instantiate(levelPrefab);
-                    level.transform.SetParent(grid.transform, false);
-                    level.Initialize();
-                    levels.Add(level);
-                    level.gameObject.SetActive(false);
-                    if (i == 0)
-                    {
-                        level.SetupPlayer();
-                        EnterLevel(level);
-                    }
+                    level.SetupPlayer();
+                    EnterLevel(level);
                 }
             }
         }

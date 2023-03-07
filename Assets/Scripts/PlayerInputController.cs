@@ -85,7 +85,6 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
-            Debug.Log("TEST");
             playerActor.Interact();
         }
 

@@ -12,4 +12,12 @@ public class EntityController: MonoBehaviour
         get;
         set;
     }
+
+    public virtual void SaveEntity(EntityManager entityManager)
+    {
+    }
+
+    public virtual void LoadEntity(EntityManager entityManager)
+    {
+    }
 }

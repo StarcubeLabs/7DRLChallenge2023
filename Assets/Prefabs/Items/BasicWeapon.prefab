@@ -50,7 +50,7 @@ MonoBehaviour:
   ItemData: {fileID: 11400000, guid: 1a1693031d4fa44d9bd1237d651437ea, type: 2}
   Owner: {fileID: 0}
   CurrentNumberOfStacks: 0
-  power: 0
+  power: 1
 --- !u!212 &7110568636444520907
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -137,6 +137,7 @@ public class LevelController : MonoBehaviour
         foreach(EntityController entity in entitiesOnLevel)
         {
             entity.transform.SetParent(this.transform);
+            entity.SaveEntity(entityManager);
         }
     }
 
@@ -145,6 +146,7 @@ public class LevelController : MonoBehaviour
         foreach (EntityController entity in entitiesOnLevel)
         {
             entity.transform.SetParent(null);
+            entity.LoadEntity(entityManager);
         }
     }
 
