@@ -25,10 +25,22 @@ public class ActorController : EntityController
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
+    [Header("Status Variables")]
     [Tooltip("The status that the actor is currently afflicted with.")]
     public StatusType afflictedStatus = StatusType.None;
     [Tooltip("How many turns left that the actor is afflicted with the current status.")]
     public int statusCountdown = 0;
+
+
+    /// <summary>
+    /// Used by Status Effects to decide when their affects should be triggered. Counts up.
+    /// </summary>
+    public int internalStatusCountdown = 0;
+
+    /// <summary>
+    /// Determines whether an actor is immobilized by a status like Sleep or Petrify.
+    /// </summary>
+    public bool isStatusImmobilized = false;
 
     public EventHandler onDie;
 
@@ -98,15 +110,35 @@ public class ActorController : EntityController
     /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void Move(Vector3Int offset)
     {
+
+        //We can't move at all, so kick us back to the turn line.
+        if(isStatusImmobilized)
+        {
+            turnManager.KickToBackOfTurnOrder(this);
+            TickStatus();
+            return;
+        }
+
+        //We're confused. Set our direction to RANDOM.
+        if (afflictedStatus == StatusType.Confusion)
+        {
+            offset.x = UnityEngine.Random.Range(-1, 2);
+            offset.y = UnityEngine.Random.Range(-1, 2);
+        }
+
+        //If we are waiting, just skip.
         if (offset == Vector3Int.zero)
         {
             turnManager.KickToBackOfTurnOrder(this);
+            TickStatus();
             return;
         }
+        //If we tried to go somewhere that just won't work, try again.
         if (!turnManager.CanMove(this))
         {
             return;
         }
+
 
 
         bool isMovingDialogonally = (offset.x * offset.y) != 0;
@@ -124,6 +156,7 @@ public class ActorController : EntityController
                     ActorAnimController?.SetTrigger("Attack");
                     print("attack!");
                 }
+                TickStatus();
                 return;
             }
 
@@ -152,6 +185,7 @@ public class ActorController : EntityController
             }
             
             turnManager.KickToBackOfTurnOrder(this);
+            TickStatus();
         }
     }
 
@@ -251,6 +285,38 @@ public class ActorController : EntityController
     {
         afflictedStatus = statusType;
         statusCountdown = turnCount;
+    }
+
+    public void TickStatus()
+    {
+        if (statusCountdown != 0)
+        {
+            switch (afflictedStatus)
+            {
+                case StatusType.Poison:
+                    if (internalStatusCountdown == 2)
+                    {
+                        Hurt();
+                        internalStatusCountdown = 0;
+                    }
+
+                    statusCountdown--;
+                    break;
+
+                case StatusType.Confusion:
+                    statusCountdown--;
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
+        //We've survived the status and should clear it.
+        if(statusCountdown == 0)
+        {
+            afflictedStatus = StatusType.None;
+        }
     }
 
     public void SnapToPosition(Vector3Int gridPosition)
