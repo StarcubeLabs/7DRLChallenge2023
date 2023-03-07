@@ -49,6 +49,7 @@ public class LevelController : MonoBehaviour
     /// </summary>
     [Tooltip("The range of enemies to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
     public Vector2Int EnemySpawnRange;
+
     // Start is called before the first frame update
     public void Initialize()
     {
@@ -69,7 +70,7 @@ public class LevelController : MonoBehaviour
 
         IMapCreationStrategy<DungeonMap> mapCreationStrategy = new RandomDungeonRoomsMapCreationStrategy(30, 20, Random.Range(3,13), 5, 3);
         somewhatInterestingMap = Map.Create<DungeonMap>(mapCreationStrategy);
-        Debug.Log(somewhatInterestingMap.ToString());
+        //Debug.Log(somewhatInterestingMap.ToString());
 
         for (int i = 0; i < somewhatInterestingMap.Width; i++)
         {
@@ -181,7 +182,7 @@ public class LevelController : MonoBehaviour
             NumberOfEnemiesToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Enemies to spawn exceeds cell count. Consider lowering the number.");
         }
-        Debug.LogFormat("Enemies Spawned: {0}", NumberOfEnemiesToSpawn);
+        //Debug.LogFormat("Enemies Spawned: {0}", NumberOfEnemiesToSpawn);
         
         for (int numberOfSpawnedEnemies = 0; numberOfSpawnedEnemies < NumberOfEnemiesToSpawn; ++numberOfSpawnedEnemies)
         {
@@ -189,7 +190,7 @@ public class LevelController : MonoBehaviour
 
             //Set the enemy location.
             Vector3Int enemyGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
-            Debug.LogFormat("Level {0} Spawned at position {1}", this.transform.GetSiblingIndex(), enemyGridPosition.ToString());
+            //Debug.LogFormat("Level {0} Spawned at position {1}", this.transform.GetSiblingIndex(), enemyGridPosition.ToString());
             randomEnemy.enemyActor.SnapToPosition(enemyGridPosition);
             randomEnemy.transform.SetParent(this.transform);
             AddEntityToLevel(randomEnemy.enemyActor);
@@ -210,7 +211,7 @@ public class LevelController : MonoBehaviour
             numberOfItemsToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Items to spawn exceeds cell count. Consider lowering the number.");
         }
-        Debug.Log("Items Spawned:" + numberOfItemsToSpawn);
+        //Debug.Log("Items Spawned:" + numberOfItemsToSpawn);
         
         for (int numberOfSpawnedItems = 0; numberOfSpawnedItems < numberOfItemsToSpawn; ++numberOfSpawnedItems)
         {
@@ -241,7 +242,7 @@ public class LevelController : MonoBehaviour
             numberOfTrapsToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Traps to spawn exceeds cell count. Consider lowering the number.");
         }
-        Debug.Log("Traps Spawned:" + numberOfTrapsToSpawn);
+        //Debug.Log("Traps Spawned:" + numberOfTrapsToSpawn);
         
         for (int numberOfSpawnedTraps = 0; numberOfSpawnedTraps < numberOfTrapsToSpawn; ++numberOfSpawnedTraps)
         {

@@ -25,7 +25,7 @@ public class WeightedTable<T> where T : class
             weightedTable.Add(new KeyValuePair<int, int>(TotalWeight,TotalWeight+entry.Weight),entry.Entry);
             TotalWeight += entry.Weight;
         }
-        Debug.Log(this.ToString());
+        //Debug.Log(this.ToString());
     }
 
     public T GetRandomEntry()
@@ -47,7 +47,7 @@ public class WeightedTable<T> where T : class
         return null;
     }
 
-    public string ToString()
+    public override string ToString()
     {
         var toReturn = "Low: High: Value:" + "\n";
         foreach (var entry in weightedTable)

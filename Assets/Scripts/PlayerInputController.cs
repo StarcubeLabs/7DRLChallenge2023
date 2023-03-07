@@ -17,9 +17,9 @@ public class PlayerInputController : MonoBehaviour
         playerActor = GetComponent<ActorController>();
 
         servicesManager = FindObjectOfType<ServicesManager>();
-        servicesManager.camera.transform.SetParent(cameraSlot, false);
-        servicesManager.camera.transform.localRotation = Quaternion.identity;
-        servicesManager.camera.transform.localPosition = Vector3.zero;
+        servicesManager.mainCamera.transform.SetParent(cameraSlot, false);
+        servicesManager.mainCamera.transform.localRotation = Quaternion.identity;
+        servicesManager.mainCamera.transform.localPosition = Vector3.zero;
         gameStateManager = FindObjectOfType<GameStateManager>();
 
         playerActor.onDie += OnDie;
@@ -151,7 +151,6 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("TEST");
             playerActor.Interact();
         }
 

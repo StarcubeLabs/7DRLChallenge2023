@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996d099bf15a39848846e1724dea82df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 3843039040370665444}
+  mainCamera: {fileID: 3843039040370665444}
 --- !u!1 &1817677772420053639
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actors: []
+  traps: []
 --- !u!1 &9042126554902303260
 GameObject:
   m_ObjectHideFlags: 0

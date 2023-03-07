@@ -6,7 +6,7 @@ public class ServicesManager : MonoBehaviour
 {
     public static ServicesManager instance;
 
-    public Camera camera;
+    public Camera mainCamera;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +30,6 @@ public class ServicesManager : MonoBehaviour
 
     public void ResetServices()
     {
-        camera.transform.SetParent(this.transform);
+        mainCamera.transform.SetParent(this.transform);
     }
 }
