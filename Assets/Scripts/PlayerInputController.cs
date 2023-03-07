@@ -14,7 +14,7 @@ public class PlayerInputController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerActor = GameObject.FindObjectOfType<ActorController>();
+        playerActor = GetComponent<ActorController>();
 
         servicesManager = FindObjectOfType<ServicesManager>();
         servicesManager.camera.transform.SetParent(cameraSlot, false);
@@ -99,7 +99,7 @@ public class PlayerInputController : MonoBehaviour
                 InventoryMenu.SetActive(true);
             }
         }
-        
+
     }
 
     public Vector3Int GetLocation()

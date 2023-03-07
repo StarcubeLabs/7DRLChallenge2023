@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager: MonoBehaviour
 {
@@ -14,6 +15,19 @@ public class LevelManager: MonoBehaviour
     Grid grid;
 
     public void Start()
+    {
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+    }
+
+    private void OnActiveSceneChanged(Scene oldScene, Scene newScene)
+    {
+        if (newScene.name == "Game")
+        {
+            Initialize();
+        }
+    }
+
+    void Initialize()
     {
         grid = FindObjectOfType<Grid>();
         for (int i = 0; i < numMapsToGenerate; i++)
