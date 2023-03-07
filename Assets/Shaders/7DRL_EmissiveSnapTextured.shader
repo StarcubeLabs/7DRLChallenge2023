@@ -3,6 +3,7 @@ Shader "Unlit/7DRL_EmissiveSnapTextured"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _ColorTint ("Tint Color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -25,6 +26,8 @@ Shader "Unlit/7DRL_EmissiveSnapTextured"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            float4 _ColorTint;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -41,7 +44,8 @@ Shader "Unlit/7DRL_EmissiveSnapTextured"
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 clip(col.a - .001);
-                return col;
+                return col * _ColorTint;
+                return col * _ColorTint;
             }
             ENDCG
         }
