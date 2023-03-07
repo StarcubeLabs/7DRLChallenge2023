@@ -39,7 +39,7 @@ public class EntityManager: MonoBehaviour
     public void RemoveActor(ActorController actorController)
     {
         actors.Remove(actorController);
-        levelManager.GetActiveLevel().RemoveEntityFromLevel(actorController);
+        levelManager.GetActiveLevel()?.RemoveEntityFromLevel(actorController);
         if (onRemoveActor != null)
         {
             onRemoveActor(this, actorController);

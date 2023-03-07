@@ -57,7 +57,7 @@ public class ActorController : EntityController
 
     private void OnDestroy()
     {
-        entityManager.RemoveActor(this);
+        entityManager?.RemoveActor(this);
     }
 
     private void OnDisable()

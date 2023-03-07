@@ -68,6 +68,10 @@ public class LevelManager: MonoBehaviour
 
     public LevelController GetActiveLevel()
     {
+        if (grid == null)
+        {
+            return null;
+        }
         return grid.GetComponentInChildren<LevelController>();
     }
 
