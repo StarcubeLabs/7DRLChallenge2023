@@ -256,6 +256,7 @@ public class ActorController : EntityController
     public void Hurt()
     {
         hitPoints.x--;
+        print("Hurt! Value: " + 1);
         if (hitPoints.x <= 0)
         {
             Kill();
@@ -301,6 +302,7 @@ public class ActorController : EntityController
                     }
 
                     statusCountdown--;
+                    internalStatusCountdown++;
                     break;
 
                 case StatusType.Confusion:
