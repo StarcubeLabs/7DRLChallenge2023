@@ -72,9 +72,9 @@ public class EntityManager: MonoBehaviour
 
     public bool isInteractableInPosition(Vector3Int position)
     {
-        for (int i = 0; i < interactables.Count; i++)
+        foreach (IInteractable interactable in interactables)
         {
-            if (interactables[i].gridPosition == position)
+            if (interactable.gridPosition == position)
             {
                 return true;
             }

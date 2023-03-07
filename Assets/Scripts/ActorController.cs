@@ -305,10 +305,8 @@ public class ActorController : EntityController
 
     public void Interact()
     {
-        Debug.Log(gridPosition);
         if (entityManager.isInteractableInPosition(gridPosition))
         {
-            Debug.Log("WE ARE HERE.");
             entityManager.getInteractableInPosition(gridPosition).Interact(this);
         }
     }

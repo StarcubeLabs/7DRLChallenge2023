@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.UI.GridLayoutGroup;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -37,7 +38,7 @@ public abstract class Item : EntityController, IInteractable
             interactingEntity.Inventory.AddItem(this);
             Owner = interactingEntity;
             gameObject.SetActive(false);
-            entityManager.interactables.Remove(this);
+            entityManager.RemoveItem(this);
         }
     }
 
@@ -48,7 +49,17 @@ public abstract class Item : EntityController, IInteractable
             GetComponent<SpriteRenderer>().sprite = ItemIcon;
         }
     }
-    
+
+    public override void SaveEntity(EntityManager entityManager)
+    {
+        entityManager.interactables.Remove(this);
+    }
+
+    public override void LoadEntity(EntityManager entityManager)
+    {
+        entityManager.interactables.Add(this);
+    }
+
     public void SnapToPosition(Vector3Int gridPosition)
     {
         grid = FindObjectOfType<Grid>();
