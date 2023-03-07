@@ -5,23 +5,7 @@ using UnityEngine;
 
 public class HealingItem : Item, IConsumable
 {
-    public ActorController Owner;
     public int HealAmount;
-
-    public override void Interact(ActorController interactingEntity)
-    {
-        Debug.Log("TEST");
-        if (gameObject.activeInHierarchy)
-        {
-            entityManager = GameObject.FindObjectOfType<EntityManager>();
-            Debug.Log("DREAMS");
-            interactingEntity.Inventory.AddItem(this);
-            Owner = interactingEntity;
-            gameObject.SetActive(false);
-            entityManager.interactables.Remove(this);
-        }
-
-    }
 
     public void OnConsume()
     {

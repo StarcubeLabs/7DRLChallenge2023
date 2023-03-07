@@ -114,6 +114,10 @@ public class RandomDungeonRoomsMapCreationStrategy: IMapCreationStrategy<Dungeon
             }
             MakeRoom(map, room);
         }
+        if (map.end == null)
+        {
+            map.end = map.start;
+        }
 
         for (int r = 0; r < rooms.Count; r++)
         {
