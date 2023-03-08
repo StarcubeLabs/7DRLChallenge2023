@@ -73,8 +73,8 @@ public class Item : EntityController, IInteractable
 
     public void OnDrop()
     {
-        entityManager = FindObjectOfType<EntityManager>();
-        entityManager.actors[0].Inventory.DropItem(this,entityManager.actors[0].gridPosition);
+        ItemData.OnDrop(Owner, this);
+        Owner.Inventory.DropItem(this, Owner.gridPosition);
     }
 
     public void GenerateRandomStackSize()
@@ -84,7 +84,7 @@ public class Item : EntityController, IInteractable
 
     public bool Consume()
     {
-        if (ItemData.OnConsume(Owner))
+        if (ItemData.OnConsume(Owner, this))
         {
             bool depleted = false;
             if (CanBeStacked)

@@ -15,9 +15,14 @@ public class ItemData : MonoBehaviour
     /// Handles what happens when you consume said item.
     /// </summary>
     /// <param name="consumer">The actor consuming the item.</param>
+    /// <param name="item">Item entity that the item data is attached to.</param>
     /// <returns>True if the item should be consumed from the inventory.</returns>
-    public virtual bool OnConsume(ActorController consumer)
+    public virtual bool OnConsume(ActorController consumer, Item item)
     {
         return false;
+    }
+
+    public virtual void OnDrop(ActorController owner, Item item)
+    {
     }
 }

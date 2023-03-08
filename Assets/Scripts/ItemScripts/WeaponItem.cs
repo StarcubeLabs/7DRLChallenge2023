@@ -7,9 +7,14 @@ public class WeaponItem : ItemData
 {
     public int power;
 
-    public override bool OnConsume(ActorController consumer)
+    public override bool OnConsume(ActorController consumer, Item item)
     {
-        consumer.EquipWeapon(this);
+        consumer.EquipWeapon(item, this);
         return false;
+    }
+
+    public override void OnDrop(ActorController owner, Item item)
+    {
+        owner.UnequipWeapon(item);
     }
 }

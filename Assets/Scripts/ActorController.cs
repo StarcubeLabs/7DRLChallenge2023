@@ -36,7 +36,7 @@ public class ActorController : EntityController
             {
                 return baseAttackPower;
             }
-            return baseAttackPower + weapon.power;
+            return baseAttackPower + weaponData.power;
         }
     }
 
@@ -46,7 +46,8 @@ public class ActorController : EntityController
     [Tooltip("How many turns left that the actor is afflicted with the current status.")]
     public int statusCountdown = 0;
 
-    private WeaponItem weapon;
+    private Item weapon;
+    private WeaponItem weaponData;
 
     /// <summary>
     /// Used by Status Effects to decide when their affects should be triggered. Counts up.
@@ -413,8 +414,18 @@ public class ActorController : EntityController
         }
     }
 
-    public void EquipWeapon(WeaponItem weapon)
+    public void EquipWeapon(Item weapon, WeaponItem weaponData)
     {
         this.weapon = weapon;
+        this.weaponData = weaponData;
+    }
+
+    public void UnequipWeapon(Item weapon)
+    {
+        if (weapon == this.weapon)
+        {
+            this.weapon = null;
+            this.weaponData = null;
+        }
     }
 }
