@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3456272120207507863, guid: 59a1405cdf03fba498192b4a0e00dc17, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a4b09968932ae349b4e241496bb94f4, type: 2}
     - target: {fileID: 919132149155446097, guid: 59a1405cdf03fba498192b4a0e00dc17, type: 3}
       propertyPath: m_Name
       value: Leachray
