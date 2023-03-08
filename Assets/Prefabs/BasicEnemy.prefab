@@ -267,11 +267,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fcc7ed7a01c8748955223a0d346a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPosition: {x: 0, y: 0, z: 0}
   visualPosition: {x: 0, y: 0, z: 0}
-  visualRotation: {x: 90, y: 0, z: 0}
+  visualRotation: 0
   visualTransform: {fileID: 3660450539436421563}
+  ActorAnimController: {fileID: 0}
   hitPoints: {x: 2, y: 2}
+  baseAttackPower: 1
+  afflictedStatus: 0
+  statusCountdown: 0
+  internalStatusCountdown: 0
+  isStatusImmobilized: 0
   actorDirection: 4
 --- !u!114 &47899768264105375
 MonoBehaviour:

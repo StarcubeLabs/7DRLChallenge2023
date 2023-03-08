@@ -25,12 +25,28 @@ public class ActorController : EntityController
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
+    [Tooltip("Amount of damage the actor will deal without weapons.")]
+    public int baseAttackPower;
+
+    public int AttackPower
+    {
+        get
+        {
+            if (weapon == null)
+            {
+                return baseAttackPower;
+            }
+            return baseAttackPower + weapon.power;
+        }
+    }
+
     [Header("Status Variables")]
     [Tooltip("The status that the actor is currently afflicted with.")]
     public StatusType afflictedStatus = StatusType.None;
     [Tooltip("How many turns left that the actor is afflicted with the current status.")]
     public int statusCountdown = 0;
 
+    private WeaponItem weapon;
 
     /// <summary>
     /// Used by Status Effects to decide when their affects should be triggered. Counts up.
@@ -148,7 +164,7 @@ public class ActorController : EntityController
             ActorController entityToAttack = entityManager.getEntityInPosition(gridPosition + offset);
             if (entityToAttack != null && entityToAttack != this)
             {
-                entityToAttack.Hurt();
+                entityToAttack.Hurt(AttackPower);
                 turnManager.KickToBackOfTurnOrder(this);
                 FaceDirection(offset);
                 if (ActorAnimController != null)
@@ -252,18 +268,8 @@ public class ActorController : EntityController
             hitPoints.x = hitPoints.y;
         }
     }
-    
-    public void Hurt()
-    {
-        hitPoints.x--;
-        print("Hurt! Value: " + 1);
-        if (hitPoints.x <= 0)
-        {
-            Kill();
-        }
-    }
 
-    public void Hurt(int hurtAmount)
+    public void Hurt(int hurtAmount = 1)
     {
         hitPoints.x -= hurtAmount;
         print("Hurt! Value: " + hurtAmount);
@@ -406,5 +412,9 @@ public class ActorController : EntityController
             entityManager.getInteractableInPosition(gridPosition).Interact(this);
         }
     }
-    
+
+    public void EquipWeapon(WeaponItem weapon)
+    {
+        this.weapon = weapon;
+    }
 }
