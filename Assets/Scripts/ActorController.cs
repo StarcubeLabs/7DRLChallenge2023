@@ -328,6 +328,21 @@ public class ActorController : EntityController
                     
                     break;
 
+                case StatusType.Slow:
+                    if (internalStatusCountdown != 2)
+                    {
+                        isStatusImmobilized = true;
+                        internalStatusCountdown++;
+                        statusCountdown--;
+                    }
+                    else
+                    {
+                        isStatusImmobilized = false;
+                        internalStatusCountdown = 0;
+                    }
+
+                    break;
+
                 default:
 
                     break;
