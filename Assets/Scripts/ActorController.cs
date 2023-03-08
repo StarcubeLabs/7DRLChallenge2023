@@ -204,13 +204,25 @@ public class ActorController : EntityController
         {
             return false;
         }
-        moves.Add(global::Move.InitiateFromMoveData(moveData));
+        moves.Add(createMove(moveData));
         return true;
     }
 
     public void ReplaceMove(int moveIndex, MoveData moveData)
     {
-        moves[moveIndex] = global::Move.InitiateFromMoveData(moveData);
+        Move oldMove = moves[moveIndex];
+        moves[moveIndex] = createMove(moveData);
+        if (oldMove)
+        {
+            Destroy(oldMove);
+        }
+    }
+
+    private Move createMove(MoveData moveData)
+    {
+        Move move = global::Move.InitiateFromMoveData(moveData);
+        move.transform.parent = transform;
+        return move;
     }
 
     public void UseBasicAttack()
