@@ -9,6 +9,7 @@ public class PlayerInputController : MonoBehaviour
     public Transform cameraSlot;
     ServicesManager servicesManager;
     GameStateManager gameStateManager;
+    private TurnManager turnManager;
 
     public GameObject InventoryMenu;
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class PlayerInputController : MonoBehaviour
         servicesManager.mainCamera.transform.localRotation = Quaternion.identity;
         servicesManager.mainCamera.transform.localPosition = Vector3.zero;
         gameStateManager = FindObjectOfType<GameStateManager>();
+        turnManager = FindObjectOfType<TurnManager>();
 
         playerActor.onDie += OnDie;
     }
@@ -33,6 +35,11 @@ public class PlayerInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!turnManager.CanMove(playerActor))
+        {
+            return;
+        }
+        
         InputCheckNumpad();
         InputCheckWASD();
     }
@@ -160,7 +167,8 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerActor.UseBasicAttack();
+            //playerActor.UseBasicAttack();
+            playerActor.UseMove(playerActor.moves[0]);
         }
     }
 

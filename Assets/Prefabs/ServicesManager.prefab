@@ -189,8 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moves:
   - {fileID: 8698060036559696798, guid: 216844b33dbf74f0ea08425855a55f0d, type: 3}
+  - {fileID: 972135384986904225, guid: 86520059ebfdc44f390bb957e5e02255, type: 3}
   basicAttack: {fileID: 8698060036559696798, guid: 216844b33dbf74f0ea08425855a55f0d, type: 3}
-  movePrefab: {fileID: 0}
 --- !u!1 &4120266995916760647
 GameObject:
   m_ObjectHideFlags: 0

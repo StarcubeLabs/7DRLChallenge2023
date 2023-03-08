@@ -1,10 +1,12 @@
 using RLDataTypes;
-using RogueSharp;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ActorController : EntityController
 {
+    private const int MAX_MOVES = 4;
+    
     Grid grid;
     [HideInInspector]
     public Vector3 visualPosition;
@@ -27,6 +29,10 @@ public class ActorController : EntityController
     public int baseAttackPower;
 
     public int AttackPower { get { return baseAttackPower + WeaponDamage; } }
+
+    [SerializeField]
+    private List<MoveData> startingMoves;
+    public List<Move> moves = new List<Move>();
 
     [Header("Status Variables")]
     [Tooltip("The status that the actor is currently afflicted with.")]
@@ -74,6 +80,11 @@ public class ActorController : EntityController
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
         visualPosition = (Vector3)gridPosition;//Set visual position to grid position.
+
+        foreach (MoveData moveData in startingMoves)
+        {
+            AddMove(moveData);
+        }
     }
 
     private void OnDestroy()
@@ -187,6 +198,21 @@ public class ActorController : EntityController
         }
     }
 
+    public bool AddMove(MoveData moveData)
+    {
+        if (moves.Count >= MAX_MOVES)
+        {
+            return false;
+        }
+        moves.Add(global::Move.InitiateFromMoveData(moveData));
+        return true;
+    }
+
+    public void ReplaceMove(int moveIndex, MoveData moveData)
+    {
+        moves[moveIndex] = global::Move.InitiateFromMoveData(moveData);
+    }
+
     public void UseBasicAttack()
     {
         UseMove(moveRegistry.BasicAttack);
@@ -257,7 +283,7 @@ public class ActorController : EntityController
         }
     }
 
-    public Vector3Int GetPositionInFront()
+    public Vector3Int GetPositionInFront(int numTiles = 1)
     {
         Vector3Int directionOffset = Vector3Int.zero;
         switch (actorDirection)
@@ -293,7 +319,7 @@ public class ActorController : EntityController
                 directionOffset = new Vector3Int(-1, 1);
                 break;
         }
-        return directionOffset + gridPosition;
+        return directionOffset * numTiles + gridPosition;
     }
 
     public bool IsLegalDiagonalMove(Vector3Int offset)

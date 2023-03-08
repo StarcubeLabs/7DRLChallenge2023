@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DealDamage : MoveData
+public class DealDamageFront : MoveData
 {
     public override void UseMove(ActorController user, EntityManager entityManager)
     {

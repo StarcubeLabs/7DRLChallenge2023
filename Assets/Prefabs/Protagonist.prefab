@@ -137,7 +137,10 @@ MonoBehaviour:
   visualTransform: {fileID: 8909480822188551740}
   ActorAnimController: {fileID: 0}
   hitPoints: {x: 5, y: 5}
-  baseAttackPower: 1
+  baseAttackPower: 0
+  startingMoves:
+  - {fileID: 972135384986904225, guid: 86520059ebfdc44f390bb957e5e02255, type: 3}
+  moves: []
   afflictedStatus: 0
   statusCountdown: 0
   internalStatusCountdown: 0

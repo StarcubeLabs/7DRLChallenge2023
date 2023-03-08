@@ -13,10 +13,7 @@ public class MoveRegistry : MonoBehaviour
 
     public void Start()
     {
-        GameObject moveObject = new GameObject();
-        moveObject.transform.parent = transform;
-        basicAttackMove = moveObject.AddComponent<Move>();
-        basicAttackMove.InitiateFromMoveData(basicAttack);
+        basicAttackMove = Move.InitiateFromMoveData(basicAttack);
     }
 }
 

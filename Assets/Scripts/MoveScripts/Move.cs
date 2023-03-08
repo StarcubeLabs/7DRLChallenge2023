@@ -1,16 +1,18 @@
 using UnityEngine;
-using System.Collections;
 
 public class Move : MonoBehaviour
 {
     public MoveData moveData;
     private int pp;
 
-    public void InitiateFromMoveData(MoveData moveData)
+    public static Move InitiateFromMoveData(MoveData moveData)
     {
-        this.moveData = moveData;
-        gameObject.name = moveData.MoveName;
-        pp = moveData.MaxPP;
+        GameObject moveObject = new GameObject();
+        Move move = moveObject.AddComponent<Move>();
+        move.moveData = moveData;
+        moveObject.name = moveData.MoveName;
+        move.pp = moveData.MaxPP;
+        return move;
     }
 }
 
