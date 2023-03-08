@@ -157,6 +157,11 @@ public class PlayerInputController : MonoBehaviour
         {
             PlayerOpenInventory();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerActor.UseBasicAttack();
+        }
     }
 
     public Vector3Int GetLocation()

@@ -1,9 +1,6 @@
 using RLDataTypes;
 using RogueSharp;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ActorController : EntityController
@@ -18,6 +15,7 @@ public class ActorController : EntityController
     LevelManager levelManager;
     EntityManager entityManager;
     TurnManager turnManager;
+    private MoveRegistry moveRegistry;
     public Animator ActorAnimController;
 
     public Inventory Inventory;
@@ -28,17 +26,7 @@ public class ActorController : EntityController
     [Tooltip("Amount of damage the actor will deal without weapons.")]
     public int baseAttackPower;
 
-    public int AttackPower
-    {
-        get
-        {
-            if (weapon == null)
-            {
-                return baseAttackPower;
-            }
-            return baseAttackPower + weaponData.power;
-        }
-    }
+    public int AttackPower { get { return baseAttackPower + WeaponDamage; } }
 
     [Header("Status Variables")]
     [Tooltip("The status that the actor is currently afflicted with.")]
@@ -47,7 +35,7 @@ public class ActorController : EntityController
     public int statusCountdown = 0;
 
     private Item weapon;
-    private WeaponItem weaponData;
+    private int WeaponDamage { get { return weapon == null ? 0 : ((WeaponItem)weapon.ItemData).power; } }
 
     /// <summary>
     /// Used by Status Effects to decide when their affects should be triggered. Counts up.
@@ -78,6 +66,7 @@ public class ActorController : EntityController
         levelManager = FindObjectOfType<LevelManager>();
         turnManager = FindObjectOfType<TurnManager>();
         entityManager = FindObjectOfType<EntityManager>();
+        moveRegistry = FindObjectOfType<MoveRegistry>();
         entityManager.AddActor(this);
 
         ActorAnimController = GetComponentInChildren<Animator>();
@@ -129,12 +118,16 @@ public class ActorController : EntityController
     /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void Move(Vector3Int offset)
     {
+        //If we tried to go somewhere that just won't work, try again.
+        if (!turnManager.CanMove(this))
+        {
+            return;
+        }
 
         //We can't move at all, so kick us back to the turn line.
         if(isStatusImmobilized)
         {
-            turnManager.KickToBackOfTurnOrder(this);
-            TickStatus();
+            EndTurn();
             return;
         }
 
@@ -148,36 +141,14 @@ public class ActorController : EntityController
         //If we are waiting, just skip.
         if (offset == Vector3Int.zero)
         {
-            turnManager.KickToBackOfTurnOrder(this);
-            TickStatus();
-            return;
-        }
-        //If we tried to go somewhere that just won't work, try again.
-        if (!turnManager.CanMove(this))
-        {
+            EndTurn();
             return;
         }
 
+        bool isMovingDiagonally = (offset.x * offset.y) != 0;
 
-
-        bool isMovingDialogonally = (offset.x * offset.y) != 0;
-
-        if (!isMovingDialogonally || IsLegalDiagonalMove(offset))
+        if (!isMovingDiagonally || IsLegalDiagonalMove(offset))
         {
-            ActorController entityToAttack = entityManager.getEntityInPosition(gridPosition + offset);
-            if (entityToAttack != null && entityToAttack != this)
-            {
-                entityToAttack.Hurt(AttackPower);
-                turnManager.KickToBackOfTurnOrder(this);
-                FaceDirection(offset);
-                if (ActorAnimController != null)
-                {
-                    ActorAnimController?.SetTrigger("Attack");
-                }
-                TickStatus();
-                return;
-            }
-
             if (!levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + offset))
             {
                 return;
@@ -185,8 +156,6 @@ public class ActorController : EntityController
 
             //Big 'ol If Chain to determine character facing direction based on movement direction
             FaceDirection(offset);
-
-
 
             gridPosition += offset;
             SnapToPosition(gridPosition);
@@ -201,10 +170,41 @@ public class ActorController : EntityController
                 trap.OnContact(this);
                 trap.gameObject.SetActive(false);
             }
-            
+
+            IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
+            interactable?.Interact(this);
+
+            EndTurn();
+        }
+    }
+
+    public void EndTurn()
+    { 
+        if (turnManager.CanMove(this))
+        {
             turnManager.KickToBackOfTurnOrder(this);
             TickStatus();
         }
+    }
+
+    public void UseBasicAttack()
+    {
+        UseMove(moveRegistry.BasicAttack);
+    }
+
+    public void UseMove(Move move)
+    {
+        if (!turnManager.CanMove(this))
+        {
+            return;
+        }
+        
+        move.moveData.UseMove(this, entityManager);
+        if (ActorAnimController != null)
+        {
+            ActorAnimController?.SetTrigger("Attack");
+        }
+        EndTurn();
     }
 
     public void FaceDirection(Vector3Int offset)
@@ -255,6 +255,45 @@ public class ActorController : EntityController
             actorDirection = ActorDirection.down;
             visualRotation = 0;
         }
+    }
+
+    public Vector3Int GetPositionInFront()
+    {
+        Vector3Int directionOffset = Vector3Int.zero;
+        switch (actorDirection)
+        {
+            case ActorDirection.up:
+                directionOffset = Vector3Int.up;
+                break;
+            case ActorDirection.upRight:
+                directionOffset = new Vector3Int(1, 1);
+                break;
+
+            case ActorDirection.right:
+                directionOffset = Vector3Int.right;
+                break;
+
+            case ActorDirection.downRight:
+                directionOffset = new Vector3Int(1, -1);
+                break;
+
+            case ActorDirection.down:
+                directionOffset = Vector3Int.down;
+                break;
+
+            case ActorDirection.downLeft:
+                directionOffset = new Vector3Int(-1, -1);
+                break;
+
+            case ActorDirection.left:
+                directionOffset = Vector3Int.left;
+                break;
+
+            case ActorDirection.upLeft:
+                directionOffset = new Vector3Int(-1, 1);
+                break;
+        }
+        return directionOffset + gridPosition;
     }
 
     public bool IsLegalDiagonalMove(Vector3Int offset)
@@ -396,47 +435,6 @@ public class ActorController : EntityController
         if (this.gridPosition == levelManager.GetActiveLevel().GetGridPositionFromCell(levelManager.GetActiveLevel().somewhatInterestingMap.end))
         {
             levelManager.GoDownFloor();
-            turnManager.KickToBackOfTurnOrder(this);
-        }
-    }
-
-    /// <summary>
-    /// Takes in two locations, finds a path between them, then moves the Actor 1 step towards that location. Does not diagonal-check corners.
-    /// </summary>
-    /// <param name="currentPosition"></param>
-    /// <param name="targetPosition"></param>
-    public void MoveToward(Vector3Int currentPosition, Vector3Int targetPosition)
-    {
-        if (currentPosition == targetPosition)
-        {
-            return;
-        }
-
-        ICell currentLocation = levelManager.GetActiveLevel().GetCellFromGridPosition(currentPosition);
-        ICell targetLocation = levelManager.GetActiveLevel().GetCellFromGridPosition(targetPosition);
-        Path newPath = levelManager.GetActiveLevel().pathFinder.TryFindShortestPath(currentLocation, targetLocation); //Determine the path between the two.
-        if(newPath != null && newPath.Length > 0)
-        {
-            ICell nextStep = newPath?.StepForward();//Get the next step in that path.
-            Vector3Int stepConv = levelManager.GetActiveLevel().GetGridPositionFromCell(nextStep);
-            Vector3Int toNextStep = stepConv - currentPosition;
-            
-            if ((toNextStep.x * toNextStep.y) != 0 && !IsLegalDiagonalMove(toNextStep))
-            {
-                if (levelManager.GetActiveLevel().CanWalkOnCell(currentPosition + new Vector3Int(toNextStep.x, 0)))
-                {
-                    Move(new Vector3Int(toNextStep.x, 0));
-                }
-                else if(levelManager.GetActiveLevel().CanWalkOnCell(currentPosition + new Vector3Int(0, toNextStep.y)))
-                {
-                    Move(new Vector3Int(0, toNextStep.y));
-                }
-            }
-            else
-            {
-                Move(toNextStep);//Move that direction.
-            }
-            turnManager.KickToBackOfTurnOrder(this);
         }
     }
 
@@ -453,10 +451,9 @@ public class ActorController : EntityController
         }
     }
 
-    public void EquipWeapon(Item weapon, WeaponItem weaponData)
+    public void EquipWeapon(Item weapon)
     {
         this.weapon = weapon;
-        this.weaponData = weaponData;
     }
 
     public void UnequipWeapon(Item weapon)
@@ -464,7 +461,6 @@ public class ActorController : EntityController
         if (weapon == this.weapon)
         {
             this.weapon = null;
-            this.weaponData = null;
         }
     }
 }

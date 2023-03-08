@@ -9,7 +9,7 @@ public class WeaponItem : ItemData
 
     public override bool OnConsume(ActorController consumer, Item item)
     {
-        consumer.EquipWeapon(item, this);
+        consumer.EquipWeapon(item);
         return false;
     }
 
