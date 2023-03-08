@@ -80,6 +80,8 @@ public class ActorController : EntityController
         entityManager = FindObjectOfType<EntityManager>();
         entityManager.AddActor(this);
 
+        ActorAnimController = GetComponentInChildren<Animator>();
+
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
         visualPosition = (Vector3)gridPosition;//Set visual position to grid position.
