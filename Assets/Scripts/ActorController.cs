@@ -155,6 +155,8 @@ public class ActorController : EntityController
             EndTurn();
             return;
         }
+        
+        FaceDirection(offset);
 
         bool isMovingDiagonally = (offset.x * offset.y) != 0;
 
@@ -166,7 +168,6 @@ public class ActorController : EntityController
             }
 
             //Big 'ol If Chain to determine character facing direction based on movement direction
-            FaceDirection(offset);
 
             gridPosition += offset;
             SnapToPosition(gridPosition);
