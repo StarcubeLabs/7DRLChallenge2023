@@ -135,12 +135,6 @@ public class ActorController : EntityController
     /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void Move(Vector3Int offset)
     {
-        //If we tried to go somewhere that just won't work, try again.
-        if (!turnManager.CanMove(this))
-        {
-            return;
-        }
-
         //We can't move at all, so kick us back to the turn line.
         if(isStatusImmobilized)
         {
@@ -238,11 +232,6 @@ public class ActorController : EntityController
 
     public void UseMove(Move move)
     {
-        if (!turnManager.CanMove(this))
-        {
-            return;
-        }
-        
         move.moveData.UseMove(this, entityManager);
         if (ActorAnimController != null)
         {
@@ -490,10 +479,6 @@ public class ActorController : EntityController
     
     public void GoDownStairs()
     {
-        if (!turnManager.CanMove(this))
-        {
-            return;
-        }
         if (this.gridPosition == levelManager.GetActiveLevel().GetGridPositionFromCell(levelManager.GetActiveLevel().somewhatInterestingMap.end))
         {
             levelManager.GoDownFloor();
