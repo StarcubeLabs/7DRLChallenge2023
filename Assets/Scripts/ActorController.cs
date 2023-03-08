@@ -362,6 +362,19 @@ public class ActorController : EntityController
         }
     }
 
+    public void DamageTarget(MoveData moveData, ActorController target)
+    {
+        int damage = DamageCalculator.CalculateDamage(moveData, this, target);
+        if (damage > 0)
+        {
+            target.Hurt(damage);
+            foreach (EquippableItem equippableItem in GetEquippedItems())
+            {
+                equippableItem.OnDamageDealt(this, target);
+            }
+        }
+    }
+
     public void Hurt(int hurtAmount = 1)
     {
         hitPoints.x -= hurtAmount;
@@ -383,8 +396,21 @@ public class ActorController : EntityController
 
     public void ApplyStatus(StatusType statusType, int turnCount)
     {
-        afflictedStatus = statusType;
-        statusCountdown = turnCount;
+        bool allowStatus = true;
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            if (!equippableItem.AllowStatus(this, statusType))
+            {
+                allowStatus = false;
+                break;
+            }
+        }
+
+        if (allowStatus)
+        {
+            afflictedStatus = statusType;
+            statusCountdown = turnCount;
+        }
     }
 
     public void TickStatus()
@@ -557,6 +583,12 @@ public class ActorController : EntityController
 
     public ElementType GetEffectiveType()
     {
-        return Armor == null ? elementType : Armor.armorElement;
+        ElementType effectiveType = elementType;
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            effectiveType = equippableItem.ModifyTypeTarget(effectiveType, this);
+        }
+
+        return effectiveType;
     }
 }

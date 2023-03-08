@@ -12,7 +12,7 @@ public class DealDamageRange : MoveData
             ActorController target = entityManager.getEntityInPosition(user.GetPositionInFront(i));
             if (target)
             {
-                target.Hurt(DamageCalculator.CalculateDamage(this, user, target));
+                user.DamageTarget(this, target);
                 break;
             }
         }

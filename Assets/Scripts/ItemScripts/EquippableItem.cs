@@ -1,3 +1,5 @@
+using RLDataTypes;
+
 public class EquippableItem : ItemData
 {
     /// <summary>
@@ -22,5 +24,36 @@ public class EquippableItem : ItemData
     public virtual int ModifyDamageTarget(int damage, ActorController user, ActorController target)
     {
         return damage;
+    }
+    
+    /// <summary>
+    /// Modifies the target's defensive type according to the target's equipped item.
+    /// </summary>
+    /// <param name="elementType">Target's current defensive type</param>
+    /// <param name="target">Target of the move dealing damage.</param>
+    /// <returns>Modified target defensive type if needed.</returns>
+    public virtual ElementType ModifyTypeTarget(ElementType elementType, ActorController target)
+    {
+        return elementType;
+    }
+
+    /// <summary>
+    /// Called after a move successfully damages a target.
+    /// </summary>
+    /// <param name="user">The user of the move.</param>
+    /// <param name="target">The target of the move.</param>
+    public virtual void OnDamageDealt(ActorController user, ActorController target)
+    {
+    }
+
+    /// <summary>
+    /// Checks if a status can be applied to the target.
+    /// </summary>
+    /// <param name="target">The target of the status.</param>
+    /// <param name="statusType">The status being applied.</param>
+    /// <returns>True if the status can be applied.</returns>
+    public virtual bool AllowStatus(ActorController target, StatusType statusType)
+    {
+        return true;
     }
 }

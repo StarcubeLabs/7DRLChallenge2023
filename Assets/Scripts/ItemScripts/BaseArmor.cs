@@ -19,7 +19,7 @@ public class BaseArmor : EquippableItem
     public StatusType StatusBlockType = StatusType.None;
 
     /// <summary>
-    /// Percentage Chance of blocking the targeted Status Type, as a range from 0 to 1 (0% to 100%)l
+    /// Percentage Chance of blocking the targeted Status Type, as a range from 0 to 1 (0% to 100%).
     /// </summary>
     [Range(0f, 1f)]
     public float ProtectionChance = 0f;
@@ -38,5 +38,15 @@ public class BaseArmor : EquippableItem
     public override int ModifyDamageTarget(int damage, ActorController user, ActorController target)
     {
         return damage - ArmorStrength;
+    }
+    
+    public override ElementType ModifyTypeTarget(ElementType elementType, ActorController target)
+    {
+        return armorElement;
+    }
+    
+    public override bool AllowStatus(ActorController target, StatusType statusType)
+    {
+        return statusType == StatusBlockType && Random.value > ProtectionChance;
     }
 }
