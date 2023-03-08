@@ -22,6 +22,11 @@ public class ItemData : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Triggers when the player drops the item.
+    /// </summary>
+    /// <param name="owner">Actor who dropped the item.</param>
+    /// <param name="item">Item instance that was dropped.</param>
     public virtual void OnDrop(ActorController owner, Item item)
     {
     }

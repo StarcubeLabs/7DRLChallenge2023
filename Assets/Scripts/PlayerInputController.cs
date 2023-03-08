@@ -167,8 +167,8 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //playerActor.UseBasicAttack();
-            playerActor.UseMove(playerActor.moves[0]);
+            playerActor.UseBasicAttack();
+            //playerActor.UseMove(playerActor.moves[0]);
         }
     }
 

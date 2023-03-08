@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using RLDataTypes;
 
-public class BaseArmor : MonoBehaviour
+public class BaseArmor : EquippableItem
 {
     /// <summary>
     /// The element that determines what attacks against the user are Not Effective and Super Effective
@@ -22,20 +19,24 @@ public class BaseArmor : MonoBehaviour
     public StatusType StatusBlockType = StatusType.None;
 
     /// <summary>
-    /// Precentage Chance of blocking the targeted Status Type, as a range from 0 to 1 (0% to 100%)l
+    /// Percentage Chance of blocking the targeted Status Type, as a range from 0 to 1 (0% to 100%)l
     /// </summary>
     [Range(0f, 1f)]
     public float ProtectionChance = 0f;
 
-    // Start is called before the first frame update
-    void Start()
+    public override bool OnConsume(ActorController consumer, Item item)
     {
-        
+        consumer.EquipArmor(item);
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnDrop(ActorController owner, Item item)
     {
-        
+        owner.UnequipArmor(item);
+    }
+    
+    public override int ModifyDamageTarget(int damage, ActorController user, ActorController target)
+    {
+        return damage - ArmorStrength;
     }
 }

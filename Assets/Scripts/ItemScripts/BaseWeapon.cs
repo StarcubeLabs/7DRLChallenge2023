@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using RLDataTypes;
 
-public class BaseWeapon : MonoBehaviour
+public class BaseWeapon : EquippableItem
 {
-
     /// <summary>
     /// The weapon's Element Type.
     /// </summary>
@@ -27,15 +24,19 @@ public class BaseWeapon : MonoBehaviour
     [Range(0f, 1f)]
     public float AfflictionChance = 0f;
 
-    // Start is called before the first frame update
-    void Start()
+    public override bool OnConsume(ActorController consumer, Item item)
     {
-        
+        consumer.EquipWeapon(item);
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnDrop(ActorController owner, Item item)
     {
-        
+        owner.UnequipWeapon(item);
+    }
+    
+    public override int ModifyDamageUser(int damage, ActorController user, ActorController target)
+    {
+        return damage + WeaponStrength;
     }
 }

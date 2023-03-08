@@ -25,10 +25,11 @@ public class ActorController : EntityController
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
+    [SerializeField]
+    private ElementType elementType;
+
     [Tooltip("Amount of damage the actor will deal without weapons.")]
     public int baseAttackPower;
-
-    public int AttackPower { get { return baseAttackPower + WeaponDamage; } }
 
     [SerializeField]
     private List<MoveData> startingMoves;
@@ -40,8 +41,13 @@ public class ActorController : EntityController
     [Tooltip("How many turns left that the actor is afflicted with the current status.")]
     public int statusCountdown = 0;
 
+    [Header("Equippables")]
     private Item weapon;
-    private int WeaponDamage { get { return weapon == null ? 0 : ((WeaponItem)weapon.ItemData).power; } }
+    public BaseWeapon Weapon { get { return weapon == null ? null : (BaseWeapon)weapon.ItemData; }}
+    private Item armor;
+    public BaseArmor Armor { get { return armor == null ? null : (BaseArmor)armor.ItemData; }}
+    private Item accessory;
+    public EquippableItem Accessory { get { return accessory == null ? null : (EquippableItem)accessory.ItemData; }}
 
     /// <summary>
     /// Used by Status Effects to decide when their affects should be triggered. Counts up.
@@ -204,21 +210,21 @@ public class ActorController : EntityController
         {
             return false;
         }
-        moves.Add(createMove(moveData));
+        moves.Add(CreateMove(moveData));
         return true;
     }
 
     public void ReplaceMove(int moveIndex, MoveData moveData)
     {
         Move oldMove = moves[moveIndex];
-        moves[moveIndex] = createMove(moveData);
+        moves[moveIndex] = CreateMove(moveData);
         if (oldMove)
         {
             Destroy(oldMove);
         }
     }
 
-    private Move createMove(MoveData moveData)
+    private Move CreateMove(MoveData moveData)
     {
         Move move = global::Move.InitiateFromMoveData(moveData);
         move.transform.parent = transform;
@@ -243,6 +249,24 @@ public class ActorController : EntityController
             ActorAnimController?.SetTrigger("Attack");
         }
         EndTurn();
+    }
+
+    public int ModifyDamageUser(int damage, ActorController target)
+    {
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            damage = equippableItem.ModifyDamageUser(damage, this, target);
+        }
+        return damage;
+    }
+
+    public int ModifyDamageTarget(int damage, ActorController user)
+    {
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            damage = equippableItem.ModifyDamageTarget(damage, user, this);
+        }
+        return damage;
     }
 
     public void FaceDirection(Vector3Int offset)
@@ -500,5 +524,54 @@ public class ActorController : EntityController
         {
             this.weapon = null;
         }
+    }
+
+    public void EquipArmor(Item armor)
+    {
+        this.armor = armor;
+    }
+
+    public void UnequipArmor(Item armor)
+    {
+        if (armor == this.armor)
+        {
+            this.armor = null;
+        }
+    }
+
+    public void EquipAccessory(Item accessory)
+    {
+        this.accessory = accessory;
+    }
+
+    public void UnequipAccessory(Item accessory)
+    {
+        if (accessory == this.accessory)
+        {
+            this.accessory = null;
+        }
+    }
+
+    public List<EquippableItem> GetEquippedItems()
+    {
+        List<EquippableItem> equippableItems = new List<EquippableItem>();
+        if (weapon)
+        {
+            equippableItems.Add((EquippableItem)weapon.ItemData);
+        }
+        if (armor)
+        {
+            equippableItems.Add((EquippableItem)armor.ItemData);
+        }
+        if (accessory)
+        {
+            equippableItems.Add((EquippableItem)accessory.ItemData);
+        }
+        return equippableItems;
+    }
+
+    public ElementType GetEffectiveType()
+    {
+        return Armor == null ? elementType : Armor.armorElement;
     }
 }

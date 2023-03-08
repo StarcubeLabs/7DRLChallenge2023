@@ -1,13 +1,11 @@
-using UnityEngine;
-
 public class DealDamageFront : MoveData
 {
     public override void UseMove(ActorController user, EntityManager entityManager)
     {
-        ActorController entityToAttack = entityManager.getEntityInPosition(user.GetPositionInFront());
-        if (entityToAttack)
+        ActorController target = entityManager.getEntityInPosition(user.GetPositionInFront());
+        if (target)
         {
-            entityToAttack.Hurt(user.AttackPower + power);
+            target.Hurt(DamageCalculator.CalculateDamage(this, user, target));
         }
     }
 }
