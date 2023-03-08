@@ -343,6 +343,28 @@ public class ActorController : EntityController
 
                     break;
 
+                case StatusType.Petrify:
+                    if (statusCountdown != 0)
+                    {
+                        isStatusImmobilized = true;
+                        statusCountdown--;
+                    }
+
+
+                    break;
+
+                case StatusType.Muteness:
+
+                    statusCountdown--;
+
+                    break;
+
+                case StatusType.Blindness:
+
+                    statusCountdown--;
+
+                    break;
+
                 default:
 
                     break;
