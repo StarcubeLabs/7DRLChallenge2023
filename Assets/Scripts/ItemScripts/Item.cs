@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.UI.GridLayoutGroup;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public abstract class Item : EntityController, IInteractable
+public class Item : EntityController, IInteractable
 {
     [HideInInspector]
     public EntityManager entityManager;
@@ -74,5 +76,36 @@ public abstract class Item : EntityController, IInteractable
         entityManager = FindObjectOfType<EntityManager>();
         entityManager.actors[0].Inventory.DropItem(this,entityManager.actors[0].gridPosition);
     }
-    
+
+    public void GenerateRandomStackSize()
+    {
+        CurrentNumberOfStacks = CanBeStacked ? UnityEngine.Random.Range(1, MaximumNumberOfStacks) : 1;
+    }
+
+    public bool Consume()
+    {
+        if (ItemData.OnConsume(Owner))
+        {
+            bool depleted = false;
+            if (CanBeStacked)
+            {
+                if (--CurrentNumberOfStacks == 0)
+                {
+                    depleted = true;
+                }
+            }
+            else
+            {
+                depleted = true;
+            }
+            if (depleted)
+            {
+                int itemIndex = Array.IndexOf(Owner.Inventory.Items, this);
+                Owner.Inventory.Items[itemIndex] = null;
+                Destroy(gameObject);
+                return true;
+            }
+        }
+        return false;
+    }
 }

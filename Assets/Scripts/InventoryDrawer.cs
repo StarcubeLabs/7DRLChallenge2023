@@ -25,7 +25,7 @@ public class InventoryDrawer : MonoBehaviour
     
     public void Draw()
     {
-        Debug.Log("INVENTORY DRAWN");
+        //Debug.Log("INVENTORY DRAWN");
         for (int i = 0; i < transform.childCount; ++i)
         {
             Destroy(gameObject.transform.GetChild(i).gameObject);
@@ -36,10 +36,10 @@ public class InventoryDrawer : MonoBehaviour
             ItemSlot inventorySlot = Instantiate(ItemSlotPrefab);
             inventorySlot.SetInventory(PlayerInventory);
             inventorySlot.inventoryDrawerReference = this;
-            inventorySlot.transform.parent = gameObject.transform;
+            inventorySlot.transform.SetParent(gameObject.transform);
             if (PlayerInventory.Items[i] != null)
             {
-                inventorySlot.itemSlot = PlayerInventory.Items[i];
+                inventorySlot.item = PlayerInventory.Items[i];
             }
         }
 

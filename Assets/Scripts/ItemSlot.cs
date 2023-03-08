@@ -11,7 +11,7 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
     public InventoryDrawer inventoryDrawerReference;
     public GameObject ItemPreview;
 
-    public Item itemSlot;
+    public Item item;
 
     public TextMeshProUGUI StackCountText;
 
@@ -23,53 +23,56 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
     // Start is called before the first frame update
     void Start()
     {
-        if (itemSlot == null)
+        if (item == null)
         {
             StackCountText.gameObject.SetActive(false);
         }
         else
         {
-            if (!itemSlot.CanBeStacked)
+            if (!item.CanBeStacked)
             {
                 StackCountText.gameObject.SetActive(false);
             }
             else
             {
-                StackCountText.text = itemSlot.CurrentNumberOfStacks.ToString("D2");
+                StackCountText.text = item.CurrentNumberOfStacks.ToString("D2");
             }
         }
 
-        if (itemSlot != null)
+        if (item != null)
         {
             if (ItemPreview != null)
             {
                 ItemPreview.GetComponent<Image>().color = Color.white;
-                ItemPreview.GetComponent<Image>().sprite = itemSlot.ItemIcon;
+                ItemPreview.GetComponent<Image>().sprite = item.ItemIcon;
             }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (item != null)
         {
-            if (itemSlot.CanBeStacked)
+            if (eventData.button == PointerEventData.InputButton.Right)
             {
-                var dropMenu = GameObject.FindObjectOfType<DropItemMenu>();
-                dropMenu.GetComponent<DropItemMenu>().CurrentItemDisplay.SetItem(itemSlot);
-                dropMenu.GetComponent<DropItemMenu>().CurrentDropItemDisplay.SetItem(itemSlot);
-                dropMenu.transform.GetChild(0).gameObject.SetActive(true);
+                if (item.CanBeStacked)
+                {
+                    var dropMenu = GameObject.FindObjectOfType<DropItemMenu>();
+                    dropMenu.GetComponent<DropItemMenu>().CurrentItemDisplay.SetItem(item);
+                    dropMenu.GetComponent<DropItemMenu>().CurrentDropItemDisplay.SetItem(item);
+                    dropMenu.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                else
+                {
+                    item.OnDrop();
+                }
             }
-            else
+            if (eventData.button == PointerEventData.InputButton.Left)
             {
-                itemSlot.OnDrop();
-            }
-        }
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            if (itemSlot is IConsumable)
-            {
-                (itemSlot as IConsumable).OnConsume();
+                if (item.Consume())
+                {
+                    item = null;
+                }
             }
         }
         inventoryDrawerReference.Draw();

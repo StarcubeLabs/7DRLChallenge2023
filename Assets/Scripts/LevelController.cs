@@ -21,6 +21,7 @@ public class LevelController : MonoBehaviour
     public int randomSeed;
 
     public EntityManager entityManager;
+    public Item itemPrefab;
 
     public EnemyBaseScript[] EnemyChoiceList;
 
@@ -33,8 +34,8 @@ public class LevelController : MonoBehaviour
     /// </summary>
     [Tooltip("The range of items to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
     public Vector2Int ItemSpawnRange;
-    public List<WeightedEntry<Item>> PotentialItemEntries = new List<WeightedEntry<Item>>();
-    private WeightedTable<Item> PotentialItems = new WeightedTable<Item>();
+    public List<WeightedEntry<ItemData>> PotentialItemEntries = new List<WeightedEntry<ItemData>>();
+    private WeightedTable<ItemData> PotentialItems = new WeightedTable<ItemData>();
     
     /// <summary>
     /// This is the range of the amount of traps to spawn.
@@ -227,11 +228,13 @@ public class LevelController : MonoBehaviour
         
         for (int numberOfSpawnedItems = 0; numberOfSpawnedItems < numberOfItemsToSpawn; ++numberOfSpawnedItems)
         {
-            Item randomItem = Instantiate<Item>(PotentialItems.GetRandomEntry());
-            
+            Item randomItem = Instantiate<Item>(itemPrefab);
+            randomItem.ItemData = PotentialItems.GetRandomEntry();
+
             randomItem.transform.Rotate(new Vector3(90,0,0));
             //Set the enemy location.
             Vector3Int itemGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
+            randomItem.GenerateRandomStackSize();
             randomItem.SnapToPosition(itemGridPosition);
             randomItem.gridPosition = itemGridPosition;
             randomItem.GetComponent<SpriteRenderer>().sortingOrder = 1;
