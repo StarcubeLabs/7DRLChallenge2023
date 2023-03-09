@@ -1,10 +1,10 @@
 public class Punch : DealDamageFront
 {
-    public override void UseMove(ActorController user, EntityManager entityManager)
+    public override void UseMove(ActorController user)
     {
         if (!user.Weapon)
         {
-            base.UseMove(user, entityManager);
+            base.UseMove(user);
         }
     }
 }

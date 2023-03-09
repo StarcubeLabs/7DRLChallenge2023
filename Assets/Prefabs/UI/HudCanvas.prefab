@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f7dff0c17280d44bd5d4e3802f05cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 939653810892591180}
+  moveName: {fileID: 939653810892591180}
   details: {fileID: 939653811812506747}
   attackType: {fileID: 939653810817808227}
   element: {fileID: 939653810841357229}

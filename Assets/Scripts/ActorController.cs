@@ -243,7 +243,7 @@ public class ActorController : EntityController
     public void UseMove(Move move)
     {
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
-        move.moveData.UseMove(this, entityManager);
+        move.moveData.UseMove(this);
         EndTurn();
     }
 

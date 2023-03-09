@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class MoveMenuDetail: MonoBehaviour
 {
 
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI moveName;
     public TextMeshProUGUI details;
     public TextMeshProUGUI attackType;
     public TextMeshProUGUI element;
@@ -20,7 +20,7 @@ public class MoveMenuDetail: MonoBehaviour
 
     public void UpdateWithMoveData(Move move)
     {
-        name.text = move.moveData.MoveName;
+        moveName.text = move.moveData.MoveName;
         details.text = move.moveData.MoveDescription;
         attackType.text = "Attack Type: Direct";
         element.text = string.Format("Element: {0}", Enum.GetName(typeof(ElementType), move.moveData.Element));

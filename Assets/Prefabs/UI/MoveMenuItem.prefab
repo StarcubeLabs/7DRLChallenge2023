@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118fae150340bcb43a28187fe3da7525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 4112427149566590079}
+  moveName: {fileID: 4112427149566590079}
   ppCount: {fileID: 4112427149469902162}
 --- !u!1 &4112427149566590077
 GameObject:

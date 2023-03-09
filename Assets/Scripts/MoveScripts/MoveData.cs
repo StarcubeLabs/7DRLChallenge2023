@@ -22,7 +22,7 @@ public abstract class MoveData : MonoBehaviour
     protected int maxPP;
     public int MaxPP { get { return maxPP; } }
 
-    public abstract void UseMove(ActorController user, EntityManager entityManager);
+    public abstract void UseMove(ActorController user);
 
     /// <summary>
     /// Modifies the move's element from its base element if needed.

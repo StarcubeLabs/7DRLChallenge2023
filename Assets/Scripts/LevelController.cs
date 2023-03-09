@@ -171,7 +171,12 @@ public class LevelController : MonoBehaviour
     public bool CanWalkOnCell(Vector3Int position)
     {
         //print("Can Walk on Cell: "+(somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && !entityManager.isEntityInPosition(position)));
-        return somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable && !entityManager.isEntityInPosition(position);
+        return IsCellWalkable(position) && !entityManager.isEntityInPosition(position);
+    }
+
+    public bool IsCellWalkable(Vector3Int position)
+    {
+        return somewhatInterestingMap.GetCell(position.x, somewhatInterestingMap.Height - 1 - position.y).IsWalkable;
     }
 
     public bool HasInteractable(Vector3Int position)
