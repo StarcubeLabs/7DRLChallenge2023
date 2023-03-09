@@ -386,7 +386,7 @@ public class ActorController : EntityController
     public void Hurt(int hurtAmount = 1)
     {
         hitPoints.x -= hurtAmount;
-        print("Hurt! Value: " + hurtAmount);
+        //print("Hurt! Value: " + hurtAmount);
         UpdateVisualHitPoints();
         if (hitPoints.x <= 0)
         {
