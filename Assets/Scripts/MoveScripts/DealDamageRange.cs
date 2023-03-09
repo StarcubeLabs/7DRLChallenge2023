@@ -18,7 +18,7 @@ public class DealDamageRange : MoveData
             ActorController target = ServicesManager.EntityManager.getEntityInPosition(attackPosition);
             if (target && !target.Dead)
             {
-                user.DamageTarget(this, target);
+                DamageTarget(user, target);
                 break;
             }
         }

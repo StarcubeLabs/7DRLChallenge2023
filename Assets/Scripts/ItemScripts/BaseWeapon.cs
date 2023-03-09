@@ -24,7 +24,7 @@ public class BaseWeapon : EquippableItem
     [Range(0f, 1f)]
     public float AfflictionChance = 0f;
 
-    public int AfflicationTurnCount;
+    public int AfflictionTurnCount;
 
     public override bool OnConsume(ActorController consumer, Item item)
     {
@@ -46,7 +46,7 @@ public class BaseWeapon : EquippableItem
     {
         if (AfflictionType != StatusType.None && Random.value <= AfflictionChance)
         {
-            target.ApplyStatus(AfflictionType, AfflicationTurnCount);
+            target.ApplyStatus(AfflictionType, AfflictionTurnCount);
         }
     }
 }

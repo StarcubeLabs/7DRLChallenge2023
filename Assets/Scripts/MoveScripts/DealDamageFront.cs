@@ -5,7 +5,7 @@ public class DealDamageFront : MoveData
         ActorController target = ServicesManager.EntityManager.getEntityInPosition(user.GetPositionInFront());
         if (target)
         {
-            user.DamageTarget(this, target);
+            DamageTarget(user, target);
         }
     }
 }
