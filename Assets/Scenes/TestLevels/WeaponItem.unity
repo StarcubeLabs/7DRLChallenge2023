@@ -673,7 +673,7 @@ PrefabInstance:
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.data[0]
       value: 
-      objectReference: {fileID: 545491245312023058, guid: 1f2d6b470c47c4eedaa8d4949c7d8179, type: 3}
+      objectReference: {fileID: 111296553757472549, guid: baac59e4b9c6848feb98308bcf954983, type: 3}
     - target: {fileID: 8038504152482477859, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: contextMenu
       value: 
