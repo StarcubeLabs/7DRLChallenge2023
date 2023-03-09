@@ -8,7 +8,13 @@ Shader "Unlit/7DRL_EmissiveSnap_Diffuse"
     }
     SubShader
     {
-        Tags { "Queue"="Transparent" "RenderType"="Transparent"}
+        Tags         
+        {
+            "LightMode" = "ForwardBase"
+            "PassFlags" = "OnlyDirectional"
+            "Queue" = "Transparent"
+            "RenderType" = "Transparent"
+        }
         Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
         Cull Off
@@ -36,18 +42,24 @@ Shader "Unlit/7DRL_EmissiveSnap_Diffuse"
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 o.vertex = vertSnap(v, 160, 120);
-
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float3 normal = normalize(i.worldNormal);
+                float NdotL = dot(_WorldSpaceLightPos0, normal);
+                float lightIntensity = NdotL > 0 ? 1 : 0;
+
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 clip(col.a - .001);
-                return _Color;
+                float4 fin = lerp(_Color * .5, _Color, lightIntensity);
+                fin.a = 1;
+                return fin;
             }
             ENDCG
         }

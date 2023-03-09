@@ -8,6 +8,7 @@ struct v2f
     float2 uv : TEXCOORD0;
 	UNITY_FOG_COORDS(1)
     half3 normal : TEXCOORD1;
+	float3 worldNormal : NORMAL;
 	float4 vertex : SV_POSITION;
 };
 
@@ -15,6 +16,7 @@ struct appdata
 {
 	float4 vertex : POSITION;
 	float2 uv : TEXCOORD0;
+	float3 normal : NORMAL;
 };
 
 float4 vertSnap(appdata v, float xSize, float ySize)
