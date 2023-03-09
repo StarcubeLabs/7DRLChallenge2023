@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MoveMenu: MonoBehaviour, IMenuInteractable
@@ -59,6 +60,7 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
             childMenuItem.onSelect -= OnChooseMove;
         });
         elementGroup.Hide();
+
 
         if (onChooseMove != null)
         {

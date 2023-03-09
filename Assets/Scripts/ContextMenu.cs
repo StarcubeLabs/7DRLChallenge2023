@@ -30,8 +30,6 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     {
         eventSystem = FindObjectOfType<EventSystem>();
 
-        eventSystem.firstSelectedGameObject = moveMenuItem.gameObject;
-
         Array.ForEach(GetComponentsInChildren<MenuItem>(), (menuItem) =>
         {
             menuItem.AttachMenuListener(this);
@@ -43,6 +41,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OnChooseMove(object sender, EventArgs args)
     {
+        eventSystem.SetSelectedGameObject(null);
         cursor.enabled = false;
     }
 
@@ -144,6 +143,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
         {
             cursor.enabled = false;
             contextMainMenu.Hide();
+            eventSystem.SetSelectedGameObject(null);
         }
     }
 

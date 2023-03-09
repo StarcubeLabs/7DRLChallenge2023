@@ -7,7 +7,7 @@ public class PlayerInputController : MonoBehaviour
 {
     public ActorController playerActor;
     public Transform cameraSlot;
-    public ContextMenu contextMenu;
+    ContextMenu contextMenu;
     ServicesManager servicesManager;
     GameStateManager gameStateManager;
     private TurnManager turnManager;
