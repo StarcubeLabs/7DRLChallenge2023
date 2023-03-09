@@ -17,6 +17,7 @@ public class ActorController : EntityController
     LevelManager levelManager;
     EntityManager entityManager;
     TurnManager turnManager;
+    private TurnAnimationController turnAnimationController;
     private MoveRegistry moveRegistry;
     public Animator ActorAnimController;
 
@@ -78,6 +79,7 @@ public class ActorController : EntityController
         levelManager = FindObjectOfType<LevelManager>();
         turnManager = FindObjectOfType<TurnManager>();
         entityManager = FindObjectOfType<EntityManager>();
+        turnAnimationController = FindObjectOfType<TurnAnimationController>();
         moveRegistry = FindObjectOfType<MoveRegistry>();
         entityManager.AddActor(this);
 
@@ -85,7 +87,7 @@ public class ActorController : EntityController
 
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
-        visualPosition = (Vector3)gridPosition;//Set visual position to grid position.
+        visualPosition = GetCellCenterWorld(gridPosition);//Set visual position to grid position.
 
         foreach (MoveData moveData in startingMoves)
         {
@@ -106,27 +108,25 @@ public class ActorController : EntityController
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool UpdateVisualLocation()
     {
-        UpdateVisualLocation();
-    }
-
-    void UpdateVisualLocation()
-    {
-        Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
+        bool animationFinished;
+        Vector3 worldPosition = GetCellCenterWorld(gridPosition);
         if(Vector3.Distance(worldPosition, visualPosition) < .1f)
         {
-            visualPosition = gridPosition;
+            visualPosition = worldPosition;
+            animationFinished = true;
         }
         else
         {
             visualPosition = Vector3.Lerp(visualPosition, new Vector3(worldPosition.x, 0, worldPosition.z), .25f);
+            animationFinished = false;
         }
         this.transform.position = visualPosition;
         //visualTransform.transform.rotation = Quaternion.Euler(visualRotation);
         visualTransform.transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         visualTransform.transform.Rotate(0, 0, visualRotation);
+        return animationFinished;
     }
 
     /// <summary>
@@ -170,7 +170,6 @@ public class ActorController : EntityController
             //Big 'ol If Chain to determine character facing direction based on movement direction
 
             gridPosition += offset;
-            SnapToPosition(gridPosition);
             if(ActorAnimController != null)
             {
                 ActorAnimController?.SetTrigger("Walk");
@@ -185,6 +184,8 @@ public class ActorController : EntityController
 
             IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
             interactable?.Interact(this);
+            
+            turnAnimationController.AddAnimation(new WalkAnimation(this));
 
             EndTurn();
         }
@@ -233,11 +234,8 @@ public class ActorController : EntityController
 
     public void UseMove(Move move)
     {
+        turnAnimationController.AddAnimation(new AttackAnimation(ActorAnimController, "Attack"));
         move.moveData.UseMove(this, entityManager);
-        if (ActorAnimController != null)
-        {
-            ActorAnimController?.SetTrigger("Attack");
-        }
         EndTurn();
     }
 
@@ -500,8 +498,14 @@ public class ActorController : EntityController
         grid = FindObjectOfType<Grid>();
 
         //Disable pure location snap so "faux-animation" lerping can work instead.
+        this.transform.position = GetCellCenterWorld(gridPosition);
+    }
+
+    public Vector3 GetCellCenterWorld(Vector3Int gridPosition)
+    {
         Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
-        this.transform.position = new Vector3(worldPosition.x, 0, worldPosition.z);
+        worldPosition.y = 0;
+        return worldPosition;
     }
     
     public void GoDownStairs()
