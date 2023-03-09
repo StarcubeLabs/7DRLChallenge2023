@@ -29,7 +29,6 @@ public class PlayerInputController : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         turnAnimationController = FindObjectOfType<TurnAnimationController>();
         inventoryDrawer = InventoryMenu.GetComponentInChildren<InventoryDrawer>();
-        
 
         contextMenu = FindObjectOfType<ContextMenu>(true);
 

@@ -7,12 +7,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ContextMenu: MonoBehaviour
+public class ContextMenu: MonoBehaviour, IMenuInteractable
 {
     public EventSystem eventSystem;
     public Image cursor;
 
-    public Transform contextMainMenu;
+    public ElementGroup contextMainMenu;
 
     public MoveMenu moveMenu;
     public Transform inventoryMenu;
@@ -24,58 +24,86 @@ public class ContextMenu: MonoBehaviour
     public MenuItem infoMenuItem;
     public MenuItem gameMenuItem;
 
+    public MenuItem[] moveMenuItems;
+
     public void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
 
         eventSystem.firstSelectedGameObject = moveMenuItem.gameObject;
 
+        Array.ForEach(GetComponentsInChildren<MenuItem>(), (menuItem) =>
+        {
+            menuItem.AttachMenuListener(this);
+        });
+
         moveMenuItem.onSelect += OnSelectMoveMenu;
+        moveMenu.onChooseMove += OnChooseMove;
     }
 
-    public void DeselectMenuItem(MenuItem sender)
+    public void OnChooseMove(object sender, EventArgs args)
     {
-        if (cursor.transform.parent == sender.transform)
+        cursor.enabled = false;
+    }
+
+    public void StopHighlightMenuItem(MenuItem sender)
+    {
+        if (eventSystem.currentSelectedGameObject == null)
         {
-            cursor.transform.SetParent(null);
             cursor.enabled = false;
         }
     }
 
-    public void SelectMenuItem(MenuItem sender)
+    public void StartHighlightMenuItem(MenuItem sender)
     {
-        cursor.rectTransform.SetParent(sender.transform, false);
-        cursor.rectTransform.localPosition = new Vector2(-20 + ((RectTransform)(sender.transform)).rect.xMin, 0);
-        cursor.enabled = true;
+        if (IsMenuOpen())
+        {
+            RectTransform menuItemRect = (RectTransform)(sender.transform);
+            cursor.rectTransform.position = new Vector2(-20 + menuItemRect.rect.xMin, 0) + new Vector2(menuItemRect.position.x, menuItemRect.position.y);
+            cursor.enabled = true;
+        }
     }
 
     public void OnSelectMoveMenu(object sender, EventArgs eventArgs)
     {
-        moveMenu.gameObject.SetActive(true);
-        contextMainMenu.gameObject.SetActive(false);
+        moveMenu.elementGroup.Show();
+        contextMainMenu.Hide();
 
-        SelectFirstMenuItem();
+        NavigateToFirstMenuItem();
     }
 
     public void OpenMenu()
     {
-        contextMainMenu.gameObject.SetActive(true);
+        contextMainMenu.Show();
+
+        moveMenu.SetupMenu();
+
+        Array.ForEach(moveMenu.GetComponentsInChildren<MenuItem>(), (menuItem) =>
+        {
+            menuItem.AttachMenuListener(this);
+        });
+
+        moveMenuItems = moveMenu.GetComponentsInChildren<MenuItem>(true);
+
+        NavigateToFirstMenuItem();
     }
 
-    public void SelectFirstMenuItem()
+    public void NavigateToFirstMenuItem()
     {
         Transform root = getActiveMenu();
-        GameObject menuItem = root.GetComponentInChildren<MenuItem>(true).gameObject;
+        MenuItem firstMenuItem = root.GetComponentInChildren<MenuItem>(true);
+        GameObject menuItem = firstMenuItem.gameObject;
         eventSystem.firstSelectedGameObject = menuItem;
         eventSystem.SetSelectedGameObject(menuItem);
+
+        StartHighlightMenuItem(firstMenuItem);
     }
 
     public void NavigateDown()
     {
         if (eventSystem.currentSelectedGameObject == null)
         {
-
-            SelectFirstMenuItem();
+            NavigateToFirstMenuItem();
         }
         else
         {
@@ -89,7 +117,7 @@ public class ContextMenu: MonoBehaviour
     {
         if (eventSystem.currentSelectedGameObject == null)
         {
-            SelectFirstMenuItem();
+            NavigateToFirstMenuItem();
         }
         else
         {
@@ -106,30 +134,31 @@ public class ContextMenu: MonoBehaviour
             AxisEventData moveEventData = new AxisEventData(EventSystem.current);
             ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, moveEventData, ExecuteEvents.cancelHandler);
         }
-        if (moveMenu.gameObject.activeSelf)
+        if (moveMenu.elementGroup.enabled)
         {
-            moveMenu.gameObject.SetActive(false);
-            contextMainMenu.gameObject.SetActive(true);
-            SelectFirstMenuItem();
+            moveMenu.elementGroup.Hide();
+            contextMainMenu.Show();
+            NavigateToFirstMenuItem();
         }
-        else if (contextMainMenu.gameObject.activeSelf)
+        else if (contextMainMenu.enabled)
         {
-            contextMainMenu.gameObject.SetActive(false);
+            cursor.enabled = false;
+            contextMainMenu.Hide();
         }
     }
 
     public bool IsMenuOpen()
     {
-        return moveMenu.gameObject.activeSelf || contextMainMenu.gameObject.activeSelf;
+        return moveMenu.elementGroup.enabled || contextMainMenu.enabled;
     }
 
     public Transform getActiveMenu()
     {
-        if (moveMenu.gameObject.activeSelf)
+        if (moveMenu.elementGroup.enabled)
         {
             return moveMenu.transform;
         }
-        if (contextMainMenu.gameObject.activeSelf)
+        if (contextMainMenu.enabled)
         {
             return contextMainMenu.transform;
         }

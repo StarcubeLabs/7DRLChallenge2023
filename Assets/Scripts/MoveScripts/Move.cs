@@ -3,7 +3,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     public MoveData moveData;
-    private int pp;
+    public int pp;
 
     public static Move InitiateFromMoveData(MoveData moveData)
     {

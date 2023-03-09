@@ -8,45 +8,64 @@ using UnityEngine.EventSystems;
 
 public interface IHighlightable : ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ISubmitHandler
 {
+}
 
+public interface IMenuInteractable
+{
+    void StartHighlightMenuItem(MenuItem menuItem);
+    void StopHighlightMenuItem(MenuItem menuItem);
 }
 
 public class MenuItem : MonoBehaviour, IHighlightable
 {
     public EventHandler<EventArgs> onSelect;
 
-    ContextMenu contextMenu;
+    List<IMenuInteractable> menuItemListeners = new List<IMenuInteractable>();
 
-    public void Start()
+    public void AttachMenuListener(IMenuInteractable menuInteractable)
     {
-        contextMenu = FindObjectOfType<ContextMenu>();
+        menuItemListeners.Add(menuInteractable);
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        contextMenu.DeselectMenuItem(this);
+        menuItemListeners.ForEach((menuItemListener) =>
+        {
+            menuItemListener.StopHighlightMenuItem(this);
+        });
     }
 
     public void OnSelect(BaseEventData eventData)
     {
-        contextMenu = FindObjectOfType<ContextMenu>();
-        contextMenu.SelectMenuItem(this);
+        menuItemListeners.ForEach((menuItemListener) =>
+        {
+            menuItemListener.StartHighlightMenuItem(this);
+        });
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        contextMenu.SelectMenuItem(this);
+        menuItemListeners.ForEach((menuItemListener) =>
+        {
+            menuItemListener.StartHighlightMenuItem(this);
+        });
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        contextMenu.DeselectMenuItem(this);
+        menuItemListeners.ForEach((menuItemListener) =>
+        {
+            menuItemListener.StopHighlightMenuItem(this);
+        });
     }
 
 
     public void OnClick(BaseEventData eventData)
     {
-        contextMenu.SelectMenuItem(this);
+        menuItemListeners.ForEach((menuItemListener) =>
+        {
+            menuItemListener.StartHighlightMenuItem(this);
+        });
     }
 
     public void OnPointerClick(PointerEventData eventData)
