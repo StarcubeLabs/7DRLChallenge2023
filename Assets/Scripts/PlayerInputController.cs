@@ -13,6 +13,8 @@ public class PlayerInputController : MonoBehaviour
     private TurnAnimationController turnAnimationController;
 
     public GameObject InventoryMenu;
+
+    private InventoryDrawer inventoryDrawer;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class PlayerInputController : MonoBehaviour
         gameStateManager = FindObjectOfType<GameStateManager>();
         turnManager = FindObjectOfType<TurnManager>();
         turnAnimationController = FindObjectOfType<TurnAnimationController>();
+        inventoryDrawer = InventoryMenu.GetComponentInChildren<InventoryDrawer>();
         
 
         playerActor.onDie += OnDie;
@@ -229,11 +232,11 @@ public class PlayerInputController : MonoBehaviour
     {
         if (InventoryMenu.activeInHierarchy)
         {
-            InventoryMenu.SetActive(false);
+            inventoryDrawer.Close();
         }
         else
         {
-            InventoryMenu.SetActive(true);
+            inventoryDrawer.Open();
         }
     }
 }
