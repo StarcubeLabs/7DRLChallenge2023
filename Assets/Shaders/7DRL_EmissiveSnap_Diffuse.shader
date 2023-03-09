@@ -58,7 +58,6 @@ Shader "Unlit/7DRL_EmissiveSnap_Diffuse"
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 clip(col.a - .001);
                 float4 fin = lerp(_Color * .5, _Color, lightIntensity);
-                fin.a = 1;
                 return fin;
             }
             ENDCG
