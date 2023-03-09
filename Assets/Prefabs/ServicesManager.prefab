@@ -188,9 +188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moves:
-  - {fileID: 8698060036559696798, guid: 216844b33dbf74f0ea08425855a55f0d, type: 3}
+  - {fileID: 4793917272209267141, guid: 216844b33dbf74f0ea08425855a55f0d, type: 3}
   - {fileID: 972135384986904225, guid: 86520059ebfdc44f390bb957e5e02255, type: 3}
-  basicAttack: {fileID: 8698060036559696798, guid: 216844b33dbf74f0ea08425855a55f0d, type: 3}
+  basicAttack: {fileID: 4793917272209267141, guid: 216844b33dbf74f0ea08425855a55f0d, type: 3}
 --- !u!1 &4120266995916760647
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4521461096385222851}
   - component: {fileID: 1955711894317172966}
+  - component: {fileID: 4336329260184469189}
   m_Layer: 0
   m_Name: TurnManager
   m_TagString: Untagged
@@ -233,6 +234,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a00cbb9542b2b9f43a55dc33fd31fd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4336329260184469189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120266995916760647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f81025a119346879900df6b1862bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5624821562245193158

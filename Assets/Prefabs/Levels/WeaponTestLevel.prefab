@@ -243,7 +243,7 @@ MonoBehaviour:
   ItemSpawnRange: {x: 1, y: 1}
   PotentialItemEntries:
   - Weight: 1
-    Entry: {fileID: 2740662514017809751, guid: 37442b5e271ed4b5c9f5350b35df0306, type: 3}
+    Entry: {fileID: -6469611630650067172, guid: d2500d108403c46269386491563126e7, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []
   EnemySpawnRange: {x: 1, y: 1}

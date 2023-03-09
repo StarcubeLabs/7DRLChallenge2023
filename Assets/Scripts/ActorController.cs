@@ -17,6 +17,7 @@ public class ActorController : EntityController
     LevelManager levelManager;
     EntityManager entityManager;
     TurnManager turnManager;
+    private TurnAnimationController turnAnimationController;
     private MoveRegistry moveRegistry;
     public Animator ActorAnimController;
 
@@ -25,10 +26,11 @@ public class ActorController : EntityController
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
+    [SerializeField]
+    private ElementType elementType;
+
     [Tooltip("Amount of damage the actor will deal without weapons.")]
     public int baseAttackPower;
-
-    public int AttackPower { get { return baseAttackPower + WeaponDamage; } }
 
     [SerializeField]
     private List<MoveData> startingMoves;
@@ -40,8 +42,13 @@ public class ActorController : EntityController
     [Tooltip("How many turns left that the actor is afflicted with the current status.")]
     public int statusCountdown = 0;
 
+    [Header("Equippables")]
     private Item weapon;
-    private int WeaponDamage { get { return weapon == null ? 0 : ((WeaponItem)weapon.ItemData).power; } }
+    public BaseWeapon Weapon { get { return weapon == null ? null : (BaseWeapon)weapon.ItemData; }}
+    private Item armor;
+    public BaseArmor Armor { get { return armor == null ? null : (BaseArmor)armor.ItemData; }}
+    private Item accessory;
+    public EquippableItem Accessory { get { return accessory == null ? null : (EquippableItem)accessory.ItemData; }}
 
     /// <summary>
     /// Used by Status Effects to decide when their affects should be triggered. Counts up.
@@ -72,6 +79,7 @@ public class ActorController : EntityController
         levelManager = FindObjectOfType<LevelManager>();
         turnManager = FindObjectOfType<TurnManager>();
         entityManager = FindObjectOfType<EntityManager>();
+        turnAnimationController = FindObjectOfType<TurnAnimationController>();
         moveRegistry = FindObjectOfType<MoveRegistry>();
         entityManager.AddActor(this);
 
@@ -79,7 +87,7 @@ public class ActorController : EntityController
 
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
-        visualPosition = (Vector3)gridPosition;//Set visual position to grid position.
+        visualPosition = GetCellCenterWorld(gridPosition);//Set visual position to grid position.
 
         foreach (MoveData moveData in startingMoves)
         {
@@ -100,27 +108,25 @@ public class ActorController : EntityController
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool UpdateVisualLocation()
     {
-        UpdateVisualLocation();
-    }
-
-    void UpdateVisualLocation()
-    {
-        Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
+        bool animationFinished;
+        Vector3 worldPosition = GetCellCenterWorld(gridPosition);
         if(Vector3.Distance(worldPosition, visualPosition) < .1f)
         {
-            visualPosition = gridPosition;
+            visualPosition = worldPosition;
+            animationFinished = true;
         }
         else
         {
             visualPosition = Vector3.Lerp(visualPosition, new Vector3(worldPosition.x, 0, worldPosition.z), .25f);
+            animationFinished = false;
         }
         this.transform.position = visualPosition;
         //visualTransform.transform.rotation = Quaternion.Euler(visualRotation);
         visualTransform.transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         visualTransform.transform.Rotate(0, 0, visualRotation);
+        return animationFinished;
     }
 
     /// <summary>
@@ -129,12 +135,6 @@ public class ActorController : EntityController
     /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void Move(Vector3Int offset)
     {
-        //If we tried to go somewhere that just won't work, try again.
-        if (!turnManager.CanMove(this))
-        {
-            return;
-        }
-
         //We can't move at all, so kick us back to the turn line.
         if(isStatusImmobilized)
         {
@@ -155,6 +155,8 @@ public class ActorController : EntityController
             EndTurn();
             return;
         }
+        
+        FaceDirection(offset);
 
         bool isMovingDiagonally = (offset.x * offset.y) != 0;
 
@@ -166,10 +168,8 @@ public class ActorController : EntityController
             }
 
             //Big 'ol If Chain to determine character facing direction based on movement direction
-            FaceDirection(offset);
 
             gridPosition += offset;
-            SnapToPosition(gridPosition);
             if(ActorAnimController != null)
             {
                 ActorAnimController?.SetTrigger("Walk");
@@ -184,6 +184,8 @@ public class ActorController : EntityController
 
             IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
             interactable?.Interact(this);
+            
+            turnAnimationController.AddAnimation(new WalkAnimation(this));
 
             EndTurn();
         }
@@ -204,21 +206,21 @@ public class ActorController : EntityController
         {
             return false;
         }
-        moves.Add(createMove(moveData));
+        moves.Add(CreateMove(moveData));
         return true;
     }
 
     public void ReplaceMove(int moveIndex, MoveData moveData)
     {
         Move oldMove = moves[moveIndex];
-        moves[moveIndex] = createMove(moveData);
+        moves[moveIndex] = CreateMove(moveData);
         if (oldMove)
         {
             Destroy(oldMove);
         }
     }
 
-    private Move createMove(MoveData moveData)
+    private Move CreateMove(MoveData moveData)
     {
         Move move = global::Move.InitiateFromMoveData(moveData);
         move.transform.parent = transform;
@@ -232,17 +234,27 @@ public class ActorController : EntityController
 
     public void UseMove(Move move)
     {
-        if (!turnManager.CanMove(this))
-        {
-            return;
-        }
-        
+        turnAnimationController.AddAnimation(new AttackAnimation(ActorAnimController, "Attack"));
         move.moveData.UseMove(this, entityManager);
-        if (ActorAnimController != null)
-        {
-            ActorAnimController?.SetTrigger("Attack");
-        }
         EndTurn();
+    }
+
+    public int ModifyDamageUser(int damage, ActorController target)
+    {
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            damage = equippableItem.ModifyDamageUser(damage, this, target);
+        }
+        return damage;
+    }
+
+    public int ModifyDamageTarget(int damage, ActorController user)
+    {
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            damage = equippableItem.ModifyDamageTarget(damage, user, this);
+        }
+        return damage;
     }
 
     public void FaceDirection(Vector3Int offset)
@@ -349,6 +361,19 @@ public class ActorController : EntityController
         }
     }
 
+    public void DamageTarget(MoveData moveData, ActorController target)
+    {
+        int damage = DamageCalculator.CalculateDamage(moveData, this, target);
+        if (damage > 0)
+        {
+            target.Hurt(damage);
+            foreach (EquippableItem equippableItem in GetEquippedItems())
+            {
+                equippableItem.OnDamageDealt(this, target);
+            }
+        }
+    }
+
     public void Hurt(int hurtAmount = 1)
     {
         hitPoints.x -= hurtAmount;
@@ -370,8 +395,21 @@ public class ActorController : EntityController
 
     public void ApplyStatus(StatusType statusType, int turnCount)
     {
-        afflictedStatus = statusType;
-        statusCountdown = turnCount;
+        bool allowStatus = true;
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            if (!equippableItem.AllowStatus(this, statusType))
+            {
+                allowStatus = false;
+                break;
+            }
+        }
+
+        if (allowStatus)
+        {
+            afflictedStatus = statusType;
+            statusCountdown = turnCount;
+        }
     }
 
     public void TickStatus()
@@ -460,16 +498,18 @@ public class ActorController : EntityController
         grid = FindObjectOfType<Grid>();
 
         //Disable pure location snap so "faux-animation" lerping can work instead.
+        this.transform.position = GetCellCenterWorld(gridPosition);
+    }
+
+    public Vector3 GetCellCenterWorld(Vector3Int gridPosition)
+    {
         Vector3 worldPosition = grid.GetCellCenterWorld(gridPosition);
-        this.transform.position = new Vector3(worldPosition.x, 0, worldPosition.z);
+        worldPosition.y = 0;
+        return worldPosition;
     }
     
     public void GoDownStairs()
     {
-        if (!turnManager.CanMove(this))
-        {
-            return;
-        }
         if (this.gridPosition == levelManager.GetActiveLevel().GetGridPositionFromCell(levelManager.GetActiveLevel().somewhatInterestingMap.end))
         {
             levelManager.GoDownFloor();
@@ -500,5 +540,60 @@ public class ActorController : EntityController
         {
             this.weapon = null;
         }
+    }
+
+    public void EquipArmor(Item armor)
+    {
+        this.armor = armor;
+    }
+
+    public void UnequipArmor(Item armor)
+    {
+        if (armor == this.armor)
+        {
+            this.armor = null;
+        }
+    }
+
+    public void EquipAccessory(Item accessory)
+    {
+        this.accessory = accessory;
+    }
+
+    public void UnequipAccessory(Item accessory)
+    {
+        if (accessory == this.accessory)
+        {
+            this.accessory = null;
+        }
+    }
+
+    public List<EquippableItem> GetEquippedItems()
+    {
+        List<EquippableItem> equippableItems = new List<EquippableItem>();
+        if (weapon)
+        {
+            equippableItems.Add((EquippableItem)weapon.ItemData);
+        }
+        if (armor)
+        {
+            equippableItems.Add((EquippableItem)armor.ItemData);
+        }
+        if (accessory)
+        {
+            equippableItems.Add((EquippableItem)accessory.ItemData);
+        }
+        return equippableItems;
+    }
+
+    public ElementType GetEffectiveType()
+    {
+        ElementType effectiveType = elementType;
+        foreach (EquippableItem equippableItem in GetEquippedItems())
+        {
+            effectiveType = equippableItem.ModifyTypeTarget(effectiveType, this);
+        }
+
+        return effectiveType;
     }
 }

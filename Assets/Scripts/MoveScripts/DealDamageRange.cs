@@ -9,10 +9,10 @@ public class DealDamageRange : MoveData
     {
         for (int i = 1; i <= range; i++)
         {
-            ActorController entityToAttack = entityManager.getEntityInPosition(user.GetPositionInFront(i));
-            if (entityToAttack)
+            ActorController target = entityManager.getEntityInPosition(user.GetPositionInFront(i));
+            if (target)
             {
-                entityToAttack.Hurt(user.AttackPower + power);
+                user.DamageTarget(this, target);
                 break;
             }
         }
