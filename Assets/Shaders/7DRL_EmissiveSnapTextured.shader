@@ -7,8 +7,8 @@ Shader "Unlit/7DRL_EmissiveSnapTextured"
     }
     SubShader
     {
-        Tags 
-        { 
+        Tags
+        {
             "LightMode" = "ForwardBase"
             "PassFlags" = "OnlyDirectional"
             "Queue" = "Transparent"
@@ -52,12 +52,13 @@ Shader "Unlit/7DRL_EmissiveSnapTextured"
 
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+                float alpha = col.a;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                clip(col.a - .001);
+                clip(alpha - .001);
                 float4 fin = col * _ColorTint;
                 fin = lerp(fin * .5, col, lightIntensity);
-                return fin;
+                return half4(fin.rgb, alpha);
             }
             ENDCG
         }

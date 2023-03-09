@@ -8,7 +8,7 @@ Shader "Unlit/7DRL_EmissiveSnap_Diffuse"
     }
     SubShader
     {
-        Tags         
+        Tags
         {
             "LightMode" = "ForwardBase"
             "PassFlags" = "OnlyDirectional"
@@ -54,11 +54,12 @@ Shader "Unlit/7DRL_EmissiveSnap_Diffuse"
 
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+                float alpha = col.a;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                clip(col.a - .001);
+                clip(alpha - .001);
                 float4 fin = lerp(_Color * .5, _Color, lightIntensity);
-                return fin;
+                return half4(fin.rgb, alpha);;
             }
             ENDCG
         }
