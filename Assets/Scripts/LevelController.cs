@@ -234,6 +234,7 @@ public class LevelController : MonoBehaviour
             randomItem.ItemData = PotentialItems.GetRandomEntry();
 
             randomItem.transform.Rotate(new Vector3(90,0,0));
+            Instantiate(randomItem.ItemObject, randomItem.transform);
             //Set the enemy location.
             Vector3Int itemGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
             randomItem.GenerateRandomStackSize();

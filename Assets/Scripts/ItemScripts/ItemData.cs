@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemData : MonoBehaviour
@@ -7,6 +5,7 @@ public class ItemData : MonoBehaviour
     public string ItemName;
     public string ItemDescription;
     public Sprite ItemIcon;
+    public GameObject ItemObject;
     public long ItemValue;
     public bool IsStackable;
     public int MaximumStack;

@@ -1,12 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.UI.GridLayoutGroup;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class Item : EntityController, IInteractable
 {
     [HideInInspector]
@@ -24,6 +18,8 @@ public class Item : EntityController, IInteractable
     public long ItemValue => ItemData.ItemValue;
 
     public Sprite ItemIcon => ItemData.ItemIcon;
+
+    public GameObject ItemObject => ItemData.ItemObject;
 
     public bool CanBeStacked => ItemData.IsStackable;
 
@@ -46,7 +42,7 @@ public class Item : EntityController, IInteractable
 
     void Start()
     {
-        if (GetComponent<SpriteRenderer>())
+        if (!ItemObject && GetComponent<SpriteRenderer>())
         {
             GetComponent<SpriteRenderer>().sprite = ItemIcon;
         }
