@@ -199,7 +199,7 @@ public class LevelController : MonoBehaviour
         
         for (int numberOfSpawnedEnemies = 0; numberOfSpawnedEnemies < NumberOfEnemiesToSpawn; ++numberOfSpawnedEnemies)
         {
-            EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[0]);
+            EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[Random.Range(0, EnemyChoiceList.Length)]);
 
             //Set the enemy location.
             Vector3Int enemyGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
