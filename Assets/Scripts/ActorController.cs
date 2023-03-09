@@ -89,8 +89,7 @@ public class ActorController : EntityController
         ActorAnimController = GetComponentInChildren<Animator>();
 
         gridPosition = grid.WorldToCell(this.transform.position);
-        SnapToPosition(gridPosition);
-        visualPosition = GetCellCenterWorld(gridPosition);//Set visual position to grid position.
+        InitializePosition();
 
         visualHitPoints = hitPoints.x;
 
@@ -136,6 +135,13 @@ public class ActorController : EntityController
     {
         visualTransform.transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         visualTransform.transform.Rotate(0, 0, visualRotation);
+    }
+
+    public void InitializePosition()
+    {
+        SnapToPosition(gridPosition);
+        visualPosition = GetCellCenterWorld(gridPosition);//Set visual position to grid position.
+        this.transform.position = visualPosition;
     }
 
     /// <summary>
