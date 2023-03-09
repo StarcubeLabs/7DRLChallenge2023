@@ -45,6 +45,10 @@ public class ActorController : EntityController
     [Tooltip("How many turns left that the actor is afflicted with the current status.")]
     public int statusCountdown = 0;
 
+    [SerializeField]
+    private StatusModifier currentModifier = StatusModifier.None;
+    private int modifierCountdown = 0;
+
     [Header("Equippables")]
     private Item weapon;
     public BaseWeapon Weapon { get { return weapon == null ? null : (BaseWeapon)weapon.ItemData; }}
@@ -502,8 +506,25 @@ public class ActorController : EntityController
             afflictedStatus = StatusType.None;
             isStatusImmobilized = false;
         }
+
+        TickModifiers();
     }
 
+    public void TickModifiers()
+    {
+        modifierCountdown--;
+        if(modifierCountdown == 0)
+        {
+            currentModifier = StatusModifier.None;
+        }
+    }
+
+    public void ApplyModifier(StatusModifier statusModifier, int turnCount) 
+    {
+        currentModifier = statusModifier;
+        modifierCountdown = turnCount;
+    }
+    
     public void SnapToPosition(Vector3Int gridPosition)
     {
         grid = FindObjectOfType<Grid>();

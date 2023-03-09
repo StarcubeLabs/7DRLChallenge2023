@@ -9,5 +9,7 @@ namespace RLDataTypes
 
     public enum StatusType { None, Poison, Sleep, Confusion, Blindness, Muteness, Slow, Petrify, All }
 
+    public enum StatusModifier { None, Regeneration }
+
 
 }
