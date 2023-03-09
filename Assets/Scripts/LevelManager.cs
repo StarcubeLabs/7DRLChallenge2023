@@ -98,6 +98,7 @@ public class LevelManager: MonoBehaviour
         {
             player.gridPosition = nextFloor.GetGridPositionFromCell(nextFloor.somewhatInterestingMap.end);
         }
+        player.InitializePosition();
     }
 
     public void GoDownFloor()

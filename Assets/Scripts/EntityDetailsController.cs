@@ -18,6 +18,6 @@ public class EntityDetailsController: MonoBehaviour
 
     public void Update()
     {
-        healthText.text = string.Format("Health: {0}/{1}", entity.hitPoints.x, entity.hitPoints.y);
+        healthText.text = string.Format("Health: {0}/{1}", entity.visualHitPoints, entity.hitPoints.y);
     }
 }

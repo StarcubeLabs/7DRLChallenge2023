@@ -1,8 +1,17 @@
 public abstract class TurnAnimation
 {
-    public abstract void StartAnimation();
+    public virtual void StartAnimation()
+    {
+    }
 
     public abstract bool UpdateAnimation();
 
-    public abstract bool CanRunAnimationsConcurrently(TurnAnimation anim);
+    public virtual void EndAnimation()
+    {
+    }
+
+    public virtual bool CanRunAnimationsConcurrently(TurnAnimation anim)
+    {
+        return false;
+    }
 }

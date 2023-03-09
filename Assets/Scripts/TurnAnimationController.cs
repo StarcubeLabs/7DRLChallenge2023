@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +5,7 @@ public class TurnAnimationController : MonoBehaviour
 {
     private List<TurnAnimation> runningAnimations = new List<TurnAnimation>();
     private Queue<TurnAnimation> queuedAnimations = new Queue<TurnAnimation>();
+    private bool cancelAnimationLoop;
     
     public bool HasRunningAnimations { get { return runningAnimations.Count > 0 || queuedAnimations.Count > 0; }}
 
@@ -18,7 +18,13 @@ public class TurnAnimationController : MonoBehaviour
             {
                 if (anim.UpdateAnimation())
                 {
+                    anim.EndAnimation();
                     finishedAnimations.Add(anim);
+                    if (cancelAnimationLoop)
+                    {
+                        cancelAnimationLoop = false;
+                        return;
+                    }
                 }
             }
             if (finishedAnimations.Count == runningAnimations.Count)
@@ -50,5 +56,12 @@ public class TurnAnimationController : MonoBehaviour
     public void AddAnimation(TurnAnimation anim)
     {
         queuedAnimations.Enqueue(anim);
+    }
+
+    public void ClearAnimations()
+    {
+        runningAnimations.Clear();
+        queuedAnimations.Clear();
+        cancelAnimationLoop = true;
     }
 }

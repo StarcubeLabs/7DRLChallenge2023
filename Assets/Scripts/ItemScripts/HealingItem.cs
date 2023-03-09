@@ -4,8 +4,8 @@ public class HealingItem : ItemData
 
     public override bool OnConsume(ActorController consumer, Item item)
     {
-        consumer.HealAmount(HealAmount);
         consumer.PlayEatAnimation();
+        consumer.HealAmount(HealAmount);
         return true;
     }
 }

@@ -24,6 +24,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: hitPoints.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: hitPoints.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: ActorAnimController
       value: 
       objectReference: {fileID: 2315456253617409338}

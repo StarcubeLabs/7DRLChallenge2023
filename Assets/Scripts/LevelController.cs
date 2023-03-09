@@ -10,7 +10,7 @@ using System.Linq;
 public class LevelController : MonoBehaviour
 {
     public Tilemap tileMap;
-    public Tile wall;
+    public GameObject wall;
     public Tile land;
     public Tile stairDown;
     public Tile stairUp;
@@ -83,12 +83,14 @@ public class LevelController : MonoBehaviour
             for (int j = 0; j < somewhatInterestingMap.Height; j++)
             {
                 Cell cell = somewhatInterestingMap.GetCell(i, somewhatInterestingMap.Height - 1 - j);
-                TileBase tileBase = wall;
                 if (cell.IsWalkable)
                 {
-                    tileBase = land;
+                    tileMap.SetTile(new Vector3Int(i, j, 0), land);
                 }
-                tileMap.SetTile(new Vector3Int(i, j, 0), tileBase);
+                else
+                {
+                    Instantiate(wall, new Vector3(i, 0, j), Quaternion.identity, transform);
+                }
             }
         }
         
@@ -199,7 +201,7 @@ public class LevelController : MonoBehaviour
         
         for (int numberOfSpawnedEnemies = 0; numberOfSpawnedEnemies < NumberOfEnemiesToSpawn; ++numberOfSpawnedEnemies)
         {
-            EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[0]);
+            EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[Random.Range(0, EnemyChoiceList.Length)]);
 
             //Set the enemy location.
             Vector3Int enemyGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
@@ -232,6 +234,7 @@ public class LevelController : MonoBehaviour
             randomItem.ItemData = PotentialItems.GetRandomEntry();
 
             randomItem.transform.Rotate(new Vector3(90,0,0));
+            Instantiate(randomItem.ItemObject, randomItem.transform);
             //Set the enemy location.
             Vector3Int itemGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
             randomItem.GenerateRandomStackSize();
