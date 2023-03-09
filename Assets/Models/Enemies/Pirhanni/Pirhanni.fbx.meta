@@ -3,7 +3,27 @@ guid: 6398a6afc5f094049b36a7ab0ae1291c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FishFins
+    second: {fileID: 2100000, guid: 6a466c7329a7b37468ce3731837aad9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FishMain
+    second: {fileID: 2100000, guid: b958470da6bbd604793d1d06515d38d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FishMouth
+    second: {fileID: 2100000, guid: 9b6ca2841317ee24a9c1b72548b9ec50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PirEye
+    second: {fileID: 2100000, guid: a88de6c08a43f7b4e863161d1b8f743c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
