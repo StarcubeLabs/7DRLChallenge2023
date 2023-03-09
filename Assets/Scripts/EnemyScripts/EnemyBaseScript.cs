@@ -96,6 +96,7 @@ public class EnemyBaseScript : MonoBehaviour
             ActorController entityInFront = entityManager.getEntityInPosition(currentPosition + nextOffset);
             if (entityInFront == player.GetComponent<ActorController>())
             {
+                enemyActor.FaceDirection(nextOffset);
                 enemyActor.UseBasicAttack();
             }
             else

@@ -20,6 +20,6 @@ class HudManager: MonoBehaviour
 
     public void Update()
     {
-        healthText.text = string.Format("Health: {0}/{1}", playerInputController.playerActor.hitPoints.x, playerInputController.playerActor.hitPoints.y);
+        healthText.text = string.Format("Health: {0}/{1}", playerInputController.playerActor.visualHitPoints, playerInputController.playerActor.hitPoints.y);
     }
 }

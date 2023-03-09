@@ -10,5 +10,8 @@ public abstract class TurnAnimation
     {
     }
 
-    public abstract bool CanRunAnimationsConcurrently(TurnAnimation anim);
+    public virtual bool CanRunAnimationsConcurrently(TurnAnimation anim)
+    {
+        return false;
+    }
 }

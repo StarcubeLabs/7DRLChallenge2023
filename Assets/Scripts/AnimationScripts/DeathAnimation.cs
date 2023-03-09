@@ -24,8 +24,14 @@ public class DeathAnimation : TurnAnimation
 
     public override bool UpdateAnimation()
     {
-        return !actorAnimator ||
-               !actorAnimator.GetBool(animationName) && actorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1;
+        if (actorAnimator)
+        {
+            AnimatorStateInfo state = actorAnimator.GetCurrentAnimatorStateInfo(0);
+            return !actorAnimator.GetBool(animationName) && state.IsName(animationName) &&
+                   actorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1;
+        }
+
+        return true;
     }
     
     public override void EndAnimation()
@@ -35,10 +41,5 @@ public class DeathAnimation : TurnAnimation
             onDie(this, EventArgs.Empty);
         }
         Object.Destroy(actor.gameObject);
-    }
-
-    public override bool CanRunAnimationsConcurrently(TurnAnimation anim)
-    {
-        return false;
     }
 }

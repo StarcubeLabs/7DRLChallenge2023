@@ -25,6 +25,8 @@ public class ActorController : EntityController
 
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
+
+    public int visualHitPoints;
     public bool Dead { get { return hitPoints.x <= 0; } }
 
     [SerializeField]
@@ -89,6 +91,8 @@ public class ActorController : EntityController
         gridPosition = grid.WorldToCell(this.transform.position);
         SnapToPosition(gridPosition);
         visualPosition = GetCellCenterWorld(gridPosition);//Set visual position to grid position.
+
+        visualHitPoints = hitPoints.x;
 
         foreach (MoveData moveData in startingMoves)
         {
@@ -232,7 +236,7 @@ public class ActorController : EntityController
 
     public void UseMove(Move move)
     {
-        turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack"));
+        turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
         move.moveData.UseMove(this, entityManager);
         EndTurn();
     }
@@ -357,6 +361,7 @@ public class ActorController : EntityController
         {
             hitPoints.x = hitPoints.y;
         }
+        UpdateVisualHitPoints();
     }
 
     public void DamageTarget(MoveData moveData, ActorController target)
@@ -376,6 +381,7 @@ public class ActorController : EntityController
     {
         hitPoints.x -= hurtAmount;
         print("Hurt! Value: " + hurtAmount);
+        UpdateVisualHitPoints();
         if (hitPoints.x <= 0)
         {
             hitPoints.x = 0;
@@ -599,5 +605,10 @@ public class ActorController : EntityController
     public void PlayEatAnimation()
     {
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Eat"));
+    }
+
+    public void UpdateVisualHitPoints()
+    {
+        turnAnimationController.AddAnimation(new UpdateHitPoints(this, hitPoints.x));
     }
 }
