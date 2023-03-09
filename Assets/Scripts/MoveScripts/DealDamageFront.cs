@@ -1,11 +1,11 @@
 public class DealDamageFront : MoveData
 {
-    public override void UseMove(ActorController user, EntityManager entityManager)
+    public override void UseMove(ActorController user)
     {
-        ActorController target = entityManager.getEntityInPosition(user.GetPositionInFront());
+        ActorController target = ServicesManager.EntityManager.getEntityInPosition(user.GetPositionInFront());
         if (target)
         {
-            user.DamageTarget(this, target);
+            DamageTarget(user, target);
         }
     }
 }

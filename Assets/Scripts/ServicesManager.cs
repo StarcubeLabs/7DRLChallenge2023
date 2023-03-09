@@ -6,6 +6,12 @@ public class ServicesManager : MonoBehaviour
 {
     public static ServicesManager instance;
     private TurnAnimationController turnAnimationController;
+    
+    private EntityManager entityManager;
+    public static EntityManager EntityManager { get { return instance.entityManager; } }
+    
+    private LevelManager levelManager;
+    public static LevelManager LevelManager { get { return instance.levelManager; } }
 
     public Camera mainCamera;
 
@@ -21,13 +27,9 @@ public class ServicesManager : MonoBehaviour
             GameObject.DontDestroyOnLoad(this.gameObject);
             instance = this;
             turnAnimationController = GetComponentInChildren<TurnAnimationController>();
+            entityManager = GetComponentInChildren<EntityManager>();
+            levelManager = GetComponentInChildren<LevelManager>();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ResetServices()

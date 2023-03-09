@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class DropMenu_CurrentItemDisplay : MonoBehaviour
 {
+    private const string STACK_SIZE_FORMAT = "D2";
+    
     public Item CurrentItem;
 
     public Image ItemPreview;
@@ -16,7 +18,7 @@ public class DropMenu_CurrentItemDisplay : MonoBehaviour
         ItemPreview.sprite = CurrentItem.ItemIcon;
         ItemPreview.color = Color.white;
         CurrentItemStack = CurrentItem.CurrentNumberOfStacks;
-        ItemStackText.text = CurrentItemStack.ToString();
+        ItemStackText.text = CurrentItemStack.ToString(STACK_SIZE_FORMAT);
     }
     
     public void Lower()
@@ -29,7 +31,7 @@ public class DropMenu_CurrentItemDisplay : MonoBehaviour
             CurrentItemStack = 0;
         }
         entityManager.actors[0].Inventory.NumberOfItemsToDrop = CurrentItemStack;
-        ItemStackText.text = CurrentItemStack.ToString("D2");
+        ItemStackText.text = CurrentItemStack.ToString(STACK_SIZE_FORMAT);
     }
 
     public void Increase()
@@ -42,7 +44,7 @@ public class DropMenu_CurrentItemDisplay : MonoBehaviour
             CurrentItemStack = CurrentItem.CurrentNumberOfStacks;
         }
         entityManager.actors[0].Inventory.NumberOfItemsToDrop = CurrentItemStack;
-        ItemStackText.text = CurrentItemStack.ToString("D2");
+        ItemStackText.text = CurrentItemStack.ToString(STACK_SIZE_FORMAT);
     }
     
 }

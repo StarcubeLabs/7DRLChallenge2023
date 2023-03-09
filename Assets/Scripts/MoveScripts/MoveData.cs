@@ -22,7 +22,17 @@ public abstract class MoveData : MonoBehaviour
     protected int maxPP;
     public int MaxPP { get { return maxPP; } }
 
-    public abstract void UseMove(ActorController user, EntityManager entityManager);
+    [SerializeField]
+    protected StatusType afflictionType = StatusType.None;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    protected float afflictionChance = 0f;
+
+    [SerializeField]
+    protected int afflictionTurnCount;
+
+    public abstract void UseMove(ActorController user);
 
     /// <summary>
     /// Modifies the move's element from its base element if needed.
@@ -32,6 +42,15 @@ public abstract class MoveData : MonoBehaviour
     public virtual ElementType GetModifiedElement(ActorController user)
     {
         return element;
+    }
+
+    protected void DamageTarget(ActorController user, ActorController target)
+    {
+        user.DamageTarget(this, target);
+        if (afflictionType != StatusType.None && Random.value <= afflictionChance)
+        {
+            target.ApplyStatus(afflictionType, afflictionTurnCount);
+        }
     }
 }
 

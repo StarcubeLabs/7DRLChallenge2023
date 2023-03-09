@@ -8,7 +8,7 @@ public class ItemData : MonoBehaviour
     public GameObject ItemObject;
     public long ItemValue;
     public bool IsStackable;
-    public int MaximumStack;
+    public int MaximumStack = 1;
 
     /// <summary>a
     /// Handles what happens when you consume said item.

@@ -1,11 +1,7 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class MoveRegistry : MonoBehaviour
 {
-    [SerializeField]
-    private List<MoveData> moves;
-
     [SerializeField]
     private MoveData basicAttack;
     private Move basicAttackMove;
