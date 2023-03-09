@@ -123,10 +123,14 @@ public class ActorController : EntityController
             animationFinished = false;
         }
         this.transform.position = visualPosition;
-        //visualTransform.transform.rotation = Quaternion.Euler(visualRotation);
+        UpdateVisualRotation();
+        return animationFinished;
+    }
+
+    public void UpdateVisualRotation()
+    {
         visualTransform.transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         visualTransform.transform.Rotate(0, 0, visualRotation);
-        return animationFinished;
     }
 
     /// <summary>
@@ -160,35 +164,28 @@ public class ActorController : EntityController
 
         bool isMovingDiagonally = (offset.x * offset.y) != 0;
 
-        if (!isMovingDiagonally || IsLegalDiagonalMove(offset))
+        if (isMovingDiagonally && !IsLegalDiagonalMove(offset) ||
+            !levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + offset))
         {
-            if (!levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + offset))
-            {
-                return;
-            }
-
-            //Big 'ol If Chain to determine character facing direction based on movement direction
-
-            gridPosition += offset;
-            if(ActorAnimController != null)
-            {
-                ActorAnimController?.SetTrigger("Walk");
-            }
-
-            if (entityManager.isTrapInPosition(gridPosition))
-            {
-                var trap = entityManager.getTrapInPosition(gridPosition);
-                trap.OnContact(this);
-                trap.gameObject.SetActive(false);
-            }
-
-            IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
-            interactable?.Interact(this);
-            
-            turnAnimationController.AddAnimation(new WalkAnimation(this));
-
-            EndTurn();
+            UpdateVisualRotation();
+            return;
         }
+
+        gridPosition += offset;
+
+        if (entityManager.isTrapInPosition(gridPosition))
+        {
+            var trap = entityManager.getTrapInPosition(gridPosition);
+            trap.OnContact(this);
+            trap.gameObject.SetActive(false);
+        }
+
+        IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
+        interactable?.Interact(this);
+        
+        turnAnimationController.AddAnimation(new WalkAnimation(this, ActorAnimController));
+
+        EndTurn();
     }
 
     public void EndTurn()
@@ -234,7 +231,7 @@ public class ActorController : EntityController
 
     public void UseMove(Move move)
     {
-        turnAnimationController.AddAnimation(new AttackAnimation(ActorAnimController, "Attack"));
+        turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack"));
         move.moveData.UseMove(this, entityManager);
         EndTurn();
     }
@@ -381,6 +378,10 @@ public class ActorController : EntityController
         if (hitPoints.x <= 0)
         {
             Kill();
+        }
+        else
+        {
+            turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Hurt"));
         }
     }
 
@@ -595,5 +596,10 @@ public class ActorController : EntityController
         }
 
         return effectiveType;
+    }
+
+    public void PlayEatAnimation()
+    {
+        turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Eat"));
     }
 }

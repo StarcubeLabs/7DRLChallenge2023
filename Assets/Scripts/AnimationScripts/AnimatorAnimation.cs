@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class AttackAnimation : TurnAnimation
+public class AnimatorAnimation : TurnAnimation
 {
     private Animator actorAnimator;
     private string animationName;
     
-    public AttackAnimation(Animator actorAnimator, string animationName)
+    public AnimatorAnimation(Animator actorAnimator, string animationName)
     {
         this.actorAnimator = actorAnimator;
         this.animationName = animationName;
