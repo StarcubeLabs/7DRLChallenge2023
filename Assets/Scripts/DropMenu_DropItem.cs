@@ -9,6 +9,7 @@ public class DropMenu_DropItem : MonoBehaviour
     public Image ItemPreview;
     public TextMeshProUGUI ItemStackText;
     public int CurrentItemStack;
+    public Button dropButton;
 
     public void SetItem(Item newItem)
     {
@@ -17,6 +18,7 @@ public class DropMenu_DropItem : MonoBehaviour
         ItemPreview.color = Color.white;
         CurrentItemStack = 0;
         ItemStackText.text = CurrentItemStack.ToString();
+        UpdateDropButton();
     }
     
     public void Lower()
@@ -29,6 +31,7 @@ public class DropMenu_DropItem : MonoBehaviour
         var entityManager = GameObject.FindObjectOfType<EntityManager>();
         entityManager.actors[0].Inventory.NumberOfItemsToDrop = CurrentItemStack;
         ItemStackText.text = CurrentItemStack.ToString("D2");
+        UpdateDropButton();
     }
 
     public void Increase()
@@ -42,5 +45,11 @@ public class DropMenu_DropItem : MonoBehaviour
         var entityManager = GameObject.FindObjectOfType<EntityManager>();
         entityManager.actors[0].Inventory.NumberOfItemsToDrop = CurrentItemStack;
         ItemStackText.text = CurrentItemStack.ToString("D2");
+        UpdateDropButton();
+    }
+
+    private void UpdateDropButton()
+    {
+        dropButton.interactable = CurrentItemStack > 0;
     }
 }

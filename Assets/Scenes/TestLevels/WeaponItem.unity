@@ -960,6 +960,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1363595033}
@@ -980,6 +984,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnDrop
       objectReference: {fileID: 0}
@@ -989,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Draw
+      value: CloseAndEndTurn
       objectReference: {fileID: 0}
     - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1001,6 +1009,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: InventoryDrawer, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: InventoryDrawer, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 5592066865909517331, guid: 43d0ed677c1dfc644a95999ab3cf7c53, type: 3}
