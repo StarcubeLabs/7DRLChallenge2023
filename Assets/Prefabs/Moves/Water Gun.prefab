@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2063619693137707417}
   - component: {fileID: 972135384986904225}
   m_Layer: 0
-  m_Name: AirSlash
+  m_Name: Water Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b173d431f762423ca584f3af16d61eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: Air Slash
-  moveDescription: Cut your enemies in half with a sword of air.
-  Element: 0
-  power: 2
-  maxPP: 10
+  moveName: Water Gun
+  moveDescription: Fire a beam of water towards your foes.
+  Element: 2
+  power: 3
+  maxPP: 6
   range: 3

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class MoveRegistry : MonoBehaviour
 {
     [SerializeField]
-    private List<MoveData> moves;
+    public List<MoveData> moves { get; set; }
 
     [SerializeField]
     private MoveData basicAttack;

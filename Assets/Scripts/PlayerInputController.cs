@@ -7,6 +7,7 @@ public class PlayerInputController : MonoBehaviour
 {
     public ActorController playerActor;
     public Transform cameraSlot;
+    public ContextMenu contextMenu;
     ServicesManager servicesManager;
     GameStateManager gameStateManager;
     private TurnManager turnManager;
@@ -28,7 +29,8 @@ public class PlayerInputController : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         turnAnimationController = FindObjectOfType<TurnAnimationController>();
         inventoryDrawer = InventoryMenu.GetComponentInChildren<InventoryDrawer>();
-        
+
+        contextMenu = FindObjectOfType<ContextMenu>(true);
 
         playerActor.onDie += OnDie;
     }
@@ -45,9 +47,27 @@ public class PlayerInputController : MonoBehaviour
         {
             return;
         }
-        
-        InputCheckNumpad();
-        InputCheckWASD();
+
+        if (contextMenu.IsMenuOpen())
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                contextMenu.NavigateDown();
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad8))
+            {
+                contextMenu.NavigateUp();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                contextMenu.NavigateBack();
+            }
+        }
+        else
+        {
+            InputCheckNumpad();
+            InputCheckWASD();
+        }
     }
 
     void InputCheckNumpad()
@@ -105,13 +125,18 @@ public class PlayerInputController : MonoBehaviour
         {
             PlayerOpenInventory();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            contextMenu.OpenMenu();
+        }
     }
 
     void InputCheckWASD()
     {
-        // Apparently to get a combo of keys to work you have to do GetKey1, GetKey2, ..., GetFinalKeyDown
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift)) // Apparently to get a combo of keys to work you have to do GetKey1, GetKey2, ..., GetFinalKeyDown
         {
+            
             if (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.D)
                 || Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.W))
             {
@@ -170,11 +195,15 @@ public class PlayerInputController : MonoBehaviour
         {
             PlayerOpenInventory();
         }
-
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerActor.UseBasicAttack();
             //playerActor.UseMove(playerActor.moves[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            contextMenu.OpenMenu();
         }
     }
 
@@ -226,6 +255,11 @@ public class PlayerInputController : MonoBehaviour
     private void PlayerMoveDownRight()
     {
         playerActor.Move(new Vector3Int(1, -1));
+    }
+
+    private void PlayerOpenMainMenu()
+    {
+
     }
 
     private void PlayerOpenInventory()
