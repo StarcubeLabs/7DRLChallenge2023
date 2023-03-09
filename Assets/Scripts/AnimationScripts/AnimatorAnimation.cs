@@ -18,12 +18,8 @@ public class AnimatorAnimation : TurnAnimation
 
     public override bool UpdateAnimation()
     {
-        if (!actorAnimator)
-        {
-            return true;
-        }
-
-        return !actorAnimator.GetBool(animationName) && !actorAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationName);
+        return !actorAnimator ||
+               !actorAnimator.GetBool(animationName) && !actorAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationName);
     }
 
     public override bool CanRunAnimationsConcurrently(TurnAnimation anim)

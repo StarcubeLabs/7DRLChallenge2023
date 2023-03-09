@@ -219,7 +219,7 @@ MonoBehaviour:
   visualRotation: 0
   visualTransform: {fileID: 3660450539436421563}
   ActorAnimController: {fileID: 5616305063674634372}
-  hitPoints: {x: 10, y: 10}
+  hitPoints: {x: 2, y: 2}
   elementType: 2
   baseAttackPower: 1
   startingMoves:

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using RogueSharp;
 using UnityEngine;
 
@@ -33,7 +31,7 @@ public class EnemyBaseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (turnManager.CanMove(enemyActor))
+        if (turnManager.CanMove(enemyActor) && !enemyActor.Dead && !player.playerActor.Dead)
         {
             if (state != AI_STATES.PURSUING && state != AI_STATES.ATTACKING && enemyActor.CanSeePosition(player.GetLocation()))
             {

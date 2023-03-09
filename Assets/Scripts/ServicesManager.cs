@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServicesManager : MonoBehaviour
 {
     public static ServicesManager instance;
+    private TurnAnimationController turnAnimationController;
 
     public Camera mainCamera;
 
@@ -19,6 +20,7 @@ public class ServicesManager : MonoBehaviour
         {
             GameObject.DontDestroyOnLoad(this.gameObject);
             instance = this;
+            turnAnimationController = GetComponentInChildren<TurnAnimationController>();
         }
     }
 
@@ -31,5 +33,6 @@ public class ServicesManager : MonoBehaviour
     public void ResetServices()
     {
         mainCamera.transform.SetParent(this.transform);
+        turnAnimationController.ClearAnimations();
     }
 }

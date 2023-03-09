@@ -25,6 +25,7 @@ public class ActorController : EntityController
 
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
+    public bool Dead { get { return hitPoints.x <= 0; } }
 
     [SerializeField]
     private ElementType elementType;
@@ -377,6 +378,7 @@ public class ActorController : EntityController
         print("Hurt! Value: " + hurtAmount);
         if (hitPoints.x <= 0)
         {
+            hitPoints.x = 0;
             Kill();
         }
         else
@@ -387,11 +389,7 @@ public class ActorController : EntityController
 
     public void Kill()
     {
-        if(onDie != null)
-        {
-            onDie(this, EventArgs.Empty);
-        }
-        Destroy(this.gameObject);
+        turnAnimationController.AddAnimation(new DeathAnimation(this, ActorAnimController, "Die", onDie));
     }
 
     public void ApplyStatus(StatusType statusType, int turnCount)
