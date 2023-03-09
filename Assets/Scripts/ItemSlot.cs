@@ -62,9 +62,9 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
                     dropMenu.GetComponent<DropItemMenu>().CurrentDropItemDisplay.SetItem(item);
                     dropMenu.transform.GetChild(0).gameObject.SetActive(true);
                 }
-                else
+                else if (item.OnDrop())
                 {
-                    item.OnDrop();
+                    inventoryDrawerReference.CloseAndEndTurn();
                 }
             }
             if (eventData.button == PointerEventData.InputButton.Left)
@@ -73,6 +73,7 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
                 {
                     item = null;
                 }
+                inventoryDrawerReference.CloseAndEndTurn();
             }
         }
         inventoryDrawerReference.Draw();

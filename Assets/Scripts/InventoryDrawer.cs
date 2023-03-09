@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryDrawer : MonoBehaviour
 {
     private EntityManager entityManager;
+    public ActorController player;
     public Inventory PlayerInventory;
     public ItemSlot ItemSlotPrefab;
     public GameObject ItemDropMenu;
@@ -16,7 +15,8 @@ public class InventoryDrawer : MonoBehaviour
     
     void OnEnable()
     {
-        PlayerInventory = entityManager.actors[0].Inventory;
+        player = entityManager.actors[0];
+        PlayerInventory = player.Inventory;
         if (PlayerInventory != null)
         {
             Draw();
@@ -42,7 +42,21 @@ public class InventoryDrawer : MonoBehaviour
                 inventorySlot.item = PlayerInventory.Items[i];
             }
         }
-
     }
-    
+
+    public void Open()
+    {
+        transform.parent.gameObject.SetActive(true);
+    }
+
+    public void CloseAndEndTurn()
+    {
+        Close();
+        player.EndTurn();
+    }
+
+    public void Close()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
 }

@@ -71,10 +71,15 @@ public class Item : EntityController, IInteractable
         this.transform.position = new Vector3(worldPosition.x, 0, worldPosition.z);
     }
 
-    public void OnDrop()
+    public bool OnDrop()
     {
-        ItemData.OnDrop(Owner, this);
-        Owner.Inventory.DropItem(this, Owner.gridPosition);
+        if (Owner.Inventory.DropItem(this, Owner.gridPosition))
+        {
+            ItemData.OnDrop(Owner, this);
+            return true;
+        }
+
+        return false;
     }
 
     public void GenerateRandomStackSize()

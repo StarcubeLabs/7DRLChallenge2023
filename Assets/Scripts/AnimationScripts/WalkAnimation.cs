@@ -1,14 +1,19 @@
+using UnityEngine;
+
 public class WalkAnimation : TurnAnimation
 {
     private ActorController actor;
+    private Animator actorAnimator;
     
-    public WalkAnimation(ActorController actor)
+    public WalkAnimation(ActorController actor, Animator actorAnimator)
     {
         this.actor = actor;
+        this.actorAnimator = actorAnimator;
     }
     
     public override void StartAnimation()
     {
+        actorAnimator?.SetTrigger("Walk");
     }
 
     public override bool UpdateAnimation()
