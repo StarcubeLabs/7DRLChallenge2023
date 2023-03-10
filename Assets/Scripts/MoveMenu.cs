@@ -46,7 +46,10 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
             menuItem.GetComponent<MoveMenuSelection>().UpdateWithMoveData(move);
             itemToMoveMap[menuItem] = move;
             menuItem.AttachMenuListener(this);
-            menuItem.onSelect += OnChooseMove;
+            if (move.pp > 0)
+            {
+                menuItem.onSelect += OnChooseMove;
+            }
         }
     }
 

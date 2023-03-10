@@ -5,10 +5,6 @@ using RLDataTypes;
 
 public class HealRouletteType : MoveData
 {
-    [SerializeField]
-    private StatusType statusType = StatusType.None;
-
-
     public override void UseMove(ActorController user)
     {
         if(Random.Range(0, 100) > 50)

@@ -248,6 +248,10 @@ public class ActorController : EntityController
     {
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
         move.moveData.UseMove(this);
+        if (move.pp > 0)
+        {
+            move.pp--;
+        }
         EndTurn();
     }
 
