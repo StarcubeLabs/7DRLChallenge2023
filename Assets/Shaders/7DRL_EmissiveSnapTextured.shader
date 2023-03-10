@@ -58,7 +58,7 @@ Shader "7DRL/7DRL_EmissiveSnapTextured"
                 clip(alpha - .001);
                 float4 fin = col * _ColorTint;
                 fin = lerp(fin * .5, col, lightIntensity);
-                return half4(fin.rgb, alpha);
+                return half4(fin.rgb, alpha) * _ColorTint;
             }
             ENDCG
         }
