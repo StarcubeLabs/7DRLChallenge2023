@@ -29,6 +29,10 @@ public class TurnManager: MonoBehaviour
 
     public bool CanMove(ActorController actorController)
     {
+        if (turnOrder == null || turnOrder.Count == 0)
+        {
+            return false;
+        }
         return turnOrder[0] == actorController;
     }
 

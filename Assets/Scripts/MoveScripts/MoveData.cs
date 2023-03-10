@@ -1,6 +1,7 @@
 using RLDataTypes;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class MoveData : MonoBehaviour
 {
     [SerializeField]

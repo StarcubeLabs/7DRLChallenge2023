@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7072781384529384479
+--- !u!1 &2835714069868164201
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8224554449087827873}
-  - component: {fileID: 4793917272209267141}
+  - component: {fileID: 7169155135080153750}
+  - component: {fileID: 4915565562157183493}
   m_Layer: 0
-  m_Name: BasicAttack
+  m_Name: FlameFlip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8224554449087827873
+--- !u!4 &7169155135080153750
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072781384529384479}
+  m_GameObject: {fileID: 2835714069868164201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,23 +32,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4793917272209267141
+--- !u!114 &4915565562157183493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072781384529384479}
+  m_GameObject: {fileID: 2835714069868164201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60b1ec5b6b4a346fb81580543e95057b, type: 3}
+  m_Script: {fileID: 11500000, guid: e731bbf1fea1044a9a517560ea95896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: Basic Attack
-  moveDescription: Basic Attack
-  Element: 0
-  power: 1
-  maxPP: -1
-  afflictionType: 0
-  afflictionChance: 0
-  afflictionTurnCount: 0
+  ItemName: Flame Flip Move Scroll
+  ItemDescription: Teach yourself the move "Flame Flip"!
+  ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
+  ItemObject: {fileID: 5737963899223320826, guid: b8d6f313eb5d4a54eb17595f0514b676, type: 3}
+  IsStackable: 0
+  MaximumStack: 1
+  taughtMove: {fileID: 3582576500428355737, guid: c64d1b0e20d86483c9e6b0197770c767, type: 3}

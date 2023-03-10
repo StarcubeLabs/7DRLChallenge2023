@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 public class LevelManager: MonoBehaviour
 {
     public List<FloorData> FloorData;
+    [HideInInspector]
     public List<LevelController> levels = new List<LevelController>();
     public LevelController levelPrefab;
-    public int numMapsToGenerate = 10;
     public int randomSeed;
 
     Grid grid;
@@ -42,7 +42,7 @@ public class LevelManager: MonoBehaviour
     {
         if (grid)
         {
-            for (int i = 0; i < numMapsToGenerate; i++)
+            for (int i = 0; i < FloorData.Count; i++)
             {
                 LevelController level = Instantiate(levelPrefab);
                 level.CurrentFloorData = FloorData[i];

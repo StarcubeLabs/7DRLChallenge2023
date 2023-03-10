@@ -5,7 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class FloorData
 {
-    
+    public Vector2Int widthRange = new Vector2Int(30, 30);
+    public Vector2Int heightRange = new Vector2Int(20, 30);
+    public Vector2Int roomNumRange = new Vector2Int(13, 13);
+    public Vector2Int roomMaxSizeRange = new Vector2Int(5, 5);
+    public Vector2Int roomMinSizeRange = new Vector2Int(3, 3);
+
     public enum FloorTypes
     {
         Normal,

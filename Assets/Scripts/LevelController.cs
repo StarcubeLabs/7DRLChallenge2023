@@ -49,7 +49,14 @@ public class LevelController : MonoBehaviour
         tileMap.SetTile(new Vector3Int(0, 0, 0), land);
 
         DotNetRandom random = randomSeed == 0 ? Singleton.DefaultRandom : new DotNetRandom(randomSeed);
-        IMapCreationStrategy<DungeonMap> mapCreationStrategy = new RandomDungeonRoomsMapCreationStrategy(30, 20, 13, 5, 3, random);
+
+        int levelWidth = Random.Range(CurrentFloorData.widthRange.x, CurrentFloorData.widthRange.y);
+        int levelHeight = Random.Range(CurrentFloorData.heightRange.x, CurrentFloorData.heightRange.y);
+        int roomNum = Random.Range(CurrentFloorData.roomNumRange.x, CurrentFloorData.roomNumRange.y);
+        int roomMaxSize = Random.Range(CurrentFloorData.roomMaxSizeRange.x, CurrentFloorData.roomMaxSizeRange.y);
+        int roomMinSize = Random.Range(CurrentFloorData.roomMinSizeRange.x, CurrentFloorData.roomMinSizeRange.y);
+
+        IMapCreationStrategy<DungeonMap> mapCreationStrategy = new RandomDungeonRoomsMapCreationStrategy(levelWidth, levelHeight, roomNum, roomMaxSize, roomMinSize, random);
         somewhatInterestingMap = Map.Create<DungeonMap>(mapCreationStrategy);
         //Debug.Log(somewhatInterestingMap.ToString());
 
@@ -195,7 +202,14 @@ public class LevelController : MonoBehaviour
     /// <param name="cells">The cells available to spawn on.</param>
     public void SpawnItemsForMap(Cell[] cells)
     {
-        int numberOfItemsToSpawn = Random.Range(CurrentFloorData.NumberOfItemsToSpawn.x, CurrentFloorData.NumberOfItemsToSpawn.y + 1);
+        int numberOfItemsToSpawn;
+        if(CurrentFloorData.NumberOfItemsToSpawn.x == CurrentFloorData.NumberOfItemsToSpawn.y){
+            numberOfItemsToSpawn = CurrentFloorData.NumberOfItemsToSpawn.x;
+        }
+        else
+        {
+            numberOfItemsToSpawn = Random.Range(CurrentFloorData.NumberOfItemsToSpawn.x, CurrentFloorData.NumberOfItemsToSpawn.y);
+        }
 
         if (CurrentFloorData.NumberOfItemsToSpawn.y > cells.Length)
         {
@@ -208,7 +222,8 @@ public class LevelController : MonoBehaviour
         {
             Item randomItem = Instantiate<Item>(ItemPrefab);
 
-            randomItem.ItemData = CurrentFloorData.GetPotentialItems().GetRandomEntry();
+            ItemData itemData = CurrentFloorData.GetPotentialItems().GetRandomEntry();
+            randomItem.ItemData = itemData;
             
             randomItem.transform.Rotate(new Vector3(90,0,0));
             if (randomItem.ItemObject)

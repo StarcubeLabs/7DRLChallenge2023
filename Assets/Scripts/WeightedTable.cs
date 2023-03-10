@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class WeightedEntry<T> where T : class
 {
-    public int Weight;
+    public int Weight = 1;
     public T Entry;
 }
 
