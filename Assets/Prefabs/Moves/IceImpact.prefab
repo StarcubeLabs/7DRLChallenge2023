@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2063619693137707417}
-  - component: {fileID: 972135384986904225}
+  - component: {fileID: -2921079074040895143}
   m_Layer: 0
-  m_Name: Snow Nova
+  m_Name: IceImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &972135384986904225
+--- !u!114 &-2921079074040895143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3942460095708910642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b173d431f762423ca584f3af16d61eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dd32d1ab1384e2a8ce1b3202aa18b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: Snow Nova
-  moveDescription: A whisp of snow dazzles your foes. A cute trick, but you're better
-    off finding a better move!
+  moveName: Ice Impact
+  moveDescription: Does 2 Water damage.
   Element: 2
-  power: 1
-  maxPP: 10
-  range: 3
+  power: 2
+  maxPP: 20
+  afflictionType: 0
+  afflictionChance: 0
+  afflictionTurnCount: 0
