@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MoveMenu: MonoBehaviour, IMenuInteractable
@@ -20,6 +16,7 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
     MoveMenuDetail moveMenuDetail;
 
     Dictionary<MenuItem, Move> itemToMoveMap = new Dictionary<MenuItem, Move>();
+    public List<MenuItem> MenuItems { get { return new List<MenuItem>(itemToMoveMap.Keys); }}
 
     public EventHandler<EventArgs> onChooseMove;
 
@@ -44,9 +41,13 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
         {
             MenuItem menuItem = Instantiate(moveMenuItemPrefab, moveList);
             menuItem.GetComponent<MoveMenuSelection>().UpdateWithMoveData(move);
+            menuItem.GetComponent<Button>().enabled = false;
             itemToMoveMap[menuItem] = move;
             menuItem.AttachMenuListener(this);
-            menuItem.onSelect += OnChooseMove;
+            if (move.pp > 0)
+            {
+                menuItem.onSelect += OnChooseMove;
+            }
         }
     }
 
@@ -76,5 +77,14 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
 
     public void StopHighlightMenuItem(MenuItem menuItem)
     {
+    }
+
+    public void Show()
+    {
+        elementGroup.Show();
+        foreach (MenuItem menuItem in MenuItems)
+        {
+            menuItem.GetComponent<Button>().enabled = true;
+        }
     }
 }

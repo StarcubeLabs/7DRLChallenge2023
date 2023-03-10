@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInputController : MonoBehaviour
@@ -13,9 +11,6 @@ public class PlayerInputController : MonoBehaviour
     private TurnManager turnManager;
     private TurnAnimationController turnAnimationController;
 
-    public GameObject InventoryMenu;
-
-    private InventoryDrawer inventoryDrawer;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +23,6 @@ public class PlayerInputController : MonoBehaviour
         gameStateManager = FindObjectOfType<GameStateManager>();
         turnManager = FindObjectOfType<TurnManager>();
         turnAnimationController = FindObjectOfType<TurnAnimationController>();
-        inventoryDrawer = InventoryMenu.GetComponentInChildren<InventoryDrawer>();
 
         contextMenu = FindObjectOfType<ContextMenu>(true);
 
@@ -121,11 +115,6 @@ public class PlayerInputController : MonoBehaviour
             playerActor.Interact();
         }
 
-        if (Input.GetKeyDown(KeyCode.KeypadDivide))
-        {
-            PlayerOpenInventory();
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             contextMenu.OpenMenu();
@@ -190,11 +179,6 @@ public class PlayerInputController : MonoBehaviour
         {
             playerActor.Interact();
         }
-
-        if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Tab))
-        {
-            PlayerOpenInventory();
-        }
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -255,22 +239,5 @@ public class PlayerInputController : MonoBehaviour
     private void PlayerMoveDownRight()
     {
         playerActor.Move(new Vector3Int(1, -1));
-    }
-
-    private void PlayerOpenMainMenu()
-    {
-
-    }
-
-    private void PlayerOpenInventory()
-    {
-        if (InventoryMenu.activeInHierarchy)
-        {
-            inventoryDrawer.Close();
-        }
-        else
-        {
-            inventoryDrawer.Open();
-        }
     }
 }

@@ -2379,7 +2379,7 @@ MonoBehaviour:
   cursor: {fileID: 939653812307760154}
   contextMainMenu: {fileID: 939653811861213511}
   moveMenu: {fileID: 939653811971027467}
-  inventoryMenu: {fileID: 0}
+  inventoryMenu: {fileID: 939653810588276899}
   infoMenu: {fileID: 0}
   gameMenu: {fileID: 0}
   moveMenuItem: {fileID: 939653811982103536}
@@ -2783,7 +2783,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 20.950012, y: -76.399994}
-  m_SizeDelta: {x: 198.2, y: 15}
+  m_SizeDelta: {x: 250, y: 15}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &939653812131935831
 CanvasRenderer:
