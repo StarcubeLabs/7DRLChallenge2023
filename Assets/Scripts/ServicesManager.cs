@@ -17,6 +17,10 @@ public class ServicesManager : MonoBehaviour
     private MoveRegistry moveRegistry;
     public static MoveRegistry MoveRegistry { get { return instance.moveRegistry; } }
 
+    private HudManager hudManager;
+    public static HudManager HudManager { get { return instance.hudManager; } }
+    
+
     public Camera mainCamera;
 
     // Start is called before the first frame update
@@ -34,6 +38,7 @@ public class ServicesManager : MonoBehaviour
             entityManager = GetComponentInChildren<EntityManager>();
             levelManager = GetComponentInChildren<LevelManager>();
             moveRegistry = GetComponentInChildren<MoveRegistry>();
+            hudManager = FindObjectOfType<HudManager>();
         }
     }
 

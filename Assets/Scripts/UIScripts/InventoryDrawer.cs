@@ -52,6 +52,7 @@ public class InventoryDrawer : MonoBehaviour
     public void CloseAndEndTurn()
     {
         Close();
+        ServicesManager.HudManager.ContextMenu.Close();
         player.EndTurn();
     }
 
