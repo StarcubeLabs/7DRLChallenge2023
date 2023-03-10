@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: FloorData.Array.data[0].PotentialItemEntries.Array.data[0].Entry
       value: 
-      objectReference: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
+      objectReference: {fileID: -6469611630650067172, guid: 3d0d78043edc14c8fa75b7c84ce11722, type: 3}
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: FloorData.Array.data[0].PotentialItemEntries.Array.data[0].Weight
       value: 1
