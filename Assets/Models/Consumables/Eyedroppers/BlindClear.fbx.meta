@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f4c2ba2f2b01e204faec9af2d9bb62f5
+guid: a9e6fb3417e2c494387ffbe0facbe813
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Glass
-    second: {fileID: 2100000, guid: 078463caef6f21343a6481deccdadd52, type: 2}
+    second: {fileID: 2100000, guid: c019d7972edc3de48a17927fbc2b1c4d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Liquid
-    second: {fileID: 2100000, guid: a8759232fbaf00c4590db164613d0d91, type: 2}
+    second: {fileID: 2100000, guid: 47562f345152e8448a3d6c844a1f56da, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stopper
-    second: {fileID: 2100000, guid: 078463caef6f21343a6481deccdadd52, type: 2}
+    second: {fileID: 2100000, guid: cb83fc5e593582949ae9f88add27b5ed, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

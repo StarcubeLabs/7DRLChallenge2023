@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: f4c2ba2f2b01e204faec9af2d9bb62f5
+guid: 07404f3e8721d4c4089f43fbd9fa6eba
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: 078463caef6f21343a6481deccdadd52, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Liquid
-    second: {fileID: 2100000, guid: a8759232fbaf00c4590db164613d0d91, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Stopper
-    second: {fileID: 2100000, guid: 078463caef6f21343a6481deccdadd52, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
