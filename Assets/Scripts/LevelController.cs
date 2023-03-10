@@ -20,40 +20,13 @@ public class LevelController : MonoBehaviour
 
     public int randomSeed;
 
+    public Item ItemPrefab;
+    
+    public FloorData CurrentFloorData;
+    
     public EntityManager entityManager;
-    public Item itemPrefab;
-
-    public EnemyBaseScript[] EnemyChoiceList;
 
     public List<EntityController> entitiesOnLevel = new List<EntityController>();
-
-    /// <summary>
-    /// This is the range of the amount of items to spawn.
-    /// The X-Value is the minimum number of items to spawn.
-    /// The Y-Value is the maximum number of items to spawn.
-    /// </summary>
-    [Tooltip("The range of items to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
-    public Vector2Int ItemSpawnRange;
-    public List<WeightedEntry<ItemData>> PotentialItemEntries = new List<WeightedEntry<ItemData>>();
-    private WeightedTable<ItemData> PotentialItems = new WeightedTable<ItemData>();
-    
-    /// <summary>
-    /// This is the range of the amount of traps to spawn.
-    /// The X-Value is the minimum number of traps to spawn.
-    /// The Y-Value is the maximum number of traps to spawn.
-    /// </summary>
-    [Tooltip("The range of traps to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
-    public Vector2Int NumberOfTrapsToSpawnRange;
-    public List<WeightedEntry<Trap>> PotentialTrapEntries = new List<WeightedEntry<Trap>>();
-    private WeightedTable<Trap> PotentialTraps = new WeightedTable<Trap>();
-    
-    /// <summary>
-    /// This is the range of the amount of enemies to spawn.
-    /// The X-Value is the minimum number of enemies to spawn.
-    /// The Y-Value is the maximum number of enemies to spawn.
-    /// </summary>
-    [Tooltip("The range of enemies to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
-    public Vector2Int EnemySpawnRange;
 
     // Start is called before the first frame update
     public void Initialize()
@@ -115,12 +88,11 @@ public class LevelController : MonoBehaviour
 
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
 
-        PotentialItems.ConstructWeightedTable(PotentialItemEntries);
-        PotentialTraps.ConstructWeightedTable(PotentialTrapEntries);
+        CurrentFloorData.GenerateFloorEntities();
         
         SpawnEnemiesForMap(cells);
         SpawnItemsForMap(cells);
-        SpawnTrapsForMap(cells);
+        //SpawnTrapsForMap(cells);
     }
 
     public void AddEntityToLevel(EntityController entityController)
@@ -197,8 +169,8 @@ public class LevelController : MonoBehaviour
     /// <param name="cells">The cells available to spawn on.</param>
     public void SpawnEnemiesForMap(Cell[] cells)
     {
-        int NumberOfEnemiesToSpawn = Random.Range(EnemySpawnRange.x, EnemySpawnRange.y + 1);
-        if (EnemySpawnRange.y > cells.Length)
+        int NumberOfEnemiesToSpawn = Random.Range(CurrentFloorData.NumberOfEnemiesToSpawnRange.x, CurrentFloorData.NumberOfEnemiesToSpawnRange.y + 1);
+        if (CurrentFloorData.NumberOfEnemiesToSpawnRange.y > cells.Length)
         {
             NumberOfEnemiesToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Enemies to spawn exceeds cell count. Consider lowering the number.");
@@ -207,7 +179,7 @@ public class LevelController : MonoBehaviour
         
         for (int numberOfSpawnedEnemies = 0; numberOfSpawnedEnemies < NumberOfEnemiesToSpawn; ++numberOfSpawnedEnemies)
         {
-            EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(EnemyChoiceList[Random.Range(0, EnemyChoiceList.Length)]);
+            EnemyBaseScript randomEnemy = Instantiate<EnemyBaseScript>(CurrentFloorData.GetPotentialEnemies().GetRandomEntry());
 
             //Set the enemy location.
             Vector3Int enemyGridPosition = GetGridPositionFromCell(cells[Random.Range(0, cells.Length)]);
@@ -225,20 +197,21 @@ public class LevelController : MonoBehaviour
     /// <param name="cells">The cells available to spawn on.</param>
     public void SpawnItemsForMap(Cell[] cells)
     {
-        int numberOfItemsToSpawn = Random.Range(ItemSpawnRange.x, ItemSpawnRange.y + 1);
+        int numberOfItemsToSpawn = Random.Range(CurrentFloorData.NumberOfItemsToSpawn.x, CurrentFloorData.NumberOfItemsToSpawn.y + 1);
 
-        if (ItemSpawnRange.y > cells.Length)
+        if (CurrentFloorData.NumberOfItemsToSpawn.y > cells.Length)
         {
             numberOfItemsToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Items to spawn exceeds cell count. Consider lowering the number.");
         }
-        //Debug.Log("Items Spawned:" + numberOfItemsToSpawn);
+        Debug.Log("Items Spawned:" + numberOfItemsToSpawn);
         
         for (int numberOfSpawnedItems = 0; numberOfSpawnedItems < numberOfItemsToSpawn; ++numberOfSpawnedItems)
         {
-            Item randomItem = Instantiate<Item>(itemPrefab);
-            randomItem.ItemData = PotentialItems.GetRandomEntry();
+            Item randomItem = Instantiate<Item>(ItemPrefab);
 
+            randomItem.ItemData = CurrentFloorData.GetPotentialItems().GetRandomEntry();
+            
             randomItem.transform.Rotate(new Vector3(90,0,0));
             Instantiate(randomItem.ItemObject, randomItem.transform);
             //Set the enemy location.
@@ -259,9 +232,9 @@ public class LevelController : MonoBehaviour
     /// <param name="cells">The cells available to spawn on.</param>
     public void SpawnTrapsForMap(Cell[] cells)
     {
-        int numberOfTrapsToSpawn = Random.Range(NumberOfTrapsToSpawnRange.x, NumberOfTrapsToSpawnRange.y + 1);
+        int numberOfTrapsToSpawn = Random.Range(CurrentFloorData.NumberOfTrapsToSpawnRange.x, CurrentFloorData.NumberOfTrapsToSpawnRange.y + 1);
 
-        if (ItemSpawnRange.y > cells.Length)
+        if (CurrentFloorData.NumberOfTrapsToSpawnRange.y > cells.Length)
         {
             numberOfTrapsToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Traps to spawn exceeds cell count. Consider lowering the number.");
@@ -270,7 +243,7 @@ public class LevelController : MonoBehaviour
         
         for (int numberOfSpawnedTraps = 0; numberOfSpawnedTraps < numberOfTrapsToSpawn; ++numberOfSpawnedTraps)
         {
-            Trap randomTrap = Instantiate<Trap>(PotentialTraps.GetRandomEntry());
+            Trap randomTrap = Instantiate<Trap>(CurrentFloorData.GetPotentialTraps().GetRandomEntry());
             
             randomTrap.transform.Rotate(new Vector3(90,0,0));
             //Set the enemy location.

@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager: MonoBehaviour
 {
+    public List<FloorData> FloorData;
     public List<LevelController> levels = new List<LevelController>();
     public LevelController levelPrefab;
     public int numMapsToGenerate = 10;
@@ -47,6 +48,7 @@ public class LevelManager: MonoBehaviour
             for (int i = 0; i < numMapsToGenerate; i++)
             {
                 LevelController level = Instantiate(levelPrefab);
+                level.CurrentFloorData = FloorData[i];
                 level.transform.SetParent(grid.transform, false);
                 level.Initialize();
                 levels.Add(level);
@@ -98,7 +100,6 @@ public class LevelManager: MonoBehaviour
         {
             player.gridPosition = nextFloor.GetGridPositionFromCell(nextFloor.somewhatInterestingMap.end);
         }
-        player.InitializePosition();
     }
 
     public void GoDownFloor()
