@@ -24,6 +24,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: displayName
+      value: Lava Golem
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: elementType
       value: 1
       objectReference: {fileID: 0}

@@ -32,6 +32,7 @@ public class Item : EntityController, IInteractable
     {
         if (gameObject.activeInHierarchy)
         {
+            ServicesManager.TurnAnimationController.AddAnimation(new MessageAnimation($"{interactingEntity.GetDisplayName()} picked up the {ItemData.ItemName}."));
             entityManager = GameObject.FindObjectOfType<EntityManager>();
             interactingEntity.Inventory.AddItem(this);
             Owner = interactingEntity;
@@ -71,6 +72,7 @@ public class Item : EntityController, IInteractable
     {
         if (Owner.Inventory.DropItem(this, Owner.gridPosition))
         {
+            ServicesManager.TurnAnimationController.AddAnimation(new MessageAnimation($"{Owner.GetDisplayName()} dropped the {ItemData.ItemName}."));
             ItemData.OnDrop(Owner, this);
             return true;
         }

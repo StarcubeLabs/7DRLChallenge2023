@@ -22,6 +22,9 @@ public class ActorController : EntityController
     public Animator ActorAnimController;
 
     public Inventory Inventory;
+    
+    [SerializeField]
+    private string displayName;
 
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
@@ -246,6 +249,10 @@ public class ActorController : EntityController
 
     public void UseMove(Move move)
     {
+        if (move != moveRegistry.BasicAttack)
+        {
+            turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} used {move.moveData.MoveName}!"));
+        }
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
         move.moveData.UseMove(this);
         if (move.pp > 0)
@@ -394,7 +401,7 @@ public class ActorController : EntityController
     public void Hurt(int hurtAmount = 1)
     {
         hitPoints.x -= hurtAmount;
-        //print("Hurt! Value: " + hurtAmount);
+        turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} took {hurtAmount} damage!"));
         UpdateVisualHitPoints();
         if (hitPoints.x <= 0)
         {
@@ -409,6 +416,7 @@ public class ActorController : EntityController
 
     public void Kill()
     {
+        turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} was defeated!"));
         turnAnimationController.AddAnimation(new DeathAnimation(this, ActorAnimController, "Die", onDie));
     }
 
@@ -567,6 +575,7 @@ public class ActorController : EntityController
 
     public void EquipWeapon(Item weapon)
     {
+        DisplayEquipMessage(weapon);
         this.weapon = weapon;
     }
 
@@ -580,6 +589,7 @@ public class ActorController : EntityController
 
     public void EquipArmor(Item armor)
     {
+        DisplayEquipMessage(armor);
         this.armor = armor;
     }
 
@@ -593,7 +603,13 @@ public class ActorController : EntityController
 
     public void EquipAccessory(Item accessory)
     {
+        DisplayEquipMessage(this.accessory);
         this.accessory = accessory;
+    }
+
+    private void DisplayEquipMessage(Item equippedItem)
+    {
+        turnAnimationController.AddAnimation(new MessageAnimation($"{gameObject.name} equipped the {equippedItem.ItemName}!"));
     }
 
     public void UnequipAccessory(Item accessory)
@@ -641,5 +657,10 @@ public class ActorController : EntityController
     public void UpdateVisualHitPoints()
     {
         turnAnimationController.AddAnimation(new UpdateHitPoints(this, hitPoints.x));
+    }
+
+    public string GetDisplayName()
+    {
+        return displayName;
     }
 }

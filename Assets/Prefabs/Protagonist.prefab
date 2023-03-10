@@ -136,6 +136,7 @@ MonoBehaviour:
   visualRotation: 0
   visualTransform: {fileID: 8909480822188551740}
   ActorAnimController: {fileID: 0}
+  displayName: Att
   hitPoints: {x: 20, y: 20}
   visualHitPoints: 0
   elementType: 0
@@ -145,6 +146,7 @@ MonoBehaviour:
   moves: []
   afflictedStatus: 0
   statusCountdown: 0
+  currentModifier: 0
   internalStatusCountdown: 0
   isStatusImmobilized: 0
   actorDirection: 4
@@ -162,7 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerActor: {fileID: 8038504152482477858}
   cameraSlot: {fileID: 8038504152753825677}
-  InventoryMenu: {fileID: 0}
 --- !u!1 &8038504152753825676
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,5 +52,27 @@ public abstract class MoveData : MonoBehaviour
             target.ApplyStatus(afflictionType, afflictionTurnCount);
         }
     }
+
+    /// <summary>
+    /// Returns true if the AI should consider the move in range of the target.
+    /// </summary>
+    /// <param name="user">The user of the move.</param>
+    /// <param name="target">The intended target of the move.</param>
+    /// <returns>True if the move is in range for the purposes of the AI.</returns>
+    public virtual bool InAIRange(ActorController user, ActorController target)
+    {
+        return false;
+    }
+
+    /// <summary>
+    /// Returns true if the move can be used by the AI in this turn. This handles all non-range condition, such as applying a duplicate status.
+    /// </summary>
+    /// <param name="user">The user of the move.</param>
+    /// <param name="target">The intended target of the move.</param>
+    /// <returns>True if the move can be used by the AI in this turn.</returns>
+    public virtual bool UsableByAI(ActorController user, ActorController target)
+    {
+        return true;
+    }
 }
 

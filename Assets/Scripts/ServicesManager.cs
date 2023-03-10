@@ -6,12 +6,16 @@ public class ServicesManager : MonoBehaviour
 {
     public static ServicesManager instance;
     private TurnAnimationController turnAnimationController;
+    public static TurnAnimationController TurnAnimationController { get { return instance.turnAnimationController; } }
     
     private EntityManager entityManager;
     public static EntityManager EntityManager { get { return instance.entityManager; } }
     
     private LevelManager levelManager;
     public static LevelManager LevelManager { get { return instance.levelManager; } }
+    
+    private MoveRegistry moveRegistry;
+    public static MoveRegistry MoveRegistry { get { return instance.moveRegistry; } }
 
     public Camera mainCamera;
 
@@ -29,6 +33,7 @@ public class ServicesManager : MonoBehaviour
             turnAnimationController = GetComponentInChildren<TurnAnimationController>();
             entityManager = GetComponentInChildren<EntityManager>();
             levelManager = GetComponentInChildren<LevelManager>();
+            moveRegistry = GetComponentInChildren<MoveRegistry>();
         }
     }
 

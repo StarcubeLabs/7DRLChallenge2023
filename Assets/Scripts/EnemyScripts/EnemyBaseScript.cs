@@ -1,4 +1,6 @@
 using RogueSharp;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum AI_STATES
@@ -11,6 +13,8 @@ public enum AI_STATES
 
 public class EnemyBaseScript : MonoBehaviour
 {
+    private const float BASIC_ATTACK_CHANCE = 0.5f;
+    
     public ActorController enemyActor;
     public PlayerInputController player;
     public TurnManager turnManager;
@@ -92,17 +96,41 @@ public class EnemyBaseScript : MonoBehaviour
             {
                 nextOffset = toNextStep;
             }
+            
+            enemyActor.FaceDirection(nextOffset);
 
-            ActorController entityInFront = entityManager.getEntityInPosition(currentPosition + nextOffset);
-            if (entityInFront == player.GetComponent<ActorController>())
-            {
-                enemyActor.FaceDirection(nextOffset);
-                enemyActor.UseBasicAttack();
-            }
-            else
+            if (!TryAttack(currentPosition, nextOffset))
             {
                 enemyActor.Move(nextOffset);//Move that direction.
             }
         }
+    }
+
+    public bool TryAttack(Vector3Int currentPosition, Vector3Int nextOffset)
+    {
+        ActorController playerActor = player.GetComponent<ActorController>();
+        List<Move> usableMoves =
+            enemyActor.moves.FindAll(move => move.pp > 0 && move.moveData.UsableByAI(enemyActor, playerActor));
+        
+        
+        if (usableMoves.Count == 0 || Random.value <= BASIC_ATTACK_CHANCE)
+        {
+            if (ServicesManager.MoveRegistry.BasicAttack.moveData.InAIRange(enemyActor, playerActor))
+            {
+                enemyActor.UseBasicAttack();
+                return true;
+            }
+        }
+        else
+        {
+            Move chosenMove = usableMoves[Random.Range(0, usableMoves.Count)];
+            if (chosenMove.moveData.InAIRange(enemyActor, playerActor))
+            {
+                enemyActor.UseMove(chosenMove);
+                return true;
+            }
+        }
+
+        return false;
     }
 }
