@@ -1,4 +1,4 @@
-Shader "Unlit/7DRL_EmissiveSnap_Diffuse"
+Shader "7DRL/7DRL_EmissiveSnap_Diffuse"
 {
     Properties
     {

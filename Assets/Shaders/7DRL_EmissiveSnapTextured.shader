@@ -1,4 +1,4 @@
-Shader "Unlit/7DRL_EmissiveSnapTextured"
+Shader "7DRL/7DRL_EmissiveSnapTextured"
 {
     Properties
     {
