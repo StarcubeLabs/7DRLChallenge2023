@@ -439,6 +439,7 @@ public class ActorController : EntityController
     public void Hurt(int hurtAmount = 1, string hurtMessage = null)
     {
         hitPoints.x -= hurtAmount;
+        hitPoints.x = Mathf.Max(0, hitPoints.x);
         if (hurtMessage == null)
         {
             hurtMessage = $"{GetDisplayName()} took {hurtAmount} damage!";
@@ -448,7 +449,6 @@ public class ActorController : EntityController
         UpdateVisualHitPoints();
         if (hitPoints.x <= 0)
         {
-            hitPoints.x = 0;
             Kill();
         }
         else
