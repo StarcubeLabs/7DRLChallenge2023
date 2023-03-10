@@ -2379,7 +2379,7 @@ MonoBehaviour:
   cursor: {fileID: 939653812307760154}
   contextMainMenu: {fileID: 939653811861213511}
   moveMenu: {fileID: 939653811971027467}
-  inventoryMenu: {fileID: 0}
+  inventoryMenu: {fileID: 939653810588276899}
   infoMenu: {fileID: 0}
   gameMenu: {fileID: 0}
   moveMenuItem: {fileID: 939653811982103536}

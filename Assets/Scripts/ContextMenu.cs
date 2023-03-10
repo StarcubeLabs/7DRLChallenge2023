@@ -24,8 +24,6 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public MenuItem infoMenuItem;
     public MenuItem gameMenuItem;
 
-    public MenuItem[] moveMenuItems;
-
     public void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
@@ -37,6 +35,8 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
         moveMenuItem.onSelect += OnSelectMoveMenu;
         moveMenu.onChooseMove += OnChooseMove;
+
+        inventoryMenuItem.onSelect += OnSelectInventory;
     }
 
     public void OnChooseMove(object sender, EventArgs args)
@@ -65,10 +65,18 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OnSelectMoveMenu(object sender, EventArgs eventArgs)
     {
-        moveMenu.elementGroup.Show();
+        moveMenu.Show();
         contextMainMenu.Hide();
 
         NavigateToFirstMenuItem();
+    }
+
+    public void OnSelectInventory(object sender, EventArgs eventArgs)
+    {
+        inventoryMenu.gameObject.SetActive(true);
+        inventoryMenu.GetComponentInChildren<InventoryDrawer>().Open();
+        contextMainMenu.Hide();
+        cursor.enabled = false;
     }
 
     public void OpenMenu()
@@ -81,8 +89,6 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
         {
             menuItem.AttachMenuListener(this);
         });
-
-        moveMenuItems = moveMenu.GetComponentsInChildren<MenuItem>(true);
 
         NavigateToFirstMenuItem();
     }
@@ -139,6 +145,14 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
             contextMainMenu.Show();
             NavigateToFirstMenuItem();
         }
+        else if (inventoryMenu.gameObject.activeSelf)
+        {
+            inventoryMenu.GetComponentInChildren<InventoryDrawer>().Close();
+            inventoryMenu.gameObject.SetActive(false);
+            contextMainMenu.Show();
+            NavigateToFirstMenuItem();
+            cursor.enabled = true;
+        }
         else if (contextMainMenu.enabled)
         {
             cursor.enabled = false;
@@ -149,7 +163,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public bool IsMenuOpen()
     {
-        return moveMenu.elementGroup.enabled || contextMainMenu.enabled;
+        return moveMenu.elementGroup.enabled || contextMainMenu.enabled || inventoryMenu.gameObject.activeSelf;
     }
 
     public Transform getActiveMenu()
