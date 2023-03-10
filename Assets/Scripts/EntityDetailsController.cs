@@ -20,7 +20,10 @@ public class EntityDetailsController: MonoBehaviour
 
     public void Update()
     {
-        healthText.text = string.Format("Health: {0}/{1}", entity.visualHitPoints, entity.hitPoints.y);
+        if (healthText)
+        {
+            healthText.text = string.Format("Health: {0}/{1}", entity.visualHitPoints, entity.hitPoints.y);
+        }
         Vector3 globalRotate = Quaternion.LookRotation(-(cam.transform.position - this.transform.position)).eulerAngles;
         globalRotate.y = 0;
         globalRotate.z = 0;

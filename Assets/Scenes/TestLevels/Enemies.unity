@@ -209,7 +209,7 @@ PrefabInstance:
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: FloorData.Array.data[0].PotentialEnemyEntries.Array.data[2].Entry
       value: 
-      objectReference: {fileID: 47899768264105375, guid: 972fa27d7a218504fb23fed457a6f90e, type: 3}
+      objectReference: {fileID: 8153237238349085216, guid: 39d51f8d679424cefb3c16dfa863286a, type: 3}
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: FloorData.Array.data[0].PotentialEnemyEntries.Array.data[3].Entry
       value: 
@@ -617,6 +617,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &2039608273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5170730533506898065, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
+  m_PrefabInstance: {fileID: 1397561492960112283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2039608279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039608273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0755d1badb4cb0746b08b81d6321f7e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
 --- !u!1 &2120911857
 GameObject:
   m_ObjectHideFlags: 0

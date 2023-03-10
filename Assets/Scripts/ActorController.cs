@@ -49,8 +49,10 @@ public class ActorController : EntityController
     public int statusCountdown = 0;
 
     [SerializeField]
-    private StatusModifier currentModifier = StatusModifier.None;
+    private StatusType currentModifier = StatusType.None;
     private int modifierCountdown = 0;
+    
+    private StatusIcon statusIcon;
 
     [Header("Equippables")]
     private Item weapon;
@@ -94,6 +96,7 @@ public class ActorController : EntityController
         entityManager.AddActor(this);
 
         ActorAnimController = GetComponentInChildren<Animator>();
+        statusIcon = GetComponentInChildren<StatusIcon>();
 
         gridPosition = grid.WorldToCell(this.transform.position);
         InitializePosition();
@@ -377,6 +380,7 @@ public class ActorController : EntityController
 
     public void HealAmount(int healAmount)
     {
+        turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} healed {healAmount} HP!"));
         hitPoints.x += healAmount;
         if (hitPoints.x > hitPoints.y)
         {
@@ -436,6 +440,9 @@ public class ActorController : EntityController
         {
             afflictedStatus = statusType;
             statusCountdown = turnCount;
+            List<StatusType> statusesList = new List<StatusType>();
+            statusesList.Add(statusType);
+            turnAnimationController.AddAnimation(new StatusAnimation(statusIcon, statusesList));
         }
     }
 
@@ -517,6 +524,7 @@ public class ActorController : EntityController
         {
             afflictedStatus = StatusType.None;
             isStatusImmobilized = false;
+            UpdateStatusIcons();
         }
 
         TickModifiers();
@@ -527,11 +535,21 @@ public class ActorController : EntityController
         modifierCountdown--;
         if(modifierCountdown == 0)
         {
-            currentModifier = StatusModifier.None;
+            currentModifier = StatusType.None;
         }
     }
 
-    public void ApplyModifier(StatusModifier statusModifier, int turnCount) 
+    private void UpdateStatusIcons()
+    {
+        List<StatusType> statusesList = new List<StatusType>();
+        if (afflictedStatus != StatusType.None)
+        {
+            statusesList.Add(afflictedStatus);
+        }
+        turnAnimationController.AddAnimation(new StatusAnimation(statusIcon, statusesList));
+    }
+
+    public void ApplyModifier(StatusType statusModifier, int turnCount) 
     {
         currentModifier = statusModifier;
         modifierCountdown = turnCount;
@@ -610,7 +628,7 @@ public class ActorController : EntityController
 
     private void DisplayEquipMessage(Item equippedItem)
     {
-        turnAnimationController.AddAnimation(new MessageAnimation($"{gameObject.name} equipped the {equippedItem.ItemName}!"));
+        turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} equipped the {equippedItem.ItemName}!"));
     }
 
     public void UnequipAccessory(Item accessory)
