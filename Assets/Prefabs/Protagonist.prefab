@@ -342,7 +342,9 @@ MonoBehaviour:
   ActorAnimController: {fileID: 0}
   displayName: Att
   hitPoints: {x: 20, y: 20}
+  hunger: {x: 100, y: 100}
   visualHitPoints: 0
+  visualHungerPoints: 0
   elementType: 0
   baseAttackPower: 0
   startingMoves:
@@ -352,6 +354,7 @@ MonoBehaviour:
   statusCountdown: 0
   currentModifier: 0
   internalStatusCountdown: 0
+  turnsTaken: 0
   isStatusImmobilized: 0
   actorDirection: 4
 --- !u!114 &8038504152482477859

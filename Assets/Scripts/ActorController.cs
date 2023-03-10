@@ -29,7 +29,16 @@ public class ActorController : EntityController
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
 
+
+    [Tooltip("Hunger value range. X is the starting hunger value, and Y is the maximum hunger value.")]
+    public Vector2Int hunger;
+    public int starvationDamage = 1;
+
+    [HideInInspector]
     public int visualHitPoints;
+    [HideInInspector]
+    public int visualHungerPoints;
+    [HideInInspector]
     public bool Dead { get { return hitPoints.x <= 0; } }
 
     [SerializeField]
@@ -40,6 +49,8 @@ public class ActorController : EntityController
 
     [SerializeField]
     private List<MoveData> startingMoves;
+
+    [HideInInspector]
     public List<Move> moves = new List<Move>();
 
     [Header("Status Variables")]
@@ -65,11 +76,22 @@ public class ActorController : EntityController
     /// <summary>
     /// Used by Status Effects to decide when their affects should be triggered. Counts up.
     /// </summary>
+    /// 
+    [HideInInspector]
     public int internalStatusCountdown = 0;
+
+    /// <summary>
+    /// Distinct from status effect countdown. Used to determine always on effects like hunger.
+    /// </summary>
+    /// 
+    [HideInInspector]
+    public int turnsTaken = 0;
 
     /// <summary>
     /// Determines whether an actor is immobilized by a status like Sleep or Petrify.
     /// </summary>
+    /// 
+    [HideInInspector]
     public bool isStatusImmobilized = false;
 
     public EventHandler onDie;
@@ -102,6 +124,7 @@ public class ActorController : EntityController
         InitializePosition();
 
         visualHitPoints = hitPoints.x;
+        visualHungerPoints = hunger.x;
 
         foreach (MoveData moveData in startingMoves)
         {
@@ -389,6 +412,17 @@ public class ActorController : EntityController
         UpdateVisualHitPoints();
     }
 
+    public void AddFood(int foodAmount, string foodMessage = null)
+    {
+        //Some things add food points as a side so only log it when it's needed
+        if (foodMessage != null)
+        {
+            turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} ate {foodAmount} points worth of food!"));
+        }
+        hunger.x += foodAmount;
+        UpdateVisualHitPoints();
+    }
+
     public void DamageTarget(MoveData moveData, ActorController target)
     {
         int damage = DamageCalculator.CalculateDamage(moveData, this, target);
@@ -402,10 +436,15 @@ public class ActorController : EntityController
         }
     }
 
-    public void Hurt(int hurtAmount = 1)
+    public void Hurt(int hurtAmount = 1, string hurtMessage = null)
     {
         hitPoints.x -= hurtAmount;
-        turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} took {hurtAmount} damage!"));
+        if (hurtMessage == null)
+        {
+            hurtMessage = $"{GetDisplayName()} took {hurtAmount} damage!";
+        }
+        MessageAnimation hurtAnimation = new MessageAnimation(hurtMessage);
+        turnAnimationController.AddAnimation(hurtAnimation);
         UpdateVisualHitPoints();
         if (hitPoints.x <= 0)
         {
@@ -526,6 +565,25 @@ public class ActorController : EntityController
             isStatusImmobilized = false;
             UpdateStatusIcons();
         }
+
+        //We'll assume if we have an upper limit on hunger, we care about hunger. Otherwise who caresssss?
+        if(hunger.y > 0)
+        {
+            if ((turnsTaken % 10) == 0)
+            {
+                if (hunger.x > 0 && turnsTaken > 0)
+                {
+                    hunger.x--;
+                    UpdateVisualHunger();
+                }
+                if (hunger.x == 0)
+                {
+                    Hurt(starvationDamage, $"{GetDisplayName()} took {starvationDamage} damage from starvation!");
+                }
+            }
+        }
+
+        turnsTaken++;
 
         TickModifiers();
     }
@@ -676,6 +734,11 @@ public class ActorController : EntityController
     public void UpdateVisualHitPoints()
     {
         turnAnimationController.AddAnimation(new UpdateHitPoints(this, hitPoints.x));
+    }
+
+    public void UpdateVisualHunger()
+    {
+        turnAnimationController.AddAnimation(new UpdateHunger(this, hunger.x));
     }
 
     public string GetDisplayName()

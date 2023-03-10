@@ -7,6 +7,7 @@ public class HealingItem : ItemData
         ServicesManager.TurnAnimationController.AddAnimation(new MessageAnimation($"{consumer.GetDisplayName()} consumed the {ItemName}."));
         consumer.PlayEatAnimation();
         consumer.HealAmount(HealAmount);
+        consumer.AddFood(HealAmount / 2);
         return true;
     }
 }

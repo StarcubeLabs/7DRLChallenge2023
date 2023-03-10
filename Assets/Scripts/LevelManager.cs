@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,8 @@ public class LevelManager: MonoBehaviour
     public int randomSeed;
 
     Grid grid;
+
+    public EventHandler<EventArgs> onLevelChange;
 
     private void Awake()
     {
@@ -96,6 +99,11 @@ public class LevelManager: MonoBehaviour
         else
         {
             player.gridPosition = nextFloor.GetGridPositionFromCell(nextFloor.somewhatInterestingMap.end);
+        }
+
+        if (onLevelChange != null)
+        {
+            onLevelChange(this, EventArgs.Empty);
         }
     }
 
