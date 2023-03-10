@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -14,18 +12,17 @@ public class WeightedEntry<T> where T : class
 
 public class WeightedTable<T> where T : class
 {
-    private SortedDictionary<KeyValuePair<int, int>, T> weightedTable;
+    private SortedDictionary<int, KeyValuePair<int, T>> weightedTable;
     public int TotalWeight = 0;
     public void ConstructWeightedTable(List<WeightedEntry<T>> entries)
     {
-        weightedTable = new SortedDictionary<KeyValuePair<int, int>, T>();
+        weightedTable = new SortedDictionary<int, KeyValuePair<int, T>>();
         
         foreach (var entry in entries)
         {
-            weightedTable.Add(new KeyValuePair<int, int>(TotalWeight,TotalWeight+entry.Weight),entry.Entry);
+            weightedTable.Add(TotalWeight, new KeyValuePair<int, T>(TotalWeight + entry.Weight, entry.Entry));
             TotalWeight += entry.Weight;
         }
-        //Debug.Log(this.ToString());
     }
 
     public T GetRandomEntry()
@@ -38,9 +35,9 @@ public class WeightedTable<T> where T : class
     {
         foreach (var entry in weightedTable)
         {
-            if (randomValue >= entry.Key.Key && randomValue <= entry.Key.Value)
+            if (randomValue >= entry.Key && randomValue < entry.Value.Key)
             {
-                return entry.Value;
+                return entry.Value.Value;
             }
         }
 
@@ -52,7 +49,7 @@ public class WeightedTable<T> where T : class
         var toReturn = "Low: High: Value:" + "\n";
         foreach (var entry in weightedTable)
         {
-            toReturn += entry.Key.Key + " " + entry.Key.Value + " " + entry.Value.ToString();
+            toReturn += entry.Key + " " + entry.Value.Key + " " + entry.Value.Value;
             toReturn += "\n";
         }
 
@@ -61,6 +58,6 @@ public class WeightedTable<T> where T : class
     
     public T GetEntryAtIndex(int index)
     {
-        return weightedTable.ElementAt(index).Value;
+        return weightedTable.ElementAt(index).Value.Value;
     }
 }

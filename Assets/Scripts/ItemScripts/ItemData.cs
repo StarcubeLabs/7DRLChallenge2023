@@ -6,7 +6,6 @@ public class ItemData : MonoBehaviour
     public string ItemDescription;
     public Sprite ItemIcon;
     public GameObject ItemObject;
-    public long ItemValue;
     public bool IsStackable;
     public int MaximumStack = 1;
 

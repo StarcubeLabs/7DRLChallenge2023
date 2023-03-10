@@ -190,9 +190,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
-      propertyPath: levelPrefab
+      propertyPath: randomSeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0].NumberOfItemsToSpawn.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0].NumberOfItemsToSpawn.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0].PotentialItemEntries.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0].PotentialItemEntries.Array.data[0].Entry
       value: 
-      objectReference: {fileID: 812803458894837651, guid: 979906ed72069418497cd05fbcf0af52, type: 3}
+      objectReference: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0].PotentialItemEntries.Array.data[0].Weight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
 --- !u!1001 &702277163

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +8,7 @@ public class LevelManager: MonoBehaviour
     public List<LevelController> levels = new List<LevelController>();
     public LevelController levelPrefab;
     public int numMapsToGenerate = 10;
+    public int randomSeed;
 
     Grid grid;
 
@@ -50,7 +47,7 @@ public class LevelManager: MonoBehaviour
                 LevelController level = Instantiate(levelPrefab);
                 level.CurrentFloorData = FloorData[i];
                 level.transform.SetParent(grid.transform, false);
-                level.Initialize();
+                level.Initialize(randomSeed);
                 levels.Add(level);
                 level.gameObject.SetActive(false);
                 if (i == 0)

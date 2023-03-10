@@ -141,9 +141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87940f54c9019574aa511066767ea152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloorData:
+  - CurrentFloorType: 0
+    NumberOfItemsToSpawn: {x: 0, y: 0}
+    PotentialItemEntries: []
+    NumberOfTrapsToSpawnRange: {x: 0, y: 0}
+    PotentialTrapEntries: []
+    NumberOfEnemiesToSpawnRange: {x: 1, y: 1}
+    PotentialEnemyEntries:
+    - Weight: 1
+      Entry: {fileID: 47899768264105375, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
   levels: []
   levelPrefab: {fileID: 812803458894837651, guid: 64e090ce8ccbf414db39f5fc4cf6120b, type: 3}
-  numMapsToGenerate: 10
+  numMapsToGenerate: 1
 --- !u!1 &3128180551737071446
 GameObject:
   m_ObjectHideFlags: 0

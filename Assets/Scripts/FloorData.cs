@@ -78,7 +78,7 @@ public class FloorData
     /// The X-Value is the minimum number of enemies to spawn.
     /// The Y-Value is the maximum number of enemies to spawn.
     /// </summary>
-    [Tooltip("The range of ennemies to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
+    [Tooltip("The range of enemies to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
     public Vector2Int NumberOfEnemiesToSpawnRange;
     public List<WeightedEntry<EnemyBaseScript>> PotentialEnemyEntries = new List<WeightedEntry<EnemyBaseScript>>();
     private WeightedTable<EnemyBaseScript> PotentialEnemies = new WeightedTable<EnemyBaseScript>();

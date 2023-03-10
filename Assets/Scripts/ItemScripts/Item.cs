@@ -15,8 +15,6 @@ public class Item : EntityController, IInteractable
 
     public string ItemDescription => ItemData.ItemDescription;
 
-    public long ItemValue => ItemData.ItemValue;
-
     public Sprite ItemIcon => ItemData.ItemIcon;
 
     public GameObject ItemObject => ItemData.ItemObject;

@@ -18,8 +18,6 @@ public class LevelController : MonoBehaviour
     public PathFinder pathFinder;
     public FieldOfView fieldOfView;
 
-    public int randomSeed;
-
     public Item ItemPrefab;
     
     public FloorData CurrentFloorData;
@@ -29,10 +27,14 @@ public class LevelController : MonoBehaviour
     public List<EntityController> entitiesOnLevel = new List<EntityController>();
 
     // Start is called before the first frame update
-    public void Initialize()
+    public void Initialize(int randomSeed)
     {
         entityManager = FindObjectOfType<EntityManager>();
-        SetupTileMap();
+        if (randomSeed != 0)
+        {
+            Random.InitState(randomSeed);
+        }
+        SetupTileMap(randomSeed);
         SpawnEntities();
 
         //Path Finder Setup
@@ -40,7 +42,7 @@ public class LevelController : MonoBehaviour
         fieldOfView = new FieldOfView(somewhatInterestingMap);
     }
 
-    public void SetupTileMap()
+    public void SetupTileMap(int randomSeed)
     {
         tileMap = GetComponent<Tilemap>();
 
@@ -81,10 +83,6 @@ public class LevelController : MonoBehaviour
 
     public void SpawnEntities()
     {
-        if (randomSeed != 0)
-        {
-            Random.InitState(randomSeed);
-        }
 
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
 
@@ -204,7 +202,7 @@ public class LevelController : MonoBehaviour
             numberOfItemsToSpawn = cells.Length / 2;
             Debug.LogWarning("Number of Items to spawn exceeds cell count. Consider lowering the number.");
         }
-        Debug.Log("Items Spawned:" + numberOfItemsToSpawn);
+        //Debug.Log("Items Spawned:" + numberOfItemsToSpawn);
         
         for (int numberOfSpawnedItems = 0; numberOfSpawnedItems < numberOfItemsToSpawn; ++numberOfSpawnedItems)
         {
