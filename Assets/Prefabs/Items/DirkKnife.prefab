@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 628324517710171397}
   - component: {fileID: -6469611630650067172}
   m_Layer: 0
-  m_Name: DirkKnife
+  m_Name: BasicWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Dirk Knife
-  ItemDescription: Dirk Knife
+  ItemDescription: A simple knife that does simple damage.
   ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   ItemValue: 50

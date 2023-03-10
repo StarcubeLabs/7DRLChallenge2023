@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac023c087d3374500ab8de8ac2268d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Grass Weapon
-  ItemDescription: Grass Weapon
+  ItemName: Flower Shank
+  ItemDescription: GRASS TYPE. A simple blade crafted from the power of nature.
   ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
+  ItemObject: {fileID: 0}
   ItemValue: 50
   IsStackable: 0
   MaximumStack: 1
@@ -54,4 +55,4 @@ MonoBehaviour:
   WeaponStrength: 1
   AfflictionType: 0
   AfflictionChance: 0
-  AfflicationTurnCount: 0
+  AfflictionTurnCount: 0
