@@ -11,7 +11,7 @@ public class MessageAnimation : TurnAnimation
     
     public override void StartAnimation()
     {
-        Debug.Log(message);
+        ServicesManager.HudManager.MessageBox.AddMessage(message);
     }
 
     public override bool UpdateAnimation()

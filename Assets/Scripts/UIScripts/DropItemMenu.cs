@@ -11,6 +11,7 @@ public class DropItemMenu : MonoBehaviour
     public void Close()
     {
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        ServicesManager.HudManager.ContextMenu.Close();
     }
     
 }

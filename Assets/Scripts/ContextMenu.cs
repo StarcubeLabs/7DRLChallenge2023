@@ -41,8 +41,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OnChooseMove(object sender, EventArgs args)
     {
-        eventSystem.SetSelectedGameObject(null);
-        cursor.enabled = false;
+        Close();
     }
 
     public void StopHighlightMenuItem(MenuItem sender)
@@ -89,6 +88,8 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
         {
             menuItem.AttachMenuListener(this);
         });
+
+        ServicesManager.HudManager.MessageBox.Hide();
 
         NavigateToFirstMenuItem();
     }
@@ -155,15 +156,21 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
         }
         else if (contextMainMenu.enabled)
         {
-            cursor.enabled = false;
             contextMainMenu.Hide();
-            eventSystem.SetSelectedGameObject(null);
+            Close();
         }
     }
 
     public bool IsMenuOpen()
     {
         return moveMenu.elementGroup.enabled || contextMainMenu.enabled || inventoryMenu.gameObject.activeSelf;
+    }
+
+    public void Close()
+    {
+        cursor.enabled = false;
+        eventSystem.SetSelectedGameObject(null);
+        ServicesManager.HudManager.MessageBox.Show();
     }
 
     public Transform getActiveMenu()

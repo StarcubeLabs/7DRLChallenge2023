@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-class HudManager: MonoBehaviour
+public class HudManager: MonoBehaviour
 {
     public TextMeshProUGUI healthText;
+    private ContextMenu contextMenu;
+    public ContextMenu ContextMenu { get { return contextMenu; } }
+    private MessageBox messageBox;
+    public MessageBox MessageBox { get { return messageBox; } }
 
     PlayerInputController playerInputController;
         
@@ -16,6 +15,8 @@ class HudManager: MonoBehaviour
     public void Start()
     {
         playerInputController = FindObjectOfType<PlayerInputController>();
+        contextMenu = GetComponentInChildren<ContextMenu>();
+        messageBox = GetComponentInChildren<MessageBox>();
     }
 
     public void Update()
