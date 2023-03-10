@@ -13,7 +13,7 @@ public class LevelController : MonoBehaviour
     public GameObject wall;
     public Tile land;
     public Tile stairDown;
-    public Tile stairUp;
+    public GameObject stairUp;
     public DungeonMap somewhatInterestingMap;
     public PathFinder pathFinder;
     public FieldOfView fieldOfView;
@@ -95,7 +95,8 @@ public class LevelController : MonoBehaviour
         }
         
         tileMap.SetTile(GetGridPositionFromCell(somewhatInterestingMap.start), stairDown);
-        tileMap.SetTile(GetGridPositionFromCell(somewhatInterestingMap.end), stairUp);
+        Vector3Int endPos = GetGridPositionFromCell(somewhatInterestingMap.end);
+        Instantiate(stairUp, new Vector3(endPos.x, 0, endPos.y), Quaternion.identity, transform);
     }
 
     public void SetupPlayer()
