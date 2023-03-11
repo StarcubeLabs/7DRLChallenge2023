@@ -34,6 +34,11 @@ public abstract class MoveData : MonoBehaviour
     [SerializeField]
     protected int afflictionTurnCount;
 
+
+    public ParticleSystem launchVFX;
+
+    public ParticleSystem hitVFX;
+
     public abstract void UseMove(ActorController user);
 
     /// <summary>
@@ -85,6 +90,17 @@ public abstract class MoveData : MonoBehaviour
     public virtual int GetMovePower()
     {
         return Power;
+    }
+
+    public virtual void TriggerVFX(ActorController user)
+    {
+        if (hitVFX != null && launchVFX != null)
+        {
+            ActorController target = ServicesManager.EntityManager.GetEntityInFront(user);
+            ParticleSystem launchVFXInst = GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
+            //Hit VFX
+            GameObject.Instantiate<ParticleSystem>(hitVFX, target.transform, false);
+        }
     }
 }
 

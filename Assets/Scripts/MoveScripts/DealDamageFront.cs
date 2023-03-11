@@ -1,4 +1,5 @@
 using RLDataTypes;
+using UnityEngine;
 
 public class DealDamageFront : MoveData
 {
@@ -8,6 +9,7 @@ public class DealDamageFront : MoveData
         if (target)
         {
             DamageTarget(user, target);
+
         }
     }
     
@@ -24,4 +26,5 @@ public class DealDamageFront : MoveData
     {
         return ServicesManager.EntityManager.GetEntityInFront(user) == target;
     }
+
 }

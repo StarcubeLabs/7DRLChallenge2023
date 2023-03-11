@@ -38,4 +38,16 @@ public class DealDamageRange : MoveData
 
         return null;
     }
+
+    public override void TriggerVFX(ActorController user)
+    {
+        if (hitVFX != null && launchVFX != null)
+        {
+            ActorController target = GetEntityInRange(user);
+            ParticleSystem launchVFXInst = GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
+            Vector3Int frontCell = user.GetPositionInFront();
+            //Hit VFX
+            GameObject.Instantiate<ParticleSystem>(hitVFX, target.transform, false);
+        }
+    }
 }

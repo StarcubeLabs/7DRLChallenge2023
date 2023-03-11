@@ -1,5 +1,6 @@
 using RLDataTypes;
 
+
 public class BasicAttack : DealDamageFront
 {
     public override ElementType GetModifiedElement(ActorController user)
