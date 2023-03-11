@@ -9,7 +9,7 @@ public class HealRouletteType : MoveData
     {
         if(Random.Range(0, 100) > 50)
         {
-            user.ApplyModifier(StatusType.Regeneration, 4);
+            user.ApplyStatus(StatusType.Regeneration, 4);
         }
         else
         {

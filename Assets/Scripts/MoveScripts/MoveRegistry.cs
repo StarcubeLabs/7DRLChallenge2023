@@ -47,5 +47,18 @@ public class MoveRegistry : MonoBehaviour
             default: return null;
         }
     }
+
+    public Status CreateStatusFromType(StatusType status, ActorController actor, int turnCount)
+    {
+        switch (status)
+        {
+            case StatusType.Confusion: return new Confusion(actor, turnCount);
+            case StatusType.Petrify: return new Petrify(actor, turnCount);
+            case StatusType.Poison: return new Poison(actor, turnCount);
+            case StatusType.Sleep: return new Sleep(actor, turnCount);
+            case StatusType.Slow: return new Slow(actor, turnCount);
+            default: return null;
+        }
+    }
 }
 

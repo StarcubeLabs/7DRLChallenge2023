@@ -9,7 +9,7 @@ public class StatusAnimation : TurnAnimation
     public StatusAnimation(StatusIcon statusIcon, List<StatusType> statuses)
     {
         this.statusIcon = statusIcon;
-        this.statuses = new List<StatusType>(statuses);
+        this.statuses = statuses;
     }
     
     public override void StartAnimation()

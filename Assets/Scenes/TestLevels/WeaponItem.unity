@@ -208,7 +208,11 @@ PrefabInstance:
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: FloorData.Array.data[0].PotentialItemEntries.Array.data[0].Entry
       value: 
-      objectReference: {fileID: -5487046387908989354, guid: d8b514e017d02bf41bfeefa3f7dc938d, type: 3}
+      objectReference: {fileID: -6469611630650067172, guid: d2500d108403c46269386491563126e7, type: 3}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0].PotentialEnemyEntries.Array.data[0].Entry
+      value: 
+      objectReference: {fileID: 4176091817456084932, guid: 45d76504762a36e4587f29eb82072714, type: 3}
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: FloorData.Array.data[0].PotentialItemEntries.Array.data[0].Weight
       value: 1
