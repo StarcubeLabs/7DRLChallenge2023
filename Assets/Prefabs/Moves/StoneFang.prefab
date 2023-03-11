@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Stone Fang
-  moveDescription: Bites your opponent for 4 Grass damage. 20% to apply Seismic Shock.
+  moveDescription: Bites your opponent with fangs of stone for grass damage. 20%
+    chance to apply Seismic Shock.
   Element: 3
   power: 4
   maxPP: 4

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Kick
-  moveDescription: Does 4 damage.
+  moveDescription: Attack directly with a frontal kick!
   Element: 0
   power: 3
   maxPP: 15

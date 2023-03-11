@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Earthquake
-  moveDescription: Creates an AoE in the 8 tiles around you. Does 2 damage and applies
-    Seismic Shock (50% chance to be stunned per turn.)
+  moveDescription: Creates an earthquake in a 1 tile radius centered on you. Applies
+    the Seismic Shock status.
   Element: 3
   power: 2
   maxPP: 3

@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Explosion
-  moveDescription: Explodes for 20 damage, but drops HP to 1.
+  moveDescription: Create an explosion in a 1 tile radius centered on. Beware! Damages
+    you and leaves you barely alive!
   Element: 1
   power: 20
   maxPP: 1

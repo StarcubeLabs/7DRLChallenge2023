@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Ice Impact
-  moveDescription: Does 2 Water damage.
+  moveDescription: Smack your enemy with fists of frost for water damage!
   Element: 2
   power: 2
   maxPP: 20

@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Stone Strike
-  moveDescription: Coats your arms in stone and you punch at your opponent for 2
-    Grass damage.
+  moveDescription: Coats your arms in stone and you punch at your opponent for Grass
+    damage.
   Element: 3
   power: 2
   maxPP: 20
+  afflictionType: 0
+  afflictionChance: 0
+  afflictionTurnCount: 0

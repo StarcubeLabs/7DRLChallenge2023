@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Punch
-  moveDescription: Does 6 damage. Only works if holding no weapon.
+  moveDescription: Strike with a haymaker! Only works if holding no weapon.
   Element: 0
-  power: 6
+  power: 4
   maxPP: 20
+  afflictionType: 0
+  afflictionChance: 0
+  afflictionTurnCount: 0

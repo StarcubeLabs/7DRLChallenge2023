@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Volcanic Eruption
-  moveDescription: Creates an AoE in the 8 tiles around you. Does 2 damage and applies
-    Burn.
+  moveDescription: Creates an eruption of fire in a 1 tile radius centered on you.
+    Applies burn.
   Element: 1
   power: 2
   maxPP: 3

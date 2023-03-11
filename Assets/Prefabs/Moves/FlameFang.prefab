@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Flame Fang
-  moveDescription: Bites your opponent for 4 Fire damage. 20% to apply Burn for 2
-    turns.
+  moveDescription: Bites your opponent with fangs of flame for Fire damage. 20% chance
+    to apply Burn for 2 turns.
   Element: 1
   power: 4
   maxPP: 4
