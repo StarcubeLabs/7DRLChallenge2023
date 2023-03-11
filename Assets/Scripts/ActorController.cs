@@ -296,6 +296,7 @@ public class ActorController : EntityController
         Statuses.ForEach(status => status.ModifyFacingDirection());
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
         move.moveData.UseMove(this);
+        move.moveData.TriggerVFX(this);
         if (move.pp > 0)
         {
             move.pp--;
