@@ -13,6 +13,7 @@ public class MoveRegistry : MonoBehaviour
     private StatusType[] UNIQUE_STATUSES = { StatusType.Confusion };
     private StatusType[] MOVEMENT_STATUSES = { StatusType.Petrify, StatusType.Sleep, StatusType.Slow };
     private StatusType[] REGENERATION_STATUSES = { StatusType.Regeneration };
+    private StatusType[] IMMUNITY_STATUSES = { StatusType.PetrifyImmunity, StatusType.SleepImmunity };
 
     private Dictionary<StatusType, StatusType> CONFLICTING_STATUSES = new Dictionary<StatusType, StatusType>();
 
@@ -48,6 +49,7 @@ public class MoveRegistry : MonoBehaviour
         statusGroups.Add(UNIQUE_STATUSES);
         statusGroups.Add(MOVEMENT_STATUSES);
         statusGroups.Add(REGENERATION_STATUSES);
+        statusGroups.Add(IMMUNITY_STATUSES);
         foreach (StatusType[] statusGroup in statusGroups)
         {
             foreach (StatusType status in statusGroup)
