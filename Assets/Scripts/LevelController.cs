@@ -10,7 +10,8 @@ using System.Linq;
 public class LevelController : MonoBehaviour
 {
     public Tilemap tileMap;
-    public GameObject wall;
+    public GameObject[] wall;
+    public GameObject floor;
     public Tile land;
     public Tile stairDown;
     public GameObject stairUp;
@@ -44,9 +45,9 @@ public class LevelController : MonoBehaviour
 
     public void SetupTileMap(int randomSeed)
     {
-        tileMap = GetComponent<Tilemap>();
+        //tileMap = GetComponent<Tilemap>();
 
-        tileMap.SetTile(new Vector3Int(0, 0, 0), land);
+        //tileMap.SetTile(new Vector3Int(0, 0, 0), land);
 
         DotNetRandom random = randomSeed == 0 ? Singleton.DefaultRandom : new DotNetRandom(randomSeed);
 
@@ -67,16 +68,16 @@ public class LevelController : MonoBehaviour
                 Cell cell = somewhatInterestingMap.GetCell(i, somewhatInterestingMap.Height - 1 - j);
                 if (cell.IsWalkable)
                 {
-                    tileMap.SetTile(new Vector3Int(i, j, 0), land);
+                    Instantiate(floor, new Vector3(i, -.01f, j), Quaternion.identity, transform);
                 }
                 else
                 {
-                    Instantiate(wall, new Vector3(i, 0, j), Quaternion.identity, transform);
+                    Instantiate(wall[Random.Range(0,wall.Length)], new Vector3(i, -.01f, j), Quaternion.identity, transform);
                 }
             }
         }
         
-        tileMap.SetTile(GetGridPositionFromCell(somewhatInterestingMap.start), stairDown);
+        //tileMap.SetTile(GetGridPositionFromCell(somewhatInterestingMap.start), stairDown);
         Vector3Int endPos = GetGridPositionFromCell(somewhatInterestingMap.end);
         Instantiate(stairUp, new Vector3(endPos.x, 0, endPos.y), Quaternion.identity, transform);
     }

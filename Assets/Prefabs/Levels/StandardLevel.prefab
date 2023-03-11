@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 812803458894837661}
   - component: {fileID: 812803458894837651}
   m_Layer: 0
-  m_Name: Level
+  m_Name: StandardLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,13 +230,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 0}
-  wall: {fileID: 1420900894332663369, guid: 41b6a5218863e4e7a836035f7d40f04a, type: 3}
-  land: {fileID: 11400000, guid: 680390a89e45a68479ed548c7124f71a, type: 2}
+  wall:
+  - {fileID: 919132149155446097, guid: 3a9e2064f1940ef48ab1172b0e3638b3, type: 3}
+  - {fileID: 919132149155446097, guid: de4f52c593ebada4b8a9a764054fca1c, type: 3}
+  floor: {fileID: 919132149155446097, guid: a5f58108ce3bb7b4997c8f54b1360877, type: 3}
+  land: {fileID: 11400000, guid: 3d02fb2cbfd23664abf9ef5c0c0e89fc, type: 2}
   stairDown: {fileID: 11400000, guid: fbfffaf2629530a4e851bc2f2bdc3e73, type: 2}
   stairUp: {fileID: 4221762679769381820, guid: 263b627b2fba04732a3e04928fb64bd8, type: 3}
-  randomSeed: 0
   ItemPrefab: {fileID: -2003396485408751871, guid: 2605d2ff9a3c84441a1c5cd3e4b3e4cc, type: 3}
   CurrentFloorData:
+    widthRange: {x: 30, y: 30}
+    heightRange: {x: 20, y: 30}
+    roomNumRange: {x: 13, y: 13}
+    roomMaxSizeRange: {x: 5, y: 5}
+    roomMinSizeRange: {x: 3, y: 3}
     CurrentFloorType: 0
     NumberOfItemsToSpawn: {x: 1, y: 3}
     PotentialItemEntries:
