@@ -468,7 +468,7 @@ public class ActorController : EntityController
         //Some things add food points as a side so only log it when it's needed
         if (foodMessage != null)
         {
-            turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} ate {foodAmount} points worth of food!"));
+            turnAnimationController.AddAnimation(new MessageAnimation(foodMessage));
         }
         hunger.x += foodAmount;
         UpdateVisualHitPoints();
