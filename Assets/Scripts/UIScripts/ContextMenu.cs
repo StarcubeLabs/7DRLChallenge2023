@@ -19,7 +19,16 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public MenuItem infoMenuItem;
     public MenuItem gameMenuItem;
 
+    public AudioSource navigateMenuSound;
+    public AudioSource navigateBackMenuSound;
+    public AudioSource menuOpenSound;
+    public AudioSource menuConfirmSound;
+
     MenuController menuController;
+
+    public float menuSelectionSoundCooldown = 0.3f;
+
+    float menuSelectionSoundPlayTimestamp;
 
     public void Start()
     {
@@ -40,6 +49,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OnChooseMove(object sender, EventArgs args)
     {
+        menuConfirmSound.Play();
         Close();
     }
 
@@ -66,6 +76,11 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     {
         if (IsMenuOpen())
         {
+            if ((Time.time - menuSelectionSoundPlayTimestamp) > menuSelectionSoundCooldown)
+            {
+                navigateMenuSound.Play();
+                menuSelectionSoundPlayTimestamp = Time.time;
+            }
             RectTransform menuItemRect = (RectTransform)(sender.transform);
             cursor.rectTransform.position = new Vector2(-20 + menuItemRect.rect.xMin, 0) + new Vector2(menuItemRect.position.x, menuItemRect.position.y);
             cursor.enabled = true;
@@ -74,6 +89,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OnSelectMoveMenu(object sender, EventArgs eventArgs)
     {
+        menuConfirmSound.Play();
         moveMenu.SetupUseMoveMenu(this);
         contextMainMenu.Hide();
 
@@ -90,6 +106,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OnSelectInventory(object sender, EventArgs eventArgs)
     {
+        menuConfirmSound.Play();
         OpenInventory();
         contextMainMenu.Hide();
     }
@@ -110,6 +127,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OpenMenu()
     {
+        menuOpenSound.Play();
         contextMainMenu.Show();
 
         Array.ForEach(moveMenu.GetComponentsInChildren<MenuItem>(), (menuItem) =>
@@ -163,6 +181,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void NavigateBack()
     {
+        navigateBackMenuSound.Play();
         if (eventSystem.currentSelectedGameObject != null)
         {
             AxisEventData moveEventData = new AxisEventData(EventSystem.current);

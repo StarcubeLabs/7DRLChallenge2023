@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 690061133902237913, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 690061133902237913, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16545,7 +16545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 939653811887762761, guid: 6bb88a713afc20547afbae36a4603554, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 939653811887762761, guid: 6bb88a713afc20547afbae36a4603554, type: 3}
       propertyPath: m_AnchorMax.x
@@ -16836,6 +16836,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
+      propertyPath: startingMoves.Array.data[0]
+      value: 
+      objectReference: {fileID: 972135384986904225, guid: 7842fd380d86346a19639d5016675e1c, type: 3}
     - target: {fileID: 8038504152482477859, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: contextMenu
       value: 

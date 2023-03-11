@@ -27,6 +27,7 @@ public class ActorController : EntityController
     public Animator ActorAnimController;
 
     public Inventory Inventory;
+    public ActorSoundContainer actorSoundContainer;
     
     [SerializeField]
     private string displayName;
@@ -111,12 +112,14 @@ public class ActorController : EntityController
 
         ActorAnimController = GetComponentInChildren<Animator>();
         statusIcon = GetComponentInChildren<StatusIcon>();
+        actorSoundContainer = GetComponentInChildren<ActorSoundContainer>();
 
         gridPosition = grid.WorldToCell(this.transform.position);
         InitializePosition();
 
         visualHitPoints = hitPoints.x;
         visualHungerPoints = hunger.x;
+
 
         if (startingMoves.Count <= MAX_MOVES)
         {
@@ -533,14 +536,14 @@ public class ActorController : EntityController
         }
         else
         {
-            turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Hurt"));
+            turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Hurt", actorSoundContainer?.hitSound));
         }
     }
 
     public void Kill()
     {
         turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} was defeated!"));
-        turnAnimationController.AddAnimation(new DeathAnimation(this, ActorAnimController, "Die", onDie));
+        turnAnimationController.AddAnimation(new DeathAnimation(this, ActorAnimController, "Die", onDie, actorSoundContainer?.dieSound));
     }
 
     public void ApplyStatus(StatusType statusType, int turnCount)

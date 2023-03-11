@@ -44,10 +44,13 @@ public class DealDamageRange : MoveData
         if (hitVFX != null && launchVFX != null)
         {
             ActorController target = GetEntityInRange(user);
-            ParticleSystem launchVFXInst = GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
-            Vector3Int frontCell = user.GetPositionInFront();
-            //Hit VFX
-            GameObject.Instantiate<ParticleSystem>(hitVFX, target.transform, false);
+            if (target != null)
+            {
+                GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
+                //Hit VFX
+                ParticleSystem p = GameObject.Instantiate<ParticleSystem>(hitVFX, target.transform, false);
+                p.transform.localPosition = Vector3.zero;
+            }
         }
     }
 }
