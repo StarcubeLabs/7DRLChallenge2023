@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Cure-All
-  ItemDescription: Clears all statuses .
+  ItemDescription: Clears all statuses.
   ItemIcon: {fileID: 21300000, guid: 8ac31f8860f0811479df8e8b3ec179a9, type: 3}
   ItemObject: {fileID: 2202047693678654509, guid: 47fc4005fe6d12547bb48fd66cbc1893, type: 3}
   IsStackable: 0
