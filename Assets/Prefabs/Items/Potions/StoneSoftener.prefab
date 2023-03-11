@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &671239332857211336
+--- !u!1 &8516179769001191037
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 671239332857211338}
-  - component: {fileID: 4744837263177166080}
+  - component: {fileID: 8516179769001191039}
+  - component: {fileID: 4514357966264099509}
   m_Layer: 0
-  m_Name: BlindFixPotion
+  m_Name: StoneSoftener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &671239332857211338
+--- !u!4 &8516179769001191039
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671239332857211336}
+  m_GameObject: {fileID: 8516179769001191037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.9525526, y: 0, z: 2.9720905}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,22 +32,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4744837263177166080
+--- !u!114 &4514357966264099509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671239332857211336}
+  m_GameObject: {fileID: 8516179769001191037}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b48cb7073c74834e80d1aff8dcc58a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Eye Cleanse
-  ItemDescription: Fixes Blindness if you drink it.
-  ItemIcon: {fileID: 21300000, guid: cd40d3b73e7d02c49b5963c2c6e9130b, type: 3}
-  ItemObject: {fileID: 671239332857211336}
+  ItemName: Stone Softener
+  ItemDescription: Prevents petrification once if you carry it when afflicted.
+  ItemIcon: {fileID: 21300000, guid: aeb8604f0375bbc49acf2beec615d694, type: 3}
+  ItemObject: {fileID: 2044472292217140542, guid: 9b78ef610e3ac54468e35b189a59a7e8, type: 3}
   IsStackable: 0
   MaximumStack: 1
-  statusToClear: 2
+  statusToClear: 6

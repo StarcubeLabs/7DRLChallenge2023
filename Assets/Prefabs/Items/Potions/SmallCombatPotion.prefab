@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3282856573224589771}
   - component: {fileID: 2715835982037041181}
   m_Layer: 0
-  m_Name: CombatPotion
+  m_Name: SmallCombatPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
