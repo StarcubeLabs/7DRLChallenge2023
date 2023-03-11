@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class Confusion : Status
 {
+
     public Confusion(ActorController actor, int turnsLeft) : base(StatusType.Confusion, actor, turnsLeft)
     {
+        HUD_TEXT = "Confused";
     }
 
     public override void ModifyFacingDirection()

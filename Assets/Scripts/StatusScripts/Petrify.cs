@@ -4,6 +4,7 @@ public class Petrify : Status
 {
     public Petrify(ActorController actor, int turnsLeft) : base(StatusType.Petrify, actor, turnsLeft)
     {
+        HUD_TEXT = "Petrified";
     }
 
     public override bool IsImmobilized()

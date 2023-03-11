@@ -4,6 +4,7 @@ public class Stun : Status
 {
     public Stun(ActorController actor, int turnsLeft) : base(StatusType.Stun, actor, turnsLeft)
     {
+        HUD_TEXT = "Stunned";
     }
 
     public override bool IsImmobilized()

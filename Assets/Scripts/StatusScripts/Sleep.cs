@@ -2,8 +2,10 @@ using RLDataTypes;
 
 public class Sleep : Status
 {
+
     public Sleep(ActorController actor, int turnsLeft) : base(StatusType.Sleep, actor, turnsLeft)
     {
+        HUD_TEXT = "Asleep";
     }
 
     public override bool IsImmobilized()

@@ -2,8 +2,10 @@ using RLDataTypes;
 
 public class SleepImmunity : StatusImmunity
 {
+
     public SleepImmunity(ActorController actor, int turnsLeft) : base(StatusType.SleepImmunity, actor, turnsLeft, StatusType.Sleep)
     {
+        HUD_TEXT = "Immune to Sleep";
     }
 
     public override string GetStatusApplyMessage()
