@@ -683,6 +683,7 @@ public class ActorController : EntityController
         {
             turnAnimationController.AddAnimation(new WalkAnimation(this, ActorAnimController));
             levelManager.GoDownFloor();
+            UpdateVisualLocation(1);
         }
     }
 

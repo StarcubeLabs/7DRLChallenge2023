@@ -16836,14 +16836,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
-      propertyPath: hitPoints.x
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
-      propertyPath: hitPoints.y
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 8038504152482477859, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: contextMenu
       value: 
