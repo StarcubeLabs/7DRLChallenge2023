@@ -252,6 +252,11 @@ public class ActorController : EntityController
         moveToBeTaught = null;
     }
 
+    public bool IsMoveUsable(Move move)
+    {
+        return move.IsMoveUsable() && Statuses.All(status => status.IsMoveUsable(move));
+    }
+
     public void UseBasicAttack()
     {
         UseMove(moveRegistry.BasicAttack);
