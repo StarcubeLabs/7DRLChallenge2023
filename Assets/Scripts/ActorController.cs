@@ -29,7 +29,7 @@ public class ActorController : EntityController
 
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
-
+    public bool HasFullHealth { get { return hitPoints.x >= hitPoints.y; } }
 
     [Tooltip("Hunger value range. X is the starting hunger value, and Y is the maximum hunger value.")]
     public Vector2Int hunger;
