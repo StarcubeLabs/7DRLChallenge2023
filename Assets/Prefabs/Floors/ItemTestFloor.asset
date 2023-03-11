@@ -18,10 +18,10 @@ MonoBehaviour:
   roomMaxSizeRange: {x: 5, y: 5}
   roomMinSizeRange: {x: 3, y: 3}
   CurrentFloorType: 0
-  NumberOfItemsToSpawn: {x: 1, y: 1}
+  NumberOfItemsToSpawn: {x: 5, y: 5}
   PotentialItemEntries:
   - Weight: 100
-    Entry: {fileID: 628324517710171396, guid: 733c4c9cb831f6b4f9204c51653b202e, type: 3}
+    Entry: {fileID: 4517285485017344840, guid: f94b5ab2373a147bf88d4ddce95a6d3b, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []
   NumberOfEnemiesToSpawnRange: {x: 1, y: 1}

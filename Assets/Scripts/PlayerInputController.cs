@@ -31,7 +31,10 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnDie(object sender, EventArgs eventArgs)
     {
-        gameStateManager.GameOver();
+        if (!playerActor.Inventory.PreventDeath(playerActor))
+        {
+            gameStateManager.GameOver();
+        }
     }
 
     // Update is called once per frame

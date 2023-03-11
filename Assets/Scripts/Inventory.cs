@@ -117,4 +117,20 @@ public class Inventory
         }
         return false;
     }
+
+    public bool PreventDeath(ActorController actor)
+    {
+        for (int i = 0; i < Items.Length; i++)
+        {
+            Item item = Items[i];
+            if (item && item.ItemData.PreventDeath(actor, item))
+            {
+                GameObject.Destroy(Items[i].gameObject);
+                Items[i] = null;
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

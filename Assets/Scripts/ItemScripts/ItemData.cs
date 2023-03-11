@@ -30,4 +30,9 @@ public class ItemData : MonoBehaviour
     public virtual void OnDrop(ActorController owner, Item item)
     {
     }
+
+    public virtual bool PreventDeath(ActorController owner, Item item)
+    {
+        return false;
+    }
 }

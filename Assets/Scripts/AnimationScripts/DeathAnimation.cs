@@ -36,10 +36,13 @@ public class DeathAnimation : TurnAnimation
     
     public override void EndAnimation()
     {
-        if (onDie != null)
+        if (onDie == null)
+        {
+            Object.Destroy(actor.gameObject);
+        }
+        else
         {
             onDie(this, EventArgs.Empty);
         }
-        Object.Destroy(actor.gameObject);
     }
 }

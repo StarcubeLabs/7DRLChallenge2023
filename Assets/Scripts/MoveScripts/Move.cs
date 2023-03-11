@@ -18,7 +18,6 @@ public class Move : MonoBehaviour
 
     public void RestorePP(int PP)
     {
-        print("Restore!");
         pp = Math.Min(pp+PP, moveData.MaxPP);
     }
 
