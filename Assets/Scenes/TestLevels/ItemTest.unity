@@ -852,11 +852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: hitPoints.x
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: hitPoints.y
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.size
