@@ -29,7 +29,6 @@ public class ActorController : EntityController
 
     [Tooltip("Hitpoint value range. X is the starting hp value, and Y is the maximum hp value.")]
     public Vector2Int hitPoints;
-    public bool HasFullHealth { get { return hitPoints.x >= hitPoints.y; } }
 
 
     [Tooltip("Hunger value range. X is the starting hunger value, and Y is the maximum hunger value.")]
@@ -442,10 +441,10 @@ public class ActorController : EntityController
                 turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} restored all combat points!"));
             }
         }
-        foreach (Move move in moves)
+        for(int i = 0; i < moves.Count; i++)
         {
-            print(move.name);
-            move.RestorePP(restoreAmount);
+            print(moves[i].name);
+            moves[i].RestorePP(restoreAmount);
         }
     }
 
