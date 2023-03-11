@@ -540,6 +540,18 @@ public class ActorController : EntityController
 
         if (allowStatus)
         {
+            foreach (Status status in Statuses)
+            {
+                if (!status.AllowStatus(statusType))
+                {
+                    allowStatus = false;
+                    break;
+                }
+            }
+        }
+
+        if (allowStatus)
+        {
             Status newStatus = moveRegistry.CreateStatusFromType(statusType, this, turnCount);
             if (newStatus != null)
             {

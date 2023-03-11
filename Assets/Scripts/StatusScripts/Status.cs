@@ -46,6 +46,11 @@ public abstract class Status
     {
         return true;
     }
+    
+    public virtual bool AllowStatus(StatusType statusType)
+    {
+        return true;
+    }
 
     public virtual string GetStatusApplyMessage()
     {
