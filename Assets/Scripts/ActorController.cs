@@ -5,10 +5,13 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
 public class ActorController : EntityController
 {
     private const int MAX_MOVES = 4;
-    
+
+    public AudioSource audioSource;
+
     Grid grid;
     [HideInInspector]
     public Vector3 visualPosition;
