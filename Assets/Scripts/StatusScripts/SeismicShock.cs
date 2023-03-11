@@ -5,9 +5,10 @@ public class SeismicShock : Status
 {
     private const float STUN_CHANCE = 0.5f;
     private bool stunned;
-    
+
     public SeismicShock(ActorController actor, int turnsLeft) : base(StatusType.SeismicShock, actor, turnsLeft)
     {
+        HUD_TEXT = "Seismic Shocked";
         RollStunChance();
     }
 

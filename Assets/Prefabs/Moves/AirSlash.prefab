@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Air Slash
-  moveDescription: Create a Cutting air slash! A basic but deadly move.
+  moveDescription: Create a cutting air slash! A basic but deadly move.
   Element: 0
   power: 4
   maxPP: 10

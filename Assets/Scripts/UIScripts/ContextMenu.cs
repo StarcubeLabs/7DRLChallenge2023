@@ -12,7 +12,6 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public MoveMenu moveMenu;
     public Transform inventoryMenu;
-    public Transform infoMenu;
     public Transform gameMenu;
 
     public MenuItem moveMenuItem;
@@ -20,10 +19,14 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public MenuItem infoMenuItem;
     public MenuItem gameMenuItem;
 
+    MenuController menuController;
+
     public void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
-        
+        menuController = FindObjectOfType<MenuController>(true);
+
+
         Array.ForEach(GetComponentsInChildren<MenuItem>(), (menuItem) =>
         {
             menuItem.AttachMenuListener(this);
@@ -31,8 +34,8 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
         moveMenuItem.onSelect += OnSelectMoveMenu;
         moveMenu.onChooseMove += OnChooseMove;
-
         inventoryMenuItem.onSelect += OnSelectInventory;
+        gameMenuItem.onSelect += OnSelectGameMenu;
     }
 
     public void OnChooseMove(object sender, EventArgs args)
@@ -88,6 +91,13 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public void OnSelectInventory(object sender, EventArgs eventArgs)
     {
         OpenInventory();
+        contextMainMenu.Hide();
+    }
+
+    public void OnSelectGameMenu(object sender, EventArgs eventArgs)
+    {
+        menuController.gameObject.SetActive(true);
+        cursor.enabled = false;
         contextMainMenu.Hide();
     }
 
@@ -158,10 +168,17 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
             AxisEventData moveEventData = new AxisEventData(EventSystem.current);
             ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, moveEventData, ExecuteEvents.cancelHandler);
         }
-        if (moveMenu.elementGroup.enabled)
+        if (menuController.gameObject.activeSelf)
+        {
+            menuController.gameObject.SetActive(false);
+            contextMainMenu.Show();
+            NavigateToFirstMenuItem();
+        }
+        else if (moveMenu.elementGroup.enabled)
         {
             moveMenu.Close();
             moveMenu.Cancel();
+            NavigateToFirstMenuItem();
         }
         else if (inventoryMenu.gameObject.activeSelf)
         {
@@ -178,7 +195,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public bool IsMenuOpen()
     {
-        return moveMenu.elementGroup.enabled || contextMainMenu.enabled || inventoryMenu.gameObject.activeSelf;
+        return moveMenu.elementGroup.enabled || contextMainMenu.enabled || inventoryMenu.gameObject.activeSelf || menuController.gameObject.activeSelf;
     }
 
     public void Close()

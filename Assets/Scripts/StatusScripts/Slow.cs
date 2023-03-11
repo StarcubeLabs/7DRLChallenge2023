@@ -2,10 +2,12 @@ using RLDataTypes;
 
 public class Slow : Status
 {
+
     private bool canMove;
     
     public Slow(ActorController actor, int turnsLeft) : base(StatusType.Slow, actor, turnsLeft)
     {
+        HUD_TEXT = "Slowed";
     }
 
     protected override void OnTurnEnd()

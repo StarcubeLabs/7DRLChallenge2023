@@ -86,24 +86,33 @@ public class LevelManager: MonoBehaviour
     public void GoToFloor(int offset)
     {
         LevelController activeLevel = grid.GetComponentInChildren<LevelController>();
-        LevelController nextFloor = grid.transform.GetChild(activeLevel.transform.GetSiblingIndex() + offset).GetComponent<LevelController>();
-        ActorController player = FindObjectOfType<PlayerInputController>().playerActor;
-        activeLevel.RemoveEntityFromLevel(player);
-        EnterLevel(nextFloor);
-        LeaveLevel(activeLevel);
-        nextFloor.AddEntityToLevel(player);
-        if (offset > 0)
+        ServicesManager.TurnAnimationController.ClearAnimations();
+        int nextFloorNum = activeLevel.transform.GetSiblingIndex() + offset;
+        if (nextFloorNum >= FloorData.Count)
         {
-            player.gridPosition = nextFloor.GetGridPositionFromCell(nextFloor.somewhatInterestingMap.start);
+            ServicesManager.GameStateManager.WinGame();
         }
         else
         {
-            player.gridPosition = nextFloor.GetGridPositionFromCell(nextFloor.somewhatInterestingMap.end);
-        }
+            LevelController nextFloor = grid.transform.GetChild(nextFloorNum).GetComponent<LevelController>();
+            ActorController player = FindObjectOfType<PlayerInputController>().playerActor;
+            activeLevel.RemoveEntityFromLevel(player);
+            EnterLevel(nextFloor);
+            LeaveLevel(activeLevel);
+            nextFloor.AddEntityToLevel(player);
+            if (offset > 0)
+            {
+                player.gridPosition = nextFloor.GetGridPositionFromCell(nextFloor.somewhatInterestingMap.start);
+            }
+            else
+            {
+                player.gridPosition = nextFloor.GetGridPositionFromCell(nextFloor.somewhatInterestingMap.end);
+            }
 
-        if (onLevelChange != null)
-        {
-            onLevelChange(this, EventArgs.Empty);
+            if (onLevelChange != null)
+            {
+                onLevelChange(this, EventArgs.Empty);
+            }
         }
     }
 

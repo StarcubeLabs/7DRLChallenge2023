@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b0725b8a3ed9c4686ef7a9b74f18ae, type: 3}
+  m_Name: StandardFloorData
+  m_EditorClassIdentifier: 
+  widthRange: {x: 30, y: 30}
+  heightRange: {x: 20, y: 30}
+  roomNumRange: {x: 13, y: 13}
+  roomMaxSizeRange: {x: 5, y: 5}
+  roomMinSizeRange: {x: 3, y: 3}
+  CurrentFloorType: 0
+  NumberOfItemsToSpawn: {x: 3, y: 7}
+  PotentialItemEntries:
+  - Weight: 100
+    Entry: {fileID: 5232407384910942077, guid: 84f3548ee49fefb40bc78f736e96357d, type: 3}
+  - Weight: 100
+    Entry: {fileID: 5232407384910942077, guid: 6b2cfd2cdf048914497dc244e64d3241, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2233576762303555906, guid: 7e2692a575cf9544f9bdf6605aae5b2b, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2715835982037041181, guid: 1067cb12cab550143a52dbf4392ec927, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2035253751939322824, guid: 78fb742f2da15a1419803402af49ae35, type: 3}
+  - Weight: 100
+    Entry: {fileID: -1434324469243546998, guid: 2a928c99dd6a2d44ebf6db280073c926, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4744837263177166080, guid: d7600faf0bd030d4a8c1887f5ed86277, type: 3}
+  - Weight: 100
+    Entry: {fileID: 628324517710171396, guid: 733c4c9cb831f6b4f9204c51653b202e, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
+  - Weight: 100
+    Entry: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
+  - Weight: 100
+    Entry: {fileID: 7334691194990034616, guid: 97155579b70c02445b90513a11f9a3e6, type: 3}
+  - Weight: 100
+    Entry: {fileID: -4535620693386476888, guid: b762ee35df2b52248a0a7fb4f70b1e1b, type: 3}
+  - Weight: 100
+    Entry: {fileID: 6101064481163318544, guid: 7bc220e59a303614486b4292a2d67729, type: 3}
+  - Weight: 100
+    Entry: {fileID: 3517048333682426973, guid: ef233fd539746ab4cabdca41cef63db2, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 7ecbb84ba47a7414aac4b5a43315801e, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: f6769d4ad930e4396b1c25e06a35474c, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: a28a46efb2ad24abaa2b452268245285, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 5ccbe227b5f314611975c7faef37cc4d, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 99bc00069a5b544269cfd3cf7300552a, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: e3a5149dc0d89426eb8bfc95f07861c8, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: c7378912886524629afc87b9a7b006a7, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: bf58f27fdde944ed7ab2a27ccfaa7dd4, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: fd053ec73da3c4dc690c1d2cbb6a4ebd, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 21e9ffb95bb9d477baa1623e243076e5, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 5694621b0d6be4a87adf7199a6d3984a, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: a11f35f2b2366486d824639fdf8d64d1, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 8f6d901b016e34fcda3eb19b879cfbf8, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 82d5612d28fe049f7b719ba007e0fe4c, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 09374284882454c8690e92d565b3dc76, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 3d0d78043edc14c8fa75b7c84ce11722, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 4a2ae3330edc146e39fcc0cdbb0319e6, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 981b60117041b483b9564f8a1b7e0d48, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 1bd90c75da69b4272bb0ed8b4b8f466b, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 80bbdcb95860045a0bd611c590ddd9c8, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 72cd78f3e7c2c482e970b4603675fdbb, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 4d00d75523c38473894600bfaf38830b, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 7f19f39ceb4794659a57e0c761d7a0a7, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: d8ccd9ba3efff490997e1dd861349f03, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: d2500d108403c46269386491563126e7, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: b94466b8003554b94b57dc513cd30d34, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 0e08b5c94be194765af44dea0bcbcf81, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 62405bb856f804b3183cf1c62cd28d8d, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 232cd629becd542ba852211c3e3a604c, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: b9cd45c824348477bbe5ab7bf9d92ded, type: 3}
+  - Weight: 100
+    Entry: {fileID: -6469611630650067172, guid: 7de2d7b1d6054432eae94e93fd9c1602, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 0a61e2fdd3b71d34d9fd4796e5a84f32, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 9e87740f1e9139f4bb576571c945c58c, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: bedced68ab62d17438ed10b685aafd3a, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 65c9bfac714e4c6418d82c0581d9a4e8, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: cfb94f1e50691604f9c8c7b7534865a3, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 72ca7113e8dd9284eba3506b81e72f1d, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 491eaac1849cf014eaecfa1223eab8ac, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 3514ded67bb8d564fa2bac0676efcd69, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 5c3035f7a2aabcf449634f878245693b, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 00df7b2b66e60d441a38388d9a212f74, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: f4fa67925eb92de4b81935612b73d1cc, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 2e26d90c1a392f14fb49b9c9c01c4381, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 64f7726929cb4ff4691c99caa16a88d6, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 1b5c36001a7100743bce403d642c5a54, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: a1d3f772be689ab44a1b0a95e1c3a19a, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: a5576960cdfae1d428562eff80b1f186, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 823bce2a418631946be21c2dcee1e8ec, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1958110151181931917, guid: 3a1f4f7dc1dfc8749a96b5c1a7c6a1d6, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2740662514017809751, guid: 37442b5e271ed4b5c9f5350b35df0306, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2740662514017809751, guid: 9dd9075dde4ad42c09d07946811c2acf, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2740662514017809751, guid: aca75567d505e4cda83b20f06c919721, type: 3}
+  - Weight: 100
+    Entry: {fileID: 2740662514017809751, guid: 1f84c1c24fb6444528c6c66df46dabe5, type: 3}
+  - Weight: 100
+    Entry: {fileID: -5487046387908989354, guid: d8b514e017d02bf41bfeefa3f7dc938d, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4915565562157183493, guid: d470c16dc8c3a4dce99ed6551ffc3f68, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4915565562157183493, guid: c293af9a1825272498480c0ac3662248, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4915565562157183493, guid: 3ed0ec2f2f6294443b0b55e7169a7c93, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4915565562157183493, guid: f2e15b76f73944eb8a930c82c93e19db, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4915565562157183493, guid: d8eab701e112e4b8aa3da87584cfb1f8, type: 3}
+  - Weight: 100
+    Entry: {fileID: 3779162996023933644, guid: 1d5410fb2c05ca04a9921524ecb4999b, type: 3}
+  - Weight: 100
+    Entry: {fileID: 3583011865473692732, guid: 4d46985b939fe467cb11ad9048723369, type: 3}
+  - Weight: 100
+    Entry: {fileID: 3583011865473692732, guid: d2eff39f9be6ef243bf92823906f9173, type: 3}
+  - Weight: 100
+    Entry: {fileID: 3583011865473692732, guid: 2edb5509b2a8442a0adcbfe9af7e3907, type: 3}
+  - Weight: 100
+    Entry: {fileID: 7234801106608014906, guid: 9e4551a211f07b649a788e8094e69109, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4436611308889749758, guid: d18737f52591f4145b99420234474686, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4080372399560234900, guid: 9de62cdde2fda2b4a88439d55076bbf4, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4080372399560234900, guid: 7981c42841f14412c9270c64d8e4e9ab, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4080372399560234900, guid: 159f09f19673841f3a278dbcb04cc3bd, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1588953171066697679, guid: 5183afce592bb4a6ea29c3fbd6e48600, type: 3}
+  - Weight: 100
+    Entry: {fileID: 1588953171066697679, guid: 4d3785b23f4e6854d972b4330c0e6127, type: 3}
+  - Weight: 100
+    Entry: {fileID: -972671174752758707, guid: 7916213ce3e583e468fdcd28db587181, type: 3}
+  - Weight: 100
+    Entry: {fileID: -972671174752758707, guid: 938bf44736adc4fcea18b63399c40449, type: 3}
+  - Weight: 100
+    Entry: {fileID: 7563973972555501414, guid: bb68035121d9b574191b62ae17f9c9b3, type: 3}
+  NumberOfTrapsToSpawnRange: {x: 0, y: 0}
+  PotentialTrapEntries: []
+  NumberOfEnemiesToSpawnRange: {x: 2, y: 4}
+  PotentialEnemyEntries:
+  - Weight: 100
+    Entry: {fileID: 4176091817456084932, guid: 45d76504762a36e4587f29eb82072714, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4176091817456084932, guid: 5ee66b4e366f5d74f9fac6da59a275dd, type: 3}
+  - Weight: 100
+    Entry: {fileID: 8153237238349085216, guid: 39d51f8d679424cefb3c16dfa863286a, type: 3}
+  - Weight: 100
+    Entry: {fileID: 4176091817456084932, guid: 43e28d08937e70749bed59b3fce8afb6, type: 3}

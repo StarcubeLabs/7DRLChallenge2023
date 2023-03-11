@@ -2,8 +2,10 @@ using RLDataTypes;
 
 public class Frozen : Status
 {
+
     public Frozen(ActorController actor, int turnsLeft) : base(StatusType.Frozen, actor, turnsLeft)
     {
+        HUD_TEXT = "Frozen";
     }
 
     public override bool IsImmobilized()

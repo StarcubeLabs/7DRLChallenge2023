@@ -5,10 +5,13 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
 public class ActorController : EntityController
 {
     private const int MAX_MOVES = 4;
-    
+
+    public AudioSource audioSource;
+
     Grid grid;
     [HideInInspector]
     public Vector3 visualPosition;
@@ -679,8 +682,9 @@ public class ActorController : EntityController
     {
         if (this.gridPosition == levelManager.GetActiveLevel().GetGridPositionFromCell(levelManager.GetActiveLevel().somewhatInterestingMap.end))
         {
-            levelManager.GoDownFloor();
             turnAnimationController.AddAnimation(new WalkAnimation(this, ActorAnimController));
+            levelManager.GoDownFloor();
+            UpdateVisualLocation(1);
         }
     }
 
