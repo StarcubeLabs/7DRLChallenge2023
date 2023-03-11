@@ -19,7 +19,7 @@ public class TurnManager: MonoBehaviour
 
     private void Update()
     {
-        if (turnOrder.Count > 0 && !CanCurrentActorMove())
+        if (turnOrder.Count > 0 && !CanCurrentActorMove() && !ServicesManager.TurnAnimationController.HasRunningAnimations)
         {
             turnOrder[0].EndTurn(true);
         }

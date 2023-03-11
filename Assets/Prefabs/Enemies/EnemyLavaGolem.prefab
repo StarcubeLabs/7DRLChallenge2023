@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 47899768264105375, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: basicAttackChance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1381416739568332689, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -45,12 +49,16 @@ PrefabInstance:
       objectReference: {fileID: 5531454999746933283}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[0]
       value: 
-      objectReference: {fileID: 972135384986904225, guid: 86520059ebfdc44f390bb957e5e02255, type: 3}
+      objectReference: {fileID: 3582576500428355737, guid: 8478dc7d66e864bafbc9bc025b5cae7b, type: 3}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: startingMoves.Array.data[1]
+      value: 
+      objectReference: {fileID: 6117529985058575661, guid: 9e6a2054493b54eaaacd98c0b5eb388f, type: 3}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_RootOrder
       value: 0
