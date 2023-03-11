@@ -61,6 +61,8 @@ public class ActorController : EntityController
     public bool IsMovesetFull { get { return moves.Count >= MAX_MOVES; } }
 
     public List<Status> statuses = new List<Status>();
+    /// <summary> Use the Statuses property for iteration to allow removing from the statuses list during iteration. </summary>
+    public List<Status> Statuses { get { return new List<Status>(statuses); } }
     private StatusIcon statusIcon;
 
     [Header("Equippables")]
@@ -175,7 +177,7 @@ public class ActorController : EntityController
         
         FaceDirection(offset);
         
-        statuses.ForEach(status => status.ModifyFacingDirection());
+        Statuses.ForEach(status => status.ModifyFacingDirection());
         
         offset = GetOffsetFromDirection();
 
@@ -261,7 +263,7 @@ public class ActorController : EntityController
         {
             turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} used {move.moveData.MoveName}!"));
         }
-        statuses.ForEach(status => status.ModifyFacingDirection());
+        Statuses.ForEach(status => status.ModifyFacingDirection());
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
         move.moveData.UseMove(this);
         if (move.pp > 0)
@@ -468,10 +470,8 @@ public class ActorController : EntityController
         if (damage > 0)
         {
             target.Hurt(damage);
-            foreach (EquippableItem equippableItem in GetEquippedItems())
-            {
-                equippableItem.OnDamageDealt(this, target);
-            }
+            GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
+            target.Statuses.ForEach(status => status.OnActorAttacked(this));
         }
     }
 
@@ -536,23 +536,28 @@ public class ActorController : EntityController
         }
     }
 
+    public void CureStatus(Status status)
+    {
+        statuses.Remove(status);
+        turnAnimationController.AddAnimation(new MessageAnimation(status.GetStatusCureMessage()));
+        UpdateStatusIcons();
+    }
+
     public void TickStatus()
     {
-        List<Status> removeStatuses = new List<Status>();
-        foreach (Status status in statuses)
+        bool updateStatuses = false;
+        foreach (Status status in Statuses)
         {
             if (status.TickStatus())
             {
-                removeStatuses.Add(status);
+                CureStatus(status);
+                statuses.Remove(status);
+                turnAnimationController.AddAnimation(new MessageAnimation(status.GetStatusCureMessage()));
+                updateStatuses = true;
             }
         }
 
-        foreach (Status status in removeStatuses)
-        {
-            statuses.Remove(status);
-            turnAnimationController.AddAnimation(new MessageAnimation(status.GetStatusCureMessage()));
-        }
-        if (removeStatuses.Count > 0)
+        if (updateStatuses)
         {
             UpdateStatusIcons();
         }

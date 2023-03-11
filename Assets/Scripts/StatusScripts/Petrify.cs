@@ -11,6 +11,11 @@ public class Petrify : Status
         return true;
     }
 
+    public override void OnActorAttacked(ActorController attacker)
+    {
+        actor.CureStatus(this);
+    }
+
     public override string GetStatusApplyMessage()
     {
         return $"{actor.GetDisplayName()} was petrified!";

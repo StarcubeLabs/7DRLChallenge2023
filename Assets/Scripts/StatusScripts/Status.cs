@@ -38,6 +38,10 @@ public abstract class Status
         return false;
     }
 
+    public virtual void OnActorAttacked(ActorController attacker)
+    {
+    }
+
     public virtual string GetStatusApplyMessage()
     {
         return null;
