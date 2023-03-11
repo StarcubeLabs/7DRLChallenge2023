@@ -55,6 +55,7 @@ public class ActorController : EntityController
     [SerializeField]
     private List<MoveData> startingMoves;
 
+    [HideInInspector]
     public List<Move> moves = new List<Move>();
     [HideInInspector]
     public Move moveToReplace;

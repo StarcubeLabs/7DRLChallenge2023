@@ -106,6 +106,14 @@ PrefabInstance:
       value: Pirhanni
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: hitPoints.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: hitPoints.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: ActorAnimController
       value: 
       objectReference: {fileID: 8222081863746527859}
@@ -163,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715628, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_Name
-      value: BasicEnemy Variant
+      value: EnemyPirhanni
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1381416739568332689, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
