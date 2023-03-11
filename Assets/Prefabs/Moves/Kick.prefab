@@ -47,5 +47,8 @@ MonoBehaviour:
   moveName: Kick
   moveDescription: Does 4 damage.
   Element: 0
-  power: 4
+  power: 3
   maxPP: 15
+  afflictionType: 0
+  afflictionChance: 0
+  afflictionTurnCount: 0

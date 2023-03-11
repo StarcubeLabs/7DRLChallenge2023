@@ -47,7 +47,7 @@ MonoBehaviour:
   moveName: Water Gun
   moveDescription: Shoots a small stream of water.
   Element: 2
-  power: 3
+  power: 1
   maxPP: 6
   afflictionType: 0
   afflictionChance: 0

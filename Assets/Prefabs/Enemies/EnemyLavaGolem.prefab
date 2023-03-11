@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.x
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: ActorAnimController
@@ -49,7 +49,7 @@ PrefabInstance:
       objectReference: {fileID: 5531454999746933283}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[0]
@@ -58,7 +58,7 @@ PrefabInstance:
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[1]
       value: 
-      objectReference: {fileID: 6117529985058575661, guid: 9e6a2054493b54eaaacd98c0b5eb388f, type: 3}
+      objectReference: {fileID: 7639689508547358246, guid: c41f9d7861ffb47649c310a031e372cc, type: 3}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_RootOrder
       value: 0
