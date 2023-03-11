@@ -1,3 +1,4 @@
+using PlasticPipe.PlasticProtocol.Messages;
 using RLDataTypes;
 using System;
 using System.Collections.Generic;
@@ -410,6 +411,22 @@ public class ActorController : EntityController
             hitPoints.x = hitPoints.y;
         }
         UpdateVisualHitPoints();
+    }
+
+    public void PowerRestore(int restoreAmount, string ppRestoreMessage = null)
+    {
+        if (ppRestoreMessage != null)
+        {
+            if(restoreAmount < 50)
+            {
+
+                turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} restored {restoreAmount} points worth of Combat Points!"));
+            }
+            else
+            {
+                turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} restored all combat points!"));
+            }
+        }
     }
 
     public void AddFood(int foodAmount, string foodMessage = null)
