@@ -55,10 +55,6 @@ public abstract class MoveData : MonoBehaviour
         }
     }
 
-    public void RestorePP(int PP)
-    {
-        power = Math.Min(PP, maxPP);
-    }
 
     /// <summary>
     /// Returns true if the AI should consider the move in range of the target.

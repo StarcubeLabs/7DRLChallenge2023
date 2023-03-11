@@ -51,7 +51,7 @@ public class ActorController : EntityController
     [SerializeField]
     private List<MoveData> startingMoves;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Move> moves = new List<Move>();
     [HideInInspector]
     public Move moveToReplace;
@@ -440,10 +440,11 @@ public class ActorController : EntityController
             {
                 turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} restored all combat points!"));
             }
-            foreach(MoveData move in startingMoves)
-            {
-                move.RestorePP(restoreAmount);
-            }
+        }
+        foreach (Move move in moves)
+        {
+            print(move.name);
+            move.RestorePP(restoreAmount);
         }
     }
 
