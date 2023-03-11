@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Stone Softener
   ItemDescription: Prevents petrification once if you carry it when afflicted.
-  ItemIcon: {fileID: 21300000, guid: 72174fa65282b0e4d9e8daa96cb8aca5, type: 3}
+  ItemIcon: {fileID: 21300000, guid: aeb8604f0375bbc49acf2beec615d694, type: 3}
   ItemObject: {fileID: 2044472292217140542, guid: 9b78ef610e3ac54468e35b189a59a7e8, type: 3}
   IsStackable: 0
   MaximumStack: 1

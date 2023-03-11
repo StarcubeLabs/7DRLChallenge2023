@@ -47,7 +47,7 @@ MonoBehaviour:
   ItemName: Big Combat Potion
   ItemDescription: A large potion that restores all Combat Points for each move you
     know.
-  ItemIcon: {fileID: 21300000, guid: 72174fa65282b0e4d9e8daa96cb8aca5, type: 3}
+  ItemIcon: {fileID: 21300000, guid: c3ab6c8ef9de10c4bae6949ee6664d5b, type: 3}
   ItemObject: {fileID: 4383152010276537219, guid: 0cf5ff8606b1a5e44b450a495b16ce76, type: 3}
   IsStackable: 0
   MaximumStack: 5
