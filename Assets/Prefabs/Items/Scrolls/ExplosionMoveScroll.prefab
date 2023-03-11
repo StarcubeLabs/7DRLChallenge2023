@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3942460095708910642
+--- !u!1 &1403323443281343200
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2063619693137707417}
-  - component: {fileID: 7563973972555501414}
+  - component: {fileID: 1992639853236456522}
+  - component: {fileID: -5487046387908989354}
   m_Layer: 0
-  m_Name: WaterGun
+  m_Name: ExplosionMoveScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2063619693137707417
+--- !u!4 &1992639853236456522
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3942460095708910642}
+  m_GameObject: {fileID: 1403323443281343200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,22 +32,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7563973972555501414
+--- !u!114 &-5487046387908989354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3942460095708910642}
+  m_GameObject: {fileID: 1403323443281343200}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e731bbf1fea1044a9a517560ea95896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Water Gun Move Scroll
-  ItemDescription: Teach yourself the move "Water Gun"!
+  ItemName: Explosion Move Scroll
+  ItemDescription: Teach yourself the move "Explosion"!
   ItemIcon: {fileID: 21300000, guid: be4f3b6724833064eab0eab345020f2f, type: 3}
   ItemObject: {fileID: 5737963899223320826, guid: b8d6f313eb5d4a54eb17595f0514b676, type: 3}
   IsStackable: 0
   MaximumStack: 1
-  taughtMove: {fileID: 972135384986904225, guid: bfd9942e7f2d49d42a70e9f34a3f1b38, type: 3}
+  taughtMove: {fileID: 111296553757472549, guid: baac59e4b9c6848feb98308bcf954983, type: 3}
