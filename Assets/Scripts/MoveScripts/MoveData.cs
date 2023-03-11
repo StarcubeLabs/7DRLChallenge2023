@@ -1,5 +1,6 @@
 using RLDataTypes;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public abstract class MoveData : MonoBehaviour
@@ -48,10 +49,15 @@ public abstract class MoveData : MonoBehaviour
     protected void DamageTarget(ActorController user, ActorController target)
     {
         user.DamageTarget(this, target);
-        if (afflictionType != StatusType.None && Random.value <= afflictionChance)
+        if (afflictionType != StatusType.None && UnityEngine.Random.value <= afflictionChance)
         {
             target.ApplyStatus(afflictionType, afflictionTurnCount);
         }
+    }
+
+    public void RestorePP(int PP)
+    {
+        power = Math.Min(PP, maxPP);
     }
 
     /// <summary>

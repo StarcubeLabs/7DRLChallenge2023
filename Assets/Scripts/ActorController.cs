@@ -435,12 +435,15 @@ public class ActorController : EntityController
         {
             if(restoreAmount < 50)
             {
-
                 turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} restored {restoreAmount} points worth of Combat Points!"));
             }
             else
             {
                 turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} restored all combat points!"));
+            }
+            foreach(MoveData move in startingMoves)
+            {
+                move.RestorePP(restoreAmount);
             }
         }
     }
