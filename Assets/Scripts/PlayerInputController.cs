@@ -198,46 +198,46 @@ public class PlayerInputController : MonoBehaviour
 
     private void PlayerWait()
     {
-        playerActor.Move(new Vector3Int(0, 0));
+        playerActor.Walk(new Vector3Int(0, 0));
     }
 
     private void PlayerMoveRight()
     {
-        playerActor.Move(new Vector3Int(1, 0));
+        playerActor.Walk(new Vector3Int(1, 0));
     }
 
     private void PlayerMoveLeft()
     {
-        playerActor.Move(new Vector3Int(-1, 0));
+        playerActor.Walk(new Vector3Int(-1, 0));
     }
 
     private void PlayerMoveDown()
     {
-        playerActor.Move(new Vector3Int(0, -1));
+        playerActor.Walk(new Vector3Int(0, -1));
     }
 
     private void PlayerMoveUp()
     {
-        playerActor.Move(new Vector3Int(0, 1));
+        playerActor.Walk(new Vector3Int(0, 1));
     }
 
     private void PlayerMoveUpRight()
     {
-        playerActor.Move(new Vector3Int(1, 1));
+        playerActor.Walk(new Vector3Int(1, 1));
     }
 
     private void PlayerMoveUpLeft()
     {
-        playerActor.Move(new Vector3Int(-1, 1));
+        playerActor.Walk(new Vector3Int(-1, 1));
     }
 
     private void PlayerMoveDownLeft()
     {
-        playerActor.Move(new Vector3Int(-1, -1));
+        playerActor.Walk(new Vector3Int(-1, -1));
     }
 
     private void PlayerMoveDownRight()
     {
-        playerActor.Move(new Vector3Int(1, -1));
+        playerActor.Walk(new Vector3Int(1, -1));
     }
 }

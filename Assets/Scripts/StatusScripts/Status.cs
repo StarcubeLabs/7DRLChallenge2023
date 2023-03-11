@@ -17,7 +17,7 @@ public abstract class Status
 
     public bool TickStatus()
     {
-        if (turnsLeft-- <= 0)
+        if (--turnsLeft <= 0)
         {
             return true;
         }
@@ -50,6 +50,11 @@ public abstract class Status
     public virtual bool AllowStatus(StatusType statusType)
     {
         return true;
+    }
+    
+    public virtual int ModifyDamageTarget(int damage, ActorController user)
+    {
+        return damage;
     }
 
     public virtual string GetStatusApplyMessage()

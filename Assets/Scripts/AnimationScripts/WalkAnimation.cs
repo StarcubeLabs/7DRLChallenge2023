@@ -1,24 +1,16 @@
 using UnityEngine;
 
-public class WalkAnimation : TurnAnimation
+public class WalkAnimation : UpdateLocationAnimation
 {
-    private ActorController actor;
-    private Animator actorAnimator;
+    private const float ANIMATION_TIME = 0.25f;
     
-    public WalkAnimation(ActorController actor, Animator actorAnimator)
+    public WalkAnimation(ActorController actor, Animator actorAnimator) : base(actor, actorAnimator, ANIMATION_TIME)
     {
-        this.actor = actor;
-        this.actorAnimator = actorAnimator;
     }
     
     public override void StartAnimation()
     {
         actorAnimator?.SetTrigger("Walk");
-    }
-
-    public override bool UpdateAnimation()
-    {
-        return actor.UpdateVisualLocation();
     }
 
     public override bool CanRunAnimationsConcurrently(TurnAnimation anim)

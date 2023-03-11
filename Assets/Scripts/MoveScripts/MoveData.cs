@@ -48,8 +48,12 @@ public abstract class MoveData : MonoBehaviour
 
     protected void DamageTarget(ActorController user, ActorController target)
     {
-        user.DamageTarget(this, target);
-        if (afflictionType != StatusType.None && UnityEngine.Random.value <= afflictionChance)
+        int damage = 0;
+        if (Power > 0)
+        {
+            damage = user.DamageTarget(this, target);
+        }
+        if (afflictionType != StatusType.None && (Power == 0 || damage > 0) && UnityEngine.Random.value <= afflictionChance)
         {
             target.ApplyStatus(afflictionType, afflictionTurnCount);
         }
@@ -76,6 +80,11 @@ public abstract class MoveData : MonoBehaviour
     public virtual bool UsableByAI(ActorController user, ActorController target)
     {
         return true;
+    }
+
+    public virtual int GetMovePower()
+    {
+        return Power;
     }
 }
 

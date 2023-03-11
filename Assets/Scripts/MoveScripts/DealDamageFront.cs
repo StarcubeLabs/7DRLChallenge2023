@@ -1,3 +1,5 @@
+using RLDataTypes;
+
 public class DealDamageFront : MoveData
 {
     public override void UseMove(ActorController user)
@@ -7,6 +9,15 @@ public class DealDamageFront : MoveData
         {
             DamageTarget(user, target);
         }
+    }
+    
+    public override bool UsableByAI(ActorController user, ActorController target)
+    {
+        if (Power == 0 && afflictionType != StatusType.None)
+        {
+            return !target.HasStatus(afflictionType);
+        }
+        return true;
     }
 
     public override bool InAIRange(ActorController user, ActorController target)

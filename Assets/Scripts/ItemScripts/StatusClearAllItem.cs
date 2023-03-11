@@ -10,8 +10,10 @@ public class StatusClearAllItem : ItemData
             StatusType.Blindness,
             StatusType.Burn,
             StatusType.Confusion,
+            StatusType.Frozen,
             StatusType.Muteness,
             StatusType.Poison,
+            StatusType.SeismicShock,
             StatusType.Slow);
         consumer.AddFood(5);
         return true;
