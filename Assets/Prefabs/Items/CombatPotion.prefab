@@ -48,7 +48,7 @@ MonoBehaviour:
   ItemDescription: A small potion that restores 5 Combat Points for each move you
     know.
   ItemIcon: {fileID: 21300000, guid: 72174fa65282b0e4d9e8daa96cb8aca5, type: 3}
-  ItemObject: {fileID: 8055124780003044174, guid: 0a0741af4c3ddce47b758dbe4cecfdd4, type: 3}
+  ItemObject: {fileID: 4383152010276537219, guid: 85dceeedc647d6648a4f03aa40d74944, type: 3}
   IsStackable: 0
   MaximumStack: 5
   RestoreAmount: 5

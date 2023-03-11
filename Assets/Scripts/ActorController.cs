@@ -32,7 +32,6 @@ public class ActorController : EntityController
     public Vector2Int hitPoints;
     public bool HasFullHealth { get { return hitPoints.x >= hitPoints.y; } }
 
-
     [Tooltip("Hunger value range. X is the starting hunger value, and Y is the maximum hunger value.")]
     public Vector2Int hunger;
     public int starvationDamage = 1;
@@ -53,7 +52,7 @@ public class ActorController : EntityController
     [SerializeField]
     private List<MoveData> startingMoves;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Move> moves = new List<Move>();
     [HideInInspector]
     public Move moveToReplace;
@@ -445,10 +444,11 @@ public class ActorController : EntityController
             {
                 turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} restored all combat points!"));
             }
-            foreach(MoveData move in startingMoves)
-            {
-                move.RestorePP(restoreAmount);
-            }
+        }
+        for(int i = 0; i < moves.Count; i++)
+        {
+            print(moves[i].name);
+            moves[i].RestorePP(restoreAmount);
         }
     }
 

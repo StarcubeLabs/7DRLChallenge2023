@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Move : MonoBehaviour
@@ -13,6 +14,12 @@ public class Move : MonoBehaviour
         moveObject.name = moveData.MoveName;
         move.pp = moveData.MaxPP;
         return move;
+    }
+
+    public void RestorePP(int PP)
+    {
+        print("Restore!");
+        pp = Math.Min(pp+PP, moveData.MaxPP);
     }
 }
 
