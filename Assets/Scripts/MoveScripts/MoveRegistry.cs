@@ -11,7 +11,7 @@ public class MoveRegistry : MonoBehaviour
     
     private StatusType[] HEALTH_DRAIN_STATUSES = { StatusType.Burn, StatusType.Poison };
     private StatusType[] UNIQUE_STATUSES = { StatusType.Confusion };
-    private StatusType[] MOVEMENT_STATUSES = { StatusType.Petrify, StatusType.Sleep, StatusType.Slow };
+    private StatusType[] MOVEMENT_STATUSES = { StatusType.Petrify, StatusType.SeismicShock, StatusType.Sleep, StatusType.Slow, StatusType.Stun };
     private StatusType[] REGENERATION_STATUSES = { StatusType.Regeneration };
     private StatusType[] IMMUNITY_STATUSES = { StatusType.PetrifyImmunity, StatusType.SleepImmunity };
 
@@ -69,6 +69,7 @@ public class MoveRegistry : MonoBehaviour
             case StatusType.SeismicShock: return seismicShockSprite;
             case StatusType.Sleep: return sleepSprite;
             case StatusType.Slow: return slowSprite;
+            case StatusType.Stun: return stunSprite;
             default: return null;
         }
     }
@@ -88,6 +89,7 @@ public class MoveRegistry : MonoBehaviour
             case StatusType.Sleep: return new Sleep(actor, turnCount);
             case StatusType.SleepImmunity: return new SleepImmunity(actor, turnCount);
             case StatusType.Slow: return new Slow(actor, turnCount);
+            case StatusType.Stun: return new Stun(actor, turnCount);
             default: return null;
         }
     }

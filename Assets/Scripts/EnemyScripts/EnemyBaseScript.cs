@@ -53,7 +53,7 @@ public class EnemyBaseScript : MonoBehaviour
             switch (state)
             {
                 case AI_STATES.WANDERING:
-                    enemyActor.Move(new Vector3Int(Random.Range(-1, 2), Random.Range(-1, 2)));
+                    enemyActor.Walk(new Vector3Int(Random.Range(-1, 2), Random.Range(-1, 2)));
                     break;
                 case AI_STATES.PURSUING:
                     MoveToward(enemyActor.gridPosition, player.GetLocation());
@@ -109,7 +109,7 @@ public class EnemyBaseScript : MonoBehaviour
 
             if (!TryAttack(currentPosition, nextOffset))
             {
-                enemyActor.Move(nextOffset);//Move that direction.
+                enemyActor.Walk(nextOffset);//Move that direction.
             }
         }
     }

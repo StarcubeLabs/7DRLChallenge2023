@@ -146,7 +146,7 @@ public class ActorController : EntityController
         }
     }
 
-    public bool UpdateVisualLocation()
+    public bool UpdateVisualLocation(float animationTime)
     {
         bool animationFinished;
         Vector3 worldPosition = GetCellCenterWorld(gridPosition);
@@ -157,7 +157,7 @@ public class ActorController : EntityController
         }
         else
         {
-            visualPosition = Vector3.Lerp(visualPosition, new Vector3(worldPosition.x, 0, worldPosition.z), .25f);
+            visualPosition = Vector3.Lerp(visualPosition, new Vector3(worldPosition.x, 0, worldPosition.z), animationTime);
             animationFinished = false;
         }
         this.transform.position = visualPosition;
@@ -182,7 +182,7 @@ public class ActorController : EntityController
     /// Moves an Actor. Also considers diagonals to prevent corner cutting of solid or filled in grid squares.
     /// </summary>
     /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
-    public void Move(Vector3Int offset)
+    public void Walk(Vector3Int offset)
     {
         //If we are waiting, just skip.
         if (offset == Vector3Int.zero)
@@ -233,6 +233,12 @@ public class ActorController : EntityController
             turnManager.KickToBackOfTurnOrder(this);
             TickStatus();
         }
+    }
+
+    public void ForceLocation(Vector3Int position)
+    {
+        gridPosition = position;
+        turnAnimationController.AddAnimation(new ForceLocationAnimation(this, ActorAnimController));
     }
 
     public bool AddMove(Move move)

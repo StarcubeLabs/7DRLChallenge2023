@@ -21,5 +21,6 @@ namespace RLDataTypes
         PetrifyImmunity,
         SleepImmunity,
         SeismicShock,
+        Stun,
     }
 }

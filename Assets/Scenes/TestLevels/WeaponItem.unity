@@ -753,7 +753,7 @@ PrefabInstance:
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.data[0]
       value: 
-      objectReference: {fileID: 3582576500428355737, guid: c4c17bb2c2935469398b5277b9092f9d, type: 3}
+      objectReference: {fileID: 8518528083465276388, guid: d64e10a56753c4135a4f32983230d2f6, type: 3}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.data[1]
       value: 
