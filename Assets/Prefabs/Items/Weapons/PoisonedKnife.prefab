@@ -53,5 +53,5 @@ MonoBehaviour:
   weaponElement: 0
   WeaponStrength: 2
   AfflictionType: 1
-  AfflictionChance: 1
+  AfflictionChance: 0.1
   AfflictionTurnCount: 4

@@ -2,6 +2,7 @@ using PlasticPipe.PlasticProtocol.Messages;
 using RLDataTypes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ActorController : EntityController
@@ -61,16 +62,7 @@ public class ActorController : EntityController
 
     public bool IsMovesetFull { get { return moves.Count >= MAX_MOVES; } }
 
-    [Header("Status Variables")]
-    [Tooltip("The status that the actor is currently afflicted with.")]
-    public StatusType afflictedStatus = StatusType.None;
-    [Tooltip("How many turns left that the actor is afflicted with the current status.")]
-    public int statusCountdown = 0;
-
-    [SerializeField]
-    private StatusType currentModifier = StatusType.None;
-    private int modifierCountdown = 0;
-    
+    public List<Status> statuses = new List<Status>();
     private StatusIcon statusIcon;
 
     [Header("Equippables")]
@@ -82,29 +74,14 @@ public class ActorController : EntityController
     public EquippableItem Accessory { get { return accessory == null ? null : (EquippableItem)accessory.ItemData; }}
 
     /// <summary>
-    /// Used by Status Effects to decide when their affects should be triggered. Counts up.
-    /// </summary>
-    /// 
-    [HideInInspector]
-    public int internalStatusCountdown = 0;
-
-    /// <summary>
     /// Distinct from status effect countdown. Used to determine always on effects like hunger.
     /// </summary>
-    /// 
     [HideInInspector]
     public int turnsTaken = 0;
 
-    /// <summary>
-    /// Determines whether an actor is immobilized by a status like Sleep or Petrify.
-    /// </summary>
-    /// 
-    [HideInInspector]
-    public bool isStatusImmobilized = false;
-
     public EventHandler onDie;
 
-    public enum ActorDirection { up, upRight, right, downRight, down, downLeft, left, upLeft}
+    public enum ActorDirection { up, upRight, right, downRight, down, downLeft, left, upLeft, numDirections }
 
     public ActorDirection actorDirection = ActorDirection.down;
 
@@ -191,20 +168,6 @@ public class ActorController : EntityController
     /// <param name="offset">The direction of the square adjacent to the Actor to move in.</param>
     public void Move(Vector3Int offset)
     {
-        //We can't move at all, so kick us back to the turn line.
-        if(isStatusImmobilized)
-        {
-            EndTurn();
-            return;
-        }
-
-        //We're confused. Set our direction to RANDOM.
-        if (afflictedStatus == StatusType.Confusion)
-        {
-            offset.x = UnityEngine.Random.Range(-1, 2);
-            offset.y = UnityEngine.Random.Range(-1, 2);
-        }
-
         //If we are waiting, just skip.
         if (offset == Vector3Int.zero)
         {
@@ -213,6 +176,10 @@ public class ActorController : EntityController
         }
         
         FaceDirection(offset);
+        
+        statuses.ForEach(status => status.ModifyFacingDirection());
+        
+        offset = GetOffsetFromDirection();
 
         bool isMovingDiagonally = (offset.x * offset.y) != 0;
 
@@ -240,9 +207,9 @@ public class ActorController : EntityController
         EndTurn();
     }
 
-    public void EndTurn()
+    public void EndTurn(bool force = false)
     { 
-        if (turnManager.CanMove(this))
+        if (force || turnManager.CanMove(this))
         {
             turnManager.KickToBackOfTurnOrder(this);
             TickStatus();
@@ -296,6 +263,7 @@ public class ActorController : EntityController
         {
             turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} used {move.moveData.MoveName}!"));
         }
+        statuses.ForEach(status => status.ModifyFacingDirection());
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
         move.moveData.UseMove(this);
         if (move.pp > 0)
@@ -325,51 +293,93 @@ public class ActorController : EntityController
 
     public void FaceDirection(Vector3Int offset)
     {
+        ActorDirection direction;
         //Big 'ol If Chain to determine character facing direction based on movement direction
         if (offset == Vector3Int.up)
         {
-            actorDirection = ActorDirection.up;
-            visualRotation = 180;
+            direction = ActorDirection.up;
         }
-        else if (offset == new Vector3Int(1, 1, 0))
+        else if (offset == new Vector3Int(1, 1))
         {
-            actorDirection = ActorDirection.upRight;
-            visualRotation = 135;
+            direction = ActorDirection.upRight;
         }
         else if (offset == Vector3Int.right)
         {
-            actorDirection = ActorDirection.right;
-            visualRotation = 90;
+            direction = ActorDirection.right;
         }
-        else if (offset == new Vector3Int(1, -1, 0))
+        else if (offset == new Vector3Int(1, -1))
         {
-            actorDirection = ActorDirection.downRight;
-            visualRotation = 45;
+            direction = ActorDirection.downRight;
         }
         else if (offset == Vector3Int.down)
         {
-            actorDirection = ActorDirection.down;
-            visualRotation = 0;
+            direction = ActorDirection.down;
         }
-        else if (offset == new Vector3Int(-1, -1, 0))
+        else if (offset == new Vector3Int(-1, -1))
         {
-            actorDirection = ActorDirection.downLeft;
-            visualRotation = 315;
+            direction = ActorDirection.downLeft;
         }
         else if (offset == Vector3Int.left)
         {
-            actorDirection = ActorDirection.left;
-            visualRotation = 270;
+            direction = ActorDirection.left;
         }
-        else if (offset == new Vector3Int(-1, 1, 0))
+        else if (offset == new Vector3Int(-1, 1))
         {
-            actorDirection = ActorDirection.upLeft;
-            visualRotation = 225;
+            direction = ActorDirection.upLeft;
         }
         else
         {
-            actorDirection = ActorDirection.down;
-            visualRotation = 0;
+            direction = ActorDirection.down;
+        }
+        FaceDirection(direction);
+    }
+
+    public void FaceDirection(ActorDirection direction)
+    {
+        actorDirection = direction;
+        //Big 'ol If Chain to determine character facing direction based on movement direction
+        switch (direction)
+        {
+            case ActorDirection.up:
+                visualRotation = 180;
+                break;
+            case ActorDirection.upRight:
+                visualRotation = 135;
+                break;
+            case ActorDirection.right:
+                visualRotation = 90;
+                break;
+            case ActorDirection.downRight:
+                visualRotation = 45;
+                break;
+            case ActorDirection.down:
+                visualRotation = 0;
+                break;
+            case ActorDirection.downLeft:
+                visualRotation = 315;
+                break;
+            case ActorDirection.left:
+                visualRotation = 270;
+                break;
+            case ActorDirection.upLeft:
+                visualRotation = 225;
+                break;
+        }
+    }
+    
+    public Vector3Int GetOffsetFromDirection()
+    {
+        switch (actorDirection)
+        {
+            case ActorDirection.up: return Vector3Int.up;
+            case ActorDirection.upRight: return new Vector3Int(1, 1);
+            case ActorDirection.right: return Vector3Int.right;
+            case ActorDirection.downRight: return new Vector3Int(1, -1);
+            case ActorDirection.down: return Vector3Int.down;
+            case ActorDirection.downLeft: return new Vector3Int(-1, -1);
+            case ActorDirection.left: return Vector3Int.left;
+            case ActorDirection.upLeft: return new Vector3Int(-1, 1);
+            default: return Vector3Int.down;
         }
     }
 
@@ -384,27 +394,21 @@ public class ActorController : EntityController
             case ActorDirection.upRight:
                 directionOffset = new Vector3Int(1, 1);
                 break;
-
             case ActorDirection.right:
                 directionOffset = Vector3Int.right;
                 break;
-
             case ActorDirection.downRight:
                 directionOffset = new Vector3Int(1, -1);
                 break;
-
             case ActorDirection.down:
                 directionOffset = Vector3Int.down;
                 break;
-
             case ActorDirection.downLeft:
                 directionOffset = new Vector3Int(-1, -1);
                 break;
-
             case ActorDirection.left:
                 directionOffset = Vector3Int.left;
                 break;
-
             case ActorDirection.upLeft:
                 directionOffset = new Vector3Int(-1, 1);
                 break;
@@ -513,92 +517,38 @@ public class ActorController : EntityController
 
         if (allowStatus)
         {
-            afflictedStatus = statusType;
-            statusCountdown = turnCount;
-            List<StatusType> statusesList = new List<StatusType>();
-            statusesList.Add(statusType);
-            turnAnimationController.AddAnimation(new StatusAnimation(statusIcon, statusesList));
+            Status status = moveRegistry.CreateStatusFromType(statusType, this, turnCount);
+            if (status != null)
+            {
+                statuses.Add(status);
+                UpdateStatusIcons();
+                string statusApplyMessage = status.GetStatusApplyMessage();
+                if (statusApplyMessage != null)
+                {
+                    turnAnimationController.AddAnimation(new MessageAnimation(statusApplyMessage));
+                }
+            }
         }
     }
 
     public void TickStatus()
     {
-        if (statusCountdown != 0)
+        List<Status> removeStatuses = new List<Status>();
+        foreach (Status status in statuses)
         {
-            switch (afflictedStatus)
+            if (status.TickStatus())
             {
-                case StatusType.Poison:
-                    if (internalStatusCountdown == 2)
-                    {
-                        this.Hurt(1);
-                        internalStatusCountdown = 0;
-                    }
-
-                    statusCountdown--;
-                    internalStatusCountdown++;
-                    break;
-
-                case StatusType.Confusion:
-                    statusCountdown--;
-                    break;
-
-                case StatusType.Sleep:
-                    if(statusCountdown != 0)
-                    {
-                        isStatusImmobilized = true;
-                        statusCountdown--;
-                    }
-
-                    
-                    break;
-
-                case StatusType.Slow:
-                    if (internalStatusCountdown != 2)
-                    {
-                        isStatusImmobilized = true;
-                        internalStatusCountdown++;
-                        statusCountdown--;
-                    }
-                    else
-                    {
-                        isStatusImmobilized = false;
-                        internalStatusCountdown = 0;
-                    }
-
-                    break;
-
-                case StatusType.Petrify:
-                    if (statusCountdown != 0)
-                    {
-                        isStatusImmobilized = true;
-                        statusCountdown--;
-                    }
-
-
-                    break;
-
-                case StatusType.Muteness:
-
-                    statusCountdown--;
-
-                    break;
-
-                case StatusType.Blindness:
-
-                    statusCountdown--;
-
-                    break;
-
-                default:
-
-                    break;
+                removeStatuses.Add(status);
             }
         }
-        //We've survived the status and should clear it.
-        if(statusCountdown == 0)
+
+        foreach (Status status in removeStatuses)
         {
-            afflictedStatus = StatusType.None;
-            isStatusImmobilized = false;
+            statuses.Remove(status);
+            turnAnimationController.AddAnimation(new MessageAnimation(status.GetStatusCureMessage()));
+        }
+        if (removeStatuses.Count > 0)
+        {
             UpdateStatusIcons();
         }
 
@@ -620,33 +570,17 @@ public class ActorController : EntityController
         }
 
         turnsTaken++;
-
-        TickModifiers();
-    }
-
-    public void TickModifiers()
-    {
-        modifierCountdown--;
-        if(modifierCountdown == 0)
-        {
-            currentModifier = StatusType.None;
-        }
     }
 
     private void UpdateStatusIcons()
     {
-        List<StatusType> statusesList = new List<StatusType>();
-        if (afflictedStatus != StatusType.None)
-        {
-            statusesList.Add(afflictedStatus);
-        }
+        List<StatusType> statusesList = statuses.ConvertAll(status => status.Type);
         turnAnimationController.AddAnimation(new StatusAnimation(statusIcon, statusesList));
     }
 
-    public void ApplyModifier(StatusType statusModifier, int turnCount) 
+    public bool IsImmobilized()
     {
-        currentModifier = statusModifier;
-        modifierCountdown = turnCount;
+        return statuses.Any(status => status.IsImmobilized());
     }
     
     public void SnapToPosition(Vector3Int gridPosition)

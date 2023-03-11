@@ -17,6 +17,14 @@ public class TurnManager: MonoBehaviour
         actorManager.onRemoveActor += OnRemoveActor;
     }
 
+    private void Update()
+    {
+        if (turnOrder.Count > 0 && !CanCurrentActorMove())
+        {
+            turnOrder[0].EndTurn(true);
+        }
+    }
+
     public void OnAddActor(object sender, ActorController actorController)
     {
         KickToBackOfTurnOrder(actorController);
@@ -29,16 +37,26 @@ public class TurnManager: MonoBehaviour
 
     public bool CanMove(ActorController actorController)
     {
-        if (turnOrder == null || turnOrder.Count == 0)
+        if (turnOrder.Count == 0)
         {
             return false;
         }
-        return turnOrder[0] == actorController;
+        return CanCurrentActorMove() && turnOrder[0] == actorController;
     }
 
     public void KickToBackOfTurnOrder(ActorController actorController)
     {
         turnOrder.Remove(actorController);
         turnOrder.Insert(turnOrder.Count, actorController);
+    }
+
+    private bool CanCurrentActorMove()
+    {
+        if (turnOrder.Count == 0)
+        {
+            return false;
+        }
+
+        return !turnOrder[0].IsImmobilized();
     }
 }

@@ -43,6 +43,14 @@ PrefabInstance:
       propertyPath: ActorAnimController
       value: 
       objectReference: {fileID: 5531454999746933283}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: startingMoves.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: startingMoves.Array.data[0]
+      value: 
+      objectReference: {fileID: 972135384986904225, guid: 86520059ebfdc44f390bb957e5e02255, type: 3}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_RootOrder
       value: 0
