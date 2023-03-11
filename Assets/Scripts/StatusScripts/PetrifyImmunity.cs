@@ -2,8 +2,10 @@ using RLDataTypes;
 
 public class PetrifyImmunity : StatusImmunity
 {
+
     public PetrifyImmunity(ActorController actor, int turnsLeft) : base(StatusType.PetrifyImmunity, actor, turnsLeft, StatusType.Petrify)
     {
+        HUD_TEXT = "Immune to Petrify";
     }
 
     public override string GetStatusApplyMessage()

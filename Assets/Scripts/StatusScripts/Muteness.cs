@@ -2,8 +2,10 @@ using RLDataTypes;
 
 public class Muteness: Status
 {
+
     public Muteness(ActorController actor, int turnsLeft) : base(StatusType.Muteness, actor, turnsLeft)
     {
+        HUD_TEXT = "Muted";
     }
 
     public override bool IsMoveUsable(Move move)

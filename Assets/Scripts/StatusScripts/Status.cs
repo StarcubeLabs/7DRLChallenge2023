@@ -4,7 +4,9 @@ public abstract class Status
 {
     protected StatusType type;
     public StatusType Type { get { return type; } }
-    
+
+    public string HUD_TEXT;
+
     protected int turnsLeft;
     protected ActorController actor;
 

@@ -6,6 +6,7 @@ public class FlameShield : Status
     
     public FlameShield(ActorController actor, int turnsLeft) : base(StatusType.FlameShield, actor, turnsLeft)
     {
+        HUD_TEXT = "Flame Shielded";
     }
 
     public override void OnActorAttacked(ActorController attacker)
