@@ -18,8 +18,20 @@ public class ServicesManager : MonoBehaviour
     public static MoveRegistry MoveRegistry { get { return instance.moveRegistry; } }
 
     private HudManager hudManager;
-    public static HudManager HudManager { get { return instance.hudManager; } }
-    
+
+    public static HudManager HudManager
+    {
+        get
+        {
+            if (!instance.hudManager)
+            {
+                instance.hudManager = FindObjectOfType<HudManager>();
+            }
+
+            return instance.hudManager;
+        }
+    }
+
 
     public Camera mainCamera;
 
@@ -38,7 +50,6 @@ public class ServicesManager : MonoBehaviour
             entityManager = GetComponentInChildren<EntityManager>();
             levelManager = GetComponentInChildren<LevelManager>();
             moveRegistry = GetComponentInChildren<MoveRegistry>();
-            hudManager = FindObjectOfType<HudManager>();
         }
     }
 
