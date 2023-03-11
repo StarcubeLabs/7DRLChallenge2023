@@ -48,11 +48,12 @@ public abstract class MoveData : MonoBehaviour
 
     protected void DamageTarget(ActorController user, ActorController target)
     {
+        int damage = 0;
         if (Power > 0)
         {
-            user.DamageTarget(this, target);
+            damage = user.DamageTarget(this, target);
         }
-        if (afflictionType != StatusType.None && UnityEngine.Random.value <= afflictionChance)
+        if (afflictionType != StatusType.None && (Power == 0 || damage > 0) && UnityEngine.Random.value <= afflictionChance)
         {
             target.ApplyStatus(afflictionType, afflictionTurnCount);
         }

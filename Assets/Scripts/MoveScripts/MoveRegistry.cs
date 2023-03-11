@@ -10,7 +10,7 @@ public class MoveRegistry : MonoBehaviour
     public Move BasicAttack { get { return basicAttackMove; } }
     
     private StatusType[] HEALTH_DRAIN_STATUSES = { StatusType.Burn, StatusType.Poison };
-    private StatusType[] UNIQUE_STATUSES = { StatusType.Confusion };
+    private StatusType[] UNIQUE_STATUSES = { StatusType.Confusion, StatusType.Frozen };
     private StatusType[] MOVEMENT_STATUSES = { StatusType.Petrify, StatusType.SeismicShock, StatusType.Sleep, StatusType.Slow, StatusType.Stun };
     private StatusType[] REGENERATION_STATUSES = { StatusType.Regeneration };
     private StatusType[] IMMUNITY_STATUSES = { StatusType.PetrifyImmunity, StatusType.SleepImmunity };
@@ -81,6 +81,7 @@ public class MoveRegistry : MonoBehaviour
             case StatusType.Blindness: return new Blindness(actor, turnCount);
             case StatusType.Burn: return new Burn(actor, turnCount);
             case StatusType.Confusion: return new Confusion(actor, turnCount);
+            case StatusType.Frozen: return new Frozen(actor, turnCount);
             case StatusType.Muteness: return new Muteness(actor, turnCount);
             case StatusType.Petrify: return new Petrify(actor, turnCount);
             case StatusType.PetrifyImmunity: return new PetrifyImmunity(actor, turnCount);

@@ -22,5 +22,6 @@ namespace RLDataTypes
         SleepImmunity,
         SeismicShock,
         Stun,
+        Frozen,
     }
 }

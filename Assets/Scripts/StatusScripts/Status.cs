@@ -51,6 +51,11 @@ public abstract class Status
     {
         return true;
     }
+    
+    public virtual int ModifyDamageTarget(int damage, ActorController user)
+    {
+        return damage;
+    }
 
     public virtual string GetStatusApplyMessage()
     {

@@ -318,6 +318,11 @@ public class ActorController : EntityController
         {
             damage = equippableItem.ModifyDamageTarget(damage, user, this);
         }
+
+        foreach (Status status in Statuses)
+        {
+            damage = status.ModifyDamageTarget(damage, user);
+        }
         return damage;
     }
 
@@ -494,7 +499,7 @@ public class ActorController : EntityController
         UpdateVisualHitPoints();
     }
 
-    public void DamageTarget(MoveData moveData, ActorController target)
+    public int DamageTarget(MoveData moveData, ActorController target)
     {
         int damage = DamageCalculator.CalculateDamage(moveData, this, target);
         if (damage > 0)
@@ -503,6 +508,8 @@ public class ActorController : EntityController
             GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
             target.Statuses.ForEach(status => status.OnActorAttacked(this));
         }
+
+        return damage;
     }
 
     public void Hurt(int hurtAmount = 1, string hurtMessage = null)
