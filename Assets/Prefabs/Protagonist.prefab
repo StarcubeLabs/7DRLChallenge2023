@@ -341,7 +341,7 @@ MonoBehaviour:
   visualTransform: {fileID: 8909480822188551740}
   ActorAnimController: {fileID: 0}
   displayName: Att
-  hitPoints: {x: 20, y: 20}
+  hitPoints: {x: 100, y: 100}
   hunger: {x: 100, y: 100}
   starvationDamage: 1
   visualHitPoints: 0
