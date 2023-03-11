@@ -678,8 +678,8 @@ public class ActorController : EntityController
     {
         if (this.gridPosition == levelManager.GetActiveLevel().GetGridPositionFromCell(levelManager.GetActiveLevel().somewhatInterestingMap.end))
         {
-            levelManager.GoDownFloor();
             turnAnimationController.AddAnimation(new WalkAnimation(this, ActorAnimController));
+            levelManager.GoDownFloor();
         }
     }
 

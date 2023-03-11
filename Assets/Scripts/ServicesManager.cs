@@ -14,6 +14,9 @@ public class ServicesManager : MonoBehaviour
     private LevelManager levelManager;
     public static LevelManager LevelManager { get { return instance.levelManager; } }
     
+    private GameStateManager gameStateManager;
+    public static GameStateManager GameStateManager { get { return instance.gameStateManager; } }
+    
     private MoveRegistry moveRegistry;
     public static MoveRegistry MoveRegistry { get { return instance.moveRegistry; } }
 
@@ -50,6 +53,7 @@ public class ServicesManager : MonoBehaviour
             entityManager = GetComponentInChildren<EntityManager>();
             levelManager = GetComponentInChildren<LevelManager>();
             moveRegistry = GetComponentInChildren<MoveRegistry>();
+            gameStateManager = GetComponentInChildren<GameStateManager>();
         }
     }
 
