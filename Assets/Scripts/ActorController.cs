@@ -563,6 +563,15 @@ public class ActorController : EntityController
         UpdateStatusIcons();
     }
 
+    public void CureStatus(StatusType status)
+    {
+        int statusIndex = statuses.FindIndex(s => s.Type == status);
+        if (statusIndex >= 0)
+        {
+            CureStatus(statuses[statusIndex]);
+        }
+    }
+
     public void TickStatus()
     {
         bool updateStatuses = false;
