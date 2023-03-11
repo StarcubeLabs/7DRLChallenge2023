@@ -13,7 +13,9 @@ public enum AI_STATES
 
 public class EnemyBaseScript : MonoBehaviour
 {
-    private const float BASIC_ATTACK_CHANCE = 0.5f;
+    [SerializeField]
+    [Range(0, 1)]
+    private float basicAttackChance = 0.5f;
     
     public ActorController enemyActor;
     public PlayerInputController player;
@@ -113,7 +115,7 @@ public class EnemyBaseScript : MonoBehaviour
             enemyActor.moves.FindAll(move => move.pp > 0 && move.moveData.UsableByAI(enemyActor, playerActor));
         
         
-        if (usableMoves.Count == 0 || Random.value <= BASIC_ATTACK_CHANCE)
+        if (usableMoves.Count == 0 || Random.value <= basicAttackChance)
         {
             if (ServicesManager.MoveRegistry.BasicAttack.moveData.InAIRange(enemyActor, playerActor))
             {
