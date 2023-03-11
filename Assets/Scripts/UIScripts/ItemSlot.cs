@@ -69,13 +69,36 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
             }
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                if (item.Consume())
+                if (item.ItemData is MoveScroll)
                 {
-                    item = null;
+                    ((MoveScroll)item.ItemData).StartTeachMove(item, EndTurnIfConsumed);
                 }
-                inventoryDrawerReference.CloseAndEndTurn();
+                else
+                {
+                    TryConsumeItem();
+                    inventoryDrawerReference.CloseAndEndTurn();
+                }
             }
         }
         inventoryDrawerReference.Draw();
+    }
+
+    private bool TryConsumeItem()
+    {
+        if (item.Consume())
+        {
+            item = null;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void EndTurnIfConsumed()
+    {
+        if (TryConsumeItem())
+        {
+            inventoryDrawerReference.CloseAndEndTurn();
+        }
     }
 }

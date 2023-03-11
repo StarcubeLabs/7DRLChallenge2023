@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -27,7 +23,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
-
+        
         Array.ForEach(GetComponentsInChildren<MenuItem>(), (menuItem) =>
         {
             menuItem.AttachMenuListener(this);
@@ -42,6 +38,17 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public void OnChooseMove(object sender, EventArgs args)
     {
         Close();
+    }
+
+    public void OnCancelUseMove()
+    {
+        contextMainMenu.Show();
+        NavigateToFirstMenuItem();
+    }
+
+    public void OnCancelTeachMove()
+    {
+        ServicesManager.HudManager.ContextMenu.OpenInventory();
     }
 
     public void StopHighlightMenuItem(MenuItem sender)
@@ -64,25 +71,36 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void OnSelectMoveMenu(object sender, EventArgs eventArgs)
     {
-        moveMenu.Show();
+        moveMenu.SetupUseMoveMenu(this);
         contextMainMenu.Hide();
+
+        NavigateToFirstMenuItem();
+    }
+
+    public void OpenTeachMoveMenu(Move newMove, Action consumeAction)
+    {
+        CloseInventory();
+        moveMenu.SetupTeachMoveMenu(this, newMove, consumeAction);
 
         NavigateToFirstMenuItem();
     }
 
     public void OnSelectInventory(object sender, EventArgs eventArgs)
     {
+        OpenInventory();
+        contextMainMenu.Hide();
+    }
+
+    public void OpenInventory()
+    {
         inventoryMenu.gameObject.SetActive(true);
         inventoryMenu.GetComponentInChildren<InventoryDrawer>().Open();
-        contextMainMenu.Hide();
         cursor.enabled = false;
     }
 
     public void OpenMenu()
     {
         contextMainMenu.Show();
-
-        moveMenu.SetupMenu();
 
         Array.ForEach(moveMenu.GetComponentsInChildren<MenuItem>(), (menuItem) =>
         {
@@ -142,17 +160,14 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
         }
         if (moveMenu.elementGroup.enabled)
         {
-            moveMenu.elementGroup.Hide();
-            contextMainMenu.Show();
-            NavigateToFirstMenuItem();
+            moveMenu.Close();
+            moveMenu.Cancel();
         }
         else if (inventoryMenu.gameObject.activeSelf)
         {
-            inventoryMenu.GetComponentInChildren<InventoryDrawer>().Close();
-            inventoryMenu.gameObject.SetActive(false);
+            CloseInventory();
             contextMainMenu.Show();
             NavigateToFirstMenuItem();
-            cursor.enabled = true;
         }
         else if (contextMainMenu.enabled)
         {
@@ -171,6 +186,13 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
         cursor.enabled = false;
         eventSystem.SetSelectedGameObject(null);
         ServicesManager.HudManager.MessageBox.Show();
+    }
+
+    public void CloseInventory()
+    {
+        inventoryMenu.GetComponentInChildren<InventoryDrawer>().Close();
+        inventoryMenu.gameObject.SetActive(false);
+        cursor.enabled = true;
     }
 
     public Transform getActiveMenu()
