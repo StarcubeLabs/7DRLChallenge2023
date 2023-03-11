@@ -4,7 +4,7 @@ public static class DamageCalculator
 {
     public static int CalculateDamage(MoveData move, ActorController user, ActorController target)
     {
-        int moveDamage = move.Power;
+        int moveDamage = move.Power + user.baseAttackPower;
         ElementType moveElement = move.GetModifiedElement(user);
         if (moveElement == user.GetEffectiveType())
         {
