@@ -20,8 +20,11 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
     public List<MenuItem> MenuItems { get { return new List<MenuItem>(itemToMoveMap.Keys); }}
 
     public EventHandler<EventArgs> onChooseMove;
+    public float menuCloseDelayTime = 1.5f;
 
     private MoveMenuMode mode;
+    private Move lastSelectedMove;
+    private float selectionTimeStamp;
 
     public void Start()
     {
@@ -45,6 +48,15 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
 
     private void SetupMenu(ContextMenu contextMenu)
     {
+        RectTransform rect = (RectTransform)this.transform;
+        if (mode is MoveMenuTeachMove)
+        {
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 300);
+        }
+        else
+        {
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 240);
+        }
         foreach (Move move in mode.GetMoves())
         {
             MenuItem menuItem = Instantiate(moveMenuItemPrefab, moveList);
@@ -54,7 +66,7 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
             menuItem.AttachMenuListener(contextMenu);
             if (mode.IsMoveSelectable(move))
             {
-                menuItem.onSelect += OnChooseMove;
+                menuItem.onSelect += OnStartChooseMove;
             }
         }
         
@@ -63,32 +75,46 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
         elementGroup.Show();
     }
 
-    public void OnChooseMove(object sender, EventArgs args)
+    public void OnStartChooseMove(object sender, EventArgs args)
     {
         MenuItem menuItem = (MenuItem)sender;
-        Move moveData = itemToMoveMap[menuItem];
-        mode.SelectMove(moveData);
+        lastSelectedMove = itemToMoveMap[menuItem];
         Array.ForEach(GetComponentsInChildren<MenuItem>(), (childMenuItem) =>
         {
-            childMenuItem.onSelect -= OnChooseMove;
+            childMenuItem.onSelect -= OnStartChooseMove;
         });
         elementGroup.Hide();
+        Close();
 
-        bool confirmed = mode.ConfirmChooseMove(moveData);
+        bool confirmed = mode.ConfirmChooseMove(lastSelectedMove);
         if (confirmed)
         {
-            if (onChooseMove != null && mode.ConfirmChooseMove(moveData))
+            if (onChooseMove != null && mode.ConfirmChooseMove(lastSelectedMove))
             {
                 onChooseMove(this, EventArgs.Empty);
             }
+            selectionTimeStamp = Time.time;
         }
-
-        Close();
 
         if (!confirmed)
         {
             mode.OnCancel();
         }
+    }
+
+    public void Update()
+    {
+        if (lastSelectedMove && (Time.time - selectionTimeStamp) > menuCloseDelayTime)
+        {
+            OnFinishMove();
+            lastSelectedMove = null;
+        }
+    }
+
+    public void OnFinishMove()
+    {
+        mode.SelectMove(lastSelectedMove);
+        mode.OnClose();
     }
 
     public void StartHighlightMenuItem(MenuItem menuItem)
@@ -115,6 +141,5 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
         });
         
         elementGroup.Hide();
-        mode.OnClose();
     }
 }
