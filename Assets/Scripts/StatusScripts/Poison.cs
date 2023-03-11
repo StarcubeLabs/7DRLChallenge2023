@@ -1,23 +1,12 @@
 using RLDataTypes;
 
-public class Poison : Status
+public class Poison : DamageOverTime
 {
     private const int DAMAGE = 1;
     private const int DAMAGE_INTERVAL = 2;
-    private int turnDamage;
     
-    public Poison(ActorController actor, int turnsLeft) : base(StatusType.Poison, actor, turnsLeft)
+    public Poison(ActorController actor, int turnsLeft) : base(StatusType.Poison, actor, turnsLeft, DAMAGE, DAMAGE_INTERVAL)
     {
-        turnDamage = DAMAGE_INTERVAL;
-    }
-    
-    protected override void OnTurnEnd()
-    {
-        if (--turnDamage <= 0)
-        {
-            actor.Hurt(DAMAGE);
-            turnDamage = DAMAGE_INTERVAL;
-        }
     }
 
     public override string GetStatusApplyMessage()

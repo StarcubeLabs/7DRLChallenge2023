@@ -42,6 +42,11 @@ public abstract class Status
     {
     }
 
+    public virtual bool IsMoveUsable(Move move)
+    {
+        return false;
+    }
+
     public virtual string GetStatusApplyMessage()
     {
         return null;

@@ -1,4 +1,3 @@
-using PlasticPipe.PlasticProtocol.Messages;
 using RLDataTypes;
 using System;
 using System.Collections.Generic;
@@ -42,6 +41,9 @@ public class ActorController : EntityController
     public int visualHungerPoints;
     [HideInInspector]
     public bool Dead { get { return hitPoints.x <= 0; } }
+
+    [SerializeField]
+    private bool canPickUpItems;
 
     [SerializeField]
     private ElementType elementType;
@@ -199,8 +201,11 @@ public class ActorController : EntityController
             trap.gameObject.SetActive(false);
         }
 
-        IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
-        interactable?.Interact(this);
+        if (canPickUpItems)
+        {
+            IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
+            interactable?.Interact(this);
+        }
         
         turnAnimationController.AddAnimation(new WalkAnimation(this, ActorAnimController));
 
@@ -250,6 +255,11 @@ public class ActorController : EntityController
     {
         moveToReplace = null;
         moveToBeTaught = null;
+    }
+
+    public bool IsMoveUsable(Move move)
+    {
+        return move.IsMoveUsable() && Statuses.All(status => status.IsMoveUsable(move));
     }
 
     public void UseBasicAttack()
@@ -458,7 +468,7 @@ public class ActorController : EntityController
         //Some things add food points as a side so only log it when it's needed
         if (foodMessage != null)
         {
-            turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} ate {foodAmount} points worth of food!"));
+            turnAnimationController.AddAnimation(new MessageAnimation(foodMessage));
         }
         hunger.x += foodAmount;
         UpdateVisualHitPoints();
@@ -536,11 +546,30 @@ public class ActorController : EntityController
         }
     }
 
+    public bool HasStatus(StatusType status)
+    {
+        return statuses.Exists(s => s.Type == status);
+    }
+
+    public bool HasVisualStatus(StatusType status)
+    {
+        return statusIcon.HasStatus(status);
+    }
+
     public void CureStatus(Status status)
     {
         statuses.Remove(status);
         turnAnimationController.AddAnimation(new MessageAnimation(status.GetStatusCureMessage()));
         UpdateStatusIcons();
+    }
+
+    public void CureStatus(StatusType status)
+    {
+        int statusIndex = statuses.FindIndex(s => s.Type == status);
+        if (statusIndex >= 0)
+        {
+            CureStatus(statuses[statusIndex]);
+        }
     }
 
     public void TickStatus()

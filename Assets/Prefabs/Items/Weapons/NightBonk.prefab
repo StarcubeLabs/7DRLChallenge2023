@@ -53,6 +53,6 @@ MonoBehaviour:
   MaximumStack: 1
   weaponElement: 0
   WeaponStrength: 4
-  AfflictionType: 2
+  AfflictionType: 9
   AfflictionChance: 0.2
   AfflictionTurnCount: 10

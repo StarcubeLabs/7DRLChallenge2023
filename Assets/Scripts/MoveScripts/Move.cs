@@ -21,5 +21,10 @@ public class Move : MonoBehaviour
         print("Restore!");
         pp = Math.Min(pp+PP, moveData.MaxPP);
     }
+
+    public bool IsMoveUsable()
+    {
+        return pp != 0;
+    }
 }
 

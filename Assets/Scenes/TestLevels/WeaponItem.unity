@@ -543,6 +543,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1933309245091928068, guid: 6bb88a713afc20547afbae36a4603554, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4912270416603194485, guid: 6bb88a713afc20547afbae36a4603554, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -749,7 +753,7 @@ PrefabInstance:
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.data[0]
       value: 
-      objectReference: {fileID: 3582576500428355737, guid: c64d1b0e20d86483c9e6b0197770c767, type: 3}
+      objectReference: {fileID: 3582576500428355737, guid: 8478dc7d66e864bafbc9bc025b5cae7b, type: 3}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.data[1]
       value: 

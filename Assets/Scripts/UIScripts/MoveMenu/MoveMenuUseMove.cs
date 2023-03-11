@@ -13,7 +13,7 @@ public class MoveMenuUseMove : MoveMenuMode
 
     public override bool IsMoveSelectable(Move move)
     {
-        return move.pp > 0;
+        return moveMenu.PlayerActorController.IsMoveUsable(move);
     }
 
     public override bool ConfirmChooseMove(Move move)

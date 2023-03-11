@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using RLDataTypes;
 using UnityEngine;
@@ -7,6 +6,7 @@ public class StatusIcon : MonoBehaviour
 {
     private const float ICON_CHANGE_TIME = 1;
     private SpriteRenderer sprite;
+    private List<StatusType> statuses = new List<StatusType>();
     private List<Sprite> statusSprites = new List<Sprite>();
     private float timer;
 
@@ -27,6 +27,7 @@ public class StatusIcon : MonoBehaviour
 
     public void UpdateStatuses(List<StatusType> statuses)
     {
+        this.statuses = statuses;
         statusSprites.Clear();
         foreach (StatusType status in statuses)
         {
@@ -38,5 +39,10 @@ public class StatusIcon : MonoBehaviour
         }
 
         timer = 0;
+    }
+
+    public bool HasStatus(StatusType status)
+    {
+        return statuses.Contains(status);
     }
 }
