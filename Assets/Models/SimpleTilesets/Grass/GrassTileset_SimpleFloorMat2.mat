@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GrassTileset_SimpleFloorMat2
-  m_Shader: {fileID: 4800000, guid: bdbb8483f1165ca4782dc3af75f52262, type: 3}
+  m_Shader: {fileID: 4800000, guid: 932e0d9b14c8cce42afae68b7817b927, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4d5474031bcc54749a6b9dc36dfe7650, type: 3}
+        m_Texture: {fileID: 2800000, guid: d7f0a779a8f34af4fad9be9437fe45fa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -80,6 +80,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorTint: {r: 0.3018868, g: 0.26764527, b: 0.2433448, a: 1}
+    - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

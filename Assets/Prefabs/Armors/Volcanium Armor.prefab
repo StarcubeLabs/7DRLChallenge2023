@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3453033674973895102}
   - component: {fileID: 1958110151181931917}
   m_Layer: 0
-  m_Name: LeatherArmor
+  m_Name: Volcanium Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075ed74c3c5f8bf4aba1993bf9b75a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Leather Armor
-  ItemDescription: Light Leather armor. Light leather defense.
-  ItemIcon: {fileID: 21300000, guid: 87744d4a4f8112c48a70f39b400c3e97, type: 3}
-  ItemObject: {fileID: 1718419373419662673, guid: 4344946ae40f1d34298541dc85c1478e, type: 3}
+  ItemName: Volcanium Armor
+  ItemDescription: You could probably scuba in molten lava in this thing.
+  ItemIcon: {fileID: 21300000, guid: be3c7a62f5da3994cb0ede747f70bbbf, type: 3}
+  ItemObject: {fileID: 2286923735222523985, guid: 5059d5b5579bc4642be01813d33e63c5, type: 3}
   IsStackable: 0
   MaximumStack: 1
-  armorElement: 0
-  ArmorStrength: 2
-  StatusBlockType: 0
-  ProtectionChance: 0
+  armorElement: 1
+  ArmorStrength: 8
+  StatusBlockType: 3
+  ProtectionChance: 0.1
