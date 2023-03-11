@@ -52,11 +52,10 @@ public class ActorController : EntityController
     [SerializeField]
     private List<MoveData> startingMoves;
 
-    //[HideInInspector]
     public List<Move> moves = new List<Move>();
     [HideInInspector]
     public Move moveToReplace;
-
+    [HideInInspector]
     public Move moveToBeTaught;
 
     public bool IsMovesetFull { get { return moves.Count >= MAX_MOVES; } }
@@ -517,12 +516,18 @@ public class ActorController : EntityController
 
         if (allowStatus)
         {
-            Status status = moveRegistry.CreateStatusFromType(statusType, this, turnCount);
-            if (status != null)
+            Status newStatus = moveRegistry.CreateStatusFromType(statusType, this, turnCount);
+            if (newStatus != null)
             {
-                statuses.Add(status);
+                Status conflictingStatus = statuses.Find(status => moveRegistry.DoStatusesConflict(status.Type, newStatus.Type));
+                if (conflictingStatus != null)
+                {
+                    statuses.Remove(conflictingStatus);
+                }
+                
+                statuses.Add(newStatus);
                 UpdateStatusIcons();
-                string statusApplyMessage = status.GetStatusApplyMessage();
+                string statusApplyMessage = newStatus.GetStatusApplyMessage();
                 if (statusApplyMessage != null)
                 {
                     turnAnimationController.AddAnimation(new MessageAnimation(statusApplyMessage));
