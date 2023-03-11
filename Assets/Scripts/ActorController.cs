@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ActorController : EntityController
 {
@@ -113,9 +114,21 @@ public class ActorController : EntityController
         visualHitPoints = hitPoints.x;
         visualHungerPoints = hunger.x;
 
-        foreach (MoveData moveData in startingMoves)
+        if (startingMoves.Count <= MAX_MOVES)
         {
-            AddMove(CreateMove(moveData));
+            foreach (MoveData moveData in startingMoves)
+            {
+                AddMove(CreateMove(moveData));
+            }
+        }
+        else
+        {
+            for (int i = 0; i < MAX_MOVES; i++)
+            {
+                int randomIndex = Random.Range(0, startingMoves.Count);
+                AddMove(CreateMove(startingMoves[randomIndex]));
+                startingMoves.RemoveAt(randomIndex);
+            }
         }
     }
 

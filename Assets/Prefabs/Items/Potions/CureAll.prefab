@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6230438700348927370
+--- !u!1 &8930353810685212197
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6230438700348927368}
-  - component: {fileID: 2233576762303555906}
+  - component: {fileID: 8930353810685212199}
+  - component: {fileID: -1434324469243546998}
   m_Layer: 0
-  m_Name: AntidotePotion
+  m_Name: CureAll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6230438700348927368
+--- !u!4 &8930353810685212199
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230438700348927370}
+  m_GameObject: {fileID: 8930353810685212197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.9525526, y: 0, z: 2.9720905}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,22 +32,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2233576762303555906
+--- !u!114 &-1434324469243546998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230438700348927370}
+  m_GameObject: {fileID: 8930353810685212197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b48cb7073c74834e80d1aff8dcc58a5, type: 3}
+  m_Script: {fileID: 11500000, guid: def5c4cc11ef4c2c90266641ce71b096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Antidote
-  ItemDescription: Cures Poison if you drink it.
-  ItemIcon: {fileID: 21300000, guid: 1ecc88d23e469764cba0a311df689af9, type: 3}
-  ItemObject: {fileID: 6002719802914601259, guid: 687797084b96be548a15d1544925832a, type: 3}
+  ItemName: Cure-All
+  ItemDescription: Clears all statuses.
+  ItemIcon: {fileID: 21300000, guid: 8ac31f8860f0811479df8e8b3ec179a9, type: 3}
+  ItemObject: {fileID: 2126971860458744458, guid: 17aac1697a9f63446a2c9502112fff68, type: 3}
   IsStackable: 0
   MaximumStack: 1
-  statusToClear: 7

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3282856573224589769
+--- !u!1 &2027430266639831512
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3282856573224589771}
-  - component: {fileID: 2715835982037041181}
+  - component: {fileID: 2027430266639831514}
+  - component: {fileID: 6101064481163318544}
   m_Layer: 0
-  m_Name: CombatPotionBig
+  m_Name: TimeSync
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3282856573224589771
+--- !u!4 &2027430266639831514
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3282856573224589769}
+  m_GameObject: {fileID: 2027430266639831512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 770.97473, y: 0, z: -477.2231}
+  m_LocalPosition: {x: 3.9525526, y: 0, z: 2.9720905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2715835982037041181
+--- !u!114 &6101064481163318544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3282856573224589769}
+  m_GameObject: {fileID: 2027430266639831512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be07d8e2a0808be4ca55829d621f1546, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b48cb7073c74834e80d1aff8dcc58a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Big Combat Potion
-  ItemDescription: A large potion that restores all Combat Points for each move you
-    know.
-  ItemIcon: {fileID: 21300000, guid: c3ab6c8ef9de10c4bae6949ee6664d5b, type: 3}
-  ItemObject: {fileID: 4383152010276537219, guid: 0cf5ff8606b1a5e44b450a495b16ce76, type: 3}
+  ItemName: Time Sync
+  ItemDescription: Speeds you back up if you are Slowed.
+  ItemIcon: {fileID: 21300000, guid: 0c31301c89345144d9c50acad2956f24, type: 3}
+  ItemObject: {fileID: 6840955823020618454, guid: 2f0cc4f38ab3b754ebbecceca81d336a, type: 3}
   IsStackable: 0
-  MaximumStack: 5
-  RestoreAmount: 55
+  MaximumStack: 1
+  statusToClear: 10

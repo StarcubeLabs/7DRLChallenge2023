@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8666794941504684183}
   - component: {fileID: 3517048333682426973}
   m_Layer: 0
-  m_Name: MuteFixPotion
+  m_Name: VoiceClear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b48cb7073c74834e80d1aff8dcc58a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: VoiceClear
+  ItemName: Voice Clear
   ItemDescription: Clears muteness if you drink it.
   ItemIcon: {fileID: 21300000, guid: fa76002e526cdba4d821855a05268774, type: 3}
   ItemObject: {fileID: 7518956308787360251, guid: 5b2bb6ccf6f0dec488f1d3c303b5f191, type: 3}

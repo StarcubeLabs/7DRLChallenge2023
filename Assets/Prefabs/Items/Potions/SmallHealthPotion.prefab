@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 628324517710171397}
   - component: {fileID: 628324517710171396}
   m_Layer: 0
-  m_Name: HealingPotionBig
+  m_Name: SmallHealthPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3984e6729c2dfd47a2f6d2848b3f06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Large Health Potion
-  ItemDescription: A large health potion that restores 25 HP!
-  ItemIcon: {fileID: 21300000, guid: 2a31c70d4c033a44c97f3d1b1644d112, type: 3}
-  ItemObject: {fileID: 7761747626398899371, guid: 8f062ca9043ff38439c76e2cafc722f9, type: 3}
+  ItemName: Small Health Potion
+  ItemDescription: A small health potion that restores 5 HP!
+  ItemIcon: {fileID: 21300000, guid: 63c212000cb68134ca24968de21593b0, type: 3}
+  ItemObject: {fileID: 4383152010276537219, guid: 20cd0ff94ee444cc7ad3f0296700373a, type: 3}
   IsStackable: 1
   MaximumStack: 5
-  HealAmount: 25
+  HealAmount: 5
