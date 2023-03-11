@@ -17,7 +17,7 @@ public abstract class Status
 
     public bool TickStatus()
     {
-        if (turnsLeft-- <= 0)
+        if (--turnsLeft <= 0)
         {
             return true;
         }

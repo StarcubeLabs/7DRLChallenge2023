@@ -23,5 +23,6 @@ namespace RLDataTypes
         SeismicShock,
         Stun,
         Frozen,
+        FlameShield
     }
 }
