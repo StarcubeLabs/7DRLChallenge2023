@@ -16,4 +16,9 @@ public class HealRouletteType : MoveData
             user.ApplyStatus(StatusType.Poison, 3);
         }
     }
+    
+    public override bool UsableByAI(ActorController user, ActorController target)
+    {
+        return !user.HasFullHealth;
+    }
 }

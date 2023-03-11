@@ -7,4 +7,9 @@ public class Punch : DealDamageFront
             base.UseMove(user);
         }
     }
+    
+    public override bool UsableByAI(ActorController user, ActorController target)
+    {
+        return !user.Weapon;
+    }
 }

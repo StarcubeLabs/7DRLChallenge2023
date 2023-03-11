@@ -150,4 +150,9 @@ public class EntityManager: MonoBehaviour
     {
         actors[0].Inventory.DropItem(actors[0].Inventory.ItemToDrop, actors[0].gridPosition, actors[0].Inventory.NumberOfItemsToDrop);
     }
+
+    public ActorController GetEntityInFront(ActorController origin)
+    {
+        return ServicesManager.EntityManager.getEntityInPosition(origin.GetPositionInFront());
+    }
 }
