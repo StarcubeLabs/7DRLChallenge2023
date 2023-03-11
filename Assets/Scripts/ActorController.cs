@@ -53,6 +53,12 @@ public class ActorController : EntityController
 
     [HideInInspector]
     public List<Move> moves = new List<Move>();
+    [HideInInspector]
+    public Move moveToReplace;
+
+    public Move moveToBeTaught;
+
+    public bool IsMovesetFull { get { return moves.Count >= MAX_MOVES; } }
 
     [Header("Status Variables")]
     [Tooltip("The status that the actor is currently afflicted with.")]
@@ -129,7 +135,7 @@ public class ActorController : EntityController
 
         foreach (MoveData moveData in startingMoves)
         {
-            AddMove(moveData);
+            AddMove(CreateMove(moveData));
         }
     }
 
@@ -242,24 +248,21 @@ public class ActorController : EntityController
         }
     }
 
-    public bool AddMove(MoveData moveData)
+    public bool AddMove(Move move)
     {
         if (moves.Count >= MAX_MOVES)
         {
             return false;
         }
-        moves.Add(CreateMove(moveData));
+        moves.Add(move);
         return true;
     }
 
-    public void ReplaceMove(int moveIndex, MoveData moveData)
+    public void ReplaceMove()
     {
-        Move oldMove = moves[moveIndex];
-        moves[moveIndex] = CreateMove(moveData);
-        if (oldMove)
-        {
-            Destroy(oldMove);
-        }
+        int moveIndexToReplace = moves.IndexOf(moveToReplace);
+        moves[moveIndexToReplace] = moveToBeTaught;
+        Destroy(moveToReplace.gameObject);
     }
 
     private Move CreateMove(MoveData moveData)
@@ -267,6 +270,18 @@ public class ActorController : EntityController
         Move move = global::Move.InitiateFromMoveData(moveData);
         move.transform.parent = transform;
         return move;
+    }
+
+    public Move StartTeachMove(MoveData moveData)
+    {
+        moveToBeTaught = CreateMove(moveData);
+        return moveToBeTaught;
+    }
+
+    public void EndTeachMove()
+    {
+        moveToReplace = null;
+        moveToBeTaught = null;
     }
 
     public void UseBasicAttack()
@@ -456,6 +471,7 @@ public class ActorController : EntityController
     public void Hurt(int hurtAmount = 1, string hurtMessage = null)
     {
         hitPoints.x -= hurtAmount;
+        hitPoints.x = Mathf.Max(0, hitPoints.x);
         if (hurtMessage == null)
         {
             hurtMessage = $"{GetDisplayName()} took {hurtAmount} damage!";
@@ -465,7 +481,6 @@ public class ActorController : EntityController
         UpdateVisualHitPoints();
         if (hitPoints.x <= 0)
         {
-            hitPoints.x = 0;
             Kill();
         }
         else

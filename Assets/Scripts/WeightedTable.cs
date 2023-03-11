@@ -16,6 +16,7 @@ public class WeightedTable<T> where T : class
     public int TotalWeight = 0;
     public void ConstructWeightedTable(List<WeightedEntry<T>> entries)
     {
+        TotalWeight = 0;
         weightedTable = new SortedDictionary<int, KeyValuePair<int, T>>();
         
         foreach (var entry in entries)

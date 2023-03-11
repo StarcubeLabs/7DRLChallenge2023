@@ -12,6 +12,7 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
     public ElementGroup elementGroup;
 
     ActorController playerActorController;
+    public ActorController PlayerActorController { get { return playerActorController; } }
     MoveRegistry moveRegistry;
     MoveMenuDetail moveMenuDetail;
 
@@ -20,52 +21,73 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
 
     public EventHandler<EventArgs> onChooseMove;
 
+    private MoveMenuMode mode;
+
     public void Start()
     {
         this.elementGroup = GetComponent<ElementGroup>();
         moveMenuDetail = GetComponentInChildren<MoveMenuDetail>();
-    }
-
-    public void SetupMenu()
-    {
         PlayerInputController playerInputController = FindObjectOfType<PlayerInputController>();
         playerActorController = playerInputController.GetComponent<ActorController>();
+    }
 
-        itemToMoveMap.Clear();
-        Array.ForEach(GetComponentsInChildren<MenuItem>(), (childMenuItem) =>
-        {
-            Destroy(childMenuItem.gameObject);
-        });
+    public void SetupUseMoveMenu(ContextMenu contextMenu)
+    {
+        mode = new MoveMenuUseMove(this);
+        SetupMenu(contextMenu);
+    }
 
-        foreach (Move move in playerActorController.moves)
+    public void SetupTeachMoveMenu(ContextMenu contextMenu, Move newMove, Action consumeAction)
+    {
+        mode = new MoveMenuTeachMove(this, newMove, consumeAction);
+        SetupMenu(contextMenu);
+    }
+
+    private void SetupMenu(ContextMenu contextMenu)
+    {
+        foreach (Move move in mode.GetMoves())
         {
             MenuItem menuItem = Instantiate(moveMenuItemPrefab, moveList);
             menuItem.GetComponent<MoveMenuSelection>().UpdateWithMoveData(move);
-            menuItem.GetComponent<Button>().enabled = false;
             itemToMoveMap[menuItem] = move;
             menuItem.AttachMenuListener(this);
-            if (move.pp > 0)
+            menuItem.AttachMenuListener(contextMenu);
+            if (mode.IsMoveSelectable(move))
             {
                 menuItem.onSelect += OnChooseMove;
             }
         }
+        
+        LayoutRebuilder.ForceRebuildLayoutImmediate(moveList);
+
+        elementGroup.Show();
     }
 
     public void OnChooseMove(object sender, EventArgs args)
     {
         MenuItem menuItem = (MenuItem)sender;
         Move moveData = itemToMoveMap[menuItem];
-        playerActorController.UseMove(moveData);
+        mode.SelectMove(moveData);
         Array.ForEach(GetComponentsInChildren<MenuItem>(), (childMenuItem) =>
         {
             childMenuItem.onSelect -= OnChooseMove;
         });
         elementGroup.Hide();
 
-
-        if (onChooseMove != null)
+        bool confirmed = mode.ConfirmChooseMove(moveData);
+        if (confirmed)
         {
-            onChooseMove(this, EventArgs.Empty);
+            if (onChooseMove != null && mode.ConfirmChooseMove(moveData))
+            {
+                onChooseMove(this, EventArgs.Empty);
+            }
+        }
+
+        Close();
+
+        if (!confirmed)
+        {
+            mode.OnCancel();
         }
     }
 
@@ -79,12 +101,20 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
     {
     }
 
-    public void Show()
+    public void Cancel()
     {
-        elementGroup.Show();
-        foreach (MenuItem menuItem in MenuItems)
+        mode.OnCancel();
+    }
+
+    public void Close()
+    {
+        itemToMoveMap.Clear();
+        Array.ForEach(GetComponentsInChildren<MenuItem>(), childMenuItem =>
         {
-            menuItem.GetComponent<Button>().enabled = true;
-        }
+            Destroy(childMenuItem.gameObject);
+        });
+        
+        elementGroup.Hide();
+        mode.OnClose();
     }
 }
