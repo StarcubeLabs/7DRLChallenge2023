@@ -25,4 +25,9 @@ public class DealDamageAround : MoveData
             }
         }
     }
+
+    public override bool InAIRange(ActorController user, ActorController target)
+    {
+        return ServicesManager.EntityManager.GetEntityInFront(user) == target;
+    }
 }
