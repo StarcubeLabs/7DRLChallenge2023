@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b0725b8a3ed9c4686ef7a9b74f18ae, type: 3}
+  m_Name: ItemTestFloor
+  m_EditorClassIdentifier: 
+  widthRange: {x: 30, y: 30}
+  heightRange: {x: 20, y: 30}
+  roomNumRange: {x: 13, y: 13}
+  roomMaxSizeRange: {x: 5, y: 5}
+  roomMinSizeRange: {x: 3, y: 3}
+  CurrentFloorType: 0
+  NumberOfItemsToSpawn: {x: 1, y: 1}
+  PotentialItemEntries:
+  - Weight: 100
+    Entry: {fileID: 628324517710171396, guid: 733c4c9cb831f6b4f9204c51653b202e, type: 3}
+  NumberOfTrapsToSpawnRange: {x: 0, y: 0}
+  PotentialTrapEntries: []
+  NumberOfEnemiesToSpawnRange: {x: 1, y: 1}
+  PotentialEnemyEntries:
+  - Weight: 100
+    Entry: {fileID: 4176091817456084932, guid: 45d76504762a36e4587f29eb82072714, type: 3}

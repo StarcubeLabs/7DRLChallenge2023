@@ -1,9 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName="FloorData", menuName="Starcube/7DRL/FloorData", order=2)]
 [System.Serializable]
-public class FloorData
+public class FloorData : ScriptableObject
 {
     public Vector2Int widthRange = new Vector2Int(30, 30);
     public Vector2Int heightRange = new Vector2Int(20, 30);
@@ -73,8 +73,10 @@ public class FloorData
     /// The X-Value is the minimum number of traps to spawn.
     /// The Y-Value is the maximum number of traps to spawn.
     /// </summary>
+    [HideInInspector]
     [Tooltip("The range of traps to spawn. X is the minimum [Inclusive], Y is the maximum [Inclusive].")]
     public Vector2Int NumberOfTrapsToSpawnRange;
+    [HideInInspector]
     public List<WeightedEntry<Trap>> PotentialTrapEntries = new List<WeightedEntry<Trap>>();
     private WeightedTable<Trap> PotentialTraps = new WeightedTable<Trap>();
 
