@@ -5,9 +5,11 @@ using RLDataTypes;
 
 public class StatusClearItem : ItemData
 {
-    StatusType statusToClear = StatusType.None;
+    [SerializeField]
+    private StatusType statusToClear = StatusType.None;
     public override bool OnConsume(ActorController consumer, Item item)
     {
+        
         //consumer
         return true;
     }
