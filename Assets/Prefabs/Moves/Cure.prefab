@@ -52,4 +52,6 @@ MonoBehaviour:
   afflictionType: 0
   afflictionChance: 0
   afflictionTurnCount: 0
+  launchVFX: {fileID: 4784967100403654871, guid: d749527c24685a845ac7b685b9e06ef7, type: 3}
+  hitVFX: {fileID: 0}
   healAmount: 5
