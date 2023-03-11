@@ -77,5 +77,10 @@ public abstract class MoveData : MonoBehaviour
     {
         return true;
     }
+
+    public virtual int GetMovePower()
+    {
+        return Power;
+    }
 }
 

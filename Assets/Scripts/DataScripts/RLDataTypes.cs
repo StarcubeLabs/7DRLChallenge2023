@@ -3,6 +3,8 @@ namespace RLDataTypes
 
     public enum ElementType { Neutral, Fire, Water, Grass }
 
+    // Don't change the order of the statuses in the enum.
+    // Prefabs use the enum ordinals, which will be messed up if the order changes.
     public enum StatusType
     {
         None,
@@ -18,5 +20,6 @@ namespace RLDataTypes
         Slow,
         PetrifyImmunity,
         SleepImmunity,
+        SeismicShock,
     }
 }

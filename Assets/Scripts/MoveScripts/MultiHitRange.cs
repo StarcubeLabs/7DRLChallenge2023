@@ -6,6 +6,8 @@ public class MultiHitRange : DealDamageRange
     private int minHits;
     [SerializeField]
     private int maxHits;
+    [SerializeField]
+    private int powerVariance;
     
     public override void UseMove(ActorController user)
     {
@@ -13,5 +15,10 @@ public class MultiHitRange : DealDamageRange
         {
             base.UseMove(user);
         }
+    }
+
+    public override int GetMovePower()
+    {
+        return Random.Range(Power - powerVariance, Power + powerVariance + 1);
     }
 }

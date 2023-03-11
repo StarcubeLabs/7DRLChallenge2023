@@ -64,6 +64,7 @@ public class MoveRegistry : MonoBehaviour
             case StatusType.Burn: return burnSprite;
             case StatusType.Petrify: return petrifiedSprite;
             case StatusType.Poison: return poisonSprite;
+            case StatusType.SeismicShock: return seismicShockSprite;
             case StatusType.Sleep: return sleepSprite;
             case StatusType.Slow: return slowSprite;
             default: return null;
@@ -81,6 +82,7 @@ public class MoveRegistry : MonoBehaviour
             case StatusType.Petrify: return new Petrify(actor, turnCount);
             case StatusType.PetrifyImmunity: return new PetrifyImmunity(actor, turnCount);
             case StatusType.Poison: return new Poison(actor, turnCount);
+            case StatusType.SeismicShock: return new SeismicShock(actor, turnCount);
             case StatusType.Sleep: return new Sleep(actor, turnCount);
             case StatusType.SleepImmunity: return new SleepImmunity(actor, turnCount);
             case StatusType.Slow: return new Slow(actor, turnCount);

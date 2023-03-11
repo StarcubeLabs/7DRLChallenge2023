@@ -607,21 +607,12 @@ public class ActorController : EntityController
 
     public void TickStatus()
     {
-        bool updateStatuses = false;
         foreach (Status status in Statuses)
         {
             if (status.TickStatus())
             {
                 CureStatus(status);
-                statuses.Remove(status);
-                turnAnimationController.AddAnimation(new MessageAnimation(status.GetStatusCureMessage()));
-                updateStatuses = true;
             }
-        }
-
-        if (updateStatuses)
-        {
-            UpdateStatusIcons();
         }
 
         //We'll assume if we have an upper limit on hunger, we care about hunger. Otherwise who caresssss?
