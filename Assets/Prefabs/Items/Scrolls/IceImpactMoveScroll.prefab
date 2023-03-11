@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2063619693137707417}
   - component: {fileID: 3583011865473692732}
   m_Layer: 0
-  m_Name: Ice Shard
+  m_Name: IceImpactMoveScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -55,6 +55,7 @@ public class ActorController : EntityController
     [SerializeField]
     private List<MoveData> startingMoves;
 
+    [HideInInspector]
     public List<Move> moves = new List<Move>();
     [HideInInspector]
     public Move moveToReplace;
@@ -534,6 +535,18 @@ public class ActorController : EntityController
             {
                 allowStatus = false;
                 break;
+            }
+        }
+
+        if (allowStatus)
+        {
+            foreach (Status status in Statuses)
+            {
+                if (!status.AllowStatus(statusType))
+                {
+                    allowStatus = false;
+                    break;
+                }
             }
         }
 

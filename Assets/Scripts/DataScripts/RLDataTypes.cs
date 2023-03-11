@@ -16,5 +16,7 @@ namespace RLDataTypes
         Regeneration,
         Sleep,
         Slow,
+        PetrifyImmunity,
+        SleepImmunity,
     }
 }

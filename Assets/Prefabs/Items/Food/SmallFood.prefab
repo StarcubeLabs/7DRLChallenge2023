@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2835714069868164201
+--- !u!1 &5232407384910942079
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7169155135080153750}
-  - component: {fileID: 1588953171066697679}
+  - component: {fileID: 5232407384910942076}
+  - component: {fileID: 5232407384910942077}
   m_Layer: 0
-  m_Name: StoneStrike
+  m_Name: SmallFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7169155135080153750
+--- !u!4 &5232407384910942076
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2835714069868164201}
+  m_GameObject: {fileID: 5232407384910942079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,22 +32,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1588953171066697679
+--- !u!114 &5232407384910942077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2835714069868164201}
+  m_GameObject: {fileID: 5232407384910942079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e731bbf1fea1044a9a517560ea95896f, type: 3}
+  m_Script: {fileID: 11500000, guid: 845a70dd6c01e3d488a8704587ba67c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Stone Strike Move Scroll
-  ItemDescription: Teach yourself the move "Stone Strike"!
-  ItemIcon: {fileID: 21300000, guid: be4f3b6724833064eab0eab345020f2f, type: 3}
-  ItemObject: {fileID: 5737963899223320826, guid: b8d6f313eb5d4a54eb17595f0514b676, type: 3}
+  ItemName: Small Food
+  ItemDescription: A chicken leg. Gives respectable food.
+  ItemIcon: {fileID: 21300000, guid: b222b931492691b4c89a0d9be78f69fb, type: 3}
+  ItemObject: {fileID: 1512152341440746540, guid: b699ba40b287ab542a464da07d7fb63b, type: 3}
   IsStackable: 0
   MaximumStack: 1
-  taughtMove: {fileID: 3582576500428355737, guid: 815c3fcbd55cb490387a8fb9cc8186d0, type: 3}
+  FoodAmount: 25
