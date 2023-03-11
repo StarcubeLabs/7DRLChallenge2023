@@ -1,4 +1,3 @@
-using PlasticPipe.PlasticProtocol.Messages;
 using RLDataTypes;
 using System;
 using System.Collections.Generic;
@@ -42,6 +41,9 @@ public class ActorController : EntityController
     public int visualHungerPoints;
     [HideInInspector]
     public bool Dead { get { return hitPoints.x <= 0; } }
+
+    [SerializeField]
+    private bool canPickUpItems;
 
     [SerializeField]
     private ElementType elementType;
@@ -199,8 +201,11 @@ public class ActorController : EntityController
             trap.gameObject.SetActive(false);
         }
 
-        IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
-        interactable?.Interact(this);
+        if (canPickUpItems)
+        {
+            IInteractable interactable = entityManager.getInteractableInPosition(gridPosition);
+            interactable?.Interact(this);
+        }
         
         turnAnimationController.AddAnimation(new WalkAnimation(this, ActorAnimController));
 

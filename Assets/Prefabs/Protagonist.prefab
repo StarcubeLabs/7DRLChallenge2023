@@ -343,19 +343,18 @@ MonoBehaviour:
   displayName: Att
   hitPoints: {x: 20, y: 20}
   hunger: {x: 100, y: 100}
+  starvationDamage: 1
   visualHitPoints: 0
   visualHungerPoints: 0
+  canPickUpItems: 1
   elementType: 0
   baseAttackPower: 0
   startingMoves:
   - {fileID: 972135384986904225, guid: 86520059ebfdc44f390bb957e5e02255, type: 3}
   moves: []
-  afflictedStatus: 0
-  statusCountdown: 0
-  currentModifier: 0
-  internalStatusCountdown: 0
+  moveToReplace: {fileID: 0}
+  moveToBeTaught: {fileID: 0}
   turnsTaken: 0
-  isStatusImmobilized: 0
   actorDirection: 4
 --- !u!114 &8038504152482477859
 MonoBehaviour:
