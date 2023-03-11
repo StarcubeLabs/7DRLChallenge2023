@@ -9,7 +9,8 @@ public class StatusClearItem : ItemData
     private StatusType statusToClear = StatusType.None;
     public override bool OnConsume(ActorController consumer, Item item)
     {
-        
+        consumer.PlayEatAnimation();
+        ServicesManager.TurnAnimationController.AddAnimation(new MessageAnimation($"{consumer.GetDisplayName()} consumed the {ItemName}."));
         //consumer
         return true;
     }
