@@ -50,4 +50,4 @@ MonoBehaviour:
   ItemObject: {fileID: 6002719802914601259, guid: 687797084b96be548a15d1544925832a, type: 3}
   IsStackable: 0
   MaximumStack: 1
-  statusToClear: 1
+  statusToClear: 7

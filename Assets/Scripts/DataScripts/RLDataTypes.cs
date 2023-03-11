@@ -8,6 +8,7 @@ namespace RLDataTypes
         None,
         All,
         Blindness,
+        Burn,
         Confusion,
         Muteness,
         Petrify,
