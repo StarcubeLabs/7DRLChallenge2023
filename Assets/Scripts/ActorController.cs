@@ -572,6 +572,13 @@ public class ActorController : EntityController
         }
     }
 
+    public void CureStatuses(params StatusType[] statusTypes)
+    {
+        statuses
+            .FindAll(status => statusTypes.Contains(status.Type))
+            .ForEach(CureStatus);
+    }
+
     public void TickStatus()
     {
         bool updateStatuses = false;
