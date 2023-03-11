@@ -39,6 +39,7 @@ Shader "7DRL/7DRL_EmissiveSnap_Diffuse"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                o.vertex = vertSnap(v, 160, 120);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 o.vertex = vertSnap(v, 160, 120);
