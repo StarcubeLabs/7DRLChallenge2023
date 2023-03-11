@@ -1,6 +1,7 @@
 using RogueSharp;
 using System.Collections.Generic;
 using System.Linq;
+using RLDataTypes;
 using UnityEngine;
 
 public enum AI_STATES
@@ -42,6 +43,11 @@ public class EnemyBaseScript : MonoBehaviour
             if (state != AI_STATES.PURSUING && state != AI_STATES.ATTACKING && enemyActor.CanSeePosition(player.GetLocation()))
             {
                 state = AI_STATES.PURSUING;
+            }
+
+            if (enemyActor.HasStatus(StatusType.Blindness))
+            {
+                state = AI_STATES.WANDERING;
             }
 
             switch (state)

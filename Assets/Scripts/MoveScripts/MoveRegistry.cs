@@ -73,6 +73,7 @@ public class MoveRegistry : MonoBehaviour
     {
         switch (status)
         {
+            case StatusType.Blindness: return new Blindness(actor, turnCount);
             case StatusType.Confusion: return new Confusion(actor, turnCount);
             case StatusType.Muteness: return new Muteness(actor, turnCount);
             case StatusType.Petrify: return new Petrify(actor, turnCount);

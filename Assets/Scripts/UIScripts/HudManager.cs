@@ -1,4 +1,5 @@
 ﻿using System;
+using RLDataTypes;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class HudManager: MonoBehaviour
     public ContextMenu ContextMenu { get { return contextMenu; } }
     private MessageBox messageBox;
     public MessageBox MessageBox { get { return messageBox; } }
+    [SerializeField]
+    private GameObject blindness;
 
     PlayerInputController playerInputController;
     LevelManager levelManager;
@@ -38,7 +41,8 @@ public class HudManager: MonoBehaviour
         int floorNumber = levelManager.GetActiveLevel().transform.GetSiblingIndex() + 1;
         floorNumberText.text = string.Format("Floor: {0}", floorNumber);
         floorPromptText.text = string.Format("Floor {0}", floorNumber);
-
+        
+        blindness.SetActive(playerInputController.playerActor.HasVisualStatus(StatusType.Blindness));
     }
 
     public void OnEnterFloor(object sender, EventArgs args)

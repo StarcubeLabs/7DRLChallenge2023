@@ -541,6 +541,16 @@ public class ActorController : EntityController
         }
     }
 
+    public bool HasStatus(StatusType status)
+    {
+        return statuses.Exists(s => s.Type == status);
+    }
+
+    public bool HasVisualStatus(StatusType status)
+    {
+        return statusIcon.HasStatus(status);
+    }
+
     public void CureStatus(Status status)
     {
         statuses.Remove(status);
