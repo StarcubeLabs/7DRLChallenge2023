@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Cure
-  moveDescription: Heals for 5 HP.
+  moveDescription: Restores a small amount of HP.
   Element: 0
   power: 0
   maxPP: 5

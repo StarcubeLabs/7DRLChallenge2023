@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Frost Flurry Fury
-  moveDescription: Creates an AoE in the 8 tiles around you. Applies Frozen.
+  moveDescription: Conjure a wintery explosion in an 1 tile radius centered on you.
+    Applies Frozen.
   Element: 2
   power: 2
   maxPP: 3

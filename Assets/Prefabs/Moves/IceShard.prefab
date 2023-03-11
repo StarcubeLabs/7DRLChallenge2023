@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Ice Shard
-  moveDescription: Fires three ice spikes at the enemy. Random damage of 1-5.
+  moveDescription: Fires three ice spikes at the enemy. Beware! Damage is randomized.
   Element: 2
   power: 3
   maxPP: 4

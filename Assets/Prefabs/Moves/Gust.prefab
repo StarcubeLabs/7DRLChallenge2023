@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Gust
-  moveDescription: Does 2 damage and knockback. If enemy hits a wall or another enemy,
-    applies Stun.
+  moveDescription: Create a damaging gust of wind causing knockback. If enemy hits
+    a wall or another enemy, applies Stun.
   Element: 0
   power: 2
   maxPP: 5

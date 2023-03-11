@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Flame Flip
-  moveDescription: Does 2 Fire damage.
+  moveDescription: Pull off a fiery flash kick that deals fire damage.
   Element: 1
   power: 2
   maxPP: 20
+  afflictionType: 0
+  afflictionChance: 0
+  afflictionTurnCount: 0

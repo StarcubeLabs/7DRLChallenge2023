@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Ice Fang
-  moveDescription: Bites your opponent for 4 Water damage. 20% to apply Frozen for
-    2 turns.
+  moveDescription: Bites your opponent with fangs of frost for Water damage. 20%
+    chance to apply Frozen for 2 turns.
   Element: 2
   power: 4
   maxPP: 4
