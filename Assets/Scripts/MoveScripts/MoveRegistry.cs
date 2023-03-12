@@ -19,23 +19,35 @@ public class MoveRegistry : MonoBehaviour
     private Dictionary<StatusType, StatusType> CONFLICTING_STATUSES = new Dictionary<StatusType, StatusType>();
 
     [SerializeField]
-    private Sprite atkDownSprite;
-    [SerializeField]
     private Sprite atkUpSprite;
+    [SerializeField]
+    private Sprite blindnessSprite;
     [SerializeField]
     private Sprite burnSprite;
     [SerializeField]
-    private Sprite defDownSprite;
+    private Sprite confusionSprite;
     [SerializeField]
     private Sprite defUpSprite;
     [SerializeField]
+    private Sprite flameShieldSprite;
+    [SerializeField]
+    private Sprite frozenSprite;
+    [SerializeField]
+    private Sprite mutenessSprite;
+    [SerializeField]
     private Sprite petrifiedSprite;
     [SerializeField]
+    private Sprite petrifyImmunitySprite;
+    [SerializeField]
     private Sprite poisonSprite;
+    [SerializeField]
+    private Sprite regenerationSprite;
     [SerializeField]
     private Sprite seismicShockSprite;
     [SerializeField]
     private Sprite sleepSprite;
+    [SerializeField]
+    private Sprite sleepImmunitySprite;
     [SerializeField]
     private Sprite slowSprite;
     [SerializeField]
@@ -66,12 +78,20 @@ public class MoveRegistry : MonoBehaviour
         switch (status)
         {
             case StatusType.AttackUp: return atkUpSprite;
+            case StatusType.Blindness: return blindnessSprite;
             case StatusType.Burn: return burnSprite;
+            case StatusType.Confusion: return confusionSprite;
             case StatusType.DefenseUp: return defUpSprite;
+            case StatusType.FlameShield: return flameShieldSprite;
+            case StatusType.Frozen: return frozenSprite;
+            case StatusType.Muteness: return mutenessSprite;
             case StatusType.Petrify: return petrifiedSprite;
+            case StatusType.PetrifyImmunity: return petrifyImmunitySprite;
             case StatusType.Poison: return poisonSprite;
+            case StatusType.Regeneration: return regenerationSprite;
             case StatusType.SeismicShock: return seismicShockSprite;
             case StatusType.Sleep: return sleepSprite;
+            case StatusType.SleepImmunity: return sleepImmunitySprite;
             case StatusType.Slow: return slowSprite;
             case StatusType.Stun: return stunSprite;
             default: return null;
