@@ -86,7 +86,7 @@ public class Item : EntityController, IInteractable
 
     public void GenerateRandomStackSize()
     {
-        CurrentNumberOfStacks = CanBeStacked ? UnityEngine.Random.Range(1, MaximumNumberOfStacks) : 1;
+        CurrentNumberOfStacks = 1;
     }
 
     public bool Consume()

@@ -15,6 +15,8 @@ public class Gust : MoveData
             {
                 return;
             }
+
+            bool collided = false;
             for (int i = 2; i < maxKnockbackTiles; i++)
             {
                 Vector3Int aheadPosition = user.GetPositionInFront(i);
@@ -31,8 +33,15 @@ public class Gust : MoveData
                         knockbackCollision.ApplyStatus(afflictionType, afflictionTurnCount);
                     }
 
+                    collided = true;
+
                     break;
                 }
+            }
+
+            if (!collided)
+            {
+                target.ForceLocation(user.GetPositionInFront(maxKnockbackTiles));
             }
         }
     }

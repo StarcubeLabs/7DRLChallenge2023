@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b0725b8a3ed9c4686ef7a9b74f18ae, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  widthRange: {x: 15, y: 15}
+  heightRange: {x: 15, y: 15}
+  roomNumRange: {x: 8, y: 8}
+  roomMaxSizeRange: {x: 5, y: 5}
+  roomMinSizeRange: {x: 3, y: 3}
+  CurrentFloorType: 0
+  NumberOfItemsToSpawn: {x: 2, y: 5}
+  PotentialItemEntries:
+  - Weight: 2
+    Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
+  - Weight: 2
+    Entry: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
+  - Weight: 2
+    Entry: {fileID: 5232407384910942077, guid: 6b2cfd2cdf048914497dc244e64d3241, type: 3}
+  - Weight: 1
+    Entry: {fileID: 5232407384910942077, guid: 84f3548ee49fefb40bc78f736e96357d, type: 3}
+  - Weight: 1
+    Entry: {fileID: 2740662514017809751, guid: 9dd9075dde4ad42c09d07946811c2acf, type: 3}
+  - Weight: 1
+    Entry: {fileID: 4915565562157183493, guid: d8eab701e112e4b8aa3da87584cfb1f8, type: 3}
+  - Weight: 1
+    Entry: {fileID: 4436611308889749758, guid: d18737f52591f4145b99420234474686, type: 3}
+  - Weight: 1
+    Entry: {fileID: 7234801106608014906, guid: 9e4551a211f07b649a788e8094e69109, type: 3}
+  - Weight: 1
+    Entry: {fileID: 1588953171066697679, guid: 4d3785b23f4e6854d972b4330c0e6127, type: 3}
+  - Weight: 1
+    Entry: {fileID: 7055073717748325390, guid: 82deee5cd17a242f390f24ba4d1a4c90, type: 3}
+  - Weight: 1
+    Entry: {fileID: 5639421826696183247, guid: 4815c039ce3eb47e485d5bba0f286984, type: 3}
+  - Weight: 1
+    Entry: {fileID: 7055073717748325390, guid: 5d7dbf82c0d23456a8ec16a2d35a99fc, type: 3}
+  - Weight: 1
+    Entry: {fileID: 7055073717748325390, guid: 0a24b3bd9b8744cefbb8b8d97d2115d1, type: 3}
+  - Weight: 1
+    Entry: {fileID: 7055073717748325390, guid: a7cf12e64d52c40779c3922a8c085bce, type: 3}
+  NumberOfTrapsToSpawnRange: {x: 0, y: 0}
+  PotentialTrapEntries: []
+  NumberOfEnemiesToSpawnRange: {x: 2, y: 4}
+  PotentialEnemyEntries:
+  - Weight: 5
+    Entry: {fileID: 4176091817456084932, guid: e202b70acdeee324bb8a9d9714cabb82, type: 3}

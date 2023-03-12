@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Fire Douser
   ItemDescription: +4 ATK vs. Fire enemies.
-  ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
+  ItemIcon: {fileID: 21300000, guid: 1109f5dd61e6e0747b76464eeefbe212, type: 3}
   ItemObject: {fileID: 0}
   IsStackable: 0
   MaximumStack: 1
