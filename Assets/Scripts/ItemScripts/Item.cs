@@ -30,12 +30,18 @@ public class Item : EntityController, IInteractable
     {
         if (gameObject.activeInHierarchy)
         {
-            ServicesManager.TurnAnimationController.AddAnimation(new MessageAnimation($"{interactingEntity.GetDisplayName()} picked up the {ItemData.ItemName}."));
             entityManager = GameObject.FindObjectOfType<EntityManager>();
-            interactingEntity.Inventory.AddItem(this);
-            Owner = interactingEntity;
-            gameObject.SetActive(false);
-            entityManager.RemoveItem(this);
+            if (interactingEntity.Inventory.AddItem(this))
+            {
+                ServicesManager.TurnAnimationController.AddAnimation(new MessageAnimation($"{interactingEntity.GetDisplayName()} picked up the {ItemData.ItemName}."));
+                Owner = interactingEntity;
+                gameObject.SetActive(false);
+                entityManager.RemoveItem(this);
+            }
+            else
+            {
+                ServicesManager.TurnAnimationController.AddAnimation(new MessageAnimation($"{interactingEntity.GetDisplayName()} stepped on the {ItemData.ItemName}."));
+            }
         }
     }
 
