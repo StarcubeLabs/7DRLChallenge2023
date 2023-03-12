@@ -127,6 +127,11 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
     {
     }
 
+    public bool IsOpen()
+    {
+        return elementGroup.enabled || lastSelectedMove;
+    }
+
     public void Cancel()
     {
         mode.OnCancel();
