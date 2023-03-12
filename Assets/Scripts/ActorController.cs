@@ -531,12 +531,9 @@ public class ActorController : EntityController
     public int DamageTarget(MoveData moveData, ActorController target)
     {
         int damage = DamageCalculator.CalculateDamage(moveData, this, target);
-        if (damage > 0)
-        {
-            target.Hurt(damage, moveData);
-            GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
-            target.Statuses.ForEach(status => status.OnActorAttacked(this));
-        }
+        target.Hurt(damage, moveData);
+        GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
+        target.Statuses.ForEach(status => status.OnActorAttacked(this));
 
         return damage;
     }
