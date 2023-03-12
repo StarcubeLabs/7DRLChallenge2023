@@ -41,6 +41,10 @@ public class DealDamageRange : MoveData
 
     public override void TriggerVFX(ActorController user)
     {
+        if (GetEntityInRange(user)==null)
+        {
+            return;
+        }
         ActorController target = GetEntityInRange(user);
         if (launchVFX)
         {
