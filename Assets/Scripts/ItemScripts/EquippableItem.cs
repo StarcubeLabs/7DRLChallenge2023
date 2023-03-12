@@ -46,6 +46,10 @@ public class EquippableItem : ItemData
     {
     }
 
+    public virtual void OnActorAttacked(ActorController attacker, int damage)
+    {
+    }
+
     /// <summary>
     /// Checks if a status can be applied to the target.
     /// </summary>

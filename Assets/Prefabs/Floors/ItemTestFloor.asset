@@ -21,7 +21,7 @@ MonoBehaviour:
   NumberOfItemsToSpawn: {x: 5, y: 5}
   PotentialItemEntries:
   - Weight: 100
-    Entry: {fileID: -3664115533415157549, guid: 1b10605d6f97a40d5853c8767414d5a9, type: 3}
+    Entry: {fileID: 4768044717144814953, guid: b8b191174a4ea4447b72edf6303ccae9, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []
   NumberOfEnemiesToSpawnRange: {x: 1, y: 1}

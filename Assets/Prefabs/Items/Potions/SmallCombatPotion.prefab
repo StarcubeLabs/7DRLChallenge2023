@@ -49,6 +49,6 @@ MonoBehaviour:
     know.
   ItemIcon: {fileID: 21300000, guid: a477c904fe7b71243aac751fee5342f8, type: 3}
   ItemObject: {fileID: 4383152010276537219, guid: 85dceeedc647d6648a4f03aa40d74944, type: 3}
-  IsStackable: 0
+  IsStackable: 1
   MaximumStack: 5
   RestoreAmount: 5

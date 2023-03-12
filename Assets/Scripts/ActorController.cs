@@ -533,6 +533,7 @@ public class ActorController : EntityController
         int damage = DamageCalculator.CalculateDamage(moveData, this, target);
         target.Hurt(damage, moveData);
         GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
+        target.GetEquippedItems().ForEach(item => item.OnActorAttacked(this, damage));
         target.Statuses.ForEach(status => status.OnActorAttacked(this));
 
         return damage;

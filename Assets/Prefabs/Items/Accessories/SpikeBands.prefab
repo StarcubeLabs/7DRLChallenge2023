@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2027430266639831512
+--- !u!1 &6998510675715956339
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2027430266639831514}
-  - component: {fileID: 6101064481163318544}
+  - component: {fileID: 5125609222773082112}
+  - component: {fileID: 4768044717144814953}
   m_Layer: 0
-  m_Name: TimeSync
+  m_Name: SpikeBands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2027430266639831514
+--- !u!4 &5125609222773082112
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027430266639831512}
+  m_GameObject: {fileID: 6998510675715956339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9525526, y: 0, z: 2.9720905}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6101064481163318544
+--- !u!114 &4768044717144814953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027430266639831512}
+  m_GameObject: {fileID: 6998510675715956339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b48cb7073c74834e80d1aff8dcc58a5, type: 3}
+  m_Script: {fileID: 11500000, guid: e3f2683ab98a4bf8ab258dce7f25c74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Time Sync
-  ItemDescription: Speeds you back up if you are Slowed.
-  ItemIcon: {fileID: 21300000, guid: 0c31301c89345144d9c50acad2956f24, type: 3}
-  ItemObject: {fileID: 6840955823020618454, guid: 2f0cc4f38ab3b754ebbecceca81d336a, type: 3}
-  IsStackable: 1
-  MaximumStack: 5
-  statusToClear: 10
+  ItemName: Spike Bands
+  ItemDescription: Counter - Half of incoming damage is rebounded back to attacker.
+  ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
+  ItemObject: {fileID: 0}
+  IsStackable: 0
+  MaximumStack: 1
+  recoilPercentage: 0.5

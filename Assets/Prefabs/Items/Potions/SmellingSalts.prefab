@@ -48,7 +48,7 @@ MonoBehaviour:
   ItemDescription: Prevents you from sleeping once if you carry it.
   ItemIcon: {fileID: 21300000, guid: 72c7370ab05e4ed41b4333725d5ee40b, type: 3}
   ItemObject: {fileID: 3927527509845958150, guid: 137cbcb79809f424ea74f5f6725e26dc, type: 3}
-  IsStackable: 0
-  MaximumStack: 1
+  IsStackable: 1
+  MaximumStack: 5
   status: 12
   statusTurnCount: 10
