@@ -345,7 +345,7 @@ MonoBehaviour:
   actorSoundContainer: {fileID: 0}
   displayName: Att
   hitPoints: {x: 20, y: 20}
-  hunger: {x: 100, y: 100}
+  hunger: {x: 30, y: 30}
   starvationDamage: 1
   visualHitPoints: 0
   visualHungerPoints: 0
@@ -358,6 +358,7 @@ MonoBehaviour:
   moveToReplace: {fileID: 0}
   moveToBeTaught: {fileID: 0}
   turnsTaken: 0
+  onDieVFX: {fileID: 0}
   actorDirection: 4
 --- !u!114 &8038504152482477859
 MonoBehaviour:
