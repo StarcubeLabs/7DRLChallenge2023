@@ -54,6 +54,11 @@ public abstract class Status
         return true;
     }
     
+    public virtual int ModifyDamageUser(int damage, ActorController target)
+    {
+        return damage;
+    }
+    
     public virtual int ModifyDamageTarget(int damage, ActorController user)
     {
         return damage;

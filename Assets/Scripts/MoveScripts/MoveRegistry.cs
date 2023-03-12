@@ -65,7 +65,9 @@ public class MoveRegistry : MonoBehaviour
     {
         switch (status)
         {
+            case StatusType.AttackUp: return atkUpSprite;
             case StatusType.Burn: return burnSprite;
+            case StatusType.DefenseUp: return defUpSprite;
             case StatusType.Petrify: return petrifiedSprite;
             case StatusType.Poison: return poisonSprite;
             case StatusType.SeismicShock: return seismicShockSprite;
@@ -80,9 +82,11 @@ public class MoveRegistry : MonoBehaviour
     {
         switch (status)
         {
+            case StatusType.AttackUp: return new AttackUp(actor, turnCount);
             case StatusType.Blindness: return new Blindness(actor, turnCount);
             case StatusType.Burn: return new Burn(actor, turnCount);
             case StatusType.Confusion: return new Confusion(actor, turnCount);
+            case StatusType.DefenseUp: return new DefenseUp(actor, turnCount);
             case StatusType.FlameShield: return new FlameShield(actor, turnCount);
             case StatusType.Frozen: return new Frozen(actor, turnCount);
             case StatusType.Muteness: return new Muteness(actor, turnCount);

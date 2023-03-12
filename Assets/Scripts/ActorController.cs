@@ -322,6 +322,11 @@ public class ActorController : EntityController
         {
             damage = equippableItem.ModifyDamageUser(damage, this, target);
         }
+
+        foreach (Status status in Statuses)
+        {
+            damage = status.ModifyDamageUser(damage, target);
+        }
         return damage;
     }
 

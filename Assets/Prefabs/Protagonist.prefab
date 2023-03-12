@@ -344,7 +344,7 @@ MonoBehaviour:
   ActorAnimController: {fileID: 0}
   actorSoundContainer: {fileID: 0}
   displayName: Att
-  hitPoints: {x: 10, y: 10}
+  hitPoints: {x: 100, y: 100}
   hunger: {x: 100, y: 100}
   starvationDamage: 1
   visualHitPoints: 0
