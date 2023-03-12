@@ -142,26 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FloorData:
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
-  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: 699c5f326e9ca5447b691fa12bc8e2be, type: 2}
+  - {fileID: 11400000, guid: 76cf3d37860ed0042b0ed87f4f87a0de, type: 2}
+  - {fileID: 11400000, guid: d412682678a95b041822d9ab7d0691a1, type: 2}
+  - {fileID: 11400000, guid: 7d74965317027c3429f25d251b12eddf, type: 2}
   levels: []
   levelPrefab: {fileID: 812803458894837651, guid: 64e090ce8ccbf414db39f5fc4cf6120b, type: 3}
   randomSeed: 0

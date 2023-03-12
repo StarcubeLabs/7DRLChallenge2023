@@ -41,6 +41,7 @@ public class DeathAnimation : TurnAnimation
     {
         if (onDie == null)
         {
+            actor.TriggerDeathVFX();
             Object.Destroy(actor.gameObject);
         }
         else

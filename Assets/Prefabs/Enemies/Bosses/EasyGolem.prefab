@@ -28,10 +28,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
-      propertyPath: onDieVFX
-      value: 
-      objectReference: {fileID: 8283031827289001462, guid: 49f5237a32e27f241b07913eecd01750, type: 3}
-    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: displayName
       value: Baby Earth Golem
       objectReference: {fileID: 0}
@@ -41,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.x
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.y
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: baseAttackPower
@@ -61,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 5531454999746933283}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[0]
@@ -74,11 +70,11 @@ PrefabInstance:
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[2]
       value: 
-      objectReference: {fileID: 972135384986904225, guid: 7842fd380d86346a19639d5016675e1c, type: 3}
+      objectReference: {fileID: 7639689508547358246, guid: 87b09b306b6984c5a867967ac8dcdb0b, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[3]
       value: 
-      objectReference: {fileID: 111296553757472549, guid: baac59e4b9c6848feb98308bcf954983, type: 3}
+      objectReference: {fileID: 3582576500428355737, guid: e34458573eef54dd595cafa580d8f78a, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[4]
       value: 
@@ -129,15 +125,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_LocalPosition.x
