@@ -21,4 +21,9 @@ public class Roulette : MoveData
     {
         return !user.HasFullHealth;
     }
+
+    public override bool InAIRange(ActorController user, ActorController target)
+    {
+        return true;
+    }
 }

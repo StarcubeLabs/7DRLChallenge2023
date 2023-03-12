@@ -2,7 +2,7 @@ using RLDataTypes;
 
 public class DefenseUp : Status
 {
-    private const int DAMAGE_DECREASE = 1;
+    private const int DAMAGE_DECREASE = 2;
     
     public DefenseUp(ActorController actor, int turnsLeft) : base(StatusType.DefenseUp, actor, turnsLeft)
     {
