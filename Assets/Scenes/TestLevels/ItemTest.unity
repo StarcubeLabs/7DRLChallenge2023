@@ -852,11 +852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: hitPoints.x
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: hitPoints.y
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.size
@@ -865,7 +865,7 @@ PrefabInstance:
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.data[0]
       value: 
-      objectReference: {fileID: 7639689508547358246, guid: ec4b74fe84d004d6e881c0fa47c55a68, type: 3}
+      objectReference: {fileID: -351005639455669722, guid: a2ca668b94f53497b8327563fdfa5d65, type: 3}
     - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: startingMoves.Array.data[1]
       value: 

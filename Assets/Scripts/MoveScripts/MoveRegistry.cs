@@ -89,6 +89,7 @@ public class MoveRegistry : MonoBehaviour
             case StatusType.Petrify: return new Petrify(actor, turnCount);
             case StatusType.PetrifyImmunity: return new PetrifyImmunity(actor, turnCount);
             case StatusType.Poison: return new Poison(actor, turnCount);
+            case StatusType.Regeneration: return new Regeneration(actor, turnCount);
             case StatusType.SeismicShock: return new SeismicShock(actor, turnCount);
             case StatusType.Sleep: return new Sleep(actor, turnCount);
             case StatusType.SleepImmunity: return new SleepImmunity(actor, turnCount);

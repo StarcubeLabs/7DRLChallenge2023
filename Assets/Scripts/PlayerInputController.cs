@@ -128,7 +128,6 @@ public class PlayerInputController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift)) // Apparently to get a combo of keys to work you have to do GetKey1, GetKey2, ..., GetFinalKeyDown
         {
-            
             if (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.D)
                 || Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.W))
             {
