@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour,IPointerDownHandler
+public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Inventory inventory;
     public InventoryDrawer inventoryDrawerReference;
@@ -100,5 +98,18 @@ public class ItemSlot : MonoBehaviour,IPointerDownHandler
         {
             inventoryDrawerReference.CloseAndEndTurn();
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item != null)
+        {
+            inventoryDrawerReference.SetTooltip(item);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        inventoryDrawerReference.HideTooltip();
     }
 }

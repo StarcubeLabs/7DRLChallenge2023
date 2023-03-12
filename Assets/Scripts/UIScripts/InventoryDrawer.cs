@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class InventoryDrawer : MonoBehaviour
@@ -6,7 +7,8 @@ public class InventoryDrawer : MonoBehaviour
     public ActorController player;
     public Inventory PlayerInventory;
     public ItemSlot ItemSlotPrefab;
-    public GameObject ItemDropMenu;
+    public TextMeshProUGUI itemNameText;
+    public TextMeshProUGUI itemDescriptionText;
     
     void Awake()
     {
@@ -58,6 +60,19 @@ public class InventoryDrawer : MonoBehaviour
 
     public void Close()
     {
+        HideTooltip();
         transform.parent.gameObject.SetActive(false);
+    }
+
+    public void SetTooltip(Item item)
+    {
+        itemNameText.text = item.ItemData.ItemName;
+        itemDescriptionText.text = item.ItemData.ItemDescription;
+    }
+
+    public void HideTooltip()
+    {
+        itemNameText.text = "";
+        itemDescriptionText.text = "";
     }
 }

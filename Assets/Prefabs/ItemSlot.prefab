@@ -228,6 +228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryDrawerReference: {fileID: 0}
   ItemPreview: {fileID: 798587188539476983}
+  tooltip: {fileID: 0}
+  tooltipText: {fileID: 0}
   item: {fileID: 0}
   StackCountText: {fileID: 798587188270167850}
 --- !u!1 &798587188539476983
