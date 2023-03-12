@@ -28,3 +28,9 @@ MonoBehaviour:
   PotentialEnemyEntries:
   - Weight: 5
     Entry: {fileID: 4176091817456084932, guid: 80eb6c77343289e47891b4ffda8004d9, type: 3}
+  - Weight: 5
+    Entry: {fileID: 5435556384348405763, guid: a966a3df75396dc498cc35747e9e04c1, type: 3}
+  - Weight: 5
+    Entry: {fileID: 274854596613404438, guid: 6b6bca9739f756847b76473b77f2d7bf, type: 3}
+  - Weight: 5
+    Entry: {fileID: 5992060548117690401, guid: 2c022af1ffe59c14f93be569b2ead6a5, type: 3}
