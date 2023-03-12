@@ -9,6 +9,7 @@ public class InventoryDrawer : MonoBehaviour
     public ItemSlot ItemSlotPrefab;
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescriptionText;
+    private GameObject tooltipObject { get { return itemNameText.transform.parent.gameObject; } }
     
     void Awake()
     {
@@ -23,6 +24,7 @@ public class InventoryDrawer : MonoBehaviour
         {
             Draw();
         }
+        HideTooltip();
     }
     
     public void Draw()
@@ -49,6 +51,7 @@ public class InventoryDrawer : MonoBehaviour
     public void Open()
     {
         transform.parent.gameObject.SetActive(true);
+        tooltipObject.SetActive(true);
     }
 
     public void CloseAndEndTurn()
@@ -61,6 +64,7 @@ public class InventoryDrawer : MonoBehaviour
     public void Close()
     {
         HideTooltip();
+        tooltipObject.SetActive(false);
         transform.parent.gameObject.SetActive(false);
     }
 
