@@ -38,7 +38,7 @@ Shader "7DRL/7DRL_EmissiveSnapTextured"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.vertex = vertSnap(v, 160, 120);
+                //o.vertex = vertSnap(v, 160, 120);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
