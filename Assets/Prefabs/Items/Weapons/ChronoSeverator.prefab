@@ -47,7 +47,7 @@ MonoBehaviour:
   ItemName: ChronoSeverator
   ItemDescription: FIRE TYPE. A cutter strong enough to slow the heat death of the
     universe. 20% chance to slow.
-  ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
+  ItemIcon: {fileID: 21300000, guid: 248ae61e0b81d974ba8666c30a5942e4, type: 3}
   ItemObject: {fileID: 4021939783045019365, guid: 288807ebf264e4dc7b21b0e618391e5c, type: 3}
   IsStackable: 0
   MaximumStack: 1
