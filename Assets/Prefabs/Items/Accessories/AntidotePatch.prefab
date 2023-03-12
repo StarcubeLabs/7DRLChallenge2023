@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Antidote Patch
   ItemDescription: Poison protection.
-  ItemIcon: {fileID: 21300000, guid: 2e661e638168a484eaa39c77386fae7e, type: 3}
+  ItemIcon: {fileID: 21300000, guid: 5983fc3ba71596045a8a386e1ecdd626, type: 3}
   ItemObject: {fileID: 0}
   IsStackable: 0
   MaximumStack: 1

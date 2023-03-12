@@ -149,7 +149,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d412682678a95b041822d9ab7d0691a1, type: 2}
   - {fileID: 11400000, guid: d412682678a95b041822d9ab7d0691a1, type: 2}
   - {fileID: 11400000, guid: d412682678a95b041822d9ab7d0691a1, type: 2}
+  - {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+  - {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+  - {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+  - {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+  - {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
   - {fileID: 11400000, guid: 7d74965317027c3429f25d251b12eddf, type: 2}
+  - {fileID: 11400000, guid: 079a0479a2914a140a20337088e89e40, type: 2}
+  - {fileID: 11400000, guid: 04a548157d4d34cc58072f97305dc6c9, type: 2}
+  - {fileID: 11400000, guid: 04a548157d4d34cc58072f97305dc6c9, type: 2}
+  - {fileID: 11400000, guid: 04a548157d4d34cc58072f97305dc6c9, type: 2}
+  - {fileID: 11400000, guid: 04a548157d4d34cc58072f97305dc6c9, type: 2}
+  - {fileID: 11400000, guid: 04a548157d4d34cc58072f97305dc6c9, type: 2}
+  - {fileID: 11400000, guid: 04a548157d4d34cc58072f97305dc6c9, type: 2}
   levels: []
   levelPrefab: {fileID: 812803458894837651, guid: 64e090ce8ccbf414db39f5fc4cf6120b, type: 3}
   randomSeed: 0
