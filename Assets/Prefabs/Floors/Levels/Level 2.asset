@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b0725b8a3ed9c4686ef7a9b74f18ae, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: 
-  widthRange: {x: 15, y: 15}
-  heightRange: {x: 15, y: 15}
-  roomNumRange: {x: 8, y: 8}
+  widthRange: {x: 35, y: 35}
+  heightRange: {x: 35, y: 35}
+  roomNumRange: {x: 15, y: 15}
   roomMaxSizeRange: {x: 5, y: 5}
   roomMinSizeRange: {x: 3, y: 3}
   CurrentFloorType: 0
@@ -22,10 +22,24 @@ MonoBehaviour:
   PotentialItemEntries:
   - Weight: 10
     Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
-  - Weight: 15
-    Entry: {fileID: 3583011865473692732, guid: 2edb5509b2a8442a0adcbfe9af7e3907, type: 3}
   - Weight: 5
-    Entry: {fileID: 1588953171066697679, guid: 4d3785b23f4e6854d972b4330c0e6127, type: 3}
+    Entry: {fileID: 2740662514017809751, guid: 9dd9075dde4ad42c09d07946811c2acf, type: 3}
+  - Weight: 5
+    Entry: {fileID: 2740662514017809751, guid: aca75567d505e4cda83b20f06c919721, type: 3}
+  - Weight: 5
+    Entry: {fileID: 2740662514017809751, guid: 1f84c1c24fb6444528c6c66df46dabe5, type: 3}
+  - Weight: 5
+    Entry: {fileID: 1588953171066697679, guid: 5183afce592bb4a6ea29c3fbd6e48600, type: 3}
+  - Weight: 5
+    Entry: {fileID: 7563973972555501414, guid: bb68035121d9b574191b62ae17f9c9b3, type: 3}
+  - Weight: 5
+    Entry: {fileID: 4080372399560234900, guid: 159f09f19673841f3a278dbcb04cc3bd, type: 3}
+  - Weight: 5
+    Entry: {fileID: 4915565562157183493, guid: d8eab701e112e4b8aa3da87584cfb1f8, type: 3}
+  - Weight: 5
+    Entry: {fileID: 7234801106608014906, guid: 9e4551a211f07b649a788e8094e69109, type: 3}
+  - Weight: 5
+    Entry: {fileID: 4436611308889749758, guid: d18737f52591f4145b99420234474686, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []
   NumberOfEnemiesToSpawnRange: {x: 2, y: 4}
@@ -34,3 +48,9 @@ MonoBehaviour:
     Entry: {fileID: 4176091817456084932, guid: e202b70acdeee324bb8a9d9714cabb82, type: 3}
   - Weight: 5
     Entry: {fileID: 4176091817456084932, guid: 2beaf366b33377c47a6bb983081ee49c, type: 3}
+  - Weight: 5
+    Entry: {fileID: 4176091817456084932, guid: 45d76504762a36e4587f29eb82072714, type: 3}
+  - Weight: 5
+    Entry: {fileID: 4176091817456084932, guid: 43e28d08937e70749bed59b3fce8afb6, type: 3}
+  - Weight: 5
+    Entry: {fileID: 8153237238349085216, guid: 39d51f8d679424cefb3c16dfa863286a, type: 3}

@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: baseAttackPower
@@ -57,6 +57,10 @@ PrefabInstance:
       objectReference: {fileID: 2315456253617409338}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: LootTableEntries.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
@@ -103,6 +107,14 @@ PrefabInstance:
       propertyPath: startingMoves.Array.data[10]
       value: 
       objectReference: {fileID: 972135384986904225, guid: bfd9942e7f2d49d42a70e9f34a3f1b38, type: 3}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: LootTableEntries.Array.data[0].Entry
+      value: 
+      objectReference: {fileID: 5232407384910942077, guid: 6b2cfd2cdf048914497dc244e64d3241, type: 3}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: LootTableEntries.Array.data[0].Weight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_RootOrder
       value: 0
