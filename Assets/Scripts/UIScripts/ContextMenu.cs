@@ -143,12 +143,15 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public void NavigateToFirstMenuItem()
     {
         Transform root = getActiveMenu();
-        MenuItem firstMenuItem = root.GetComponentInChildren<MenuItem>(true);
-        GameObject menuItem = firstMenuItem.gameObject;
-        eventSystem.firstSelectedGameObject = menuItem;
-        eventSystem.SetSelectedGameObject(menuItem);
+        if (root)
+        {
+            MenuItem firstMenuItem = root.GetComponentInChildren<MenuItem>(true);
+            GameObject menuItem = firstMenuItem.gameObject;
+            eventSystem.firstSelectedGameObject = menuItem;
+            eventSystem.SetSelectedGameObject(menuItem);
 
-        StartHighlightMenuItem(firstMenuItem);
+            StartHighlightMenuItem(firstMenuItem);
+        }
     }
 
     public void NavigateDown()
@@ -219,6 +222,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void Close()
     {
+        contextMainMenu.Hide();
         cursor.enabled = false;
         eventSystem.SetSelectedGameObject(null);
         ServicesManager.HudManager.MessageBox.Show();
@@ -228,7 +232,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     {
         inventoryMenu.GetComponentInChildren<InventoryDrawer>(true).Close();
         inventoryMenu.gameObject.SetActive(false);
-        cursor.enabled = true;
+        cursor.enabled = false;
     }
 
     public Transform getActiveMenu()

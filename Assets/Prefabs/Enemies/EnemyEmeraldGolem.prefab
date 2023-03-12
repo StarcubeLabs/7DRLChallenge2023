@@ -37,15 +37,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.x
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: hitPoints.y
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: baseAttackPower
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: moves.Array.size
@@ -66,47 +66,51 @@ PrefabInstance:
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[0]
       value: 
-      objectReference: {fileID: 972135384986904225, guid: 86520059ebfdc44f390bb957e5e02255, type: 3}
+      objectReference: {fileID: -3965991558433272665, guid: 3f804a249e1b746d3a98ea277a2c8838, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[1]
       value: 
-      objectReference: {fileID: -3965991558433272665, guid: 3f804a249e1b746d3a98ea277a2c8838, type: 3}
+      objectReference: {fileID: 8518528083465276388, guid: d64e10a56753c4135a4f32983230d2f6, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[2]
       value: 
-      objectReference: {fileID: 8518528083465276388, guid: d64e10a56753c4135a4f32983230d2f6, type: 3}
+      objectReference: {fileID: 3582576500428355737, guid: 8478dc7d66e864bafbc9bc025b5cae7b, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[3]
       value: 
-      objectReference: {fileID: 3582576500428355737, guid: 8478dc7d66e864bafbc9bc025b5cae7b, type: 3}
+      objectReference: {fileID: 6117529985058575661, guid: 9e6a2054493b54eaaacd98c0b5eb388f, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[4]
       value: 
-      objectReference: {fileID: 6117529985058575661, guid: 9e6a2054493b54eaaacd98c0b5eb388f, type: 3}
+      objectReference: {fileID: -351005639455669722, guid: a2ca668b94f53497b8327563fdfa5d65, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[5]
       value: 
-      objectReference: {fileID: -351005639455669722, guid: a2ca668b94f53497b8327563fdfa5d65, type: 3}
+      objectReference: {fileID: 545491245312023058, guid: 1f2d6b470c47c4eedaa8d4949c7d8179, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[6]
       value: 
-      objectReference: {fileID: 545491245312023058, guid: 1f2d6b470c47c4eedaa8d4949c7d8179, type: 3}
+      objectReference: {fileID: 3582576500428355737, guid: c4c17bb2c2935469398b5277b9092f9d, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[7]
       value: 
-      objectReference: {fileID: 3582576500428355737, guid: c4c17bb2c2935469398b5277b9092f9d, type: 3}
+      objectReference: {fileID: 3582576500428355737, guid: e34458573eef54dd595cafa580d8f78a, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[8]
       value: 
-      objectReference: {fileID: 3582576500428355737, guid: e34458573eef54dd595cafa580d8f78a, type: 3}
+      objectReference: {fileID: 3582576500428355737, guid: 815c3fcbd55cb490387a8fb9cc8186d0, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[9]
       value: 
-      objectReference: {fileID: 3582576500428355737, guid: 815c3fcbd55cb490387a8fb9cc8186d0, type: 3}
+      objectReference: {fileID: 972135384986904225, guid: c018010db4f694dfb80f6caae8707d58, type: 3}
     - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: startingMoves.Array.data[10]
       value: 
-      objectReference: {fileID: 972135384986904225, guid: c018010db4f694dfb80f6caae8707d58, type: 3}
+      objectReference: {fileID: 7639689508547358246, guid: 87b09b306b6984c5a867967ac8dcdb0b, type: 3}
+    - target: {fileID: 4877530293937715625, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+      propertyPath: startingMoves.Array.data[11]
+      value: 
+      objectReference: {fileID: 7639689508547358246, guid: 87b09b306b6984c5a867967ac8dcdb0b, type: 3}
     - target: {fileID: 4877530293937715627, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -153,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877530293937715628, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
       propertyPath: m_Name
-      value: EnemySapphireGolem
+      value: EnemyEmeraldGolem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
@@ -220,7 +224,7 @@ PrefabInstance:
     - target: {fileID: -5222229417546619685, guid: 16998ba0de531b347838c0546f3e33f5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a681f58adb0eead47b88f7aa1cddadb5, type: 2}
+      objectReference: {fileID: 2100000, guid: c6417cdfe0ad99240856e31d8b1f9004, type: 2}
     - target: {fileID: 919132149155446097, guid: 16998ba0de531b347838c0546f3e33f5, type: 3}
       propertyPath: m_Name
       value: QuartzGolem

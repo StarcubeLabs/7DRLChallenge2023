@@ -50,7 +50,7 @@ public class InventoryDrawer : MonoBehaviour
 
     public void Open()
     {
-        transform.parent.gameObject.SetActive(true);
+        transform.parent.parent.gameObject.SetActive(true);
         tooltipObject.SetActive(true);
     }
 
@@ -65,7 +65,7 @@ public class InventoryDrawer : MonoBehaviour
     {
         HideTooltip();
         tooltipObject.SetActive(false);
-        transform.parent.gameObject.SetActive(false);
+        transform.parent.parent.gameObject.SetActive(false);
     }
 
     public void SetTooltip(Item item)
