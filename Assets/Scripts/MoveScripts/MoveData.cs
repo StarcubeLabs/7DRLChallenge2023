@@ -99,7 +99,7 @@ public abstract class MoveData : MonoBehaviour
         {
             ParticleSystem launchVFXInst = GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
         }
-        if (hitVFX)
+        if (hitVFX && target)
         {
             //Hit VFX
             GameObject.Instantiate<ParticleSystem>(hitVFX, target.transform, false);
