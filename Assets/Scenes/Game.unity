@@ -182,6 +182,70 @@ PrefabInstance:
       propertyPath: numMapsToGenerate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 699c5f326e9ca5447b691fa12bc8e2be, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 76cf3d37860ed0042b0ed87f4f87a0de, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 76cf3d37860ed0042b0ed87f4f87a0de, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 76cf3d37860ed0042b0ed87f4f87a0de, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: d412682678a95b041822d9ab7d0691a1, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: d412682678a95b041822d9ab7d0691a1, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: d412682678a95b041822d9ab7d0691a1, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d74965317027c3429f25d251b12eddf, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 079a0479a2914a140a20337088e89e40, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[14]
+      value: 
+      objectReference: {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[16]
+      value: 
+      objectReference: {fileID: 11400000, guid: a1d1dfe48127ac74980c67f4d3bceace, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
 --- !u!1001 &702277163

@@ -121,7 +121,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
     public void OpenInventory()
     {
         inventoryMenu.gameObject.SetActive(true);
-        inventoryMenu.GetComponentInChildren<InventoryDrawer>().Open();
+        inventoryMenu.GetComponentInChildren<InventoryDrawer>(true).Open();
         cursor.enabled = false;
     }
 
@@ -226,7 +226,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public void CloseInventory()
     {
-        inventoryMenu.GetComponentInChildren<InventoryDrawer>().Close();
+        inventoryMenu.GetComponentInChildren<InventoryDrawer>(true).Close();
         inventoryMenu.gameObject.SetActive(false);
         cursor.enabled = true;
     }
