@@ -48,7 +48,7 @@ MonoBehaviour:
   moveDescription: Create an explosion in a 1 tile radius centered on. Beware! Damages
     you and leaves you barely alive!
   Element: 1
-  power: 20
+  power: 10
   maxPP: 1
   afflictionType: 0
   afflictionChance: 0

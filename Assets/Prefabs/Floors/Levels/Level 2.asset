@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b0725b8a3ed9c4686ef7a9b74f18ae, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: 
-  widthRange: {x: 35, y: 35}
-  heightRange: {x: 35, y: 35}
+  widthRange: {x: 25, y: 25}
+  heightRange: {x: 25, y: 25}
   roomNumRange: {x: 15, y: 15}
   roomMaxSizeRange: {x: 5, y: 5}
   roomMinSizeRange: {x: 3, y: 3}
   CurrentFloorType: 0
-  NumberOfItemsToSpawn: {x: 1, y: 3}
+  NumberOfItemsToSpawn: {x: 4, y: 7}
   PotentialItemEntries:
   - Weight: 10
     Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
@@ -40,6 +40,24 @@ MonoBehaviour:
     Entry: {fileID: 7234801106608014906, guid: 9e4551a211f07b649a788e8094e69109, type: 3}
   - Weight: 5
     Entry: {fileID: 4436611308889749758, guid: d18737f52591f4145b99420234474686, type: 3}
+  - Weight: 5
+    Entry: {fileID: 1958110151181931917, guid: 2e26d90c1a392f14fb49b9c9c01c4381, type: 3}
+  - Weight: 5
+    Entry: {fileID: 1958110151181931917, guid: 5c3035f7a2aabcf449634f878245693b, type: 3}
+  - Weight: 5
+    Entry: {fileID: 5232407384910942077, guid: 6b2cfd2cdf048914497dc244e64d3241, type: 3}
+  - Weight: 5
+    Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
+  - Weight: 5
+    Entry: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
+  - Weight: 5
+    Entry: {fileID: -6469611630650067172, guid: fd053ec73da3c4dc690c1d2cbb6a4ebd, type: 3}
+  - Weight: 5
+    Entry: {fileID: -6469611630650067172, guid: 7ecbb84ba47a7414aac4b5a43315801e, type: 3}
+  - Weight: 5
+    Entry: {fileID: -6469611630650067172, guid: 82d5612d28fe049f7b719ba007e0fe4c, type: 3}
+  - Weight: 5
+    Entry: {fileID: -6469611630650067172, guid: 3d0d78043edc14c8fa75b7c84ce11722, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []
   NumberOfEnemiesToSpawnRange: {x: 2, y: 4}
