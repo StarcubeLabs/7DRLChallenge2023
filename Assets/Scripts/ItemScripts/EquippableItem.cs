@@ -46,6 +46,10 @@ public class EquippableItem : ItemData
     {
     }
 
+    public virtual void OnActorAttacked(ActorController attacker, int damage)
+    {
+    }
+
     /// <summary>
     /// Checks if a status can be applied to the target.
     /// </summary>
@@ -55,5 +59,10 @@ public class EquippableItem : ItemData
     public virtual bool AllowStatus(ActorController target, StatusType statusType)
     {
         return true;
+    }
+
+    public virtual int ModifyHungerDrainRate(int hungerDrainRate)
+    {
+        return hungerDrainRate;
     }
 }

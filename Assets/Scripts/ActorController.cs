@@ -486,9 +486,12 @@ public class ActorController : EntityController
                levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0));
     }
 
-    public void HealAmount(int healAmount)
+    public void HealAmount(int healAmount, bool shouldShowMessage = true)
     {
-        turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} healed {healAmount} HP!"));
+        if (!shouldShowMessage)
+        {
+            turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} healed {healAmount} HP!"));
+        }
         hitPoints.x += healAmount;
         if (hitPoints.x > hitPoints.y)
         {
@@ -525,18 +528,16 @@ public class ActorController : EntityController
             turnAnimationController.AddAnimation(new MessageAnimation(foodMessage));
         }
         hunger.x += foodAmount;
-        UpdateVisualHitPoints();
+        UpdateVisualHunger();
     }
 
     public int DamageTarget(MoveData moveData, ActorController target)
     {
         int damage = DamageCalculator.CalculateDamage(moveData, this, target);
-        if (damage > 0)
-        {
-            target.Hurt(damage, moveData);
-            GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
-            target.Statuses.ForEach(status => status.OnActorAttacked(this));
-        }
+        target.Hurt(damage, moveData);
+        GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
+        target.GetEquippedItems().ForEach(item => item.OnActorAttacked(this, damage));
+        target.Statuses.ForEach(status => status.OnActorAttacked(this));
 
         return damage;
     }
@@ -662,9 +663,11 @@ public class ActorController : EntityController
         }
 
         //We'll assume if we have an upper limit on hunger, we care about hunger. Otherwise who caresssss?
-        if(hunger.y > 0)
+        if (hunger.y > 0)
         {
-            if ((turnsTaken % 10) == 0)
+            int hungerDrainRate = 10;
+            GetEquippedItems().ForEach(item => hungerDrainRate = item.ModifyHungerDrainRate(hungerDrainRate));
+            if ((turnsTaken % hungerDrainRate) == 0)
             {
                 if (hunger.x > 0 && turnsTaken > 0)
                 {
@@ -676,6 +679,11 @@ public class ActorController : EntityController
                     Hurt(starvationDamage, null, $"{GetDisplayName()} took {starvationDamage} damage from starvation!");
                 }
             }
+        }
+
+        if ((turnsTaken % 10) == 0)
+        {
+            HealAmount(1);
         }
 
         turnsTaken++;
