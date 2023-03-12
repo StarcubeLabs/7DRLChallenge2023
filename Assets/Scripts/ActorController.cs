@@ -300,9 +300,15 @@ public class ActorController : EntityController
             turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} used {move.moveData.MoveName}!"));
         }
         Statuses.ForEach(status => status.ModifyFacingDirection());
-        turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", UpdateVisualRotation));
+        
+        void TriggerMoveVFX()
+        {
+            UpdateVisualRotation();
+            move.moveData.TriggerVFX(this);
+        }
+        
+        turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", TriggerMoveVFX));
         move.moveData.UseMove(this);
-        move.moveData.TriggerVFX(this);
         if (move.pp > 0)
         {
             move.pp--;
