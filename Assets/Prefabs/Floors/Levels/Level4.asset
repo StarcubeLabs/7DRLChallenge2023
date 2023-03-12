@@ -15,16 +15,20 @@ MonoBehaviour:
   widthRange: {x: 30, y: 30}
   heightRange: {x: 30, y: 30}
   roomNumRange: {x: 1, y: 1}
-  roomMaxSizeRange: {x: 15, y: 15}
-  roomMinSizeRange: {x: 15, y: 15}
+  roomMaxSizeRange: {x: 5, y: 5}
+  roomMinSizeRange: {x: 5, y: 5}
   CurrentFloorType: 0
-  NumberOfItemsToSpawn: {x: 3, y: 3}
+  NumberOfItemsToSpawn: {x: 1, y: 1}
   PotentialItemEntries:
-  - Weight: 5
+  - Weight: 10
+    Entry: {fileID: -6469611630650067172, guid: fd053ec73da3c4dc690c1d2cbb6a4ebd, type: 3}
+  - Weight: 10
+    Entry: {fileID: -6469611630650067172, guid: d2500d108403c46269386491563126e7, type: 3}
+  - Weight: 1
     Entry: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []
-  NumberOfEnemiesToSpawnRange: {x: 1, y: 1}
+  NumberOfEnemiesToSpawnRange: {x: 0, y: 0}
   PotentialEnemyEntries:
-  - Weight: 5
+  - Weight: 0
     Entry: {fileID: 4176091817456084932, guid: 80eb6c77343289e47891b4ffda8004d9, type: 3}
