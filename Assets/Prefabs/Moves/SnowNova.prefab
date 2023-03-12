@@ -53,4 +53,6 @@ MonoBehaviour:
   afflictionType: 10
   afflictionChance: 0.1
   afflictionTurnCount: 4
+  launchVFX: {fileID: 0}
+  hitVFX: {fileID: 4360536478441437789, guid: 73c3a241d60238148b946165991ef34d, type: 3}
   range: 3

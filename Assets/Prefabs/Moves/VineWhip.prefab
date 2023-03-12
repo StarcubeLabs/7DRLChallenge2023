@@ -49,4 +49,9 @@ MonoBehaviour:
   Element: 3
   power: 4
   maxPP: 6
+  afflictionType: 0
+  afflictionChance: 0
+  afflictionTurnCount: 0
+  launchVFX: {fileID: 0}
+  hitVFX: {fileID: 816690300272681082, guid: 7021b3a6211764649bd851e355f1d8e4, type: 3}
   range: 2
