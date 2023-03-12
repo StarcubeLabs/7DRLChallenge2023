@@ -191,6 +191,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
+      propertyPath: FloorData.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+    - target: {fileID: 6533582120015504546, guid: ce2f9c7bef859e6479d7cf262675f45c, type: 3}
       propertyPath: FloorData.Array.data[0].widthRange.x
       value: 30
       objectReference: {fileID: 0}
@@ -1526,6 +1530,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
+      propertyPath: startingMoves.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
+      propertyPath: startingMoves.Array.data[1]
+      value: 
+      objectReference: {fileID: 3582576500428355737, guid: b74b5f516fa6c414684f43b5b67e4107, type: 3}
+    - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
+      propertyPath: startingMoves.Array.data[2]
+      value: 
+      objectReference: {fileID: 3582576500428355737, guid: e34458573eef54dd595cafa580d8f78a, type: 3}
+    - target: {fileID: 8038504152482477858, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
+      propertyPath: startingMoves.Array.data[3]
+      value: 
+      objectReference: {fileID: 3582576500428355737, guid: 052ebc7613dad49749d85b2eff79a0f1, type: 3}
     - target: {fileID: 8038504152482477859, guid: 408feaca8f6125c4f938fdec0370b97c, type: 3}
       propertyPath: contextMenu
       value: 

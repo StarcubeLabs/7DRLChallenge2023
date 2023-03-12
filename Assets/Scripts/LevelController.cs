@@ -94,6 +94,8 @@ public class LevelController : MonoBehaviour
 
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
 
+
+        
         CurrentFloorData.GenerateFloorEntities();
         
         SpawnEnemiesForMap(cells);
@@ -167,7 +169,7 @@ public class LevelController : MonoBehaviour
     {
         return entityManager.isTrapInPosition(position);
     }
-    
+
     /// <summary>
     /// Spawns Enemies for map.
     ///  How many enemies to spawn is exposed in the Inspector as 'EnemySpawnRange'.
