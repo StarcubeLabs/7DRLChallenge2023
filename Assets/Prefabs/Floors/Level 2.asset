@@ -18,13 +18,13 @@ MonoBehaviour:
   roomMaxSizeRange: {x: 5, y: 5}
   roomMinSizeRange: {x: 3, y: 3}
   CurrentFloorType: 0
-  NumberOfItemsToSpawn: {x: 2, y: 5}
+  NumberOfItemsToSpawn: {x: 4, y: 5}
   PotentialItemEntries:
   - Weight: 3
     Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
   - Weight: 3
     Entry: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
-  - Weight: 3
+  - Weight: 2
     Entry: {fileID: 5232407384910942077, guid: 6b2cfd2cdf048914497dc244e64d3241, type: 3}
   - Weight: 1
     Entry: {fileID: 4517285485017344840, guid: f94b5ab2373a147bf88d4ddce95a6d3b, type: 3}
