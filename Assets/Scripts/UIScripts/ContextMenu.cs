@@ -214,7 +214,7 @@ public class ContextMenu: MonoBehaviour, IMenuInteractable
 
     public bool IsMenuOpen()
     {
-        return moveMenu.elementGroup.enabled || contextMainMenu.enabled || inventoryMenu.gameObject.activeSelf || menuController.gameObject.activeSelf;
+        return moveMenu.IsOpen() || contextMainMenu.enabled || inventoryMenu.gameObject.activeSelf || menuController.gameObject.activeSelf;
     }
 
     public void Close()
