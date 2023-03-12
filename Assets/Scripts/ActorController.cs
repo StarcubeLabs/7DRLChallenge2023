@@ -486,9 +486,12 @@ public class ActorController : EntityController
                levelManager.GetActiveLevel().CanWalkOnCell(gridPosition + new Vector3Int(0, offset.y, 0));
     }
 
-    public void HealAmount(int healAmount)
+    public void HealAmount(int healAmount, bool shouldShowMessage = true)
     {
-        turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} healed {healAmount} HP!"));
+        if (!shouldShowMessage)
+        {
+            turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} healed {healAmount} HP!"));
+        }
         hitPoints.x += healAmount;
         if (hitPoints.x > hitPoints.y)
         {
@@ -525,7 +528,7 @@ public class ActorController : EntityController
             turnAnimationController.AddAnimation(new MessageAnimation(foodMessage));
         }
         hunger.x += foodAmount;
-        UpdateVisualHitPoints();
+        UpdateVisualHunger();
     }
 
     public int DamageTarget(MoveData moveData, ActorController target)
@@ -676,6 +679,11 @@ public class ActorController : EntityController
                     Hurt(starvationDamage, null, $"{GetDisplayName()} took {starvationDamage} damage from starvation!");
                 }
             }
+        }
+
+        if ((turnsTaken % 10) == 0)
+        {
+            HealAmount(1);
         }
 
         turnsTaken++;

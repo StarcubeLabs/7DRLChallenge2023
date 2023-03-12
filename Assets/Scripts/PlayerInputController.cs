@@ -244,7 +244,7 @@ public class PlayerInputController : MonoBehaviour
 
     private void PlayerMove(Vector3Int offset)
     {
-        if (Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             playerActor.FaceDirection(offset);
             playerActor.UpdateVisualRotation();

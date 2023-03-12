@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
 {
     public MenuItem moveMenuItemPrefab;
     public RectTransform moveList;
+    public TextMeshProUGUI promptText;
 
     [HideInInspector]
     public ElementGroup elementGroup;
@@ -48,14 +50,19 @@ public class MoveMenu: MonoBehaviour, IMenuInteractable
 
     private void SetupMenu(ContextMenu contextMenu)
     {
-        RectTransform rect = (RectTransform)this.transform;
+        RectTransform moveMenuRect = (RectTransform)this.transform;
+        RectTransform moveMenuDetailRect = (RectTransform)this.transform;
         if (mode is MoveMenuTeachMove)
         {
-            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 300);
+            moveMenuRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 300);
+            moveMenuDetailRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 300);
+            promptText.text = "Select a move to forget!";
         }
         else
         {
-            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 240);
+            moveMenuRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 240);
+            moveMenuDetailRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 240);
+            promptText.text = "Choose a move!";
         }
         foreach (Move move in mode.GetMoves())
         {
