@@ -734,7 +734,7 @@ public class ActorController : EntityController
 
     public void EquipAccessory(Item accessory)
     {
-        DisplayEquipMessage(this.accessory);
+        DisplayEquipMessage(accessory);
         this.accessory = accessory;
     }
 

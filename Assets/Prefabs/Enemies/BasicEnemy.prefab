@@ -283,7 +283,8 @@ MonoBehaviour:
   canPickUpItems: 0
   elementType: 2
   baseAttackPower: 1
-  startingMoves: []
+  startingMoves:
+  - {fileID: 3582576500428355737, guid: 8478dc7d66e864bafbc9bc025b5cae7b, type: 3}
   moves: []
   moveToReplace: {fileID: 0}
   moveToBeTaught: {fileID: 0}
@@ -301,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bdf549ab3e544489716639d76b8894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicAttackChance: 0.5
+  basicAttackChance: 0
   enemyActor: {fileID: 4877530293937715625}
   player: {fileID: 0}
   turnManager: {fileID: 0}

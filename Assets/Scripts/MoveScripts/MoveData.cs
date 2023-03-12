@@ -94,15 +94,15 @@ public abstract class MoveData : MonoBehaviour
 
     public virtual void TriggerVFX(ActorController user)
     {
-        if (hitVFX != null && launchVFX != null)
+        ActorController target = ServicesManager.EntityManager.GetEntityInFront(user);
+        if (launchVFX)
         {
-            ActorController target = ServicesManager.EntityManager.GetEntityInFront(user);
-            if (target != null) 
-            { 
             ParticleSystem launchVFXInst = GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
+        }
+        if (hitVFX)
+        {
             //Hit VFX
             GameObject.Instantiate<ParticleSystem>(hitVFX, target.transform, false);
-            }
         }
     }
 }

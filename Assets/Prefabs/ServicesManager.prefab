@@ -142,20 +142,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FloorData:
-  - widthRange: {x: 30, y: 30}
-    heightRange: {x: 20, y: 30}
-    roomNumRange: {x: 13, y: 13}
-    roomMaxSizeRange: {x: 5, y: 5}
-    roomMinSizeRange: {x: 3, y: 3}
-    CurrentFloorType: 0
-    NumberOfItemsToSpawn: {x: 0, y: 0}
-    PotentialItemEntries: []
-    NumberOfTrapsToSpawnRange: {x: 0, y: 0}
-    PotentialTrapEntries: []
-    NumberOfEnemiesToSpawnRange: {x: 1, y: 1}
-    PotentialEnemyEntries:
-    - Weight: 1
-      Entry: {fileID: 47899768264105375, guid: 8857e0e0831c70849a41bfd0229ee8b2, type: 3}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
+  - {fileID: 11400000, guid: ffe59de7aa0b24155b93066169c0e4cf, type: 2}
   levels: []
   levelPrefab: {fileID: 812803458894837651, guid: 64e090ce8ccbf414db39f5fc4cf6120b, type: 3}
   randomSeed: 0

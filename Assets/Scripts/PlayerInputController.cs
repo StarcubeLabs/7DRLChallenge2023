@@ -128,7 +128,6 @@ public class PlayerInputController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift)) // Apparently to get a combo of keys to work you have to do GetKey1, GetKey2, ..., GetFinalKeyDown
         {
-            
             if (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.D)
                 || Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.W))
             {
@@ -186,7 +185,6 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerActor.UseBasicAttack();
-            //playerActor.UseMove(playerActor.moves[0]);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -206,41 +204,54 @@ public class PlayerInputController : MonoBehaviour
 
     private void PlayerMoveRight()
     {
-        playerActor.Walk(new Vector3Int(1, 0));
+        PlayerMove(new Vector3Int(1, 0));
     }
 
     private void PlayerMoveLeft()
     {
-        playerActor.Walk(new Vector3Int(-1, 0));
+        PlayerMove(new Vector3Int(-1, 0));
     }
 
     private void PlayerMoveDown()
     {
-        playerActor.Walk(new Vector3Int(0, -1));
+        PlayerMove(new Vector3Int(0, -1));
     }
 
     private void PlayerMoveUp()
     {
-        playerActor.Walk(new Vector3Int(0, 1));
+        PlayerMove(new Vector3Int(0, 1));
     }
 
     private void PlayerMoveUpRight()
     {
-        playerActor.Walk(new Vector3Int(1, 1));
+        PlayerMove(new Vector3Int(1, 1));
     }
 
     private void PlayerMoveUpLeft()
     {
-        playerActor.Walk(new Vector3Int(-1, 1));
+        PlayerMove(new Vector3Int(-1, 1));
     }
 
     private void PlayerMoveDownLeft()
     {
-        playerActor.Walk(new Vector3Int(-1, -1));
+        PlayerMove(new Vector3Int(-1, -1));
     }
 
     private void PlayerMoveDownRight()
     {
-        playerActor.Walk(new Vector3Int(1, -1));
+        PlayerMove(new Vector3Int(1, -1));
+    }
+
+    private void PlayerMove(Vector3Int offset)
+    {
+        if (Input.GetKey(KeyCode.RightShift))
+        {
+            playerActor.FaceDirection(offset);
+            playerActor.UpdateVisualRotation();
+        }
+        else
+        {
+            playerActor.Walk(offset);
+        }
     }
 }
