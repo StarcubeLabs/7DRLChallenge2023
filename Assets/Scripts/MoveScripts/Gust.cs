@@ -11,6 +11,10 @@ public class Gust : MoveData
         if (target)
         {
             DamageTarget(user, target);
+            if (target.Dead)
+            {
+                return;
+            }
             for (int i = 2; i < maxKnockbackTiles; i++)
             {
                 Vector3Int aheadPosition = user.GetPositionInFront(i);
