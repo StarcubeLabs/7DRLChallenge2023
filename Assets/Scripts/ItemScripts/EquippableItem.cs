@@ -60,4 +60,9 @@ public class EquippableItem : ItemData
     {
         return true;
     }
+
+    public virtual int ModifyHungerDrainRate(int hungerDrainRate)
+    {
+        return hungerDrainRate;
+    }
 }

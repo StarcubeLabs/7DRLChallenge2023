@@ -660,9 +660,11 @@ public class ActorController : EntityController
         }
 
         //We'll assume if we have an upper limit on hunger, we care about hunger. Otherwise who caresssss?
-        if(hunger.y > 0)
+        if (hunger.y > 0)
         {
-            if ((turnsTaken % 10) == 0)
+            int hungerDrainRate = 10;
+            GetEquippedItems().ForEach(item => hungerDrainRate = item.ModifyHungerDrainRate(hungerDrainRate));
+            if ((turnsTaken % hungerDrainRate) == 0)
             {
                 if (hunger.x > 0 && turnsTaken > 0)
                 {
