@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Night Bonk
   ItemDescription: A good bonk to the head will put ANYONE to bed. 20% chance to
-    cause sleep.
+    cause sleep. 4 Attack.
   ItemIcon: {fileID: 21300000, guid: 41e4231580fe3c04db349c8b9bcb90dc, type: 3}
   ItemObject: {fileID: 8782928976717866339, guid: e3c47374a1c004bf3b2e4ae68b1e210d, type: 3}
   IsStackable: 0

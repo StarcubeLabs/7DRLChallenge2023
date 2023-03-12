@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Time Dilator Wand
   ItemDescription: FIRE TYPE. Uses heat to affect the space-time. 15% chance to slow.
+    2 Attack.
   ItemIcon: {fileID: 21300000, guid: fb97607ecee8ed64b924067b482084ed, type: 3}
   ItemObject: {fileID: 8782928976717866339, guid: e3c47374a1c004bf3b2e4ae68b1e210d, type: 3}
   IsStackable: 0

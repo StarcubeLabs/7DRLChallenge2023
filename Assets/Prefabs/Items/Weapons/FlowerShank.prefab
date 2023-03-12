@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Flower Shank
-  ItemDescription: GRASS TYPE. A simple blade crafted from the power of nature.
+  ItemDescription: GRASS TYPE. A simple blade crafted from the power of nature. 3
+    Attack.
   ItemIcon: {fileID: 21300000, guid: f59f248f760610b4c98ba41454e09a3d, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   IsStackable: 0

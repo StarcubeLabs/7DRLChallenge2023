@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Heatproof Coveralls
   ItemDescription: These bad boys will make sure you (almost) never get burned! 35%
-    chance to block burn!
+    chance to block burn! 1 Defense.
   ItemIcon: {fileID: 21300000, guid: be3c7a62f5da3994cb0ede747f70bbbf, type: 3}
   ItemObject: {fileID: 2286923735222523985, guid: 5059d5b5579bc4642be01813d33e63c5, type: 3}
   IsStackable: 0

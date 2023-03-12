@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Inferno Hammer
   ItemDescription: FIRE TYPE. A hammer with heat of a forge inside. 20% chance to
-    burn.
+    burn. 6 Attack.
   ItemIcon: {fileID: 21300000, guid: 7ec6e0875ba976947872f1e891ee484a, type: 3}
   ItemObject: {fileID: 8782928976717866339, guid: e3c47374a1c004bf3b2e4ae68b1e210d, type: 3}
   IsStackable: 0

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Depth Crusher
   ItemDescription: WATER TYPE. A hammer created to invoke the crushing power of the
-    ocean floor.
+    ocean floor. 6 Attack.
   ItemIcon: {fileID: 21300000, guid: b9db7d8b05c7aa64598906a95fa9901d, type: 3}
   ItemObject: {fileID: 8782928976717866339, guid: e3c47374a1c004bf3b2e4ae68b1e210d, type: 3}
   IsStackable: 0

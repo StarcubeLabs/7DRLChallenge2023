@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Ironbark Platemail
   ItemDescription: This wood is the heavy-duty stuff. This wood-based defense makes
-    a perfect replacement for metal armor. Good poison defense too!
+    a perfect replacement for metal armor. Good poison defense too! 2 Defense.
   ItemIcon: {fileID: 21300000, guid: 208eef1a9c208544ea4ce999cdacd2cb, type: 3}
   ItemObject: {fileID: 8563323336374753998, guid: b2dcfd399f9deca40a80d9e532b73661, type: 3}
   IsStackable: 0

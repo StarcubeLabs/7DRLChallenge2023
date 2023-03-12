@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Crush Depth Armor
   ItemDescription: This suit is the best in water-based protection. The cold it can
-    sustain is immense. Near-perfect frost protection.
+    sustain is immense. Near-perfect frost protection. 3 Defense.
   ItemIcon: {fileID: 21300000, guid: be3c7a62f5da3994cb0ede747f70bbbf, type: 3}
   ItemObject: {fileID: 4024223020391415694, guid: cf68a2d86f162f1449c1b0e1ff350e97, type: 3}
   IsStackable: 0

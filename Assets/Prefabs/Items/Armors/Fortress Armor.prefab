@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Fortress Armor
-  ItemDescription: You feel like a walking mountain in this.
+  ItemDescription: You feel like a walking mountain in this. 4 Defense.
   ItemIcon: {fileID: 21300000, guid: 87744d4a4f8112c48a70f39b400c3e97, type: 3}
   ItemObject: {fileID: 1718419373419662673, guid: 4344946ae40f1d34298541dc85c1478e, type: 3}
   IsStackable: 0

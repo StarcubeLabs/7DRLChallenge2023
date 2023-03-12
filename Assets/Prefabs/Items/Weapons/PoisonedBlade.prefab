@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Poisoned Blade
   ItemDescription: This blade is slathered in a foul-smelling substance. Don't touch
-    it. 15% chance to poison.
+    it. 15% chance to poison. 3 Attack.
   ItemIcon: {fileID: 21300000, guid: e5650ea092267ce4ba1e8dc91006a726, type: 3}
   ItemObject: {fileID: 4021939783045019365, guid: 288807ebf264e4dc7b21b0e618391e5c, type: 3}
   IsStackable: 0

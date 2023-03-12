@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Dirk Knife
-  ItemDescription: A simple knife that does simple damage.
+  ItemDescription: A simple knife that does simple damage. 2 Attack.
   ItemIcon: {fileID: 21300000, guid: 6f682f1d5ae3c984a84638d9d9577b2e, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   IsStackable: 0

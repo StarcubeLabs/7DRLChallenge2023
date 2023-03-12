@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Poisoned Knife
   ItemDescription: This knife applies the poison inside its hilt. 10% chance to poison.
+    2 Attack.
   ItemIcon: {fileID: 21300000, guid: f0a6424f7f822314f8c15d2d2b78dcb1, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   IsStackable: 0

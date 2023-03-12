@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Straight Blade
-  ItemDescription: A solid, sturdy sword.
+  ItemDescription: A solid, sturdy sword. 3 Attack.
   ItemIcon: {fileID: 21300000, guid: 06e54966115ab854881b4bbd418707f4, type: 3}
   ItemObject: {fileID: 4021939783045019365, guid: 288807ebf264e4dc7b21b0e618391e5c, type: 3}
   IsStackable: 0
