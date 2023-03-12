@@ -306,7 +306,7 @@ public class ActorController : EntityController
         void TriggerMoveVFX()
         {
             UpdateVisualRotation();
-            move.moveData.TriggerVFX(this);
+            move.moveData.TriggerUserVFX(this);
         }
         
         turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Attack", TriggerMoveVFX));
@@ -533,7 +533,7 @@ public class ActorController : EntityController
         int damage = DamageCalculator.CalculateDamage(moveData, this, target);
         if (damage > 0)
         {
-            target.Hurt(damage);
+            target.Hurt(damage, moveData);
             GetEquippedItems().ForEach(item => item.OnDamageDealt(this, target));
             target.Statuses.ForEach(status => status.OnActorAttacked(this));
         }
@@ -541,7 +541,7 @@ public class ActorController : EntityController
         return damage;
     }
 
-    public void Hurt(int hurtAmount = 1, string hurtMessage = null)
+    public void Hurt(int hurtAmount = 1, MoveData moveData = null, string hurtMessage = null)
     {
         hitPoints.x -= hurtAmount;
         hitPoints.x = Mathf.Max(0, hitPoints.x);
@@ -552,20 +552,24 @@ public class ActorController : EntityController
         MessageAnimation hurtAnimation = new MessageAnimation(hurtMessage);
         turnAnimationController.AddAnimation(hurtAnimation);
         UpdateVisualHitPoints();
+        void TriggerTargetVFX()
+        {
+            moveData?.TriggerTargetVFX(this);
+        }
         if (hitPoints.x <= 0)
         {
-            Kill();
+            Kill(TriggerTargetVFX);
         }
         else
         {
-            turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Hurt", actorSoundContainer?.hitSound));
+            turnAnimationController.AddAnimation(new AnimatorAnimation(ActorAnimController, "Hurt", TriggerTargetVFX, actorSoundContainer?.hitSound));
         }
     }
 
-    public void Kill()
+    public void Kill(Action attackAnimation = null)
     {
         turnAnimationController.AddAnimation(new MessageAnimation($"{GetDisplayName()} was defeated!"));
-        turnAnimationController.AddAnimation(new DeathAnimation(this, ActorAnimController, "Die", onDie, actorSoundContainer?.dieSound));
+        turnAnimationController.AddAnimation(new DeathAnimation(this, ActorAnimController, "Die", attackAnimation, onDie, actorSoundContainer?.dieSound));
     }
 
     public void ApplyStatus(StatusType statusType, int turnCount)
@@ -669,7 +673,7 @@ public class ActorController : EntityController
                 }
                 if (hunger.x == 0)
                 {
-                    Hurt(starvationDamage, $"{GetDisplayName()} took {starvationDamage} damage from starvation!");
+                    Hurt(starvationDamage, null, $"{GetDisplayName()} took {starvationDamage} damage from starvation!");
                 }
             }
         }

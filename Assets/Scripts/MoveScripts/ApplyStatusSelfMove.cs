@@ -16,12 +16,4 @@ public class ApplyStatusSelfMove : MoveData
     {
         return true;
     }
-
-    public override void TriggerVFX(ActorController user)
-    {
-        if (launchVFX != null)
-        {
-            GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
-        }
-    }
 }

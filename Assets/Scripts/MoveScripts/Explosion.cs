@@ -11,12 +11,4 @@ public class Explosion : DealDamageAround
             user.Hurt(user.hitPoints.x - 1);
         }
     }
-
-    public override void TriggerVFX(ActorController user)
-    {
-        if (launchVFX != null)
-        {
-            GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
-        }
-    }
 }

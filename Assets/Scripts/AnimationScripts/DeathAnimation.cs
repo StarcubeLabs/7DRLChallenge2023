@@ -7,20 +7,23 @@ public class DeathAnimation : TurnAnimation
     private ActorController actor;
     private Animator actorAnimator;
     private string animationName;
+    private Action attackAnimation;
     private EventHandler onDie;
     private AudioSource audioSource;
     
-    public DeathAnimation(ActorController actor, Animator actorAnimator, string animationName, EventHandler onDie, AudioSource audioSource = null)
+    public DeathAnimation(ActorController actor, Animator actorAnimator, string animationName, Action attackAnimation, EventHandler onDie, AudioSource audioSource = null)
     {
         this.actor = actor;
         this.actorAnimator = actorAnimator;
         this.animationName = animationName;
+        this.attackAnimation = attackAnimation;
         this.onDie = onDie;
         this.audioSource = audioSource;
     }
     
     public override void StartAnimation()
     {
+        attackAnimation.Invoke();
         actorAnimator?.SetTrigger(animationName);
         audioSource?.Play();
     }

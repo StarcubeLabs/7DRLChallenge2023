@@ -9,12 +9,4 @@ public class Cure : MoveData
     {
         user.HealAmount(healAmount);
     }
-
-    public override void TriggerVFX(ActorController user)
-    {
-        if (launchVFX != null)
-        {
-            GameObject.Instantiate<ParticleSystem>(launchVFX, user.transform, false);
-        }
-    }
 }
