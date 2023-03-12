@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 using Random = UnityEngine.Random;
 
 
@@ -88,6 +89,7 @@ public class ActorController : EntityController
     public int turnsTaken = 0;
 
     public EventHandler onDie;
+    public ParticleSystem onDieVFX;
 
     public enum ActorDirection { up, upRight, right, downRight, down, downLeft, left, upLeft, numDirections }
 
@@ -314,6 +316,15 @@ public class ActorController : EntityController
             move.pp--;
         }
         EndTurn();
+    }
+
+    public void TriggerDeathVFX()
+    {
+        if (onDieVFX != null)
+        {
+            ParticleSystem ps = GameObject.Instantiate<ParticleSystem>(onDieVFX, this.transform, false);
+            ps.transform.parent = null;
+        }
     }
 
     public int ModifyDamageUser(int damage, ActorController target)
