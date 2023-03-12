@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Dizzy Wand
   ItemDescription: Staring at this wand for too long will cause your eyes to spin.
-    9% chance to confuse.
+    9% chance to confuse. 2 Attack.
   ItemIcon: {fileID: 21300000, guid: fb97607ecee8ed64b924067b482084ed, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   IsStackable: 0

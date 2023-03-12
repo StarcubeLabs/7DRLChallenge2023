@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Basilisk Blade
   ItemDescription: GRASS TYPE. A sword infused with petrifying basilisk saliva. 20%
-    chance to petrify.
+    chance to petrify. 4 Attack.
   ItemIcon: {fileID: 21300000, guid: 248ae61e0b81d974ba8666c30a5942e4, type: 3}
   ItemObject: {fileID: 4021939783045019365, guid: 288807ebf264e4dc7b21b0e618391e5c, type: 3}
   IsStackable: 0

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Inkbrush
   ItemDescription: WATER TYPE. Whip this around enough and you might get ink in someone's
-    eye. 10% chance to blind.
+    eye. 10% chance to blind. 2 Attack.
   ItemIcon: {fileID: 21300000, guid: a2d2e332896c66b48afc1a7798c5d082, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   IsStackable: 0

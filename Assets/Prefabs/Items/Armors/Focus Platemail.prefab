@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Focus Platemail
-  ItemDescription: This armor burns with focus! 20% chance to block confusion!
+  ItemDescription: This armor burns with focus! 20% chance to block confusion! 2
+    Defense.
   ItemIcon: {fileID: 21300000, guid: be3c7a62f5da3994cb0ede747f70bbbf, type: 3}
   ItemObject: {fileID: 2286923735222523985, guid: 5059d5b5579bc4642be01813d33e63c5, type: 3}
   IsStackable: 0

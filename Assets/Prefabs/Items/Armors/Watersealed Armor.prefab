@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Watersealed Armor
   ItemDescription: Protects well against water-based threats. But it could be better.
+    2 Defense.
   ItemIcon: {fileID: 21300000, guid: 9a77ffa3dffe9d844888ce72041190fd, type: 3}
   ItemObject: {fileID: 4024223020391415694, guid: cf68a2d86f162f1449c1b0e1ff350e97, type: 3}
   IsStackable: 0

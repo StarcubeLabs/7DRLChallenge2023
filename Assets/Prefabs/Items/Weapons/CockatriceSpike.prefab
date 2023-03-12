@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Cockatrice Spike
   ItemDescription: GRASS TYPE. A petrifying spike stolen from a terrifying beast.
-    12% chance to petrify.
+    12% chance to petrify. 2 Attack.
   ItemIcon: {fileID: 21300000, guid: bfd0433bae0a8684e8dba5b5c9387583, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   IsStackable: 0

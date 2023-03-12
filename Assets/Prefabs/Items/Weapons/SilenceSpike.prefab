@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Silence Spike
   ItemDescription: GRASS TYPE. An implement that enforces silence. 10% chance to
-    mute.
+    mute. 3 Attack.
   ItemIcon: {fileID: 21300000, guid: 591864928aa682248a9624f8c60fab36, type: 3}
   ItemObject: {fileID: 288555068311420912, guid: 1bd818866c7cb491eb319c41da1232f7, type: 3}
   IsStackable: 0

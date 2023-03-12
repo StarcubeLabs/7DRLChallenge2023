@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Earthblessed Axehead
   ItemDescription: GRASS TYPE. An axehead heavily infused with the majesty of the
-    forest.
+    forest. 8 Attack.
   ItemIcon: {fileID: 21300000, guid: 06060a3ffca940f4d8e870a6c89dbf09, type: 3}
   ItemObject: {fileID: 4368104355848613144, guid: 5b37eec7c7024402c8d3129e18be4646, type: 3}
   IsStackable: 0
