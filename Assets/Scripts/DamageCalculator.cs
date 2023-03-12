@@ -1,4 +1,5 @@
 using RLDataTypes;
+using UnityEngine;
 
 public static class DamageCalculator
 {
@@ -14,6 +15,7 @@ public static class DamageCalculator
         moveDamage = user.ModifyDamageUser(moveDamage, target);
         moveDamage += GetTypeEffectivenessModifier(moveElement, target.GetEffectiveType());
         moveDamage = target.ModifyDamageTarget(moveDamage, user);
+        moveDamage = Mathf.Max(0, moveDamage);
         
         return moveDamage;
     }
