@@ -48,7 +48,7 @@ MonoBehaviour:
   ItemDescription: FIRE TYPE. Creates silence so loud you can hear it. 15% chance
     to mute. 5 Attack.
   ItemIcon: {fileID: 21300000, guid: 248ae61e0b81d974ba8666c30a5942e4, type: 3}
-  ItemObject: {fileID: 919132149155446097, guid: 122a074fedd540f4fb3ef47f343dca62, type: 3}
+  ItemObject: {fileID: 4021939783045019365, guid: 288807ebf264e4dc7b21b0e618391e5c, type: 3}
   IsStackable: 0
   MaximumStack: 1
   weaponElement: 1

@@ -18,7 +18,7 @@ MonoBehaviour:
   roomMaxSizeRange: {x: 5, y: 5}
   roomMinSizeRange: {x: 3, y: 3}
   CurrentFloorType: 0
-  NumberOfItemsToSpawn: {x: 4, y: 7}
+  NumberOfItemsToSpawn: {x: 5, y: 7}
   PotentialItemEntries:
   - Weight: 5
     Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}

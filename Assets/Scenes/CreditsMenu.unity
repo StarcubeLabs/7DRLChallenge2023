@@ -415,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3350509311181335912, guid: bda14591aec3dd947804e10dd58ad07f, type: 3}
       propertyPath: m_text
-      value: IAmHand
+      value: iamhand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bda14591aec3dd947804e10dd58ad07f, type: 3}
@@ -901,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3350509311181335912, guid: bda14591aec3dd947804e10dd58ad07f, type: 3}
       propertyPath: m_text
-      value: Kiva
+      value: Rukia
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bda14591aec3dd947804e10dd58ad07f, type: 3}
@@ -1019,7 +1019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3350509311181335912, guid: bda14591aec3dd947804e10dd58ad07f, type: 3}
       propertyPath: m_text
-      value: Vivi
+      value: vivi__mouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bda14591aec3dd947804e10dd58ad07f, type: 3}
@@ -1580,6 +1580,10 @@ PrefabInstance:
     - target: {fileID: 8787134120593551126, guid: 88debd08e77f36d4ab1e834cbb8a35c9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -69
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787134120779068556, guid: 88debd08e77f36d4ab1e834cbb8a35c9, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8787134120779068556, guid: 88debd08e77f36d4ab1e834cbb8a35c9, type: 3}
       propertyPath: m_AnchoredPosition.x
