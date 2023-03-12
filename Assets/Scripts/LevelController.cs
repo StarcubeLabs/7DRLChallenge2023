@@ -93,8 +93,6 @@ public class LevelController : MonoBehaviour
     {
 
         Cell[] cells = somewhatInterestingMap.GetAllCells().Where(cell => cell.IsWalkable).ToArray();
-
-
         
         CurrentFloorData.GenerateFloorEntities();
         

@@ -18,47 +18,47 @@ MonoBehaviour:
   roomMaxSizeRange: {x: 5, y: 5}
   roomMinSizeRange: {x: 3, y: 3}
   CurrentFloorType: 0
-  NumberOfItemsToSpawn: {x: 4, y: 7}
+  NumberOfItemsToSpawn: {x: 2, y: 5}
   PotentialItemEntries:
-  - Weight: 10
+  - Weight: 3
     Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
-  - Weight: 5
+  - Weight: 3
     Entry: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
-  - Weight: 5
-    Entry: {fileID: 2740662514017809751, guid: 9dd9075dde4ad42c09d07946811c2acf, type: 3}
-  - Weight: 5
-    Entry: {fileID: 2740662514017809751, guid: 1f84c1c24fb6444528c6c66df46dabe5, type: 3}
-  - Weight: 5
-    Entry: {fileID: 7563973972555501414, guid: bb68035121d9b574191b62ae17f9c9b3, type: 3}
-  - Weight: 5
-    Entry: {fileID: 4080372399560234900, guid: 159f09f19673841f3a278dbcb04cc3bd, type: 3}
-  - Weight: 5
-    Entry: {fileID: 4915565562157183493, guid: d8eab701e112e4b8aa3da87584cfb1f8, type: 3}
-  - Weight: 5
-    Entry: {fileID: 7234801106608014906, guid: 9e4551a211f07b649a788e8094e69109, type: 3}
-  - Weight: 5
-    Entry: {fileID: 4436611308889749758, guid: d18737f52591f4145b99420234474686, type: 3}
-  - Weight: 5
-    Entry: {fileID: 1958110151181931917, guid: 2e26d90c1a392f14fb49b9c9c01c4381, type: 3}
-  - Weight: 5
+  - Weight: 3
     Entry: {fileID: 5232407384910942077, guid: 6b2cfd2cdf048914497dc244e64d3241, type: 3}
-  - Weight: 5
+  - Weight: 1
+    Entry: {fileID: 2740662514017809751, guid: 9dd9075dde4ad42c09d07946811c2acf, type: 3}
+  - Weight: 1
+    Entry: {fileID: 2740662514017809751, guid: 1f84c1c24fb6444528c6c66df46dabe5, type: 3}
+  - Weight: 1
+    Entry: {fileID: 7563973972555501414, guid: bb68035121d9b574191b62ae17f9c9b3, type: 3}
+  - Weight: 1
+    Entry: {fileID: 4080372399560234900, guid: 159f09f19673841f3a278dbcb04cc3bd, type: 3}
+  - Weight: 1
+    Entry: {fileID: 4915565562157183493, guid: d8eab701e112e4b8aa3da87584cfb1f8, type: 3}
+  - Weight: 1
+    Entry: {fileID: 7234801106608014906, guid: 9e4551a211f07b649a788e8094e69109, type: 3}
+  - Weight: 1
+    Entry: {fileID: 4436611308889749758, guid: d18737f52591f4145b99420234474686, type: 3}
+  - Weight: 1
+    Entry: {fileID: 1958110151181931917, guid: 2e26d90c1a392f14fb49b9c9c01c4381, type: 3}
+  - Weight: 1
     Entry: {fileID: -6469611630650067172, guid: fd053ec73da3c4dc690c1d2cbb6a4ebd, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: -6469611630650067172, guid: 7ecbb84ba47a7414aac4b5a43315801e, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: -6469611630650067172, guid: 82d5612d28fe049f7b719ba007e0fe4c, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: -6469611630650067172, guid: 3d0d78043edc14c8fa75b7c84ce11722, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: 4744837263177166080, guid: d7600faf0bd030d4a8c1887f5ed86277, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: 628324517710171396, guid: 733c4c9cb831f6b4f9204c51653b202e, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: 6101064481163318544, guid: 7bc220e59a303614486b4292a2d67729, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: 3517048333682426973, guid: ef233fd539746ab4cabdca41cef63db2, type: 3}
-  - Weight: 5
+  - Weight: 1
     Entry: {fileID: 4517285485017344840, guid: f94b5ab2373a147bf88d4ddce95a6d3b, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []

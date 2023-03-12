@@ -52,6 +52,6 @@ MonoBehaviour:
   IsStackable: 0
   MaximumStack: 1
   armorElement: 2
-  ArmorStrength: 6
+  ArmorStrength: 2
   StatusBlockType: 15
   ProtectionChance: 0.1

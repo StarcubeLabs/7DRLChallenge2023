@@ -18,12 +18,14 @@ MonoBehaviour:
   roomMaxSizeRange: {x: 5, y: 5}
   roomMinSizeRange: {x: 3, y: 3}
   CurrentFloorType: 0
-  NumberOfItemsToSpawn: {x: 2, y: 6}
+  NumberOfItemsToSpawn: {x: 2, y: 5}
   PotentialItemEntries:
-  - Weight: 5
+  - Weight: 2
     Entry: {fileID: 2715835982037041181, guid: 8b3732bd4bcc0e941ba5850e99ad0bf6, type: 3}
-  - Weight: 5
+  - Weight: 2
     Entry: {fileID: 628324517710171396, guid: 8ae21e1e38f0e444cad5ac4812729074, type: 3}
+  - Weight: 2
+    Entry: {fileID: 5232407384910942077, guid: 6b2cfd2cdf048914497dc244e64d3241, type: 3}
   - Weight: 1
     Entry: {fileID: 2740662514017809751, guid: 9dd9075dde4ad42c09d07946811c2acf, type: 3}
   - Weight: 1
@@ -42,6 +44,8 @@ MonoBehaviour:
     Entry: {fileID: 7055073717748325390, guid: 5d7dbf82c0d23456a8ec16a2d35a99fc, type: 3}
   - Weight: 1
     Entry: {fileID: 7055073717748325390, guid: 5d7dbf82c0d23456a8ec16a2d35a99fc, type: 3}
+  - Weight: 1
+    Entry: {fileID: 5232407384910942077, guid: 84f3548ee49fefb40bc78f736e96357d, type: 3}
   NumberOfTrapsToSpawnRange: {x: 0, y: 0}
   PotentialTrapEntries: []
   NumberOfEnemiesToSpawnRange: {x: 2, y: 4}
